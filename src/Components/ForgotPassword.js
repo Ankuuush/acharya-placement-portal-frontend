@@ -7,30 +7,31 @@ import {
   Avatar,
   Alert,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../Context/AuthContext/AuthContext";
 
-const Login = () => {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+import { Link } from "react-router-dom";
+import AuthContext from "../Context/AuthContext/AuthContext";
+
+const ForgotPassword = () => {
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const authContext = useContext(AuthContext);
-  const { login } = authContext;
+  const { resetPassword } = authContext;
   const [loading, setLoading] = useState(false);
-  let navigate = useNavigate();
-
+  const [message, setMessage] = useState('')
   const onChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    setEmail(e.target.value)
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+        setMessage('')
       setError("");
       setLoading(true);
-      await login(credentials.email, credentials.password);
-      navigate("/");
+      await resetPassword(email);
+      setMessage("Check your email for further instructions.")
     } catch {
-      setError("Login failed.");
+      setError("Failed to reset password.");
     }
     setLoading(false);
   };
@@ -43,12 +44,17 @@ const Login = () => {
         src=".../Assets/avatar.png"
       />
       <Card variant="outlined">
-        <h2 style={{ textAlign: "center", marginTop: "2rem" }}>Log In</h2>
+        <h2 style={{ textAlign: "center", marginTop: "2rem" }}>Reset Password</h2>
         <Container style={{ width: "20rem", marginTop: "2rem" }}>
           {error && (
             <Alert style={{ marginBottom: "1rem" }} severity="error">
               {error}
             </Alert>
+          )}
+          {message &&(
+            <Alert style={{ marginBottom: "1rem" }} severity="info">
+            {message}
+          </Alert>
           )}
           <form
             onSubmit={handleSubmit}
@@ -61,22 +67,11 @@ const Login = () => {
             <TextField
               name="email"
               onChange={onChange}
-              value={credentials.email}
+              value={email}
               size="small"
               label="Email"
               variant="outlined"
               type="email"
-              style={{ width: "100%", margin: "0.35rem 0" }}
-              required
-            />
-            <TextField
-              name="password"
-              onChange={onChange}
-              value={credentials.password}
-              size="small"
-              label="Password"
-              type="password"
-              variant="outlined"
               style={{ width: "100%", margin: "0.35rem 0" }}
               required
             />
@@ -90,7 +85,7 @@ const Login = () => {
             >
               Submit
             </Button>
-            <Link to="/forgot-password" style={{marginTop:'1rem', marginBottom: "3rem"}}>Forgot Password?</Link>
+            <Link to="/Login" style={{marginTop:'1rem', marginBottom: "3rem"}}>Login</Link>
           </form>
         </Container>
       </Card>
@@ -101,4 +96,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

@@ -10,7 +10,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false)
   let navigate = useNavigate();
   const authContext = useContext(AuthContext)
-  const{signup}=authContext
+  const { signup } = authContext
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
@@ -20,14 +20,14 @@ const Signup = () => {
     if (credentials.password !== credentials.confirmPassword) {
       return setError('Passwords do not match.')
     }
-    try{
+    try {
       setError("");
       setLoading(true);
-      await signup(credentials.email,credentials.password)
+      await signup(credentials.email, credentials.password)
       navigate('/')
-      }catch{
-        setError('Failed to create an account')
-      }
+    } catch {
+      setError('Failed to create an account')
+    }
     setLoading(false)
   }
 

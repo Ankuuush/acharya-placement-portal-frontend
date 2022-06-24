@@ -8,31 +8,48 @@ import {
   Alert,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../Context/AuthContext/AuthContext";
+import AuthContext from "../Context/AuthContext/AuthContext";
 
-const Login = () => {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+const UpdateProfile = () => {
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [error, setError] = useState("");
-  const authContext = useContext(AuthContext);
-  const { login } = authContext;
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
-
+  const authContext = useContext(AuthContext);
+  const { currentUser, updateUserEmail, updateUserPassword } = authContext;
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      setError("");
-      setLoading(true);
-      await login(credentials.email, credentials.password);
-      navigate("/");
-    } catch {
-      setError("Login failed.");
+    setError("");
+    setLoading(true);
+    if (credentials.password !== credentials.confirmPassword) {
+      return setError("Passwords do not match.");
     }
-    setLoading(false);
+
+    let promises = [];
+    if (currentUser.email !== credentials.email)
+      promises.push(updateUserEmail(credentials.email));
+
+    if (credentials.password)
+      promises.push(updateUserPassword(credentials.password));
+
+    Promise.all(promises)
+      .then(() => {
+        navigate("/");
+      })
+      .catch(() => {
+        setError("Failed to update.");
+      })
+      .then(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -43,7 +60,9 @@ const Login = () => {
         src=".../Assets/avatar.png"
       />
       <Card variant="outlined">
-        <h2 style={{ textAlign: "center", marginTop: "2rem" }}>Log In</h2>
+        <h2 style={{ textAlign: "center", marginTop: "2rem" }}>
+          Update Profile
+        </h2>
         <Container style={{ width: "20rem", marginTop: "2rem" }}>
           {error && (
             <Alert style={{ marginBottom: "1rem" }} severity="error">
@@ -70,6 +89,7 @@ const Login = () => {
               required
             />
             <TextField
+              placeholder="Leave blank to keep the same."
               name="password"
               onChange={onChange}
               value={credentials.password}
@@ -78,7 +98,17 @@ const Login = () => {
               type="password"
               variant="outlined"
               style={{ width: "100%", margin: "0.35rem 0" }}
-              required
+            />
+            <TextField
+              placeholder="Leave blank to keep the same."
+              name="confirmPassword"
+              onChange={onChange}
+              value={credentials.passwordConfirm}
+              size="small"
+              label="Confirm Password"
+              type="password"
+              variant="outlined"
+              style={{ width: "100%", margin: "0.35rem 0" }}
             />
             <Button
               disabled={loading}
@@ -86,19 +116,18 @@ const Login = () => {
               variant="contained"
               color="warning"
               type="submit"
-              style={{ width: "80%", marginTop: "2rem" }}
+              style={{ width: "80%", marginTop: "2rem", marginBottom: "3rem" }}
             >
-              Submit
+              Update
             </Button>
-            <Link to="/forgot-password" style={{marginTop:'1rem', marginBottom: "3rem"}}>Forgot Password?</Link>
           </form>
         </Container>
       </Card>
-      <p style={{ margin: "0", textAlign: "end" }}>
-        Don't have an account?<Link to="/signup"> Sign Up</Link>
+      <p style={{ margin: "0", textAlign: "center" }}>
+        <Link to="/">Cancel</Link>
       </p>
     </Container>
   );
 };
 
-export default Login;
+export default UpdateProfile;

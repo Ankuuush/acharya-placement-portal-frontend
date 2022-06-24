@@ -4,6 +4,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
+  sendPasswordResetEmail,
+  updateEmail,
+  updatePassword
 } from "firebase/auth";
 
 import { useEffect, useState } from "react";
@@ -11,12 +15,27 @@ import { useEffect, useState } from "react";
 const AuthProvider = (props) => {
   const [currentUser, setCurrentUser] = useState({});
   const [loading, setLoading] = useState(true);
-  
+
   const signup = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
+
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const logout = () => {
+    return signOut(auth);
+  };
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
+  const updateUserEmail = (email) => {
+    return updateEmail(currentUser, email);
+  };
+
+  const updateUserPassword = (password) => {
+    return updatePassword(currentUser, password);
   };
 
   useEffect(() => {
@@ -28,7 +47,17 @@ const AuthProvider = (props) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signup, login, currentUser }}>
+    <AuthContext.Provider
+      value={{
+        signup,
+        login,
+        currentUser,
+        logout,
+        resetPassword,
+        updateUserEmail,
+        updateUserPassword,
+      }}
+    >
       {!loading && props.children}
     </AuthContext.Provider>
   );
