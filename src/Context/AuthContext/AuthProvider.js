@@ -7,7 +7,8 @@ import {
   signOut,
   sendPasswordResetEmail,
   updateEmail,
-  updatePassword
+  updatePassword,
+  updateProfile 
 } from "firebase/auth";
 
 import { useEffect, useState } from "react";
@@ -19,6 +20,11 @@ const AuthProvider = (props) => {
   const signup = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
+  const updateName=(userName) =>{
+    return updateProfile(auth.currentUser, {
+      displayName: userName
+    })
+  }
 
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -56,6 +62,7 @@ const AuthProvider = (props) => {
         resetPassword,
         updateUserEmail,
         updateUserPassword,
+        updateName
       }}
     >
       {!loading && props.children}

@@ -1,5 +1,4 @@
 import { Button,Alert } from '@mui/material'
-import { updateCurrentUser } from 'firebase/auth'
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import AuthContext from '../../Context/AuthContext/AuthContext'
@@ -25,6 +24,7 @@ const Home = () => {
     <div>Home</div>
     {error && <Alert variant="danger">{error}</Alert>}
     <h4>Email: {currentUser.email}</h4>
+    <p>Name: {currentUser.displayName}</p>
     <Link to='/update-profile'>Update Profile</Link>
     <Button onClick={handleClick}>Logout</Button>
     </>

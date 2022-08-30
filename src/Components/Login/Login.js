@@ -36,7 +36,7 @@ const Login = () => {
   };
 
   return (
-    <Container style={{ width: "25rem", marginTop: "5rem" }}>
+    <Container style={{ width: "25rem", marginTop: "3rem" }}>
       <Avatar
         sx={{ bgcolor: "#F86528", width: 48, height: 48 }}
         style={{ bottom: "-1.5rem", margin: "0 auto" }}
