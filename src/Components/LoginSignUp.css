@@ -1,0 +1,40 @@
+#login-signup-container{
+    width: 100vw;
+    height:100vh;
+    position:relative;
+}
+#left-component{
+    width: 50vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+}
+
+#right-component{
+    width:50vw;
+    height: 100vh; 
+    position:absolute;
+    right: 0;
+}
+
+@media screen and (max-width:600px) {
+    #login-signup-container{
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height:100vh;
+        position:relative;
+    }
+    #left-component{
+        width: 100vw;
+        height: 50vh;
+        position: relative;
+    }
+
+    #right-component{
+        width: 100vw;
+        height: 50vh;
+        position: relative;
+        margin-bottom: 2rem;
+    }
+}

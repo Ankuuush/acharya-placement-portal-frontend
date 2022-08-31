@@ -1,14 +1,13 @@
 import React, { useContext, useState } from "react";
 import {
   Button,
-  Card,
   Container,
   TextField,
-  Avatar,
   Alert,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
+import '../LoginSignUp.css'
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -35,16 +34,23 @@ const Login = () => {
     setLoading(false);
   };
 
+  const myIconStyle = {
+    width: "7em",
+    height: "7em",
+    borderRadius: "3.5em",
+  }
+
   return (
-    <Container style={{ width: "25rem", marginTop: "3rem" }}>
-      <Avatar
-        sx={{ bgcolor: "#F86528", width: 48, height: 48 }}
-        style={{ bottom: "-1.5rem", margin: "0 auto" }}
-        src=".../Assets/avatar.png"
-      />
-      <Card variant="outlined">
-        <h2 style={{ textAlign: "center", marginTop: "2rem" }}>Log In</h2>
-        <Container style={{ width: "20rem", marginTop: "2rem" }}>
+    <div id="login-signup-container" >
+      <div id="left-component">
+        <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" width="100%" height="100%" />
+      </div>
+      <div id="right-component">
+        <Container style={{ width: "70%", marginTop: "4rem" }}>
+          <div style={{ width: "100%", height: "7em", display: "flex", justifyContent: "center" }}>
+            <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" alt="logo" className="collegeIcon" style={myIconStyle} />
+          </div>
+          <h2 style={{ textAlign: "center", marginTop: "1.5rem" }}>Placement Cell</h2>
           {error && (
             <Alert style={{ marginBottom: "1rem" }} severity="error">
               {error}
@@ -80,24 +86,30 @@ const Login = () => {
               style={{ width: "100%", margin: "0.35rem 0" }}
               required
             />
+            <Link
+              to="/forgot-password"
+
+            >
+              Forgot Password?
+            </Link>
             <Button
               disabled={loading}
               size="small"
               variant="contained"
               color="warning"
               type="submit"
-              style={{ width: "80%", marginTop: "2rem" }}
+              style={{ width: "60%", marginTop: "1rem", marginBottom: "0.5rem" }}
             >
-              Submit
+              Login
             </Button>
-            <Link to="/forgot-password" style={{marginTop:'1rem', marginBottom: "3rem"}}>Forgot Password?</Link>
+
           </form>
         </Container>
-      </Card>
-      <p style={{ margin: "0", textAlign: "end" }}>
-        Don't have an account?<Link to="/signup"> Sign Up</Link>
-      </p>
-    </Container>
+        <p style={{ margin: "0", textAlign: "center" }}>
+          Don't have an account?<Link to="/signup"> Sign Up</Link>
+        </p>
+      </div>
+    </div>
   );
 };
 

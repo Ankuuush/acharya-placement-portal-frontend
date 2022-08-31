@@ -1,14 +1,13 @@
 import React, { useContext, useState } from "react";
 import {
   Button,
-  Card,
   Container,
   TextField,
-  Avatar,
   Alert,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
+import '../LoginSignUp.css'
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -44,16 +43,15 @@ const Signup = () => {
     setLoading(false);
   };
 
+  
   return (
-    <Container style={{ width: "25rem", marginTop: "3rem" }}>
-      <Avatar
-        sx={{ bgcolor: "#F86528", width: 48, height: 48 }}
-        style={{ bottom: "-1.5rem", margin: "0 auto" }}
-        src=".../Assets/avatar.png"
-      />
-      <Card variant="outlined">
-        <h2 style={{ textAlign: "center", marginTop: "2rem" }}>Sign Up</h2>
-        <Container style={{ width: "20rem", marginTop: "2rem" }}>
+    <div id="login-signup-container">
+      <div id="left-component">
+        <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" width="100%" height="100%" />
+      </div>
+      <div id="right-component">
+      <h2 style={{ textAlign: "center", marginTop: "6rem" }}>Let's Get You Registered!</h2>
+        <Container style={{ width: "70%", marginTop: "2rem" }}>
           {error && (
             <Alert style={{ marginBottom: "1rem" }} severity="error">
               {error}
@@ -109,7 +107,7 @@ const Signup = () => {
               label="First Name"
               type="text"
               variant="outlined"
-              style={{ width: "45%" }}
+              style={{ width: "48%" }}
               required
             />
             <TextField
@@ -120,7 +118,7 @@ const Signup = () => {
               label="Last Name"
               type="text"
               variant="outlined"
-              style={{ width: "45%",position:"absolute", right:"0" }}
+              style={{ width: "48%",position:"absolute", right:"0" }}
               required
             />
             </div>
@@ -130,17 +128,18 @@ const Signup = () => {
               variant="contained"
               color="warning"
               type="submit"
-              style={{ width: "80%", marginTop: "2rem", marginBottom: "3rem" }}
+              style={{ width: "60%", marginTop: "2rem", marginBottom: "0.5rem" }}
             >
-              Submit
+              Next
             </Button>
           </form>
-        </Container>
-      </Card>
-      <p style={{ margin: "0", textAlign: "end" }}>
-        Already have an account?<Link to="/login"> Log In</Link>
+          <p style={{ margin: "0", textAlign: "center" }}>
+        Already Registered?<Link to="/login"> Log In</Link>
       </p>
-    </Container>
+        </Container>
+        </div>
+      
+    </div>
   );
 };
 
