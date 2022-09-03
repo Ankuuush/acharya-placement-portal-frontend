@@ -69,7 +69,7 @@ const Login = () => {
               name="email"
               onChange={onChange}
               value={credentials.email}
-              size="small"
+              size="Normal"
               label="Email"
               variant="outlined"
               type="email"
