@@ -5,6 +5,7 @@ import {
   TextField,
   Alert,
 } from "@mui/material";
+import logo from "../../Assets/Acharya_logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 import '../LoginSignUp.css'
@@ -48,7 +49,7 @@ const Login = () => {
       <div id="right-component">
         <Container style={{ width: "70%", marginTop: "4rem" }}>
           <div style={{ width: "100%", height: "7em", display: "flex", justifyContent: "center" }}>
-            <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" alt="logo" className="collegeIcon" style={myIconStyle} />
+            <img src={logo} alt="logo" className="collegeIcon" style={myIconStyle} />
           </div>
           <h2 style={{ textAlign: "center", marginTop: "1.5rem" }}>Placement Cell</h2>
           {error && (
