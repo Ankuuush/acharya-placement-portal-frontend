@@ -66,7 +66,7 @@ const Login = () => {
             }}
           >
             <TextField
-              name="email"
+              name="Acharya Email"
               onChange={onChange}
               value={credentials.email}
               size="small"
