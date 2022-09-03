@@ -47,10 +47,10 @@ const Signup = () => {
   return (
     <div id="login-signup-container">
       <div id="left-component">
-        <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" alt="left component" width="100%" height="100%" />
+        <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" alt="left component" width="120%" height="100%" />
       </div>
       <div id="right-component">
-      <h2 style={{ textAlign: "center", marginTop: "6rem" }}>Let's Get You Registered!</h2>
+      <h2 style={{ textAlign: "center", marginTop: "7rem" }}>Let's Get You Registered!</h2>
         <Container style={{ width: "70%", marginTop: "2rem" }}>
           {error && (
             <Alert style={{ marginBottom: "1rem" }} severity="error">
@@ -69,7 +69,7 @@ const Signup = () => {
               name="email"
               onChange={onChange}
               value={credentials.email}
-              size="small"
+              size="normal"
               label="Email"
               variant="outlined"
               type="email"
@@ -80,7 +80,7 @@ const Signup = () => {
               name="password"
               onChange={onChange}
               value={credentials.password}
-              size="small"
+              size="normal"
               label="Password"
               type="password"
               variant="outlined"
@@ -91,7 +91,7 @@ const Signup = () => {
               name="confirmPassword"
               onChange={onChange}
               value={credentials.passwordConfirm}
-              size="small"
+              size="normal"
               label="Confirm Password"
               type="password"
               variant="outlined"
@@ -103,28 +103,28 @@ const Signup = () => {
               name="firstName"
               onChange={onChange}
               value={credentials.firstName}
-              size="small"
+              size="normal"
               label="First Name"
               type="text"
               variant="outlined"
-              style={{ width: "48%" }}
+              style={{ width: "48%" ,margin: "0.35rem 0"}}
               required
             />
             <TextField
               name="lastName"
               onChange={onChange}
               value={credentials.lastName}
-              size="small"
+              size="normal"
               label="Last Name"
               type="text"
               variant="outlined"
-              style={{ width: "48%",position:"absolute", right:"0" }}
+              style={{ width: "48%",position:"absolute", right:"0" ,margin: "0.35rem 0"}}
               required
             />
             </div>
             <Button
               disabled={loading}
-              size="small"
+              size="large"
               variant="contained"
               color="warning"
               type="submit"
@@ -133,9 +133,7 @@ const Signup = () => {
               Next
             </Button>
           </form>
-          <p style={{ margin: "0", textAlign: "center" }}>
-        Already Registered?<Link to="/login"> Log In</Link>
-      </p>
+          
         </Container>
         </div>
       

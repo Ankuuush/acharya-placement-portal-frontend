@@ -4,14 +4,14 @@
     position:relative;
 }
 #left-component{
-    width: 50vw;
+    width: 52vw;
     height: 100vh;
     position: absolute;
     left: 0;
 }
 
 #right-component{
-    width:50vw;
+    width:37vw;
     height: 100vh; 
     position:absolute;
     right: 0;

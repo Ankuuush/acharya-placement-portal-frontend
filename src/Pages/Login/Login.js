@@ -38,16 +38,16 @@ const Login = () => {
   const myIconStyle = {
     width: "7em",
     height: "7em",
-    borderRadius: "3.5em",
+    borderRadius: "0",
   }
 
   return (
     <div id="login-signup-container" >
       <div id="left-component">
-        <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" alt="left component" width="100%" height="100%" />
+        <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" alt="left component" width="120%" height="100%" />
       </div>
       <div id="right-component">
-        <Container style={{ width: "70%", marginTop: "4rem" }}>
+        <Container style={{ width: "70%", marginTop: "8rem" }}>
           <div style={{ width: "100%", height: "7em", display: "flex", justifyContent: "center" }}>
             <img src={logo} alt="logo" className="collegeIcon" style={myIconStyle} />
           </div>
@@ -69,7 +69,7 @@ const Login = () => {
               name="email"
               onChange={onChange}
               value={credentials.email}
-              size="small"
+              size="normal"
               label="Email"
               variant="outlined"
               type="email"
@@ -80,22 +80,25 @@ const Login = () => {
               name="password"
               onChange={onChange}
               value={credentials.password}
-              size="small"
+              size="normal"
               label="Password"
               type="password"
               variant="outlined"
               style={{ width: "100%", margin: "0.35rem 0" }}
               required
             />
+         <Container style={{ width: "108%", display:"flex", justifyContent:"right" }}>
             <Link
               to="/forgot-password"
-
+              style={{color:"#4A75B5" , textDecoration:"none"}}
             >
               Forgot Password?
             </Link>
+            </Container>
+           
             <Button
               disabled={loading}
-              size="small"
+              size="large"
               variant="contained"
               color="warning"
               type="submit"
@@ -106,9 +109,7 @@ const Login = () => {
 
           </form>
         </Container>
-        <p style={{ margin: "0", textAlign: "center" }}>
-          Don't have an account?<Link to="/signup"> Sign Up</Link>
-        </p>
+       
       </div>
     </div>
   );
