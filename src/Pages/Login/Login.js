@@ -44,7 +44,7 @@ const Login = () => {
   return (
     <div id="login-signup-container" >
       <div id="left-component">
-        <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" width="100%" height="100%" />
+        <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" alt="left component" width="100%" height="100%" />
       </div>
       <div id="right-component">
         <Container style={{ width: "70%", marginTop: "4rem" }}>

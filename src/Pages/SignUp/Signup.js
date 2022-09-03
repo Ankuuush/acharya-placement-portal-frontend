@@ -1,69 +1,57 @@
 import React, { useContext, useState } from "react";
 import {
   Button,
-  Card,
   Container,
   TextField,
-  Avatar,
   Alert,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../Context/AuthContext/AuthContext";
+import AuthContext from "../../Context/AuthContext/AuthContext";
+import '../LoginSignUp.css'
 
-const UpdateProfile = () => {
+const Signup = () => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
     confirmPassword: "",
+    firstName: "",
+    lastName: "",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
   const authContext = useContext(AuthContext);
-  const { currentUser, updateUserEmail, updateUserPassword } = authContext;
+  const { signup,updateName } = authContext;
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setLoading(true);
     if (credentials.password !== credentials.confirmPassword) {
       return setError("Passwords do not match.");
     }
-
-    let promises = [];
-    if (currentUser.email !== credentials.email)
-      promises.push(updateUserEmail(credentials.email));
-
-    if (credentials.password)
-      promises.push(updateUserPassword(credentials.password));
-
-    Promise.all(promises)
-      .then(() => {
-        navigate("/");
-      })
-      .catch(() => {
-        setError("Failed to update.");
-      })
-      .then(() => {
-        setLoading(false);
-      });
+    try {
+      setError("");
+      setLoading(true);
+      await signup(credentials.email, credentials.password);
+      await updateName(credentials.firstName+" "+credentials.lastName)
+      navigate("/");
+    } catch {
+      setError("Failed to create an account");
+    }
+    setLoading(false);
   };
 
+  
   return (
-    <Container style={{ width: "25rem", marginTop: "5rem" }}>
-      <Avatar
-        sx={{ bgcolor: "#F86528", width: 48, height: 48 }}
-        style={{ bottom: "-1.5rem", margin: "0 auto" }}
-        src=".../Assets/avatar.png"
-      />
-      <Card variant="outlined">
-        <h2 style={{ textAlign: "center", marginTop: "2rem" }}>
-          Update Profile
-        </h2>
-        <Container style={{ width: "20rem", marginTop: "2rem" }}>
+    <div id="login-signup-container">
+      <div id="left-component">
+        <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" alt="left component" width="100%" height="100%" />
+      </div>
+      <div id="right-component">
+      <h2 style={{ textAlign: "center", marginTop: "6rem" }}>Let's Get You Registered!</h2>
+        <Container style={{ width: "70%", marginTop: "2rem" }}>
           {error && (
             <Alert style={{ marginBottom: "1rem" }} severity="error">
               {error}
@@ -89,7 +77,6 @@ const UpdateProfile = () => {
               required
             />
             <TextField
-              placeholder="Leave blank to keep the same."
               name="password"
               onChange={onChange}
               value={credentials.password}
@@ -98,9 +85,9 @@ const UpdateProfile = () => {
               type="password"
               variant="outlined"
               style={{ width: "100%", margin: "0.35rem 0" }}
+              required
             />
             <TextField
-              placeholder="Leave blank to keep the same."
               name="confirmPassword"
               onChange={onChange}
               value={credentials.passwordConfirm}
@@ -109,25 +96,51 @@ const UpdateProfile = () => {
               type="password"
               variant="outlined"
               style={{ width: "100%", margin: "0.35rem 0" }}
+              required
             />
+            <div style={{position:"relative", width:"100%"}}>
+            <TextField
+              name="firstName"
+              onChange={onChange}
+              value={credentials.firstName}
+              size="small"
+              label="First Name"
+              type="text"
+              variant="outlined"
+              style={{ width: "48%" }}
+              required
+            />
+            <TextField
+              name="lastName"
+              onChange={onChange}
+              value={credentials.lastName}
+              size="small"
+              label="Last Name"
+              type="text"
+              variant="outlined"
+              style={{ width: "48%",position:"absolute", right:"0" }}
+              required
+            />
+            </div>
             <Button
               disabled={loading}
               size="small"
               variant="contained"
               color="warning"
               type="submit"
-              style={{ width: "80%", marginTop: "2rem", marginBottom: "3rem" }}
+              style={{ width: "60%", marginTop: "2rem", marginBottom: "0.5rem" }}
             >
-              Update
+              Next
             </Button>
           </form>
-        </Container>
-      </Card>
-      <p style={{ margin: "0", textAlign: "center" }}>
-        <Link to="/">Cancel</Link>
+          <p style={{ margin: "0", textAlign: "center" }}>
+        Already Registered?<Link to="/login"> Log In</Link>
       </p>
-    </Container>
+        </Container>
+        </div>
+      
+    </div>
   );
 };
 
-export default UpdateProfile;
+export default Signup;
