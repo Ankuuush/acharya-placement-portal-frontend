@@ -1,30 +1,34 @@
 import { auth } from "../../firebase";
 import AuthContext from "./AuthContext";
 import {
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
   sendPasswordResetEmail,
-  updateEmail,
-  updatePassword,
-  updateProfile 
 } from "firebase/auth";
 
 import { useEffect, useState } from "react";
 
 const AuthProvider = (props) => {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState("")
   const [loading, setLoading] = useState(true);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
-  const signup = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+  const signup = async (email, password, firstName, lastName) => {
+    const response= await fetch(`https://${baseUrl}/auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+      }),
+    });
+    return response;
   };
-  const updateName=(userName) =>{
-    return updateProfile(auth.currentUser, {
-      displayName: userName
-    })
-  }
 
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -33,16 +37,11 @@ const AuthProvider = (props) => {
   const logout = () => {
     return signOut(auth);
   };
+
   const resetPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
-  const updateUserEmail = (email) => {
-    return updateEmail(currentUser, email);
-  };
 
-  const updateUserPassword = (password) => {
-    return updatePassword(currentUser, password);
-  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -60,9 +59,7 @@ const AuthProvider = (props) => {
         currentUser,
         logout,
         resetPassword,
-        updateUserEmail,
-        updateUserPassword,
-        updateName
+        setLoading
       }}
     >
       {!loading && props.children}
