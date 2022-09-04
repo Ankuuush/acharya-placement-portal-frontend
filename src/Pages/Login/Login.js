@@ -70,7 +70,7 @@ const Login = () => {
               onChange={onChange}
               value={credentials.email}
               size="normal"
-              label="Acharya Email"
+              label="Email"
               variant="outlined"
               type="email"
               style={{ width: "100%", margin: "0.35rem 0" }}
