@@ -14,7 +14,7 @@ const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const authContext = useContext(AuthContext);
-  const { login } = authContext;
+  const { login,logout } = authContext;
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
 
@@ -27,8 +27,17 @@ const Login = () => {
     try {
       setError("");
       setLoading(true);
-      await login(credentials.email, credentials.password);
-      navigate("/");
+      const response=await login(credentials.email, credentials.password);
+      console.log(response)
+      if(response.user.emailVerified)
+      {
+        navigate("/");
+      }
+      else
+      {
+        await logout();
+        navigate("/verify-email")
+      }
     } catch {
       setError("Login failed.");
     }
@@ -109,7 +118,6 @@ const Login = () => {
 
           </form>
         </Container>
-       
       </div>
     </div>
   );

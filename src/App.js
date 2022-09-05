@@ -5,6 +5,7 @@ import Login from "./Pages/Login/Login";
 import AuthProvider from "./Context/AuthContext/AuthProvider";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./Pages/ForgotPassword";
+import VerifyEmail from "./Pages/Login/VerifyEmail";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route exact path="/verify-email" element={<VerifyEmail/>} />
         </Routes>
       </Router>
     </AuthProvider>
