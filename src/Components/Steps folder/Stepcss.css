@@ -1,0 +1,23 @@
+.MuiStepLabel-label{
+    color: white;
+    
+}
+.MuiStepLabel-label.Mui-completed{
+    color: white;
+    
+}
+.MuiStepLabel-label.Mui-active{
+    color: orange;
+}
+.MuiStepIcon-root.Mui-completed{
+    color: orange;
+}
+.MuiStepIcon-root{
+    color: white;
+}
+.MuiStepIcon-text {
+    fill: black;
+}
+.MuiStepIcon-root.Mui-active{
+    color: orange;
+}

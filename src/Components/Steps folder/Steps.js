@@ -1,52 +1,60 @@
-import { Container, createTheme, style } from '@mui/system';
+import { borderLeft, Container, createTheme, style } from '@mui/system';
 import React from 'react';
-import { Card , Stepper, StepConnector, Step, StepLabel, StepIcon} from '@mui/material';
+import { Card , Stepper, Step, StepLabel, StepIcon, SvgIcon} from '@mui/material';
 import { TripOrigin } from '@mui/icons-material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
+import { styled } from '@mui/material/styles';
+import '../Steps folder/Stepcss.css';
 
-class Steps extends React.Component {
-    render(){
-   const style={
-    completed: {
-        borderColor:"blue"
+
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
+    [`&.${stepConnectorClasses.alternativeLabel}`]: {
+      top: 30,
+      left: 'calc(-50% + 16px)',
+      right: 'calc(50% + 16px)',
     },
-    border: "10px"
-   }
-      
-  
+    [`&.${stepConnectorClasses.active}`]: {
+      [`& .${stepConnectorClasses.line}`]: {
+        borderColor: '#C4C4C4',
+        borderLeft: '4px solid orange',
+        minHeight:"60px"
+      },
+    },
+    [`&.${stepConnectorClasses.completed}`]: {
+      [`& .${stepConnectorClasses.line}`]: {
+        borderColor: '#F49424',
+        borderLeft: '4px solid orange'
+      },
+    },
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: theme.palette.mode === 'dark' ? theme.palette.white[800] : '#FFFFFF',
+      borderTopWidth: 10,
+      borderRadius: 1,
+      minHeight:50,
+      borderLeft: '4px solid white'
+    },
+  }));
+
+  const steps = ['Personal Details', 'Educational Details', 'Skill Set', 'Internship Experience', 'Projects', 'Certifications', 'Achievements'];
+
+
+function Steps() {
+
     return(
-        <div style={{ width: "18rem", margin: "3rem" , backgroundColor: "#1E4786", display: "flex", justifyContent:"center"}}>
+        <div style={{ width: "18rem", margin: "3rem" , backgroundColor: "#1E4786", display: "flex", justifyContent:"center", borderRadius:"15px"}}>
            
-            <Stepper orientation='vertical' activeStep={1} connector={<StepConnector style={style}/>}>
-            
-                <Step>
-                    <StepLabel icon={<TripOrigin style={{color:"#C4C4C4"}}/>}>Personal Details</StepLabel>
-                </Step>
-                <Step>
-                    <StepLabel icon={<TripOrigin style={{color:"#C4C4C4"}}/>}>Educational Deatils</StepLabel>
-                </Step>
-                <Step>
-                    <StepLabel icon={<TripOrigin style={{color:"#C4C4C4"}}/>}>Skill Set</StepLabel>
-                </Step>
-                <Step>
-                    <StepLabel icon={<TripOrigin style={{color:"#C4C4C4"}}/>}>Intership Experience</StepLabel>
-                </Step>
-                <Step>
-                    <StepLabel icon={<TripOrigin style={{color:"#C4C4C4"}}/>}>Projects</StepLabel>
-                </Step>
-                <Step>
-                    <StepLabel icon={<TripOrigin style={{color:"#C4C4C4"}}/>}>Certifications</StepLabel>
-                </Step>
-                <Step>
-                    <StepLabel icon={<TripOrigin style={{color:"#C4C4C4"}}/>}>Achievements</StepLabel>
-                </Step>
-                
-            </Stepper>
+           <Stepper  activeStep={-1} connector={<QontoConnector />} orientation={"vertical"} style={{color:"white"}}>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel  >{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
            
         </div>
     )
-    }
 }
 
 
