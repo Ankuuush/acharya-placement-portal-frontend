@@ -1,5 +1,6 @@
 .MuiStepLabel-label{
     color: white;
+    transition: none;
     
 }
 .MuiStepLabel-label.Mui-completed{
@@ -14,6 +15,7 @@
 }
 .MuiStepIcon-root{
     color: white;
+    transition: none;
 }
 .MuiStepIcon-text {
     fill: black;

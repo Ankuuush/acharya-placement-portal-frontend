@@ -19,7 +19,7 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
       [`& .${stepConnectorClasses.line}`]: {
         borderColor: '#C4C4C4',
         borderLeft: '4px solid orange',
-        minHeight:"60px"
+        minHeight:"45px"
       },
     },
     [`&.${stepConnectorClasses.completed}`]: {
@@ -32,7 +32,7 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
       borderColor: theme.palette.mode === 'dark' ? theme.palette.white[800] : '#FFFFFF',
       borderTopWidth: 10,
       borderRadius: 1,
-      minHeight:50,
+      minHeight:45,
       borderLeft: '4px solid white'
     },
   }));
@@ -45,7 +45,7 @@ function Steps() {
     return(
         <div style={{ width: "18rem", margin: "3rem" , backgroundColor: "#1E4786", display: "flex", justifyContent:"center", borderRadius:"15px"}}>
            
-           <Stepper  activeStep={-1} connector={<QontoConnector />} orientation={"vertical"} style={{color:"white"}}>
+           <Stepper  activeStep={7} connector={<QontoConnector />} orientation={"vertical"} style={{color:"white"}}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel  >{label}</StepLabel>
