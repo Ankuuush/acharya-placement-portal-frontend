@@ -5,15 +5,20 @@ import { TripOrigin } from '@mui/icons-material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 
-
-function Steps() {
-   
+class Steps extends React.Component {
+    render(){
+   const style={
+    completed: {
+        borderColor:"blue"
+    },
+    border: "10px"
+   }
       
   
     return(
         <div style={{ width: "18rem", margin: "3rem" , backgroundColor: "#1E4786", display: "flex", justifyContent:"center"}}>
            
-            <Stepper orientation='vertical' activeStep={1} connector={<StepConnector/>}>
+            <Stepper orientation='vertical' activeStep={1} connector={<StepConnector style={style}/>}>
             
                 <Step>
                     <StepLabel icon={<TripOrigin style={{color:"#C4C4C4"}}/>}>Personal Details</StepLabel>
@@ -41,6 +46,7 @@ function Steps() {
            
         </div>
     )
+    }
 }
 
 
