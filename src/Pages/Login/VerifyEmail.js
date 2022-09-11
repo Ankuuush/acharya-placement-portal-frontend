@@ -1,4 +1,4 @@
-import { Button, Container, TextField } from '@mui/material'
+import { Button, Container, TextField, Card } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -31,8 +31,10 @@ const VerifyEmail = () => {
     setLoading(false)
   }
   return (
-    <div style={{display:"flex", justifyContent:"center", flexDirection:"column", width:"30vw", margin:"2rem auto"}}>
-      <h2>Please verify your email to continue!!</h2>
+    <Container style={{ width: "25rem", marginTop: "10rem" }}>
+       <Card variant="outlined">
+      <h2 style={{marginLeft:"3rem", marginRight:"3rem"}}>Please verify your email to continue!!</h2>
+      <Container style={{ width: "20rem", marginTop: "2rem" }}>
       <TextField
               name="email"
               onChange={onChange}
@@ -51,14 +53,18 @@ const VerifyEmail = () => {
               color="warning"
               onClick={handleClick}
               style={{ width: "100%", margin:"1rem auto" }}
-            >Resend Email Verification</Button>
+            >Resend Email</Button>
+             <Container style={{ width: "100%", display:"flex", justifyContent:"right", marginBottom:"2rem" }}>
             <Link
               to="/login"
-              style={{color:"#4A75B5" , textDecoration:"none", fontSize:"30px", margin:"0 auto"}}
+              style={{color:"#4A75B5" , textDecoration:"none", fontSize:"16px", margin:"0 auto"}}
             >
               Login
             </Link>
-    </div>
+            </Container>
+            </Container>
+            </Card>
+            </Container>
   )
 }
 

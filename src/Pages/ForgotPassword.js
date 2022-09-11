@@ -68,7 +68,7 @@ const ForgotPassword = () => {
               name="email"
               onChange={onChange}
               value={email}
-              size="small"
+              size="normal"
               label="Email"
               variant="outlined"
               type="email"
@@ -77,7 +77,7 @@ const ForgotPassword = () => {
             />
             <Button
               disabled={loading}
-              size="small"
+              size="large"
               variant="contained"
               color="warning"
               type="submit"
@@ -85,13 +85,15 @@ const ForgotPassword = () => {
             >
               Submit
             </Button>
-            <Link to="/Login" style={{marginTop:'1rem', marginBottom: "3rem"}}>Login</Link>
+            <Link to="/Login" style={{marginTop:'1rem', marginBottom: "3rem" ,color:"#4A75B5" , textDecoration:"none"}}>Login</Link>
           </form>
         </Container>
       </Card>
-      <p style={{ margin: "0", textAlign: "end" }}>
-        Don't have an account?<Link to="/signup"> Sign Up</Link>
+      <Container style={{ width: "108%", display:"flex", justifyContent:"center" }}>
+      <p>
+        Don't have an account?<Link to="/signup" style={{color:"#4A75B5" , textDecoration:"none"}}> Sign Up</Link>
       </p>
+      </Container>
     </Container>
   );
 };

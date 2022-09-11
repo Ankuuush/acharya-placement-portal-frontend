@@ -6,6 +6,7 @@ import AuthProvider from "./Context/AuthContext/AuthProvider";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./Pages/ForgotPassword";
 import VerifyEmail from "./Pages/Login/VerifyEmail";
+import Testing from "./Components/Testing page/Testing";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/forgot-password" element={<ForgotPassword />} />
+          <Route exact path="/testing" element={<Testing/>} />
           <Route
             exact
             path="/"
