@@ -19,6 +19,7 @@ const Home = () => {
       setError('Failed to logout.')
     }
   }
+  
   return (
     <>
     <div>Home</div>
