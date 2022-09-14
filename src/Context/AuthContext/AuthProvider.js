@@ -12,10 +12,9 @@ import { useEffect, useState } from "react";
 const AuthProvider = (props) => {
   const [currentUser, setCurrentUser] = useState("")
   const [loading, setLoading] = useState(true);
-  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   const signup = async (email, password, firstName, lastName) => {
-    const response= await fetch(`https://${baseUrl}/auth/register`, {
+    const response= await fetch(`https://acharya-palcement-portal.herokuapp.com/api/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

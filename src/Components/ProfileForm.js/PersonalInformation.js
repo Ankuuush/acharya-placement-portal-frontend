@@ -15,9 +15,9 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import api from "../../api.js";
 
 const PersonalInformation = () => {
-
   const storage = getStorage();
   const ref = useRef(null);
   const onClick = (e) => {
@@ -49,23 +49,31 @@ const PersonalInformation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch(`https://${baseUrl}/student/profile/basic`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "eyJhbGciOiJSUzI1NiIsImtpZCI6ImVkNmJjOWRhMWFmMjM2ZjhlYTU2YTVkNjIyMzQwMWZmNGUwODdmMTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQW5rdXNoIEt1bWFyIiwiYWNjb3VudCI6InN0dWRlbnQiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNoYXJ5YS1wbGFjZW1lbnQtcG9ydGFsIiwiYXVkIjoiYWNoYXJ5YS1wbGFjZW1lbnQtcG9ydGFsIiwiYXV0aF90aW1lIjoxNjYyOTA2MzAwLCJ1c2VyX2lkIjoiSmx1Rk1taGxKNVVOT2hZcmp0Q3ZoSmJ1M09JMiIsInN1YiI6IkpsdUZNbWhsSjVVTk9oWXJqdEN2aEpidTNPSTIiLCJpYXQiOjE2NjMwMDA4MzAsImV4cCI6MTY2MzAwNDQzMCwiZW1haWwiOiJhbmt1c2hrLjE5LmJlaXNAYWNoYXJ5YS5hYy5pbiIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFua3VzaGsuMTkuYmVpc0BhY2hhcnlhLmFjLmluIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.sQ98TRJD4iYmjyzfjiehLAG1Nufe6oFrpA2uKX3kJH8IWgJCV828zG1y_cbwOQeIDMIM8dc3OgMoUUJ2EloychkOEhbY4SXx0Nt2pVIg_zGUELesbNh579roU13_T4lRpNB39RFQB8SM3PbtBjnUwm5KFh0RGXK3c3QpIjSiahiENHfKhffm3LjmwaNw9pq20N2SsnAUudQoJQqO0pNAhIbkRRm54KQeB_V02sUn7qhqAsK9yR3kYwYpGgFarexCac4iB-gxpluEPbxkYB8GXCqGs3jJgffh9J-zd_1N1UQKvanhp7TP07pBIGtQC8YgN8Kb6vdxKqkH0eqCYNzKsw",
-      },
-      body: JSON.stringify({
-        photoUrl: personalInfo.photoUrl,
-        phone: personalInfo.phone,
-        gender: personalInfo.gender,
-        //   branch: personalInfo.branch,
-        usn: personalInfo.usn,
-        dob: personalInfo.dob,
-      }),
-    });
-    console.log(response);
+    try {
+      const response = await api
+        .post("/student/profile/basic", {
+          photoUrl: personalInfo.photoUrl,
+          phone: personalInfo.phone,
+          gender: personalInfo.gender,
+          //   branch: personalInfo.branch,
+          usn: personalInfo.usn,
+          dob: personalInfo.dob,
+        })
+        .then((response) => response);
+      console.log(response);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log("Error", error.message);
+      }
+      console.log(error.config);
+    }
+
     setLoading(false);
   };
 
