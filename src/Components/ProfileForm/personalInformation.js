@@ -50,7 +50,7 @@ const PersonalInformation = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await api
+      const response=await api
         .post("/student/profile/basic", {
           photoUrl: personalInfo.photoUrl,
           phone: personalInfo.phone,

@@ -7,6 +7,7 @@ import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./Pages/ForgotPassword";
 import VerifyEmail from "./Pages/Login/VerifyEmail";
 import Testing from "./Components/Testing page/Testing";
+import EducationalDetails from "./Components/ProfileForm/EducationalDetails/educationalDetails";
 
 function App() {
   return (
