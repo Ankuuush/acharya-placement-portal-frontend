@@ -2,6 +2,7 @@ import {
   Button,
 } from "@mui/material";
 import React, { useState } from "react";
+import NextButton from "../../Items/NextButton";
 import EducationalDetailsItem from "./educationalDetailsItem";
 
 const EducationalDetails = () => {
@@ -28,22 +29,7 @@ const EducationalDetails = () => {
         <EducationalDetailsItem text={"12th"} check={setSecond} />
         <EducationalDetailsItem text={"graduation"} check={setThird}/>
         
-        <Button
-          disabled={loading || first || second || third}
-          size="large"
-          variant="contained"
-          color="warning"
-          type="submit"
-          style={{
-            width: "48%",
-              marginTop: "1rem",
-              marginBottom: "0.5rem",
-              fontSize:"0.9rem",
-            padding:"0.5rem"
-          }}
-        >
-          Next
-        </Button>
+        <NextButton disable={loading|| first||second|| third} style={{width: "48%"}}/>
     </div>
   );
 };

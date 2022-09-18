@@ -16,6 +16,7 @@ import {
   TextField,
 } from "@mui/material";
 import api from "../../api.js";
+import NextButton from "../Items/NextButton.js";
 
 const PersonalInformation = () => {
   const storage = getStorage();
@@ -281,20 +282,7 @@ const PersonalInformation = () => {
           required
         />
 
-        <Button
-          disabled={loading}
-          size="large"
-          variant="contained"
-          color="warning"
-          type="submit"
-          style={{
-            width: "60%",
-            marginTop: "2rem",
-            marginBottom: "0.5rem",
-          }}
-        >
-          Next
-        </Button>
+        <NextButton disable={loading} style={{width: "48%"}}/>
       </form>
     </div>
   );
