@@ -24,6 +24,7 @@ const Login = () => {
       setError("");
       setLoading(true);
       const response = await login(credentials.email, credentials.password);
+      console.log(response);
       const token = jwt_decode(String(response.user.accessToken));
       if (token.email_verified) {
         navigate("/");

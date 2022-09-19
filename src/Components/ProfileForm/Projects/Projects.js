@@ -1,43 +1,33 @@
 import React from "react";
 import { useState } from "react";
 import NextButton from "../../Items/NextButton";
-import InternshipItem from "./internshipItem";
 import api from "../../../api";
 import { Button } from "@mui/material";
+import ProjectsItem from "./ProjectsItem";
 
-const Internships = () => {
+const Projects = () => {
   const [loading, setLoading] = useState(false);
-  const [internshipsArray, setInternshipsArray] = useState([]);
+  const [projectsArray, setProjectsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
-  const [internships, setInternships] = useState({
-    companyName: "",
-    startMonth: "",
-    startYear: 0,
-    endMonth: "jan",
-    endYear: 0,
-    ongoing: "",
-    role: "",
-    description: "",
+  const [projects, setProjects] = useState({
+    title:"",
+    description:"",
+    link:""
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    let newinternshipsArray = internshipsArray;
-    newinternshipsArray.push(internships);
-    setInternshipsArray(newinternshipsArray);
+    let newprojectsArray = projectsArray;
+    newprojectsArray.push(projects);
+    setProjectsArray(newprojectsArray);
     try {
       const response = await api
-        .post(`/student/profile/internships`, {
-          companyName: internships.companyName,
-          startMonth: internships.startMonth,
-          startYear: parseInt(internships.startYear),
-          endMonth: internships.endMonth,
-          endYear: parseInt(internships.endYear),
-          ongoing: internships.ongoing,
-          description: internships.description,
-          role: internships.role,
+        .post(`/student/profile/projects`, {
+          title:projects.title,
+          description:projects.description,
+          link:projects.link
         })
         .then((response) => response);
     } catch (error) {
@@ -52,20 +42,14 @@ const Internships = () => {
       }
       console.log(error.config);
     }
-    setInternships({
-      companyName: "",
-      startMonth: "",
-      startYear: 0,
-      endMonth: "jan",
-      endYear: 2000,
-      ongoing: "",
-      role: "",
-      description: "",
-    });
+    setProjects({
+        title:"",
+    description:"",
+    link:""
+    })
     setNewForm(false);
     setLoading(false);
   };
-  
   return (
     <div
       style={{
@@ -77,26 +61,26 @@ const Internships = () => {
         marginTop: "3em",
       }}
     >
-      <h2>Internship Experience</h2>
+      <h2>Projects</h2>
       <div style={{ position: "relative", width: "80%" }}>
-        {internshipsArray.map((iArr, key) => {
+        {projectsArray.map((pArr, key) => {
           return (
-            <InternshipItem
+            <ProjectsItem
               key={key}
               loading={loading}
               disableForm={true}
-              internships={iArr}
-              setInternships={setInternships}
+              projects={pArr}
+              setProjects={setProjects}
               handleSubmit={handleSubmit}
             />
           );
         })}
         {newForm && (
-          <InternshipItem
+          <ProjectsItem
             loading={loading}
             disableForm={false}
-            internships={internships}
-            setInternships={setInternships}
+            projects={projects}
+            setProjects={setProjects}
             handleSubmit={handleSubmit}
           />
         )}
@@ -122,7 +106,7 @@ const Internships = () => {
               padding: "0.5rem",
             }}
           >
-            Add Another Role
+            Add Another
           </Button>
           <NextButton
             disable={loading || newForm}
@@ -134,4 +118,4 @@ const Internships = () => {
   );
 };
 
-export default Internships;
+export default Projects;
