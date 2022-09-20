@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react'
 import { Button, TextField } from "@mui/material";
 
-const CertificationsItem = (props) => {
-  const { certifications, setCertifications, handleSubmit, disableForm, loading } = props;
+const AchievementItem = (props) => {
+    const { achievements, setAchievements, handleSubmit, disableForm, loading } = props;
 
   const onChange = (e) => {
     if (!disableForm)
-    setCertifications({ ...certifications, [e.target.name]: e.target.value });
+    setAchievements({ ...achievements, [e.target.name]: e.target.value });
   };
-  return(
+  return (
     <form
         disabled={disableForm}
         onSubmit={handleSubmit}
@@ -19,9 +19,9 @@ const CertificationsItem = (props) => {
       >
         <h3>Enter the details</h3>
         <TextField
-          name="name"
+          name="title"
           onChange={onChange}
-          value={certifications.name}
+          value={achievements.title}
           disabled={disableForm}
           size="normal"
           label="Title"
@@ -34,7 +34,7 @@ const CertificationsItem = (props) => {
         <TextField
           name="organization"
           onChange={onChange}
-          value={certifications.organization}
+          value={achievements.organization}
           disabled={disableForm}
           size="normal"
           label="Organization"
@@ -47,7 +47,7 @@ const CertificationsItem = (props) => {
         <TextField
           name="description"
           onChange={onChange}
-          value={certifications.description}
+          value={achievements.description}
           disabled={disableForm}
           size="normal"
           label="Description"
@@ -59,12 +59,12 @@ const CertificationsItem = (props) => {
           required
         />
         <TextField
-          name="certificateLink"
+          name="link"
           onChange={onChange}
-          value={certifications.certificateLink}
+          value={achievements.link}
           disabled={disableForm}
           size="normal"
-          label="Certification Link"
+          label="Link"
           type="url"
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
@@ -88,6 +88,6 @@ const CertificationsItem = (props) => {
           </Button>
         )}
       </form>);
-};
+}
 
-export default CertificationsItem;
+export default AchievementItem
