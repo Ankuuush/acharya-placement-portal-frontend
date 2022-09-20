@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {
-  Box,
   Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
 } from "@mui/material";
+
 const ProjectsItem = (props) => {
   const { projects, setProjects, handleSubmit, disableForm, loading } =
     props;
