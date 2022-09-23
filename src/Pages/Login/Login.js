@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Container, TextField, Alert } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
-import "../LoginSignUp.css";
+import "../../Styles/LoginSignUp.css";
 import jwt_decode from "jwt-decode";
 import logo from "../../Assets/Acharya_logo.png"
 
