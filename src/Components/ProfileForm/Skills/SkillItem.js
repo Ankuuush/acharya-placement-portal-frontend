@@ -14,6 +14,7 @@ const SkillItem = ({ skill }) => {
         border: "2px solid rgba(0, 0, 0, 0.21)",
         borderRadius: "0.4rem",
         boxShadow: "none",
+        marginBottom:"1rem"
       }}
     >
       <p
@@ -40,6 +41,7 @@ const SkillItem = ({ skill }) => {
           background: "#fff",
           display: "flex",
           alignItems: "center",
+          cursor:"pointer"
         }}
       >
         <ClearIcon style={{ height: "50%" }} />

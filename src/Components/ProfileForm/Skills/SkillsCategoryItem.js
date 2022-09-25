@@ -59,7 +59,7 @@ const SkillsCategoryItem = (props) => {
         value={value}
         size="small"
         label="Enter Skill Name"
-        type="text"
+        type="search"
         variant="outlined"
         className="search"
         style={{ width: "100%" }}
@@ -74,7 +74,7 @@ const SkillsCategoryItem = (props) => {
           ))}
         </div>
       )}
-      <div style={{width:"100%",display:"flex",marginTop:"1rem",justifyContent:"space-between", flexWrap:"wrap"}}>
+      <div style={{width:"100%",display:"grid",grid:"auto /auto auto auto auto",height:"100%",marginTop:"1rem"}}>
         {skills.map((skill)=><SkillItem skill={skill}/>)}
       </div>
       <Button
