@@ -1,5 +1,5 @@
 import React from 'react';
-import Steps from '../Steps folder/Steps';
+import Steps from '../StepsFolder/Steps';
 
 const Testing = () => {
   return (

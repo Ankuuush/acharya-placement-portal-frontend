@@ -6,7 +6,8 @@ import AuthProvider from "./Context/AuthContext/AuthProvider";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./Pages/ForgotPassword";
 import VerifyEmail from "./Pages/Login/VerifyEmail";
-import Testing from "./Components/Testing page/Testing";
+import Testing from "./Components/TestingPage/Testing";
+
 
 function App() {
   return (

@@ -6,7 +6,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { styled } from '@mui/material/styles';
-import '../Steps folder/Stepcss.css';
+
 
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
@@ -45,10 +45,44 @@ function Steps() {
     return(
         <div style={{ width: "18rem", margin: "3rem" , backgroundColor: "#1E4786", display: "flex", justifyContent:"center", borderRadius:"15px"}}>
            
-           <Stepper  activeStep={7} connector={<QontoConnector />} orientation={"vertical"} style={{color:"white"}}>
+           <Stepper  activeStep={4} connector={<QontoConnector />} orientation={"vertical"} style={{color:"white"}}>
         {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel  >{label}</StepLabel>
+          <Step key={label} sx={{
+            '& .MuiStepLabel-label': {
+              color: 'white',
+              transition: "none"
+               // circle color (INCOMPLETE)
+            },
+            '& .MuiStepIcon-root': {
+              color: 'white',
+              transition: "none"
+               // circle color (INCOMPLETE)
+            },
+            '& .MuiStepIcon-text': {
+              fill: 'black',
+               // circle color (INCOMPLETE)
+            },
+            '& .MuiStepLabel-root .Mui-completed': {
+              color: 'orange',
+               // circle color (COMPLETED)
+            },
+            '& .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel':
+              {
+                color: 'green', // Just text label (COMPLETED)
+              },
+            '& .MuiStepLabel-root .Mui-active': {
+              color: 'orange', // circle color (ACTIVE)
+            },
+            '& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel':
+              {
+                color: 'green', // Just text label (ACTIVE)
+              },
+            '& .MuiStepLabel-root .Mui-active .MuiStepIcon-text': {
+              fill: 'blue',
+               // circle's number (ACTIVE)
+            },
+          }}>
+            <StepLabel>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
