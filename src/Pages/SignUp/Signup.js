@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Button, Container, TextField, Alert } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
-import "../LoginSignUp.css";
+import "../../Styles/LoginSignUp.css";
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -16,7 +16,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
   const authContext = useContext(AuthContext);
-  const { signup, updateName } = authContext;
+  const { signup } = authContext;
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
