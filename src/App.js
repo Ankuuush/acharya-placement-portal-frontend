@@ -6,7 +6,10 @@ import AuthProvider from "./Context/AuthContext/AuthProvider";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./Pages/ForgotPassword";
 import VerifyEmail from "./Pages/Login/VerifyEmail";
-import ProfileForm from "./Pages/Profile Form/ProfileForm";
+import Testing from "./Components/TestingPage/Testing";
+import Achievements from "./Components/ProfileForm/Achievements/Achievements";
+import Skills from "./Components/ProfileForm/Skills/Skills";
+
 
 function App() {
   return (
