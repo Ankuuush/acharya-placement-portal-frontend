@@ -8,7 +8,7 @@ import Internships from '../../Components/ProfileForm/Internship Experience/inte
 import Projects from '../../Components/ProfileForm/Projects/Projects'
 import Certifications from '../../Components/ProfileForm/Certifications/Certifications'
 import Achievements from '../../Components/ProfileForm/Achievements/Achievements'
-import Steps from '../../Components/Steps folder/Steps'
+import Steps from '../../Components/StepsFolder/Steps'
 
 const ProfileForm = () => {
   const [activeStep, setActiveStep] = useState(0)

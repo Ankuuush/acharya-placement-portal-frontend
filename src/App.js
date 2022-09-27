@@ -9,6 +9,7 @@ import VerifyEmail from "./Pages/Login/VerifyEmail";
 import Testing from "./Components/TestingPage/Testing";
 import Achievements from "./Components/ProfileForm/Achievements/Achievements";
 import Skills from "./Components/ProfileForm/Skills/Skills";
+import ProfileForm from "./Pages/Profile Form/ProfileForm"
 
 
 function App() {
