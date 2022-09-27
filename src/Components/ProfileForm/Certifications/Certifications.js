@@ -5,7 +5,7 @@ import api from "../../../api";
 import { Button } from "@mui/material";
 import CertificationsItem from "./CertificationsItem";
 
-const Certifications = () => {
+const Certifications = ({activeStep,setActiveStep}) => {
   const [loading, setLoading] = useState(false);
   const [certificationsArray, setCertificationsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
@@ -61,8 +61,7 @@ const Certifications = () => {
         flexDirection: "column",
         width: "30em",
         justifyContent: "center",
-        alignItems: "center",
-        marginTop: "3em",
+        alignItems: "center"
       }}
     >
       <h2>Certifications</h2>
@@ -97,7 +96,7 @@ const Certifications = () => {
           }}
         >
           <Button
-            disabled={loading || newForm}
+            disabled={newForm}
             size="large"
             variant="contained"
             color="warning"
@@ -112,8 +111,8 @@ const Certifications = () => {
           >
             Add Another
           </Button>
-          <NextButton
-            disable={loading || newForm}
+          <NextButton setActiveStep={setActiveStep} activeStep={activeStep}
+            disable={newForm}
             styleProp={{ width: "48%" }}
           />
         </div>

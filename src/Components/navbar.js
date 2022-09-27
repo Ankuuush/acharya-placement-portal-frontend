@@ -113,7 +113,7 @@ export default function NavBar() {
   const {currentUser}=authContext
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -177,7 +177,7 @@ export default function NavBar() {
                     marginRight: "0.7rem",
                   }}
                 />
-                <p>Placement Cell</p>
+                <p style={{color:"black"}}>Placement Cell</p>
               </div>
             )}
           </IconButton>
@@ -207,7 +207,7 @@ export default function NavBar() {
                 >
                   <img src={navIcons[index]} alt={text} />
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={text} sx={{ fontWeight:"bold", opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
@@ -237,6 +237,6 @@ export default function NavBar() {
             </ListItem>
         </List>
       </Drawer>
-    </Box>
+    </>
   );
 }

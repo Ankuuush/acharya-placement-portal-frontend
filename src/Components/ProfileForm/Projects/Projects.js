@@ -5,7 +5,7 @@ import api from "../../../api";
 import { Button } from "@mui/material";
 import ProjectsItem from "./ProjectsItem";
 
-const Projects = () => {
+const Projects = ({activeStep,setActiveStep}) => {
   const [loading, setLoading] = useState(false);
   const [projectsArray, setProjectsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
@@ -57,8 +57,7 @@ const Projects = () => {
         flexDirection: "column",
         width: "30em",
         justifyContent: "center",
-        alignItems: "center",
-        marginTop: "3em",
+        alignItems: "center"
       }}
     >
       <h2>Projects</h2>
@@ -108,8 +107,8 @@ const Projects = () => {
           >
             Add Another
           </Button>
-          <NextButton
-            disable={loading || newForm}
+          <NextButton setActiveStep={setActiveStep} activeStep={activeStep}
+            disable={ newForm}
             styleProp={{ width: "48%" }}
           />
         </div>

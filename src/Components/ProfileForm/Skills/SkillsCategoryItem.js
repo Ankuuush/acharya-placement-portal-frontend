@@ -7,29 +7,27 @@ import "../../../Styles/Skills.css";
 import SkillItem from "./SkillItem";
 
 const SkillsCategoryItem = (props) => {
-  const {skillType,endpoint}=props
+  const { skillType, endpoint,count,setCount } = props;
   const [value, setValue] = useState("");
   const [search, setSearch] = useState([]);
-  const [skills, setSkills] = useState([])
+  const [skills, setSkills] = useState([]);
 
-  const addSkill=(e,element)=>{
+  const addSkill = (e, element) => {
     e.preventDefault();
-    let newSkills=skills
-    newSkills.push(element)
-    setSkills(newSkills)
-  }
+    let newSkills = skills;
+    newSkills.push(element);
+    setSkills(newSkills);
+  };
 
   const debounceFn = useCallback(_debounce(handleDebounceFn, 500), []);
 
   function handleDebounceFn(inputValue) {
     if (inputValue.length >= 2) {
       try {
-        api
-          .get(`${endpoint}?q=${inputValue}`)
-          .then((res) => {
-            setSearch(res.data.data.skills);
-            console.log(res.data.data.skills);
-          });
+        api.get(`${endpoint}?q=${inputValue}`).then((res) => {
+          setSearch(res.data.data.skills);
+          console.log(res.data.data.skills);
+        });
       } catch (error) {
         if (error.response) {
           console.log(error.response.data);
@@ -50,9 +48,14 @@ const SkillsCategoryItem = (props) => {
     debounceFn(event.target.value);
   };
 
+  const onSubmit=(e)=>{
+    e.preventDefault();
+    setCount(count+1)
+  }
+
   return (
     <div>
-      <h4 style={{color:"#F49424"}}>{skillType}</h4>
+      <h4 style={{ color: "#F49424" }}>{skillType}</h4>
       <TextField
         name="search"
         onChange={onChange}
@@ -68,17 +71,32 @@ const SkillsCategoryItem = (props) => {
       {search.length > 0 && (
         <div className="autocomplete">
           {search.map((element) => (
-            <div className="autocompleteItems" key={element._id} onClick={()=>addSkill(element)}>
+            <div
+              className="autocompleteItems"
+              key={element._id}
+              onClick={() => addSkill(element)}
+            >
               <p className="autocompleteItems-p">{element.name}</p>
             </div>
           ))}
         </div>
       )}
-      <div style={{width:"100%",display:"grid",grid:"auto /auto auto auto auto",height:"100%",marginTop:"1rem"}}>
-        {skills.map((skill)=><SkillItem skill={skill}/>)}
+      <div
+        style={{
+          width: "100%",
+          display: "grid",
+          grid: "auto /auto auto auto auto",
+          height: "100%",
+          marginTop: "1rem",
+        }}
+      >
+        {skills.map((skill) => (
+          <SkillItem skill={skill} />
+        ))}
       </div>
       <Button
-      disabled={skills.length==0}
+        onClick={onSubmit}
+        disabled={skills.length == 0}
         size="small"
         variant="contained"
         style={{

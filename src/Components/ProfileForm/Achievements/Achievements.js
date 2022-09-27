@@ -5,7 +5,7 @@ import api from "../../../api";
 import { Button } from "@mui/material";
 import AchievementItem from "./AchievementItem";
 
-const Achievements = () => {
+const Achievements = ({activeStep,setActiveStep}) => {
     const [loading, setLoading] = useState(false);
   const [achievementsArray, setAchievementsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
@@ -96,7 +96,7 @@ const Achievements = () => {
           }}
         >
           <Button
-            disabled={loading || newForm}
+            disabled={newForm}
             size="large"
             variant="contained"
             color="warning"
@@ -111,8 +111,8 @@ const Achievements = () => {
           >
             Add Another
           </Button>
-          <NextButton
-            disable={loading || newForm}
+          <NextButton setActiveStep={setActiveStep} activeStep={activeStep}
+            disable={newForm}
             styleProp={{ width: "48%" }}
           />
         </div>

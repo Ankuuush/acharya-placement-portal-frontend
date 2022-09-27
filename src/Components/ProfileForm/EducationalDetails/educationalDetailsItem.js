@@ -17,7 +17,7 @@ const EducationalDetailsItem = (props) => {
     gradeScale: "",
     grade: "",
   });
-  const { text, check } = props;
+  const { text, count,setCount } = props;
   const [loading, setLoading] = useState(false);
   const [maxScale, setMaxScale] = useState(0);
   const onChange = (e) => {
@@ -51,7 +51,7 @@ const EducationalDetailsItem = (props) => {
       }
       console.log(error.config);
     }
-    check(false);
+    setCount(count+1)
   };
 
   useEffect(() => {

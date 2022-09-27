@@ -16,9 +16,8 @@ import {
   TextField,
 } from "@mui/material";
 import api from "../../api.js";
-import NextButton from "../Items/NextButton.js";
 
-const PersonalInformation = () => {
+const PersonalInformation = ({ activeStep, setActiveStep }) => {
   const storage = getStorage();
   const ref = useRef(null);
   const onClick = (e) => {
@@ -41,7 +40,6 @@ const PersonalInformation = () => {
     dob: "",
   });
   const [loading, setLoading] = useState(false);
-  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   const onChange = (e) => {
     setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.value });
@@ -51,7 +49,7 @@ const PersonalInformation = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response=await api
+      const response = await api
         .post("/student/profile/basic", {
           photoUrl: personalInfo.photoUrl,
           phone: personalInfo.phone,
@@ -75,6 +73,7 @@ const PersonalInformation = () => {
       console.log(error.config);
     }
 
+    setActiveStep((activeStep + 1) % 7);
     setLoading(false);
   };
 
@@ -122,8 +121,7 @@ const PersonalInformation = () => {
         flexDirection: "column",
         width: "30em",
         justifyContent: "center",
-        alignItems: "center",
-        marginTop: "3em",
+        alignItems: "center"
       }}
     >
       <input
@@ -230,6 +228,7 @@ const PersonalInformation = () => {
                 value={personalInfo.gender}
                 label="Gender"
                 onChange={onChange}
+                required
               >
                 <MenuItem value={"male"}>Male</MenuItem>
                 <MenuItem value={"female"}>Female</MenuItem>
@@ -282,7 +281,23 @@ const PersonalInformation = () => {
           required
         />
 
-        <NextButton disable={loading} style={{width: "48%"}}/>
+        <Button
+          disabled={loading}
+          size="large"
+          variant="contained"
+          color="warning"
+          type="submit"
+          style={{
+            position: "relative",
+            marginTop: "1rem",
+            marginBottom: "0.5rem",
+            fontSize: "0.9rem",
+            padding: "0.5rem",
+            width:"48%"
+          }}
+        >
+          Next
+        </Button>
       </form>
     </div>
   );

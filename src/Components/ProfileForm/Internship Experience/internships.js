@@ -5,7 +5,7 @@ import InternshipItem from "./internshipItem";
 import api from "../../../api";
 import { Button } from "@mui/material";
 
-const Internships = () => {
+const Internships = ({activeStep,setActiveStep}) => {
   const [loading, setLoading] = useState(false);
   const [internshipsArray, setInternshipsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
@@ -73,8 +73,7 @@ const Internships = () => {
         flexDirection: "column",
         width: "30em",
         justifyContent: "center",
-        alignItems: "center",
-        marginTop: "3em",
+        alignItems: "center"
       }}
     >
       <h2>Internship Experience</h2>
@@ -124,8 +123,8 @@ const Internships = () => {
           >
             Add Another Role
           </Button>
-          <NextButton
-            disable={loading || newForm}
+          <NextButton setActiveStep={setActiveStep} activeStep={activeStep}
+            disable={newForm}
             styleProp={{ width: "48%" }}
           />
         </div>
