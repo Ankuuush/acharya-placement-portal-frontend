@@ -59,6 +59,8 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
           dob: personalInfo.dob,
         })
         .then((response) => response);
+      setActiveStep((activeStep + 1) % 7);
+      
       console.log(response);
     } catch (error) {
       if (error.response) {
@@ -72,8 +74,6 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
       }
       console.log(error.config);
     }
-
-    setActiveStep((activeStep + 1) % 7);
     setLoading(false);
   };
 

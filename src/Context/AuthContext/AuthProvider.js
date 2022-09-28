@@ -1,5 +1,6 @@
 import { auth } from "../../firebase";
 import AuthContext from "./AuthContext";
+import api from "../../api";
 import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
@@ -10,22 +11,36 @@ import {
 import { useEffect, useState } from "react";
 
 const AuthProvider = (props) => {
-  const [currentUser, setCurrentUser] = useState("")
+  const [currentUser, setCurrentUser] = useState("");
   const [loading, setLoading] = useState(true);
 
   const signup = async (email, password, firstName, lastName) => {
-    const response= await fetch(`https://acharya-palcement-portal.herokuapp.com/api/auth/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    // const response= await fetch(`https://acharya-palcement-portal.herokuapp.com/api/auth/register`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     email: email,
+    //     password: password,
+    //     firstName: firstName,
+    //     lastName: lastName,
+    //   }),
+    // });
+    const response = await api
+      .post("/auth/register", {
         email: email,
         password: password,
         firstName: firstName,
         lastName: lastName,
-      }),
-    });
+      })
+      .then((response) =>{
+        console.log(response);
+         return response;
+        }).catch(error=>{
+          console.log(error)
+          return error;
+        });
     return response;
   };
 
@@ -40,7 +55,6 @@ const AuthProvider = (props) => {
   const resetPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
-
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -58,7 +72,7 @@ const AuthProvider = (props) => {
         currentUser,
         logout,
         resetPassword,
-        setLoading
+        setLoading,
       }}
     >
       {!loading && props.children}

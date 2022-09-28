@@ -35,16 +35,14 @@ const Signup = () => {
         credentials.firstName,
         credentials.lastName
       );
-      const json = await response.json();
-      console.log(json);
-      if (json.success) {
+      if (response.data.success) {
         alert("Please verify your email and then login to continue!!");
         navigate("/login");
       } else {
-        setError("Failed to create an account");
+        setError("Failed to create an account now");
       }
     } catch {
-      setError("Failed to create an account");
+      setError("Failed to create an account then");
     }
     setLoading(false);
   };
