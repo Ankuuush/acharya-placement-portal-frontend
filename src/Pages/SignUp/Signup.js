@@ -62,11 +62,7 @@ const Signup = () => {
           Let's Get You Registered!
         </h2>
         <Container style={{ width: "70%", marginTop: "2rem" }}>
-          {error && (
-            <Alert style={{ marginBottom: "1rem" }} severity="error">
-              {error}
-            </Alert>
-          )}
+          
           <form
             onSubmit={handleSubmit}
             style={{
@@ -137,6 +133,11 @@ const Signup = () => {
                 required
               />
             </div>
+            {error && (
+            <Alert style={{ margin: "0.35rem 0", width:"90%" }} severity="error">
+              {error}
+            </Alert>
+          )}
             <Button
               disabled={loading}
               size="large"
@@ -145,7 +146,7 @@ const Signup = () => {
               type="submit"
               style={{
                 width: "60%",
-                marginTop: "2rem",
+                marginTop: "1.5rem",
                 marginBottom: "0.5rem",
               }}
             >

@@ -63,11 +63,6 @@ const Login = () => {
           <h2 style={{ textAlign: "center", marginTop: "1.5rem" }}>
             Placement Cell
           </h2>
-          {error && (
-            <Alert style={{ marginBottom: "1rem" }} severity="error">
-              {error}
-            </Alert>
-          )}
           <form
             onSubmit={handleSubmit}
             style={{
@@ -98,6 +93,11 @@ const Login = () => {
               style={{ width: "100%", margin: "0.35rem 0" }}
               required
             />
+            {error && (
+            <Alert style={{ width: "90%", margin: "0.35rem 0" }} severity="error">
+              {error}
+            </Alert>
+          )}
             <Container
               style={{
                 width: "108%",
@@ -105,6 +105,7 @@ const Login = () => {
                 justifyContent: "right",
               }}
             >
+              
               <Link
                 to="/forgot-password"
                 style={{ color: "#4A75B5", textDecoration: "none" }}
