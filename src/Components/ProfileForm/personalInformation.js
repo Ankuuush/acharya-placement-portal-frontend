@@ -58,7 +58,6 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
           usn: personalInfo.usn,
           dob: personalInfo.dob,
         })
-        .then((response) => response);
       setActiveStep((activeStep + 1) % 7);
       
       console.log(response);

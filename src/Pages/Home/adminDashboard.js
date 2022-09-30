@@ -1,9 +1,9 @@
 import { Button,Alert } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthContext from '../../Context/AuthContext/AuthContext'
 
-const Home = () => {
+const AdminDashboard = () => {
   const [error, setError] = useState(false)
   const authContext = useContext(AuthContext)
   const {currentUser,logout}=authContext
@@ -20,6 +20,7 @@ const Home = () => {
     }
   }
   
+  
   return (
     <>
     <div>Home</div>
@@ -31,4 +32,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default AdminDashboard
