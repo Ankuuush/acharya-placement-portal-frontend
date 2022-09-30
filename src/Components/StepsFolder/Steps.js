@@ -1,9 +1,5 @@
-import { borderLeft, Container, createTheme, style } from '@mui/system';
 import React from 'react';
-import { Card , Stepper, Step, StepLabel, StepIcon, SvgIcon} from '@mui/material';
-import { TripOrigin } from '@mui/icons-material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
+import {Stepper, Step, StepLabel} from '@mui/material';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { styled } from '@mui/material/styles';
 
