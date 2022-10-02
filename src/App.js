@@ -8,6 +8,7 @@ import VerifyEmail from "./Pages/Login/VerifyEmail";
 import student from "./routes/student";
 import admin from "./routes/admin";
 import tpo from "./routes/tpo";
+import ProfileForm from "./Pages/Profile Form/ProfileForm";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/forgot-password" element={<ForgotPassword />} />
           <Route exact path="/verify-email" element={<VerifyEmail />} />
+          <Route exact path="/testing" element={<ProfileForm />} />
           <Route element={<PrivateRoute role={""} />}>
             <Route exact path="/" element={<></>} />
           </Route>

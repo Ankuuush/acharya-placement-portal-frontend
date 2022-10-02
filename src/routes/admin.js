@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import ContactUs from '../Pages/ContactUs'
 import FeedBack from '../Pages/FeedBack'
 import AdminDashboard from '../Pages/Home/adminDashboard'

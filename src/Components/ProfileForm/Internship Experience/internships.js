@@ -28,7 +28,7 @@ const Internships = ({activeStep,setActiveStep}) => {
     newinternshipsArray.push(internships);
     setInternshipsArray(newinternshipsArray);
     try {
-      const response = await api
+      await api
         .post(`/student/profile/internships`, {
           companyName: internships.companyName,
           startMonth: internships.startMonth,

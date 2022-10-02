@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
 import StudentDashboard from "../Pages/Home/studentDashboard"
 import FeedBack from "../Pages/FeedBack"
 import ContactUs from "../Pages/ContactUs"

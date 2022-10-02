@@ -18,7 +18,7 @@ const SkillsCategoryItem = (props) => {
     newSkills.push(element);
     setSkills(newSkills);
   };
-
+  
   const debounceFn = useCallback(_debounce(handleDebounceFn, 500), []);
 
   function handleDebounceFn(inputValue) {
@@ -96,7 +96,7 @@ const SkillsCategoryItem = (props) => {
       </div>
       <Button
         onClick={onSubmit}
-        disabled={skills.length == 0}
+        disabled={skills.length === 0}
         size="small"
         variant="contained"
         style={{

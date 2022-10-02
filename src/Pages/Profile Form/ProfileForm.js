@@ -21,6 +21,7 @@ const ProfileForm = () => {
       case 4:return <Projects activeStep={activeStep} setActiveStep={setActiveStep} />
       case 5:return <Certifications activeStep={activeStep} setActiveStep={setActiveStep} />
       case 6:return <Achievements activeStep={activeStep} setActiveStep={setActiveStep} />
+      default: return <PersonalInformation activeStep={activeStep} setActiveStep={setActiveStep} />
     }
   }
   

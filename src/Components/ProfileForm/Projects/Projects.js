@@ -23,7 +23,7 @@ const Projects = ({activeStep,setActiveStep}) => {
     newprojectsArray.push(projects);
     setProjectsArray(newprojectsArray);
     try {
-      const response = await api
+      await api
         .post(`/student/profile/projects`, {
           title:projects.title,
           description:projects.description,
