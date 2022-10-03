@@ -17,11 +17,17 @@ import {
 } from "@mui/material";
 import api from "../../api.js";
 import AuthContext from "../../Context/AuthContext/AuthContext.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PersonalInformation = ({ activeStep, setActiveStep }) => {
   const authContext = useContext(AuthContext);
   const { currentUser } = authContext;
-  const [userData, setUserData] = useState({firstName:"",lastName:"",email:""})
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
   const storage = getStorage();
   const ref = useRef(null);
   const onClick = (e) => {
@@ -61,20 +67,22 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
         usn: personalInfo.usn,
         dob: personalInfo.dob,
       });
-      setActiveStep((activeStep + 1) % 7);
+      console.log(response+"ye response h");
+      if (response.data.success)
+      {
+         setActiveStep((activeStep + 1) % 7);
+      }
+      else{
+        toast.error("Unknown Error Occured!", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      }
 
       console.log(response);
     } catch (error) {
-      if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
+      toast.error("Server Error!", {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
     setLoading(false);
   };
@@ -106,7 +114,8 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
           case "storage/unknown":
             console.log("Unknown error occurred, inspect error.serverResponse");
             break;
-            default :console.log("Unknown error occurred");
+          default:
+            console.log("Unknown error occurred");
         }
       },
       () => {
@@ -116,16 +125,19 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
       }
     );
   };
-  
+
   useEffect(() => {
-    const displayName=currentUser.displayName.split(" ")
-    const firstName=displayName[0]
-    let lastName=""
-    for(let i=1;i<displayName.length;i++)
-    lastName+=(displayName[i]+" ");
-    setUserData({firstName:firstName,lastName:lastName,email:currentUser.email})
-  }, [currentUser])
-  
+    const displayName = currentUser.displayName.split(" ");
+    const firstName = displayName[0];
+    let lastName = "";
+    for (let i = 1; i < displayName.length; i++)
+      lastName += displayName[i] + " ";
+    setUserData({
+      firstName: firstName,
+      lastName: lastName,
+      email: currentUser.email,
+    });
+  }, [currentUser]);
 
   return (
     <div
@@ -137,6 +149,7 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
         alignItems: "center",
       }}
     >
+      <ToastContainer />
       <input
         ref={ref}
         style={{ display: "none" }}
@@ -288,9 +301,10 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
           value={personalInfo.phone}
           size="normal"
           label="Phone No."
-          type="text"
+          type="tel"
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
+          inputProps={{ minLength:10, maxLength:10 }}
           required
         />
 
