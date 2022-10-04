@@ -9,10 +9,13 @@ import student from "./routes/student";
 import admin from "./routes/admin";
 import tpo from "./routes/tpo";
 import ProfileForm from "./Pages/Profile Form/ProfileForm";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <AuthProvider>
+      <ToastContainer />
       <Router>
         <Routes>
           <Route exact path="/signup" element={<Signup />} />

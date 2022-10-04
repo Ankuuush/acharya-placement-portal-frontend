@@ -4,51 +4,40 @@ import NextButton from "../../Items/NextButton";
 import api from "../../../api";
 import { Button } from "@mui/material";
 import ProjectsItem from "./ProjectsItem";
+import { toast } from "react-toastify";
 
-const Projects = ({activeStep,setActiveStep}) => {
-  const [loading, setLoading] = useState(false);
+const Projects = ({ activeStep, setActiveStep }) => {
   const [projectsArray, setProjectsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
   const [projects, setProjects] = useState({
-    title:"",
-    description:"",
-    link:""
+    title: "",
+    description: "",
+    link: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-
     let newprojectsArray = projectsArray;
     newprojectsArray.push(projects);
     setProjectsArray(newprojectsArray);
-    try {
-      await api
-        .post(`/student/profile/projects`, {
-          title:projects.title,
-          description:projects.description,
-          link:projects.link
-        })
-        .then((response) => response);
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
-    }
-    setProjects({
-        title:"",
-    description:"",
-    link:""
-    })
-    setNewForm(false);
-    setLoading(false);
+    api
+      .post(`/student/profile/projects`, {
+        title: projects.title,
+        description: projects.description,
+        link: projects.link,
+      })
+      .then(() => {
+        toast.success("Data saved!");
+        setProjects({
+          title: "",
+          description: "",
+          link: "",
+        });
+        setNewForm(false);
+      })
+      .catch(() => {
+        toast.error("Server Error!");
+      });
   };
   return (
     <div
@@ -57,7 +46,7 @@ const Projects = ({activeStep,setActiveStep}) => {
         flexDirection: "column",
         width: "30em",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       <h2>Projects</h2>
@@ -66,7 +55,6 @@ const Projects = ({activeStep,setActiveStep}) => {
           return (
             <ProjectsItem
               key={key}
-              loading={loading}
               disableForm={true}
               projects={pArr}
               setProjects={setProjects}
@@ -76,7 +64,6 @@ const Projects = ({activeStep,setActiveStep}) => {
         })}
         {newForm && (
           <ProjectsItem
-            loading={loading}
             disableForm={false}
             projects={projects}
             setProjects={setProjects}
@@ -92,7 +79,7 @@ const Projects = ({activeStep,setActiveStep}) => {
           }}
         >
           <Button
-            disabled={loading || newForm}
+            disabled={newForm}
             size="large"
             variant="contained"
             color="warning"
@@ -107,8 +94,10 @@ const Projects = ({activeStep,setActiveStep}) => {
           >
             Add Another
           </Button>
-          <NextButton setActiveStep={setActiveStep} activeStep={activeStep}
-            disable={ newForm}
+          <NextButton
+            setActiveStep={setActiveStep}
+            activeStep={activeStep}
+            disable={newForm}
             styleProp={{ width: "48%" }}
           />
         </div>

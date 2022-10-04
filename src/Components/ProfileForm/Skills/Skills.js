@@ -17,9 +17,9 @@ const Skills = ({activeStep,setActiveStep}) => {
     >
       <h2>Skill Set</h2>
       <div style={{ position: "relative", width: "80%" }}>
-        <SkillsCategoryItem skillType={"Coding Skills"} endpoint={"/student/profile/skills/search"} count={count} setCount={setCount}/>
-        <SkillsCategoryItem skillType={"Interpersonal Skills"} endpoint={"/student/profile/softskills/search"} count={count} setCount={setCount}/>
-        <SkillsCategoryItem skillType={"Languages"} endpoint={"/student/profile/languages/search"} count={count} setCount={setCount}/>
+        <SkillsCategoryItem skillType={"Coding Skills"} endpoint={"/student/profile/skills"} count={count} setCount={setCount}/>
+        <SkillsCategoryItem skillType={"Interpersonal Skills"} endpoint={"/student/profile/softskills"} count={count} setCount={setCount}/>
+        <SkillsCategoryItem skillType={"Languages"} endpoint={"/student/profile/languages"} count={count} setCount={setCount}/>
       <NextButton setActiveStep={setActiveStep} activeStep={activeStep} disable={count!==3} styleProp={{width: "48%",marginLeft:"52%"}}/>
     </div>
     </div>

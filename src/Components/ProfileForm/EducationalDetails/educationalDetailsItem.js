@@ -9,6 +9,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import { toast } from "react-toastify";
 const EducationalDetailsItem = (props) => {
   const [educationalInfo, setEducationalInfo] = useState({
     institution: "",
@@ -17,8 +18,8 @@ const EducationalDetailsItem = (props) => {
     gradeScale: "",
     grade: "",
   });
-  const { text, count,setCount } = props;
-  const [loading, setLoading] = useState(false);
+  const { text, count, setCount } = props;
+  const [disableBut, setDisableBut] = useState(false);
   const [maxScale, setMaxScale] = useState(0);
   const onChange = (e) => {
     setEducationalInfo({ ...educationalInfo, [e.target.name]: e.target.value });
@@ -26,32 +27,24 @@ const EducationalDetailsItem = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    setLoading(true);
-    try {
-      const response = await api
-        .post(`student/profile/education/${text}`, {
-          institution: educationalInfo.institution,
-          startYear: parseInt(educationalInfo.startYear),
-          endYear: parseInt(educationalInfo.endYear),
-          gradeScale: parseInt(educationalInfo.gradeScale),
-          grade: parseFloat(educationalInfo.grade),
-        })
-        .then((response) => response);
-        console.log(response);
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
-    }
-    setCount(count+1)
+    setDisableBut(true);
+
+    api
+      .post(`student/profile/education/${text}`, {
+        institution: educationalInfo.institution,
+        startYear: parseInt(educationalInfo.startYear),
+        endYear: parseInt(educationalInfo.endYear),
+        gradeScale: parseInt(educationalInfo.gradeScale),
+        grade: parseFloat(educationalInfo.grade),
+      })
+      .then(() => {
+        toast.success("Data saved!");
+        setCount(count + 1);
+      })
+      .catch(() => {
+        toast.error("Server Error!");
+        setDisableBut(false);
+      });
   };
 
   useEffect(() => {
@@ -151,7 +144,7 @@ const EducationalDetailsItem = (props) => {
         />
       </div>
       <Button
-        disabled={loading}
+        disabled={disableBut}
         size="large"
         variant="contained"
         type="submit"

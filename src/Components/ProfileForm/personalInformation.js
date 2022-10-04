@@ -17,8 +17,7 @@ import {
 } from "@mui/material";
 import api from "../../api.js";
 import AuthContext from "../../Context/AuthContext/AuthContext.js";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const PersonalInformation = ({ activeStep, setActiveStep }) => {
   const authContext = useContext(AuthContext);
@@ -58,33 +57,25 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      const response = await api.post("/student/profile/basic", {
+    if (!personalInfo.photoUrl) {
+      toast.error("Please Upload Profile Picture!");
+      setLoading(false);
+      return;
+    }
+      api.post("/student/profile/basic", {
         photoUrl: personalInfo.photoUrl,
         phone: personalInfo.phone,
         gender: personalInfo.gender,
         //   branch: personalInfo.branch,
         usn: personalInfo.usn,
         dob: personalInfo.dob,
-      });
-      console.log(response+"ye response h");
-      if (response.data.success)
-      {
-         setActiveStep((activeStep + 1) % 7);
-      }
-      else{
-        toast.error("Unknown Error Occured!", {
-          position: toast.POSITION.TOP_RIGHT
-        });
-      }
-
-      console.log(response);
-    } catch (error) {
-      toast.error("Server Error!", {
-        position: toast.POSITION.TOP_RIGHT
-      });
-    }
-    setLoading(false);
+      }).then(()=>{toast.success("Data saved!");
+      setActiveStep((activeStep + 1) % 7);
+      }).catch(()=>{
+        toast.error("Server Error!");
+        setLoading(false);
+      })
+    
   };
 
   const handleUpload = () => {
@@ -104,23 +95,16 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
         setProgress(progress);
       },
       (error) => {
-        switch (error.code) {
-          case "storage/unauthorized":
-            console.log("User doesn't have permission to access the object");
-            break;
-          case "storage/canceled":
-            console.log("User canceled the upload");
-            break;
-          case "storage/unknown":
-            console.log("Unknown error occurred, inspect error.serverResponse");
-            break;
-          default:
-            console.log("Unknown error occurred");
-        }
+        toast.error("Server Error!");
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setPersonalInfo({ ...personalInfo, photoUrl: downloadURL });
+          toast.success("Profile Picture Uploaded!", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500,
+            hideProgressBar: true,
+          });
         });
       }
     );
@@ -149,8 +133,8 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
         alignItems: "center",
       }}
     >
-      <ToastContainer />
       <input
+        name="Profile Picture"
         ref={ref}
         style={{ display: "none" }}
         type="file"
@@ -304,7 +288,7 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
           type="tel"
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
-          inputProps={{ minLength:10, maxLength:10 }}
+          inputProps={{ minLength: 10, maxLength: 10 }}
           required
         />
 

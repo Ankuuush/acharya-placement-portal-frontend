@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Button, Container, TextField, Alert } from "@mui/material";
+import { Button, Container, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 import "../../Styles/LoginSignUp.css";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -12,7 +13,6 @@ const Signup = () => {
     firstName: "",
     lastName: "",
   });
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
   const authContext = useContext(AuthContext);
@@ -24,10 +24,9 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (credentials.password !== credentials.confirmPassword) {
-      return setError("Passwords do not match.");
+      return toast.error("Passwords Do Not Match!");
     }
     try {
-      setError("");
       setLoading(true);
       const response = await signup(
         credentials.email,
@@ -36,13 +35,13 @@ const Signup = () => {
         credentials.lastName
       );
       if (response.data.success) {
-        alert("Please verify your email and then login to continue!!");
+        toast.info("Login Successful!");
         navigate("/login");
       } else {
-        setError("Failed to create an account now");
+        toast.error("Failed to create an account!");
       }
     } catch {
-      setError("Failed to create an account then");
+      toast.error("Failed to create an account!");
     }
     setLoading(false);
   };
@@ -133,11 +132,6 @@ const Signup = () => {
                 required
               />
             </div>
-            {error && (
-            <Alert style={{ margin: "0.35rem 0", width:"90%" }} severity="error">
-              {error}
-            </Alert>
-          )}
             <Button
               disabled={loading}
               size="large"
