@@ -1,11 +1,11 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import Tpodashboard from "../Pages/Home/tpodashboard"
+import { Route } from 'react-router-dom'
+import Tpodashboard from "../Pages/Home/Tpodashboard"
 import ContactUs from '../Pages/ContactUs'
 import FeedBack from '../Pages/FeedBack'
 import PrivateRoute from '../PrivateRoute'
 
-const tpo = () => {
+const Tpo = () => {
   return (
     <Route element={<PrivateRoute role={"tpo"}/>}>
       <Route exact path="/tpo/explore-jobs" element={<Tpodashboard/>}/>
@@ -18,4 +18,4 @@ const tpo = () => {
   )
 }
 
-export default tpo
+export default Tpo

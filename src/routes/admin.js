@@ -1,11 +1,11 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import ContactUs from '../Pages/ContactUs'
 import FeedBack from '../Pages/FeedBack'
-import AdminDashboard from '../Pages/Home/adminDashboard'
+import AdminDashboard from '../Pages/Home/AdminDashboard'
 import PrivateRoute from '../PrivateRoute'
 
-const admin = () => {
+const Admin = () => {
   return (
     <Route element={<PrivateRoute role={"admin"}/>}>
       <Route exact path="/admin/explore-jobs" element={<AdminDashboard/>}/>
@@ -15,4 +15,4 @@ const admin = () => {
   )
 }
 
-export default admin
+export default Admin

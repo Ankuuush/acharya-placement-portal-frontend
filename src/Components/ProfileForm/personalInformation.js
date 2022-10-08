@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import {
   getStorage,
@@ -16,8 +16,17 @@ import {
   TextField,
 } from "@mui/material";
 import api from "../../api.js";
+import AuthContext from "../../Context/AuthContext/AuthContext.js";
+import { toast } from "react-toastify";
 
 const PersonalInformation = ({ activeStep, setActiveStep }) => {
+  const authContext = useContext(AuthContext);
+  const { currentUser } = authContext;
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
   const storage = getStorage();
   const ref = useRef(null);
   const onClick = (e) => {
@@ -48,32 +57,25 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      const response = await api
-        .post("/student/profile/basic", {
-          photoUrl: personalInfo.photoUrl,
-          phone: personalInfo.phone,
-          gender: personalInfo.gender,
-          //   branch: personalInfo.branch,
-          usn: personalInfo.usn,
-          dob: personalInfo.dob,
-        })
-      setActiveStep((activeStep + 1) % 7);
-      
-      console.log(response);
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
+    if (!personalInfo.photoUrl) {
+      toast.error("Please Upload Profile Picture!");
+      setLoading(false);
+      return;
     }
-    setLoading(false);
+      api.post("/student/profile/basic", {
+        photoUrl: personalInfo.photoUrl,
+        phone: personalInfo.phone,
+        gender: personalInfo.gender,
+        //   branch: personalInfo.branch,
+        usn: personalInfo.usn,
+        dob: personalInfo.dob,
+      }).then(()=>{toast.success("Data saved!");
+      setActiveStep((activeStep + 1) % 7);
+      }).catch(()=>{
+        toast.error("Server Error!");
+        setLoading(false);
+      })
+    
   };
 
   const handleUpload = () => {
@@ -93,25 +95,33 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
         setProgress(progress);
       },
       (error) => {
-        switch (error.code) {
-          case "storage/unauthorized":
-            console.log("User doesn't have permission to access the object");
-            break;
-          case "storage/canceled":
-            console.log("User canceled the upload");
-            break;
-          case "storage/unknown":
-            console.log("Unknown error occurred, inspect error.serverResponse");
-            break;
-        }
+        toast.error("Server Error!");
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setPersonalInfo({ ...personalInfo, photoUrl: downloadURL });
+          toast.success("Profile Picture Uploaded!", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500,
+            hideProgressBar: true,
+          });
         });
       }
     );
   };
+
+  useEffect(() => {
+    const displayName = currentUser.displayName.split(" ");
+    const firstName = displayName[0];
+    let lastName = "";
+    for (let i = 1; i < displayName.length; i++)
+      lastName += displayName[i] + " ";
+    setUserData({
+      firstName: firstName,
+      lastName: lastName,
+      email: currentUser.email,
+    });
+  }, [currentUser]);
 
   return (
     <div
@@ -120,10 +130,11 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
         flexDirection: "column",
         width: "30em",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       <input
+        name="Profile Picture"
         ref={ref}
         style={{ display: "none" }}
         type="file"
@@ -179,7 +190,7 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
         <div style={{ position: "relative", width: "100%" }}>
           <TextField
             name="firstName"
-            value="Ankush"
+            value={userData.firstName}
             size="normal"
             type="text"
             variant="outlined"
@@ -188,7 +199,7 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
           />
           <TextField
             name="lastName"
-            value="Kumar"
+            value={userData.lastName}
             size="normal"
             type="text"
             variant="outlined"
@@ -203,7 +214,7 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
         </div>
         <TextField
           name="email"
-          value="ankushk@acharya.ac.in"
+          value={userData.email}
           size="normal"
           variant="outlined"
           type="email"
@@ -274,9 +285,10 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
           value={personalInfo.phone}
           size="normal"
           label="Phone No."
-          type="text"
+          type="tel"
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
+          inputProps={{ minLength: 10, maxLength: 10 }}
           required
         />
 
@@ -292,7 +304,7 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
             marginBottom: "0.5rem",
             fontSize: "0.9rem",
             padding: "0.5rem",
-            width:"48%"
+            width: "48%",
           }}
         >
           Next

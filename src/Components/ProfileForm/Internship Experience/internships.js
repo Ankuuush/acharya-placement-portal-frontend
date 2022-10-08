@@ -4,68 +4,59 @@ import NextButton from "../../Items/NextButton";
 import InternshipItem from "./internshipItem";
 import api from "../../../api";
 import { Button } from "@mui/material";
+import { toast } from "react-toastify";
 
-const Internships = ({activeStep,setActiveStep}) => {
-  const [loading, setLoading] = useState(false);
+const Internships = ({ activeStep, setActiveStep }) => {
   const [internshipsArray, setInternshipsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
   const [internships, setInternships] = useState({
     companyName: "",
     startMonth: "",
     startYear: 0,
-    endMonth: "jan",
+    endMonth: "",
     endYear: 0,
     ongoing: "",
     role: "",
     description: "",
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit =(e) => {
     e.preventDefault();
-    setLoading(true);
 
     let newinternshipsArray = internshipsArray;
     newinternshipsArray.push(internships);
     setInternshipsArray(newinternshipsArray);
-    try {
-      const response = await api
-        .post(`/student/profile/internships`, {
-          companyName: internships.companyName,
-          startMonth: internships.startMonth,
-          startYear: parseInt(internships.startYear),
-          endMonth: internships.endMonth,
-          endYear: parseInt(internships.endYear),
-          ongoing: internships.ongoing,
-          description: internships.description,
-          role: internships.role,
-        })
-        .then((response) => response);
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
-    }
-    setInternships({
-      companyName: "",
-      startMonth: "",
-      startYear: 0,
-      endMonth: "jan",
-      endYear: 2000,
-      ongoing: "",
-      role: "",
-      description: "",
-    });
-    setNewForm(false);
-    setLoading(false);
+
+    api
+      .post(`/student/profile/internships`, {
+        companyName: internships.companyName,
+        startMonth: internships.startMonth,
+        startYear: parseInt(internships.startYear),
+        endMonth: internships.endMonth,
+        endYear: parseInt(internships.endYear),
+        ongoing: internships.ongoing,
+        description: internships.description,
+        role: internships.role,
+      })
+      .then(() => {
+        toast.success("Data saved!");
+        setInternships({
+          companyName: "",
+          startMonth: "",
+          startYear: 0,
+          endMonth: "jan",
+          endYear: 2000,
+          ongoing: "",
+          role: "",
+          description: "",
+        });
+        setNewForm(false);
+      })
+      .catch(() => {
+        toast.error("Server Error!");
+      });
   };
-  
+
   return (
     <div
       style={{
@@ -73,7 +64,7 @@ const Internships = ({activeStep,setActiveStep}) => {
         flexDirection: "column",
         width: "30em",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       <h2>Internship Experience</h2>
@@ -82,7 +73,6 @@ const Internships = ({activeStep,setActiveStep}) => {
           return (
             <InternshipItem
               key={key}
-              loading={loading}
               disableForm={true}
               internships={iArr}
               setInternships={setInternships}
@@ -92,7 +82,6 @@ const Internships = ({activeStep,setActiveStep}) => {
         })}
         {newForm && (
           <InternshipItem
-            loading={loading}
             disableForm={false}
             internships={internships}
             setInternships={setInternships}
@@ -108,7 +97,7 @@ const Internships = ({activeStep,setActiveStep}) => {
           }}
         >
           <Button
-            disabled={loading || newForm}
+            disabled={newForm}
             size="large"
             variant="contained"
             color="warning"
@@ -123,7 +112,9 @@ const Internships = ({activeStep,setActiveStep}) => {
           >
             Add Another Role
           </Button>
-          <NextButton setActiveStep={setActiveStep} activeStep={activeStep}
+          <NextButton
+            setActiveStep={setActiveStep}
+            activeStep={activeStep}
             disable={newForm}
             styleProp={{ width: "48%" }}
           />

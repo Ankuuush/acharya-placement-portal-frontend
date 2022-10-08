@@ -11,7 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 const InternshipItem = (props) => {
-  const { internships, setInternships, handleSubmit, disableForm,loading } = props;
+  const { internships, setInternships, handleSubmit, disableForm } = props;
   const [checked, setChecked] = useState(false);
   const handleOngoing = () => {
     setChecked(!checked);
@@ -139,7 +139,8 @@ const InternshipItem = (props) => {
             <InputLabel id="demo-simple-select-label">End Month</InputLabel>
             <Select
               name="endMonth"
-              disabled={checked || disableForm}
+              disabled={disableForm}
+              // disabled={checked || disableForm}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={internships.endMonth}
@@ -165,12 +166,13 @@ const InternshipItem = (props) => {
         <TextField
           name="endYear"
           onChange={onChange}
-          disabled={checked || disableForm}
-          value={internships.endYear?internships.endYear:internships.startYear?internships.startYear:2000}
+          disabled={disableForm}
+          // disabled={checked || disableForm}
+          value={internships.endYear}
           size="normal"
           type="number"
           label="End Year"
-          inputProps={{ min: internships.startYear?internships.startYear:2000, max: 2022 }}
+          inputProps={{ min: internships.startYear || 2000, max: 2022 }}
           variant="outlined"
           style={{
             width: "48%",
@@ -198,7 +200,6 @@ const InternshipItem = (props) => {
 
       {!disableForm && (
         <Button
-          disabled={loading}
           size="large"
           variant="contained"
           type="submit"

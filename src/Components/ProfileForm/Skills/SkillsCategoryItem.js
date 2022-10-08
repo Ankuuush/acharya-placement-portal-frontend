@@ -5,18 +5,28 @@ import api from "../../../api";
 import { Button, TextField } from "@mui/material";
 import "../../../Styles/Skills.css";
 import SkillItem from "./SkillItem";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const SkillsCategoryItem = (props) => {
-  const { skillType, endpoint,count,setCount } = props;
+  const { skillType, endpoint, count, setCount, profileData } = props;
   const [value, setValue] = useState("");
   const [search, setSearch] = useState([]);
   const [skills, setSkills] = useState([]);
+  const [disableBut, setDisableBut] = useState(false);
 
-  const addSkill = (e, element) => {
-    e.preventDefault();
+  const addSkill = (element) => {
+    for (let index = 0; index < skills.length; index++) {
+      if (skills[index]._id === element._id) {
+        toast.error("Skill already added!");
+        return;
+      }
+    }
     let newSkills = skills;
     newSkills.push(element);
     setSkills(newSkills);
+    setValue("");
+    setSearch([]);
   };
 
   const debounceFn = useCallback(_debounce(handleDebounceFn, 500), []);
@@ -24,21 +34,16 @@ const SkillsCategoryItem = (props) => {
   function handleDebounceFn(inputValue) {
     if (inputValue.length >= 2) {
       try {
-        api.get(`${endpoint}?q=${inputValue}`).then((res) => {
-          setSearch(res.data.data.skills);
-          console.log(res.data.data.skills);
+        api.get(`${endpoint}/search?q=${inputValue}`).then((res) => {
+          let response = [];
+          if (skillType === "Coding Skills") response = res.data.data.skills;
+          else if (skillType === "Interpersonal Skills")
+            response = res.data.data.softSkills;
+          else response = res.data.data.languages;
+          setSearch(response);
         });
       } catch (error) {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
+        toast.error("Server Error!");
       }
     } else setSearch([]);
   }
@@ -48,15 +53,66 @@ const SkillsCategoryItem = (props) => {
     debounceFn(event.target.value);
   };
 
-  const onSubmit=(e)=>{
+  const onSubmit = async (e) => {
     e.preventDefault();
-    setCount(count+1)
+    setDisableBut(true);
+    let reqBody = [];
+    console.log(skills);
+    skills.forEach((skill) => reqBody.push(skill._id));
+    try {
+      if (skillType === "Coding Skills") {
+        await api.post(`${endpoint}`, {
+          skills: reqBody,
+        });
+      } else if (skillType === "Interpersonal Skills") {
+        await api.post(`${endpoint}`, {
+          softSkills: reqBody,
+        });
+      } else {
+        await api.post(`${endpoint}`, {
+          languages: reqBody,
+        });
+      }
+      toast.success("Data saved!");
+      setCount(count + 1);
+    } catch (error) {
+      toast.error("Server Error!");
+      setDisableBut(false);
+    }
+  };
+
+  const onDelete=(id)=>{
+    let newskills=skills.filter(skill=>skill._id!==id)
+    setSkills(newskills)
   }
+
+  useEffect(() => {
+    if (skillType === "Coding Skills") {
+      if (profileData.progress.steps.skills) {
+        setDisableBut(true);
+        setSkills(profileData.profile.skills);
+        setCount(count+1)
+      }
+    } else if (skillType === "Interpersonal Skills") {
+      if (profileData.progress.steps.softSkills) {
+        setDisableBut(true);
+        setSkills(profileData.profile.softSkills);
+        setCount(count+1)
+      }
+    } else {
+      if (profileData.progress.steps.languages) {
+        setDisableBut(true);
+        setSkills(profileData.profile.languages);
+        setCount(count+1)
+      }
+    }
+  }, []);
 
   return (
     <div>
       <h4 style={{ color: "#F49424" }}>{skillType}</h4>
       <TextField
+        disabled={disableBut}
         name="search"
         onChange={onChange}
         value={value}
@@ -91,12 +147,12 @@ const SkillsCategoryItem = (props) => {
         }}
       >
         {skills.map((skill) => (
-          <SkillItem skill={skill} />
+          <SkillItem key={skill._id} skill={skill} disableBut={disableBut} onDelete={onDelete} />
         ))}
       </div>
       <Button
         onClick={onSubmit}
-        disabled={skills.length == 0}
+        disabled={skills.length === 0 || disableBut}
         size="small"
         variant="contained"
         style={{

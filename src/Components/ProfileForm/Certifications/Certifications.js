@@ -4,9 +4,9 @@ import NextButton from "../../Items/NextButton";
 import api from "../../../api";
 import { Button } from "@mui/material";
 import CertificationsItem from "./CertificationsItem";
+import { toast } from "react-toastify";
 
 const Certifications = ({activeStep,setActiveStep}) => {
-  const [loading, setLoading] = useState(false);
   const [certificationsArray, setCertificationsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
   const [certifications, setCertifications] = useState({
@@ -18,41 +18,31 @@ const Certifications = ({activeStep,setActiveStep}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
     let newcertificationsArray = certificationsArray;
     newcertificationsArray.push(certifications);
     setCertificationsArray(newcertificationsArray);
-    try {
-      const response = await api
-        .post(`/student/profile/certifications`, {
-          organization: certifications.organization,
+
+    api
+      .post(`/student/profile/certifications`, {
+        organization: certifications.organization,
           name: certifications.name,
           certificateLink: certifications.certificateLink,
           description: certifications.description,
-        })
-        .then((response) => response);
-        console.log(response)
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
-    }
-    setCertifications({
-      organization: "",
-      name: "",
-      certificateLink: "",
-      description: "",
-    });
-    setNewForm(false);
-    setLoading(false);
+      })
+      .then(() => {
+        toast.success("Data saved!");
+        setCertifications({
+          organization: "",
+          name: "",
+          certificateLink: "",
+          description: "",
+        });
+        setNewForm(false);
+      })
+      .catch(() => {
+        toast.error("Server Error!");
+      });
   };
   return (
     <div
@@ -70,7 +60,6 @@ const Certifications = ({activeStep,setActiveStep}) => {
           return (
             <CertificationsItem
               key={key}
-              loading={loading}
               disableForm={true}
               certifications={cArr}
               setCertifications={setCertifications}
@@ -80,7 +69,6 @@ const Certifications = ({activeStep,setActiveStep}) => {
         })}
         {newForm && (
           <CertificationsItem
-            loading={loading}
             disableForm={false}
             certifications={certifications}
             setCertifications={setCertifications}

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -227,7 +226,7 @@ export default function NavBar() {
                     justifyContent: "center",
                   }}
                 >
-                  <img src={profilePic} style={{width:"3rem",height:"3rem"}}/>
+                  <img src={profilePic} alt="profile pic" style={{width:"3rem",height:"3rem"}}/>
                 </ListItemIcon>
                 <div style={{display:"flex", flexDirection:"column"}}>
                 <ListItemText primary={currentUser.displayName} sx={{display:open?"":"none", opacity: open ? 1 : 0 }} />

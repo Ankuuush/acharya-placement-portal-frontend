@@ -2,7 +2,7 @@ import React from "react";
 import { Button, TextField } from "@mui/material";
 
 const CertificationsItem = (props) => {
-  const { certifications, setCertifications, handleSubmit, disableForm, loading } = props;
+  const { certifications, setCertifications, handleSubmit, disableForm } = props;
 
   const onChange = (e) => {
     if (!disableForm)
@@ -72,7 +72,6 @@ const CertificationsItem = (props) => {
         />
         {!disableForm && (
           <Button
-            disabled={loading}
             size="large"
             variant="contained"
             type="submit"

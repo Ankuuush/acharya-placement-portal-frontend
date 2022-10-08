@@ -5,7 +5,7 @@ import {
 } from "@mui/material";
 
 const ProjectsItem = (props) => {
-  const { projects, setProjects, handleSubmit, disableForm, loading } =
+  const { projects, setProjects, handleSubmit, disableForm } =
     props;
   
   const onChange = (e) => {
@@ -65,7 +65,6 @@ const ProjectsItem = (props) => {
 
       {!disableForm && (
         <Button
-          disabled={loading}
           size="large"
           variant="contained"
           type="submit"

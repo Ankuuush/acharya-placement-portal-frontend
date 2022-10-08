@@ -2,6 +2,7 @@ import { Button, Container, TextField, Card } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import api from '../../api'
 
 const VerifyEmail = () => {
   const [email, setEmail] = useState("")
@@ -15,14 +16,18 @@ const VerifyEmail = () => {
     e.preventDefault();
     setLoading(true)
     try {
-      const response=await fetch(`https://${process.env.REACT_APP_BASE_URL}/auth/resendEmailVerification`,
+    //   const response=await fetch(`https://${process.env.REACT_APP_BASE_URL}/auth/resendEmailVerification`,
+    // {
+    //   method:"POST",
+    //   headers:{
+    //     "Content-Type":"application/json",
+    //   },
+    //   body:JSON.stringify({email:email}),
+    // });
+    await api.post('/auth/resendEmailVerification',
     {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-      },
-      body:JSON.stringify({email:email}),
-    });
+      email:email
+    })
     alert("Email verification has been sent to your email!")
     navigate('/login')
     } catch (error) {

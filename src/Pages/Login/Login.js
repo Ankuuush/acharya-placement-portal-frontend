@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
-import { Button, Container, TextField, Alert } from "@mui/material";
+import { Button, Container, TextField } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 import "../../Styles/LoginSignUp.css";
 import jwt_decode from "jwt-decode";
 import logo from "../../Assets/Acharya_logo.png"
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
   const authContext = useContext(AuthContext);
   const { login, logout } = authContext;
   const [loading, setLoading] = useState(false);
@@ -23,19 +23,20 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setError("");
       setLoading(true);
       const response = await login(credentials.email, credentials.password);
       console.log(response);
       const token = jwt_decode(String(response.user.accessToken));
       if (token.email_verified) {
+        toast.success("Login Successful!");
         navigate(from,{replace:true});
+
       } else {
         await logout();
         navigate("/verify-email");
       }
     } catch {
-      setError("Login failed.");
+      toast.error("Login Failed!");
     }
     setLoading(false);
   };
@@ -95,11 +96,6 @@ const Login = () => {
               style={{ width: "100%", margin: "0.35rem 0" }}
               required
             />
-            {error && (
-            <Alert style={{ width: "90%", margin: "0.35rem 0" }} severity="error">
-              {error}
-            </Alert>
-          )}
             <Container
               style={{
                 width: "108%",
