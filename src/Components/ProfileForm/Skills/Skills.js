@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import NextButton from "../../Items/NextButton";
 import SkillsCategoryItem from "./SkillsCategoryItem";
 
-const Skills = ({activeStep,setActiveStep}) => {
-  const [count, setCount] = useState(0)
+const Skills = ({ profileData, activeStep, setActiveStep }) => {
+  const [count, setCount] = useState(0);
 
   return (
     <div
@@ -17,11 +17,34 @@ const Skills = ({activeStep,setActiveStep}) => {
     >
       <h2>Skill Set</h2>
       <div style={{ position: "relative", width: "80%" }}>
-        <SkillsCategoryItem skillType={"Coding Skills"} endpoint={"/student/profile/skills"} count={count} setCount={setCount}/>
-        <SkillsCategoryItem skillType={"Interpersonal Skills"} endpoint={"/student/profile/softskills"} count={count} setCount={setCount}/>
-        <SkillsCategoryItem skillType={"Languages"} endpoint={"/student/profile/languages"} count={count} setCount={setCount}/>
-      <NextButton setActiveStep={setActiveStep} activeStep={activeStep} disable={count!==3} styleProp={{width: "48%",marginLeft:"52%"}}/>
-    </div>
+        <SkillsCategoryItem
+          skillType={"Coding Skills"}
+          endpoint={"/student/profile/skills"}
+          count={count}
+          setCount={setCount}
+          profileData={profileData}
+        />
+        <SkillsCategoryItem
+          skillType={"Interpersonal Skills"}
+          endpoint={"/student/profile/softskills"}
+          count={count}
+          setCount={setCount}
+          profileData={profileData}
+        />
+        <SkillsCategoryItem
+          skillType={"Languages"}
+          endpoint={"/student/profile/languages"}
+          count={count}
+          setCount={setCount}
+          profileData={profileData}
+        />
+        <NextButton
+          setActiveStep={setActiveStep}
+          activeStep={activeStep}
+          disable={count !== 3}
+          styleProp={{ width: "48%", marginLeft: "52%" }}
+        />
+      </div>
     </div>
   );
 };

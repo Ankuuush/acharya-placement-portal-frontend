@@ -35,7 +35,7 @@ const Signup = () => {
         credentials.lastName
       );
       if (response.data.success) {
-        toast.info("Login Successful!");
+        toast.info("Signup Successful! Check your email to verify your account.");
         navigate("/login");
       } else {
         toast.error("Failed to create an account!");

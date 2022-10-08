@@ -30,6 +30,7 @@ const Login = () => {
       if (token.email_verified) {
         toast.success("Login Successful!");
         navigate(from,{replace:true});
+
       } else {
         await logout();
         navigate("/verify-email");

@@ -6,9 +6,10 @@ import { Button, TextField } from "@mui/material";
 import "../../../Styles/Skills.css";
 import SkillItem from "./SkillItem";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const SkillsCategoryItem = (props) => {
-  const { skillType, endpoint, count, setCount } = props;
+  const { skillType, endpoint, count, setCount, profileData } = props;
   const [value, setValue] = useState("");
   const [search, setSearch] = useState([]);
   const [skills, setSkills] = useState([]);
@@ -56,36 +57,62 @@ const SkillsCategoryItem = (props) => {
     e.preventDefault();
     setDisableBut(true);
     let reqBody = [];
-    console.log(skills)
+    console.log(skills);
     skills.forEach((skill) => reqBody.push(skill._id));
     try {
       if (skillType === "Coding Skills") {
         await api.post(`${endpoint}`, {
           skills: reqBody,
         });
-      } else if (skillType === "Interpersonal Skills")
-      {
+      } else if (skillType === "Interpersonal Skills") {
         await api.post(`${endpoint}`, {
           softSkills: reqBody,
         });
-      }
-      else  {
+      } else {
         await api.post(`${endpoint}`, {
           languages: reqBody,
         });
       }
-        toast.success("Data saved!");
-        setCount(count + 1);
+      toast.success("Data saved!");
+      setCount(count + 1);
     } catch (error) {
       toast.error("Server Error!");
       setDisableBut(false);
     }
   };
 
+  const onDelete=(id)=>{
+    let newskills=skills.filter(skill=>skill._id!==id)
+    setSkills(newskills)
+  }
+
+  useEffect(() => {
+    if (skillType === "Coding Skills") {
+      if (profileData.progress.steps.skills) {
+        setDisableBut(true);
+        setSkills(profileData.profile.skills);
+        setCount(count+1)
+      }
+    } else if (skillType === "Interpersonal Skills") {
+      if (profileData.progress.steps.softSkills) {
+        setDisableBut(true);
+        setSkills(profileData.profile.softSkills);
+        setCount(count+1)
+      }
+    } else {
+      if (profileData.progress.steps.languages) {
+        setDisableBut(true);
+        setSkills(profileData.profile.languages);
+        setCount(count+1)
+      }
+    }
+  }, []);
+
   return (
     <div>
       <h4 style={{ color: "#F49424" }}>{skillType}</h4>
       <TextField
+        disabled={disableBut}
         name="search"
         onChange={onChange}
         value={value}
@@ -120,7 +147,7 @@ const SkillsCategoryItem = (props) => {
         }}
       >
         {skills.map((skill) => (
-          <SkillItem key={skill._id} skill={skill} />
+          <SkillItem key={skill._id} skill={skill} disableBut={disableBut} onDelete={onDelete} />
         ))}
       </div>
       <Button

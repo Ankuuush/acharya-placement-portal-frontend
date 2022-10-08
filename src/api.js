@@ -9,7 +9,6 @@ const api= axios.create({
 
 api.interceptors.request.use(
   async config => {
-    console.log("request interceptor in work");
     if (auth.currentUser) {
       const token = await auth.currentUser.getIdToken();
       if (token) {

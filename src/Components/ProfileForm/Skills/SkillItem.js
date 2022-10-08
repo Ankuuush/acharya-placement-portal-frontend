@@ -1,7 +1,7 @@
 import React from "react";
 import ClearIcon from "@mui/icons-material/Clear";
 
-const SkillItem = ({ skill }) => {
+const SkillItem = ({ skill,disableBut,onDelete }) => {
   return (
     <div
       style={{
@@ -36,6 +36,8 @@ const SkillItem = ({ skill }) => {
         {skill.name}
       </p>
       <button
+      onClick={()=>onDelete(skill._id)}
+      disabled={disableBut}
         style={{
           width: "30%",
           height: "100%",

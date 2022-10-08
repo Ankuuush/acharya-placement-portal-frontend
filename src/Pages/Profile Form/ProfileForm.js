@@ -10,13 +10,13 @@ import Certifications from '../../Components/ProfileForm/Certifications/Certific
 import Achievements from '../../Components/ProfileForm/Achievements/Achievements'
 import Steps from '../../Components/StepsFolder/Steps'
 
-const ProfileForm = () => {
-  const [activeStep, setActiveStep] = useState(0)
+const ProfileForm = ({profileData,activeStep, setActiveStep}) => {
+  
   const renderSwitch=()=>{
     switch(activeStep){
       case 0: return <PersonalInformation activeStep={activeStep} setActiveStep={setActiveStep} /> 
       case 1:return <EducationalDetails activeStep={activeStep} setActiveStep={setActiveStep} />
-      case 2:return <Skills activeStep={activeStep} setActiveStep={setActiveStep} />
+      case 2:return <Skills profileData={profileData} activeStep={activeStep} setActiveStep={setActiveStep} />
       case 3:return <Internships activeStep={activeStep} setActiveStep={setActiveStep} />
       case 4:return <Projects activeStep={activeStep} setActiveStep={setActiveStep} />
       case 5:return <Certifications activeStep={activeStep} setActiveStep={setActiveStep} />
