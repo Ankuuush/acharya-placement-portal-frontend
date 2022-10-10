@@ -1,9 +1,35 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import api from "../../../api";
 import NextButton from "../../Items/NextButton";
 import SkillsCategoryItem from "./SkillsCategoryItem";
 
 const Skills = ({ profileData, activeStep, setActiveStep }) => {
   const [count, setCount] = useState(0);
+  
+  const handleSubmit = async (skillType,endpoint,reqBody) => {
+    try {
+      if (skillType === "Coding Skills") {
+        await api.post(`${endpoint}`, {
+          skills: reqBody,
+        });
+      } else if (skillType === "Interpersonal Skills") {
+        await api.post(`${endpoint}`, {
+          softSkills: reqBody,
+        });
+      } else {
+        await api.post(`${endpoint}`, {
+          languages: reqBody,
+        });
+      }
+      toast.success("Data saved!");
+      setCount(count + 1);
+      return false
+    } catch (error) {
+      toast.error("Server Error!");
+      return true
+    }
+  };
 
   return (
     <div
@@ -23,6 +49,7 @@ const Skills = ({ profileData, activeStep, setActiveStep }) => {
           count={count}
           setCount={setCount}
           profileData={profileData}
+          handleSubmit={handleSubmit}
         />
         <SkillsCategoryItem
           skillType={"Interpersonal Skills"}
@@ -30,6 +57,7 @@ const Skills = ({ profileData, activeStep, setActiveStep }) => {
           count={count}
           setCount={setCount}
           profileData={profileData}
+          handleSubmit={handleSubmit}
         />
         <SkillsCategoryItem
           skillType={"Languages"}
@@ -37,6 +65,7 @@ const Skills = ({ profileData, activeStep, setActiveStep }) => {
           count={count}
           setCount={setCount}
           profileData={profileData}
+          handleSubmit={handleSubmit}
         />
         <NextButton
           setActiveStep={setActiveStep}

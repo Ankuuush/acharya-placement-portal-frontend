@@ -1,44 +1,44 @@
-import { Button, Alert } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../api";
+import NavBar from "../../Components/navbar";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 import ProfileForm from "../Profile Form/ProfileForm";
 
 const StudentDashboardComponent = () => {
-  const [error, setError] = useState(false);
   const authContext = useContext(AuthContext);
   const { currentUser, logout } = authContext;
   let navigate = useNavigate();
 
   const handleClick = async (e) => {
     e.preventDefault();
-    setError("");
     try {
       await logout();
       navigate("/login");
     } catch {
-      setError("Failed to logout.");
+      toast.error("Failed to logout.");
     }
   };
 
   return (
-    <>
-      <div>Home</div>
-      {error && <Alert variant="danger">{error}</Alert>}
-      <h4>Email: {currentUser.email}</h4>
-      <p>Name: {currentUser.displayName}</p>
-      <Button onClick={handleClick}>Logout</Button>
-    </>
+    <Box sx={{ display: "flex" }}>
+      <NavBar />
+      <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
+        <div>Home</div>
+        <h4>Email: {currentUser.email}</h4>
+        <p>Name: {currentUser.displayName}</p>
+        <Button onClick={handleClick}>Logout</Button>
+      </Box>
+     </Box>
   );
 };
 
-const StudentDashboard = ({activeStep, setActiveStep }) => {
+const StudentDashboard = ({ activeStep, setActiveStep }) => {
   const [loading, setLoading] = useState(true);
-  const [profileData, setProfileData] = useState({})
+  const [profileData, setProfileData] = useState(null);
   const [step, setStep] = useState(-1);
-  const location = useLocation();
   useEffect(() => {
     api
       .get("/student/profile/progress")
@@ -47,7 +47,7 @@ const StudentDashboard = ({activeStep, setActiveStep }) => {
           setLoading(false);
           return;
         }
-        setProfileData(response.data.data)
+        setProfileData(response.data.data);
         console.log(response);
         switch (response.data.data.progress.goToStep) {
           case "basicDetails":
@@ -91,16 +91,21 @@ const StudentDashboard = ({activeStep, setActiveStep }) => {
   }, []);
   return (
     <>
-      {!loading && (step === -1 ? (
-        <StudentDashboardComponent />
-      ) : (
-        // <Navigate
-        //   to={"/student/build-resume"}
-        //   state={{ from: location }}
-        //   replace
-        // />
-        <ProfileForm profileData={profileData} activeStep={activeStep} setActiveStep={setActiveStep}/>
-      ))}
+      {!loading &&
+        (step === -1 ? (
+          <StudentDashboardComponent />
+        ) : (
+          // <Navigate
+          //   to={"/student/build-resume"}
+          //   state={{ from: location }}
+          //   replace
+          // />
+          <ProfileForm
+            profileData={profileData}
+            activeStep={activeStep}
+            setActiveStep={setActiveStep} 
+          />
+        ))}
     </>
   );
 };

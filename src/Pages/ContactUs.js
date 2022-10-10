@@ -1,9 +1,16 @@
-import React from 'react'
+import { Box } from "@mui/material";
+import React from "react";
+import NavBar from "../Components/navbar";
 
 const ContactUs = () => {
   return (
-    <div>ContactUs</div>
-  )
-}
+    <Box sx={{ display: "flex" }}>
+      <NavBar />
+      <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
+        <div>Contact Us</div>
+      </Box>
+    </Box>
+  );
+};
 
-export default ContactUs
+export default ContactUs;

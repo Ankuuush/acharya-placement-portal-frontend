@@ -20,6 +20,7 @@ import profilePic from "../Assets/ProfilePic.png";
 import { Divider } from "@mui/material";
 import AuthContext from "../Context/AuthContext/AuthContext";
 import { useContext } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -110,6 +111,23 @@ export default function NavBar() {
 
   const authContext = useContext(AuthContext)
   const {currentUser}=authContext
+  const navigate=useNavigate()
+
+  const handleClick=(text)=>{
+    switch(text){
+      case "Explore Jobs":navigate('/student/explore-jobs')
+                          break;
+      case "Applied Jobs":navigate('/student/applied-jobs')
+                          break;
+      case "Build Resume":navigate('/student/resume')
+                          break;
+      case "Feedback":navigate('/feedback')
+                      break;
+      case "Contact Us":navigate('/contact-us')
+                        break;
+      default:navigate('/student/explore-jobs')
+    }
+  }
 
   return (
     <>
@@ -189,7 +207,7 @@ export default function NavBar() {
             "Feedback",
             "Contact Us",
           ].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+            <ListItem key={text} disablePadding sx={{ display: "block" }} onClick={()=>handleClick(text)}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

@@ -9,42 +9,20 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { toast } from "react-toastify";
 const EducationalDetailsItem = (props) => {
-  const [educationalInfo, setEducationalInfo] = useState({
-    institution: "",
-    startYear: "",
-    endYear: "",
-    gradeScale: "",
-    grade: "",
-  });
-  const { text, count, setCount } = props;
+  const { educationalInfo, setEducationalInfo, handleSubmit, text } = props;
   const [disableBut, setDisableBut] = useState(false);
   const [maxScale, setMaxScale] = useState(0);
   const onChange = (e) => {
     setEducationalInfo({ ...educationalInfo, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmitBut = async (e) => {
     e.preventDefault();
     setDisableBut(true);
-
-    api
-      .post(`student/profile/education/${text}`, {
-        institution: educationalInfo.institution,
-        startYear: parseInt(educationalInfo.startYear),
-        endYear: parseInt(educationalInfo.endYear),
-        gradeScale: parseInt(educationalInfo.gradeScale),
-        grade: parseFloat(educationalInfo.grade),
-      })
-      .then(() => {
-        toast.success("Data saved!");
-        setCount(count + 1);
-      })
-      .catch(() => {
-        toast.error("Server Error!");
-        setDisableBut(false);
-      });
+    if (await handleSubmit(text, educationalInfo)){
+      setDisableBut(false);
+    } 
   };
 
   useEffect(() => {
@@ -52,7 +30,7 @@ const EducationalDetailsItem = (props) => {
   }, [educationalInfo.gradeScale]);
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmitBut}
       style={{
         width: "80%",
         position: "relative",

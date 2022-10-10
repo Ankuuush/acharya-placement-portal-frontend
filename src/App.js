@@ -6,9 +6,8 @@ import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./Pages/ForgotPassword";
 import VerifyEmail from "./Pages/Login/VerifyEmail";
 import ProfileForm from "./Pages/Profile Form/ProfileForm";
-import { ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Student from "./routes/Student";
 import Admin from "./routes/Admin";
 import Tpo from "./routes/Tpo";
@@ -16,11 +15,11 @@ import Tpo from "./routes/Tpo";
 function App() {
   return (
     <AuthProvider>
+    <Router>
       <ToastContainer />
-      <Router>
         <Routes>
           <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/login" element={<Login/>} />
+          <Route exact path="/login" element={<Login />} />
           <Route exact path="/forgot-password" element={<ForgotPassword />} />
           <Route exact path="/verify-email" element={<VerifyEmail />} />
           <Route exact path="/testing" element={<ProfileForm />} />
@@ -31,7 +30,7 @@ function App() {
           {Admin()}
           {Tpo()}
         </Routes>
-      </Router>
+    </Router>
     </AuthProvider>
   );
 }
