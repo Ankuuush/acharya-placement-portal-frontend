@@ -15,11 +15,11 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import api from "../../api.js";
-import AuthContext from "../../Context/AuthContext/AuthContext.js";
+import AuthContext from "../../../Context/AuthContext/AuthContext.js";
 import { toast } from "react-toastify";
 
-const PersonalInformation = ({ activeStep, setActiveStep }) => {
+
+const PersonalInformationItem = ({personalInfo,setPersonalInfo,handleSubmit}) => {
   const authContext = useContext(AuthContext);
   const { currentUser } = authContext;
   const [userData, setUserData] = useState({
@@ -40,42 +40,10 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
       setProfileImage(e.target.files[0]);
     }
   };
-  const [personalInfo, setPersonalInfo] = useState({
-    photoUrl: "",
-    phone: "",
-    gender: "",
-    branch: "",
-    usn: "",
-    dob: "",
-  });
   const [loading, setLoading] = useState(false);
 
   const onChange = (e) => {
     setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    if (!personalInfo.photoUrl) {
-      toast.error("Please Upload Profile Picture!");
-      setLoading(false);
-      return;
-    }
-      api.post("/student/profile/basic", {
-        photoUrl: personalInfo.photoUrl,
-        phone: personalInfo.phone,
-        gender: personalInfo.gender,
-        //   branch: personalInfo.branch,
-        usn: personalInfo.usn,
-        dob: personalInfo.dob,
-      }).then(()=>{toast.success("Data saved!");
-      setActiveStep((activeStep + 1) % 7);
-      }).catch(()=>{
-        toast.error("Server Error!");
-        setLoading(false);
-      })
-    
   };
 
   const handleUpload = () => {
@@ -109,6 +77,12 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
       }
     );
   };
+
+  const handleSubmitBut=(e)=>{
+    e.preventDefault()
+    setLoading(true)
+    if(handleSubmit()) setLoading(false)
+  }
 
   useEffect(() => {
     const displayName = currentUser.displayName.split(" ");
@@ -179,7 +153,7 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
         max="100"
       />
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmitBut}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -314,4 +288,4 @@ const PersonalInformation = ({ activeStep, setActiveStep }) => {
   );
 };
 
-export default PersonalInformation;
+export default PersonalInformationItem;

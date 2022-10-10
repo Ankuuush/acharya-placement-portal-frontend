@@ -46,7 +46,7 @@ const Projects = ({ activeStep, setActiveStep }) => {
         flexDirection: "column",
         width: "30em",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <h2>Projects</h2>

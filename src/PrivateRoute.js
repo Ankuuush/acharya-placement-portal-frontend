@@ -1,9 +1,11 @@
+import { Box } from "@mui/system";
 import jwt_decode from "jwt-decode";
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import NavBar from "./Components/navbar";
 import AuthContext from "./Context/AuthContext/AuthContext";
 
-const PrivateRoute = ({ role }) => {
+const PrivateRoute = ({role}) => {
   const authContext = useContext(AuthContext);
   const location = useLocation();
   const { currentUser } = authContext;

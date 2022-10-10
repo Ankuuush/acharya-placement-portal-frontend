@@ -1,35 +1,36 @@
-import { Button,Alert } from '@mui/material'
-import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import AuthContext from '../../Context/AuthContext/AuthContext'
+import { Button, Box } from "@mui/material";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import NavBar from "../../Components/navbar";
+import AuthContext from "../../Context/AuthContext/AuthContext";
 
 const Tpodashboard = () => {
-  const [error, setError] = useState(false)
-  const authContext = useContext(AuthContext)
-  const {currentUser,logout}=authContext
-  let navigate=useNavigate();
+  const authContext = useContext(AuthContext);
+  const { currentUser, logout } = authContext;
+  let navigate = useNavigate();
 
-  const handleClick=async (e)=>{
+  const handleClick = async (e) => {
     e.preventDefault();
-    setError('');
     try {
       await logout();
-      navigate('/login')
+      navigate("/login");
     } catch {
-      setError('Failed to logout.')
+      toast.error("Failed to logout.");
     }
-  }
-  
-  
-  return (
-    <>
-    <div>Home</div>
-    {error && <Alert variant="danger">{error}</Alert>}
-    <h4>Email: {currentUser.email}</h4>
-    <p>Name: {currentUser.displayName}</p>
-    <Button onClick={handleClick}>Logout</Button>
-    </>
-  )
-}
+  };
 
-export default Tpodashboard
+  return (
+    <Box sx={{ display: "flex" }}>
+      <NavBar />
+      <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
+        <div>Home</div>
+        <h4>Email: {currentUser.email}</h4>
+        <p>Name: {currentUser.displayName}</p>
+        <Button onClick={handleClick}>Logout</Button>
+      </Box>
+    </Box>
+  );
+};
+
+export default Tpodashboard;
