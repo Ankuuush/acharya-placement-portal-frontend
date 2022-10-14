@@ -12,6 +12,10 @@ import Student from "./routes/Student";
 import Admin from "./routes/Admin";
 import Tpo from "./routes/Tpo";
 
+import Home from './Home'
+import Logineg from './Logineg'
+import Admineg from './Admineg'
+
 function App() {
   return (
     <AuthProvider>
@@ -32,6 +36,17 @@ function App() {
         </Routes>
     </Router>
     </AuthProvider>
+    // <AuthProvider>
+    //   <Router>
+    //     <Routes>
+    //       <Route exact path="/" element={<Home />} />
+    //       <Route exact path="/login" element={<Logineg />} />
+    //       <Route element={<PrivateRoute role={"go"} />}>
+    //         <Route exact path="/admin" element={<Admineg />} />
+    //       </Route>
+    //     </Routes>
+    //   </Router>
+    // </AuthProvider>
   );
 }
 

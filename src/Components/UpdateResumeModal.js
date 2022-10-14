@@ -1,23 +1,30 @@
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import CertificationsItem from './ProfileForm/Certifications/CertificationsItem';
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import CertificationsItem from "./ProfileForm/Certifications/CertificationsItem";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
 
-export default function UpdateResumeModal({open,setOpen}) {
-
+export default function UpdateResumeModal({
+  open,
+  setOpen,
+  certifications,
+  setCertifications,
+}) {
   const handleClose = () => setOpen(false);
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    console.log("")
+  }
 
   return (
     <div>
@@ -28,12 +35,17 @@ export default function UpdateResumeModal({open,setOpen}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          {/* <Typography id="modal-modal-title" variant="h6" component="h2">
             Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <CertificationsItem />
-          </Typography>
+          </Typography> */}
+          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}> */}
+            <CertificationsItem
+              certifications={certifications}
+              setCertifications={setCertifications}
+              handleSubmit={handleSubmit}
+              disableForm={false}
+            />
+          {/* </Typography> */}
         </Box>
       </Modal>
     </div>
