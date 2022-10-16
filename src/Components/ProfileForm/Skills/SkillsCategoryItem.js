@@ -4,9 +4,9 @@ import _debounce from "lodash/debounce";
 import api from "../../../api";
 import { Button, TextField } from "@mui/material";
 import "../../../Styles/Skills.css";
-import SkillItem from "./SkillItem";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import SkillItem from "../../Items/SkillItem";
 
 const SkillsCategoryItem = ({
   skillType = "",
@@ -144,6 +144,7 @@ const SkillsCategoryItem = ({
             skill={skill}
             disableBut={disableBut}
             onDelete={onDelete}
+            skillStyle={{width:"70%"}}
           />
         ))}
       </div>
