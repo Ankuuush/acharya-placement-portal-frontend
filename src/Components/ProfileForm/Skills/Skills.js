@@ -7,7 +7,9 @@ import SkillsCategoryItem from "./SkillsCategoryItem";
 const Skills = ({ profileData, activeStep, setActiveStep }) => {
   const [count, setCount] = useState(0);
   
-  const handleSubmit = async (skillType,endpoint,reqBody) => {
+  const handleSubmit = async (skillType,endpoint,skills) => {
+    let reqBody=[]
+    skills.forEach((skill) => reqBody.push(skill._id));
     try {
       if (skillType === "Coding Skills") {
         await api.post(`${endpoint}`, {
@@ -48,7 +50,7 @@ const Skills = ({ profileData, activeStep, setActiveStep }) => {
           endpoint={"/student/profile/skills"}
           count={count}
           setCount={setCount}
-          profileData={profileData}
+          profileData={profileData?.skills}
           handleSubmit={handleSubmit}
         />
         <SkillsCategoryItem
@@ -56,7 +58,7 @@ const Skills = ({ profileData, activeStep, setActiveStep }) => {
           endpoint={"/student/profile/softskills"}
           count={count}
           setCount={setCount}
-          profileData={profileData}
+          profileData={profileData?.softSkills}
           handleSubmit={handleSubmit}
         />
         <SkillsCategoryItem
@@ -64,7 +66,7 @@ const Skills = ({ profileData, activeStep, setActiveStep }) => {
           endpoint={"/student/profile/languages"}
           count={count}
           setCount={setCount}
-          profileData={profileData}
+          profileData={profileData?.languages}
           handleSubmit={handleSubmit}
         />
         <NextButton

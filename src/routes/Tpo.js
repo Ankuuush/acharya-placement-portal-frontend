@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import Tpodashboard from "../Pages/Home/Tpodashboard"
 import ContactUs from '../Pages/ContactUs'
 import FeedBack from '../Pages/FeedBack'
+import Tpodashboard from '../Pages/TPO/Tpodashboard'
 import PrivateRoute from '../PrivateRoute'
 
 const Tpo = () => {
