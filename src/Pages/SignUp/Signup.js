@@ -9,41 +9,56 @@ import taxi from "../../Assets/taxi.png";
 import { toast } from "react-toastify";
 import PlacementLogo from "../../Components/Logo/PlacementLogo";
 import constants from "../../Constants";
+import Spinner from "../../Components/Spinner/Spinner";
 
-const Login = () => {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const authContext = useContext(AuthContext);
-  const { login, logout } = authContext;
+const Signup = () => {
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    firstName: "",
+    lastName: "",
+  });
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-
+  const authContext = useContext(AuthContext);
+  const { signup } = authContext;
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+  const [random_quote] = useState(constants.RANDOM_QUOTE());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (credentials.password !== credentials.confirmPassword) {
+      return toast.error("Passwords Do Not Match!");
+    }
     try {
       setLoading(true);
-      const response = await login(credentials.email, credentials.password);
-      console.log(response);
-      const token = jwt_decode(String(response.user.accessToken));
-      if (token.email_verified) {
-        toast.success("Login Successful!");
-        navigate(from, { replace: true });
+      let response = await signup(
+        credentials.email,
+        credentials.password,
+        credentials.firstName,
+        credentials.lastName
+      );
+      response = response.response
+      if (response.data.success) {
+        toast.info("Signup Successful! Check your email to verify your account.");
+        navigate("/login");
       } else {
-        await logout();
-        navigate("/verify-email");
+        toast.error(typeof response.data.error === "object" ? response.data.error.message ||  response.data.error.code : response.data.error , {
+          position: "bottom-center",
+          theme: "colored",
+        });
       }
-    } catch {
-      toast.error("Login Failed!");
+    } catch(err) {
+      toast.error("Failed to create an account!", {
+        position: "bottom-center",
+        theme: "colored",
+      });
     }
     setLoading(false);
   };
-
-  const random_quote = constants.RANDOM_QUOTE();
 
   return (
     <div id="login-signup-container">
@@ -131,7 +146,7 @@ const Login = () => {
               style={{ width: "100%", margin: "0.35rem 0" }}
               required
             />
-            
+             <div style={{display: "flex",alignItems: "center", textAlign: "center", verticalAlign: "center"}}>
             <button
               disabled={loading}
               size="large"
@@ -153,6 +168,8 @@ const Login = () => {
             >
               Next
             </button>
+            {loading && <Spinner />}
+            </div>
           </form>
           <div className="prompts">
             <p className="prompt-tags">
@@ -172,4 +189,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

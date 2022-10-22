@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Button, Container, TextField } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
@@ -8,6 +8,7 @@ import taxi from "../../Assets/taxi.png";
 import { toast } from "react-toastify";
 import PlacementLogo from "../../Components/Logo/PlacementLogo";
 import constants from "../../Constants";
+import Spinner from "../../Components/Spinner/Spinner";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -17,6 +18,7 @@ const Login = () => {
   let navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const [random_quote] = useState(constants.RANDOM_QUOTE());
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -27,7 +29,6 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await login(credentials.email, credentials.password);
-      console.log(response);
       const token = jwt_decode(String(response.user.accessToken));
       if (token.email_verified) {
         toast.success("Login Successful!");
@@ -37,12 +38,13 @@ const Login = () => {
         navigate("/verify-email");
       }
     } catch {
-      toast.error("Login Failed!");
+      toast.error("Invalid/Expired Credentials", {
+        position: 'bottom-center',
+        theme: "colored"
+      });
     }
     setLoading(false);
   };
-
-  const random_quote = constants.RANDOM_QUOTE();
 
   return (
     <div id="login-signup-container">
@@ -92,6 +94,7 @@ const Login = () => {
                 required
               />
 
+              <div style={{display: "flex",alignItems: "center", textAlign: "center", verticalAlign: "center"}}>
               <button
                 disabled={loading}
                 size="large"
@@ -113,6 +116,8 @@ const Login = () => {
               >
                 Login
               </button>
+              {loading && <Spinner />}
+              </div>
             </form>
             <div className="prompts">
             <p className="prompt-tags">
