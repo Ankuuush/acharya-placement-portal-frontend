@@ -41,17 +41,21 @@ const Signup = () => {
         credentials.firstName,
         credentials.lastName
       );
-      response = response.response
-      if (response.data.success) {
-        toast.info("Signup Successful! Check your email to verify your account.");
+      if (response.data) {
+        toast.success("Signup Successful! Check your email to verify your account.", {
+          position: "bottom-center",
+          theme: "colored",
+        });
         navigate("/login");
       } else {
+        response =response.response;
         toast.error(typeof response.data.error === "object" ? response.data.error.message ||  response.data.error.code : response.data.error , {
           position: "bottom-center",
           theme: "colored",
         });
       }
     } catch(err) {
+      console.log(err)
       toast.error("Failed to create an account!", {
         position: "bottom-center",
         theme: "colored",
