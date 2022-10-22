@@ -4,20 +4,82 @@
     position:relative;
 }
 #left-component{
-    width: 52vw;
+    width: 45vw;
     height: 100vh;
     position: absolute;
     left: 0;
 }
 
 #right-component{
-    width:37vw;
+    width:55vw;
     height: 100vh; 
     position:absolute;
     right: 0;
+    background-color: #213780;
+    padding: 15px 25px;
+    overflow: hidden;
+    align-items: center;
+    text-align: center;
 }
 
-@media screen and (max-width:600px) {
+.login-form {
+    padding: 25px;
+}
+
+.prompt-tags {
+    font-size: 17px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.prompts {
+    background-color: #ebeefa;
+    padding: 0.5px 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.login-header {
+    font-size: 27px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+.display-vector {
+    -webkit-animation: mover 2s infinite  alternate;
+        animation: mover 2s infinite  alternate;
+}
+
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-13px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-13px); }
+}
+
+.quote-component {
+    margin: 45px;
+    text-align: left;
+}
+
+.quote-component h3 {
+    color: white;
+    font-size: 2.5rem;
+    margin: 0;
+    opacity: 0.9;
+    line-height: 150%;
+    word-spacing: 3px;
+}
+
+.quote-component p {
+    color: white;
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width:1000px) {
     #login-signup-container{
         display: flex;
         flex-direction: column;
@@ -32,9 +94,6 @@
     }
 
     #right-component{
-        width: 100vw;
-        height: 50vh;
-        position: relative;
-        margin-bottom: 2rem;
+       display: none;
     }
 }
