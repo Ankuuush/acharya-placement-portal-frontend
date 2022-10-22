@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import {
   getStorage,
@@ -15,18 +15,13 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import AuthContext from "../../../Context/AuthContext/AuthContext.js";
 import { toast } from "react-toastify";
 
-
-const PersonalInformationItem = ({personalInfo,setPersonalInfo,handleSubmit}) => {
-  const authContext = useContext(AuthContext);
-  const { currentUser } = authContext;
-  const [userData, setUserData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-  });
+const PersonalInformationItem = ({
+  personalInfo,
+  setPersonalInfo,
+  handleSubmit,
+}) => {
   const storage = getStorage();
   const ref = useRef(null);
   const onClick = (e) => {
@@ -78,24 +73,24 @@ const PersonalInformationItem = ({personalInfo,setPersonalInfo,handleSubmit}) =>
     );
   };
 
-  const handleSubmitBut=(e)=>{
-    e.preventDefault()
-    setLoading(true)
-    if(handleSubmit()) setLoading(false)
-  }
+  const handleSubmitBut = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (handleSubmit()) setLoading(false);
+  };
 
-  useEffect(() => {
-    const displayName = currentUser.displayName.split(" ");
-    const firstName = displayName[0];
-    let lastName = "";
-    for (let i = 1; i < displayName.length; i++)
-      lastName += displayName[i] + " ";
-    setUserData({
-      firstName: firstName,
-      lastName: lastName,
-      email: currentUser.email,
-    });
-  }, [currentUser]);
+  // useEffect(() => {
+  //   const displayName = currentUser.displayName.split(" ");
+  //   const firstName = displayName[0];
+  //   let lastName = "";
+  //   for (let i = 1; i < displayName.length; i++)
+  //     lastName += displayName[i] + " ";
+  //   setUserData({
+  //     firstName: firstName,
+  //     lastName: lastName,
+  //     email: currentUser.email,
+  //   });
+  // }, [currentUser]);
 
   return (
     <div
@@ -134,6 +129,7 @@ const PersonalInformationItem = ({personalInfo,setPersonalInfo,handleSubmit}) =>
       <Button
         size="small"
         variant="contained"
+        disabled={profileImage?false:true}
         style={{
           display: uploaded ? "none" : "",
           width: "20%",
@@ -164,7 +160,7 @@ const PersonalInformationItem = ({personalInfo,setPersonalInfo,handleSubmit}) =>
         <div style={{ position: "relative", width: "100%" }}>
           <TextField
             name="firstName"
-            value={userData.firstName}
+            value={personalInfo.firstName}
             size="normal"
             type="text"
             variant="outlined"
@@ -173,7 +169,7 @@ const PersonalInformationItem = ({personalInfo,setPersonalInfo,handleSubmit}) =>
           />
           <TextField
             name="lastName"
-            value={userData.lastName}
+            value={personalInfo.lastName}
             size="normal"
             type="text"
             variant="outlined"
@@ -188,7 +184,7 @@ const PersonalInformationItem = ({personalInfo,setPersonalInfo,handleSubmit}) =>
         </div>
         <TextField
           name="email"
-          value={userData.email}
+          value={personalInfo.email}
           size="normal"
           variant="outlined"
           type="email"
@@ -251,7 +247,7 @@ const PersonalInformationItem = ({personalInfo,setPersonalInfo,handleSubmit}) =>
           type="text"
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
-          required
+          disabled
         />
         <TextField
           name="phone"
@@ -281,7 +277,7 @@ const PersonalInformationItem = ({personalInfo,setPersonalInfo,handleSubmit}) =>
             width: "48%",
           }}
         >
-          Next
+          Save & Next
         </Button>
       </form>
     </div>

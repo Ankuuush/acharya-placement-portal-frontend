@@ -1,30 +1,22 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import CertificationsItem from "./ProfileForm/Certifications/CertificationsItem";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "40vw",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  height:"80vh",
+  overflow:"scroll"
 };
 
-export default function UpdateResumeModal({
-  open,
-  setOpen,
-  certifications,
-  setCertifications,
-}) {
+export default function UpdateResumeModal({open,setOpen,component}) {
   const handleClose = () => setOpen(false);
-  const handleSubmit=(e)=>{
-    e.preventDefault();
-    console.log("")
-  }
 
   return (
     <div>
@@ -39,12 +31,7 @@ export default function UpdateResumeModal({
             Text in a modal
           </Typography> */}
           {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}> */}
-            <CertificationsItem
-              certifications={certifications}
-              setCertifications={setCertifications}
-              handleSubmit={handleSubmit}
-              disableForm={false}
-            />
+            {component}
           {/* </Typography> */}
         </Box>
       </Modal>

@@ -1,13 +1,66 @@
-import React from 'react'
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import api from "../../../api";
+import ProjectsItem from "../../ProfileForm/Projects/ProjectsItem";
+import UpdateResumeModal from "../../UpdateResumeModal";
 
-const ProjectItem = ({item}) => {
+const ResumeProjectItem = ({ item, setData, showModal }) => {
+  const [childOpen, setChildOpen] = useState(false);
+  const [projects, setProjects] = useState(item);
+  const handleClick = () => {
+    setChildOpen(true);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    api
+      .patch(`/student/profile/projects/${item._id}`, {
+        title: projects.title,
+        description: projects.description,
+        link: projects.link,
+      })
+      .then((response) => {
+        setData(response.data.data.doc.projects);
+        toast.success("Data saved!");
+        setChildOpen(false);
+      })
+      .catch(() => {
+        toast.error("Server Error!");
+      });
+  };
+  const handleDelete=()=>{
+    api
+      .delete(`/student/profile/projects/${item._id}`)
+      .then((response) => {
+        setData(response.data.data.doc.projects);
+        toast.success("Deleted!!");
+      })
+      .catch(() => {
+        toast.error("Server Error!");
+      });
+  }
   return (
-    <div>
-        {item.title}
+    <>
+      <UpdateResumeModal
+        open={childOpen}
+        setOpen={setChildOpen}
+        component={
+          <ProjectsItem
+            projects={projects}
+            setProjects={setProjects}
+            handleSubmit={handleSubmit}
+            disableForm={false}
+          />
+        }
+      />
+      <div>
+        <p>{item.title}</p>
         <p>{item.link}</p>
-        <button>Edit</button>
-    </div>
-  )
-}
+        <p>{item.description}</p>
+      </div>
+      {showModal && <button onClick={handleClick}>Edit</button>}
+      {showModal && <button onClick={handleDelete}>Delete</button>}
+    </>
+  );
+};
 
-export default ProjectItem
+export default ResumeProjectItem;

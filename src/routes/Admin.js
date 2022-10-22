@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
+import AdminDashboard from '../Pages/Admin/AdminDashboard'
 import ContactUs from '../Pages/ContactUs'
 import FeedBack from '../Pages/FeedBack'
-import AdminDashboard from '../Pages/Home/AdminDashboard'
 import PrivateRoute from '../PrivateRoute'
 
 const Admin = () => {

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import api from "../../api";
 import NavBar from "../../Components/navbar";
 import AuthContext from "../../Context/AuthContext/AuthContext";
-import ProfileForm from "../Profile Form/ProfileForm";
+import ProfileForm from "./Profile Form/ProfileForm";
 
 const StudentDashboardComponent = () => {
   const authContext = useContext(AuthContext);

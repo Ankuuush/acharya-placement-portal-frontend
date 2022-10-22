@@ -5,12 +5,12 @@ import AuthProvider from "./Context/AuthContext/AuthProvider";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./Pages/ForgotPassword";
 import VerifyEmail from "./Pages/Login/VerifyEmail";
-import ProfileForm from "./Pages/Profile Form/ProfileForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Student from "./routes/Student";
 import Admin from "./routes/Admin";
 import Tpo from "./routes/Tpo";
+import ProfileForm from "./Pages/Student/Profile Form/ProfileForm";
 
 function App() {
   return (

@@ -1,14 +1,14 @@
 import { Box } from "@mui/material";
 import React from "react";
-import EducationalDetails from "../../Components/ProfileForm/EducationalDetails/educationalDetails";
-import PersonalInformation from "../../Components/ProfileForm/Personal Information/personalInformation";
-import Skills from "../../Components/ProfileForm/Skills/Skills";
-import Internships from "../../Components/ProfileForm/Internship Experience/internships";
-import Projects from "../../Components/ProfileForm/Projects/Projects";
-import Certifications from "../../Components/ProfileForm/Certifications/Certifications";
-import Achievements from "../../Components/ProfileForm/Achievements/Achievements";
-import Steps from "../../Components/StepsFolder/Steps";
-import NavBar from "../../Components/navbar";
+import EducationalDetails from "../../../Components/ProfileForm/EducationalDetails/educationalDetails";
+import PersonalInformation from "../../../Components/ProfileForm/Personal Information/personalInformation";
+import Skills from "../../../Components/ProfileForm/Skills/Skills";
+import Internships from "../../../Components/ProfileForm/Internship Experience/internships";
+import Projects from "../../../Components/ProfileForm/Projects/Projects";
+import Certifications from "../../../Components/ProfileForm/Certifications/Certifications";
+import Achievements from "../../../Components/ProfileForm/Achievements/Achievements";
+import Steps from "../../../Components/StepsFolder/Steps";
+import NavBar from "../../../Components/navbar";
 
 const ProfileForm = ({ profileData, activeStep, setActiveStep }) => {
   const renderSwitch = () => {
@@ -16,6 +16,7 @@ const ProfileForm = ({ profileData, activeStep, setActiveStep }) => {
       case 0:
         return (
           <PersonalInformation
+            profileData={profileData?.profile?.basicDetails}
             activeStep={activeStep}
             setActiveStep={setActiveStep}
           />
@@ -30,7 +31,7 @@ const ProfileForm = ({ profileData, activeStep, setActiveStep }) => {
       case 2:
         return (
           <Skills
-            profileData={profileData}
+            profileData={profileData?.profile}
             activeStep={activeStep}
             setActiveStep={setActiveStep}
           />

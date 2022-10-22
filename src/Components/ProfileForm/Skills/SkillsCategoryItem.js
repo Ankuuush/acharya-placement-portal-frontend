@@ -12,7 +12,7 @@ const SkillsCategoryItem = ({
   skillType = "",
   endpoint = "",
   count = -1,
-  setCount = "",
+  setCount = (e) => {},
   profileData = "",
   handleSubmit = "",
 }) => {
@@ -62,9 +62,9 @@ const SkillsCategoryItem = ({
   const onSubmit = async (e) => {
     e.preventDefault();
     setDisableBut(true);
-    let reqBody = [];
-    skills.forEach((skill) => reqBody.push(skill._id));
-    if (await handleSubmit(skillType, endpoint, reqBody)) setDisableBut(false);
+    // let reqBody = [];
+    // skills.forEach((skill) => reqBody.push(skill._id));
+    if (await handleSubmit(skillType, endpoint, skills)) setDisableBut(false);
   };
 
   const onDelete = (id) => {
@@ -73,29 +73,11 @@ const SkillsCategoryItem = ({
   };
 
   useEffect(() => {
-    if (skillType === "Coding Skills") {
-      if (profileData?.profile.skills.length) {
-        setSkills(profileData?.profile.skills);
-        if (count > -1) {
-          setDisableBut(true);
-          setCount(count + 1);
-        }
-      }
-    } else if (skillType === "Interpersonal Skills") {
-      if (profileData?.profile.softSkills.length) {
-        setSkills(profileData?.profile.softSkills);
-        if (count > -1) {
-          setDisableBut(true);
-          setCount(count + 1);
-        }
-      }
-    } else {
-      if (profileData?.profile.languages.length) {
-        setSkills(profileData?.profile.languages);
-        if (count > -1) {
-          setDisableBut(true);
-          setCount(count + 1);
-        }
+    if (profileData) {
+      setSkills(profileData);
+      if (count > -1) {
+        setDisableBut(true);
+        setCount(count + 1);
       }
     }
   }, []);
@@ -144,7 +126,7 @@ const SkillsCategoryItem = ({
             skill={skill}
             disableBut={disableBut}
             onDelete={onDelete}
-            skillStyle={{width:"70%"}}
+            skillStyle={{ width: "70%" }}
           />
         ))}
       </div>
