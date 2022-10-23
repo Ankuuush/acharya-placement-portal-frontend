@@ -35,10 +35,8 @@ const AuthProvider = (props) => {
         lastName: lastName,
       })
       .then((response) =>{
-        console.log(response);
          return response;
         }).catch(error=>{
-          console.log(error)
           return error;
         });
     return response;
