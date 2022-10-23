@@ -21,6 +21,8 @@ import { Divider } from "@mui/material";
 import AuthContext from "../Context/AuthContext/AuthContext";
 import { useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import PlacementLogoSmall from "./Logo/PlacementLogoSmall";
+import FeatherIcon from 'feather-icons-react';
 
 const drawerWidth = 240;
 
@@ -92,7 +94,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function NavBar() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -102,11 +104,11 @@ export default function NavBar() {
     setOpen(false);
   };
   const navIcons = [
-    navExplore,
-    navApplied,
-    navResume,
-    navFeedback,
-    navContactUs,
+    "briefcase",
+    "user-check",
+    "file-text",
+    "headphones",
+    "phone-call",
   ];
 
   const authContext = useContext(AuthContext)
@@ -176,29 +178,11 @@ export default function NavBar() {
               <></>
             ) : (
               //   <ChevronLeftIcon />
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <img
-                  src={logo}
-                  alt="logo"
-                  className="collegeIcon"
-                  style={{
-                    width: "3rem",
-                    height: "3rem",
-                    marginRight: "0.7rem",
-                  }}
-                />
-                <p style={{color:"black"}}>Placement Cell</p>
-              </div>
+              <PlacementLogoSmall/>
             )}
           </IconButton>
         </DrawerHeader>
+        <hr style={{width: "100%",opacity: 0.4}}/>
         <List sx={{height:"100vh"}}>
           {[
             "Explore Jobs",
@@ -215,14 +199,8 @@ export default function NavBar() {
                   px: 2.5,
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img src={navIcons[index]} alt={text} />
+                <ListItemIcon sx={{ minWidth: "auto" }}>
+                <FeatherIcon icon={navIcons[index]} color="#213780" style={{marginRight: open ? 20: 0}} />
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ fontWeight:"bold", opacity: open ? 1 : 0 }} />
               </ListItemButton>
