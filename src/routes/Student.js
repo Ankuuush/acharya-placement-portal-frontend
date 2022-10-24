@@ -6,24 +6,22 @@ import { useState } from "react";
 import StudentDashboard from "../Pages/Student/StudentDashboard";
 import Resume from "../Pages/Student/Resume";
 import AppliedJobs from "../Pages/Student/AppliedJobs";
+import Dashboard from "../Pages/Student/Dashboard";
 const Student = () => {
-  const [activeStep, setActiveStep] = useState(0);
+ 
   return (
     <Route element={<PrivateRoute role={"student"} />}>
       <Route
         exact
         path="/student/explore-jobs"
         element={
-          <StudentDashboard
-            activeStep={activeStep}
-            setActiveStep={setActiveStep}
-          />
+          <Dashboard page={"Explore Jobs"}/>
         }
       />
-      <Route exact path="/student/applied-jobs" element={<AppliedJobs />} />
-      <Route exact path="/student/resume" element={<Resume />} />
-      <Route exact path="/feedback" element={<FeedBack />} />
-      <Route exact path="/contact-us" element={<ContactUs />} />
+      <Route exact path="/student/applied-jobs" element={<Dashboard page={"Applied Jobs"}/>} />
+      <Route exact path="/student/resume" element={<Dashboard page={"Build Resume"}/>} />
+      <Route exact path="/feedback" element={<Dashboard page={"Feedback"}/>} />
+      <Route exact path="/contact-us" element={<Dashboard page={"Contact Us"}/>} />
     </Route>
   );
 };

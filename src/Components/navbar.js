@@ -92,7 +92,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function NavBar() {
+export default function NavBar({setComponent}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -116,23 +116,28 @@ export default function NavBar() {
   const navigate=useNavigate()
 
   const handleClick=(text)=>{
-    switch(text){
-      case "Explore Jobs":navigate('/student/explore-jobs')
-                          break;
-      case "Applied Jobs":navigate('/student/applied-jobs')
-                          break;
-      case "Build Resume":navigate('/student/resume')
-                          break;
-      case "Feedback":navigate('/feedback')
-                      break;
-      case "Contact Us":navigate('/contact-us')
-                        break;
-      default:navigate('/student/explore-jobs')
-    }
+    // switch(text){
+    //   case "Explore Jobs":navigate('/student/explore-jobs')
+    //                       break;
+    //   case "Applied Jobs":navigate('/student/applied-jobs')
+    //                       break;
+    //   case "Build Resume":navigate('/student/resume')
+    //                       break;
+    //   case "Feedback":navigate('/feedback')
+    //                   break;
+    //   case "Contact Us":navigate('/contact-us')
+    //                     break;
+    //   default:navigate('/student/explore-jobs')
+    // }
+    setComponent(text)
   }
+// React.useEffect(() => {
+//   console.log("rendered")
+// },[])
 
   return (
     <>
+    {console.log("rendered")}
       <CssBaseline />
       <AppBar
         position="fixed"

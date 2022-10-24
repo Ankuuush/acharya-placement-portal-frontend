@@ -23,15 +23,17 @@ const StudentDashboardComponent = () => {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <NavBar />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
-        <div>Home</div>
-        <h4>Email: {currentUser.email}</h4>
-        <p>Name: {currentUser.displayName}</p>
-        <Button onClick={handleClick}>Logout</Button>
-      </Box>
-     </Box>
+    // <Box sx={{ display: "flex" }}>
+    //   <NavBar />
+    //   <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
+    <>
+      <div>Home</div>
+      <h4>Email: {currentUser.email}</h4>
+      <p>Name: {currentUser.displayName}</p>
+      <Button onClick={handleClick}>Logout</Button>
+    </>
+    //   </Box>
+    //  </Box>
   );
 };
 
@@ -103,7 +105,7 @@ const StudentDashboard = ({ activeStep, setActiveStep }) => {
           <ProfileForm
             profileData={profileData}
             activeStep={activeStep}
-            setActiveStep={setActiveStep} 
+            setActiveStep={setActiveStep}
           />
         ))}
     </>
