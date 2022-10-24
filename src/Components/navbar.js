@@ -131,13 +131,9 @@ export default function NavBar({setComponent}) {
     // }
     setComponent(text)
   }
-// React.useEffect(() => {
-//   console.log("rendered")
-// },[])
 
   return (
     <>
-    {console.log("rendered")}
       <CssBaseline />
       <AppBar
         position="fixed"
