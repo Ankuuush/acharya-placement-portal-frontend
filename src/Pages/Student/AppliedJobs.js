@@ -4,12 +4,12 @@ import NavBar from '../../Components/navbar'
 
 const AppliedJobs = () => {
   return (
-    <Box sx={{ display: "flex" }}>
-      <NavBar />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
+    // <Box sx={{ display: "flex" }}>
+    //   <NavBar />
+    //   <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
         <div>Apllied Jobs</div>
-      </Box>
-    </Box>
+      // </Box>
+    // </Box>
   )
 }
 

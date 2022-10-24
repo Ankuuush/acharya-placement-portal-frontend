@@ -63,9 +63,10 @@ const Resume = () => {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <NavBar />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
+    // <Box sx={{ display: "flex" }}>
+    //   <NavBar />
+    //   <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
+    <>
         <PersonalInformation data={basicDetails} setData={setBasicDetails} />
         <EducationDetails
           data={educationDetails}
@@ -83,8 +84,9 @@ const Resume = () => {
         <Projects data={projects} setData={setProjects} />
         <Certifications data={certifications} setData={setCertifications} />
         <Achievements data={achievements} setData={setAchievements} />
-      </Box>
-    </Box>
+        </>
+    //   </Box>
+    // </Box>
   );
 };
 

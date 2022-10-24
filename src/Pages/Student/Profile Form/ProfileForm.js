@@ -66,16 +66,18 @@ const ProfileForm = ({ profileData, activeStep, setActiveStep }) => {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <NavBar />
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, p: 3, display: "flex", background: "" }}
-      >
+    // <Box sx={{ display: "flex" }}>
+    //   <NavBar />
+    //   <Box
+    //     component="main"
+    //     sx={{ flexGrow: 1, p: 3, display: "flex", background: "" }}
+    //   >
+    <>
         <Steps activeStep={activeStep} />
         {renderSwitch()}
-      </Box>
-    </Box>
+        </>
+    //   </Box>
+    // </Box>
   );
 };
 
