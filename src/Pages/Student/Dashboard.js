@@ -10,6 +10,12 @@ import StudentDashboard from './StudentDashboard'
 const Dashboard = ({page=""}) => {
     const [component, setComponent] = useState("Explore Jobs")
     const [activeStep, setActiveStep] = useState(0);
+
+    const changeSelectedComponent = (component) => {
+        window.history.pushState({}, null, "/student/"+component);
+        setComponent(component)
+    }
+
     useEffect(() => {
       if(page)
       {setComponent(page)}
@@ -17,14 +23,14 @@ const Dashboard = ({page=""}) => {
     
   return (
     <Box sx={{ display: "flex" }}>
-      <NavBar setComponent={setComponent}/>
+      <NavBar setComponent={changeSelectedComponent} currentComponent={component}/>
       <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
-        {component==="Explore Jobs" && <StudentDashboard activeStep={activeStep}
+        {component==="explore-jobs" && <StudentDashboard activeStep={activeStep}
             setActiveStep={setActiveStep}/>}
-        {component==="Applied Jobs" && <AppliedJobs/>}
-        {component==="Build Resume" && <Resume/>}
-        {component==="Feedback" && <FeedBack/>}
-        {component==="Contact Us" && <ContactUs/>}
+        {component==="applied-jobs" && <AppliedJobs/>}
+        {component==="resume" && <Resume/>}
+        {component==="feedback" && <FeedBack/>}
+        {component==="contact-us" && <ContactUs/>}
       </Box>
     </Box>
   )

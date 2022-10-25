@@ -14,7 +14,29 @@ const constants = {
     }],
     RANDOM_QUOTE: ()=> {
         return constants.QUOTES[Math.floor(Math.random() * constants.QUOTES.length)]
+    },
+    STUDENT_MENU: [{
+        text: "Explore Jobs",
+        code: "explore-jobs",
+        icon: "briefcase"
+    },{
+        text: "Applied Jobs",
+        code: "applied-jobs",
+        icon: "user-check"
+    },{
+        text: "Build Resume",
+        code: "resume",
+        icon: "file-text"
+    },{
+        text: "Feedback",
+        code: "feedback",
+        icon: "headphones"
+    },{
+        text: "Contact Us",
+        code: "contact-us",
+        icon: "phone-call"
     }
+    ]
 }
 
 export default constants
