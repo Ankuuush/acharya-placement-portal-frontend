@@ -1,0 +1,30 @@
+.topbar-root {
+    padding: 0px 30px;
+    background-color: #20367f;
+    position: block;
+    color: white;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notif-icon {
+    padding: 5px 5px 0px 5px;
+    border-radius: 1000px;
+    background-color: #fff;
+    margin-left: 20px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.icon-group {
+    display: flex;
+    align-items: center;
+}
+
+.greeting-topbar {
+    font-size: 18px;
+}

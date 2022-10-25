@@ -153,8 +153,8 @@ export default function NavBar({setComponent,currentComponent}) {
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open} >
-        <DrawerHeader style={{backgroundColor: "#f1f2f3" }}>
-          <IconButton onClick={handleDrawerClose} style={{ padding: "0",paddingBottom: 15,paddingTop: 15 }}>
+        <DrawerHeader style={{borderBottom: "1px solid #e0e0e0" }}>
+          <IconButton onClick={handleDrawerClose} style={{ padding: 0 }}>
             {theme.direction === "rtl" ? (
               //   <ChevronRightIcon />
               <></>
@@ -164,9 +164,7 @@ export default function NavBar({setComponent,currentComponent}) {
             )}
           </IconButton>
         </DrawerHeader>
-        <div style={{backgroundColor: "#fadab7",textAlign:"center"}}>
-          {open && <p style={{color: "#ee8311",margin: 5,fontWeight: "bold"}}>STUDENT</p>}
-        </div>
+        
         <List sx={{height:"100vh"}}>
           {constants.STUDENT_MENU.map((item, index) => (
             <ListItem key={item.code} disablePadding sx={{ display: "block",backgroundColor: currentComponent === item.code && "#eceef9" }} onClick={()=>handleClick(item.code)}>
@@ -185,6 +183,9 @@ export default function NavBar({setComponent,currentComponent}) {
             </ListItem>
           ))}
           <ListItem disablePadding sx={{ display:"block", position:"absolute", bottom:"0" }}>
+          <div style={{backgroundColor: "#fadab7",textAlign:"center"}}>
+          {open && <p style={{color: "#ee8311",margin: 0,fontWeight: "bold"}}>STUDENT</p>}
+        </div>
           <Divider/>
               <ListItemButton
                 sx={{
