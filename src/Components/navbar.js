@@ -11,18 +11,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import logo from "../Assets/Acharya_logo.png";
-import navApplied from "../Assets/navApplied.png";
-import navContactUs from "../Assets/navContactUs.png";
-import navExplore from "../Assets/navExplore.png";
-import navFeedback from "../Assets/navFeedback.png";
-import navResume from "../Assets/navResume.png";
 import profilePic from "../Assets/ProfilePic.png";
 import { Divider } from "@mui/material";
 import AuthContext from "../Context/AuthContext/AuthContext";
 import { useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
 import PlacementLogoSmall from "./Logo/PlacementLogoSmall";
 import FeatherIcon from 'feather-icons-react';
+import constants from "../Constants";
 
 const drawerWidth = 240;
 
@@ -92,7 +87,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function NavBar({setComponent}) {
+export default function NavBar({setComponent,currentComponent}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -113,23 +108,9 @@ export default function NavBar({setComponent}) {
 
   const authContext = useContext(AuthContext)
   const {currentUser}=authContext
-  const navigate=useNavigate()
 
-  const handleClick=(text)=>{
-    // switch(text){
-    //   case "Explore Jobs":navigate('/student/explore-jobs')
-    //                       break;
-    //   case "Applied Jobs":navigate('/student/applied-jobs')
-    //                       break;
-    //   case "Build Resume":navigate('/student/resume')
-    //                       break;
-    //   case "Feedback":navigate('/feedback')
-    //                   break;
-    //   case "Contact Us":navigate('/contact-us')
-    //                     break;
-    //   default:navigate('/student/explore-jobs')
-    // }
-    setComponent(text)
+  const handleClick=(code)=>{
+    setComponent(code)
   }
 
   return (
@@ -172,8 +153,8 @@ export default function NavBar({setComponent}) {
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open} >
-        <DrawerHeader style={{ height: "4.5rem" }}>
-          <IconButton onClick={handleDrawerClose} style={{ padding: "0" }}>
+        <DrawerHeader style={{backgroundColor: "#f1f2f3" }}>
+          <IconButton onClick={handleDrawerClose} style={{ padding: "0",paddingBottom: 15,paddingTop: 15 }}>
             {theme.direction === "rtl" ? (
               //   <ChevronRightIcon />
               <></>
@@ -183,16 +164,12 @@ export default function NavBar({setComponent}) {
             )}
           </IconButton>
         </DrawerHeader>
-        <hr style={{width: "100%",opacity: 0.4}}/>
+        <div style={{backgroundColor: "#fadab7",textAlign:"center"}}>
+          {open && <p style={{color: "#ee8311",margin: 5,fontWeight: "bold"}}>STUDENT</p>}
+        </div>
         <List sx={{height:"100vh"}}>
-          {[
-            "Explore Jobs",
-            "Applied Jobs",
-            "Build Resume",
-            "Feedback",
-            "Contact Us",
-          ].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }} onClick={()=>handleClick(text)}>
+          {constants.STUDENT_MENU.map((item, index) => (
+            <ListItem key={item.code} disablePadding sx={{ display: "block",backgroundColor: currentComponent === item.code && "#eceef9" }} onClick={()=>handleClick(item.code)}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -201,9 +178,9 @@ export default function NavBar({setComponent}) {
                 }}
               >
                 <ListItemIcon sx={{ minWidth: "auto" }}>
-                <FeatherIcon icon={navIcons[index]} color="#213780" style={{marginRight: open ? 20: 0}} />
+                <FeatherIcon icon={item.icon} color="#213780" style={{marginRight: open ? 20: 0}} />
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ fontWeight:"bold", opacity: open ? 1 : 0 }} />
+                <ListItemText primary={item.text} sx={{ fontWeight:"bold", opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
@@ -213,7 +190,10 @@ export default function NavBar({setComponent}) {
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
+                  backgroundColor: "#213780",
+                  color: "white",
                   px: 2.5,
+                  
                 }}
               >
                 <ListItemIcon
