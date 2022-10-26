@@ -17,6 +17,7 @@ import AuthContext from "../Context/AuthContext/AuthContext";
 import { useContext } from "react";
 import PlacementLogoSmall from "./Logo/PlacementLogoSmall";
 import FeatherIcon from 'feather-icons-react';
+import { useNavigate } from "react-router-dom";
 import constants from "../Constants";
 
 const drawerWidth = 240;
@@ -107,7 +108,8 @@ export default function NavBar({setComponent,currentComponent}) {
   ];
 
   const authContext = useContext(AuthContext)
-  const {currentUser}=authContext
+  let navigate = useNavigate();
+  const {currentUser,logout}=authContext
 
   const handleClick=(code)=>{
     setComponent(code)
@@ -182,6 +184,23 @@ export default function NavBar({setComponent,currentComponent}) {
               </ListItemButton>
             </ListItem>
           ))}
+          <ListItem key={"logout"} disablePadding sx={{ display: "block",backgroundColor: "" }} onClick={async ()=>{
+             await logout()
+            navigate("/login")
+          }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon sx={{ minWidth: "auto" }}>
+                <FeatherIcon icon={"log-out"} color="#213780" style={{marginRight: open ? 20: 0}} />
+                </ListItemIcon>
+                <ListItemText primary={"Logout"} sx={{ fontWeight:"bold", opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
           <ListItem disablePadding sx={{ display:"block", position:"absolute", bottom:"0" }}>
           <div style={{backgroundColor: "#fadab7",textAlign:"center"}}>
           {open && <p style={{color: "#ee8311",margin: 0,fontWeight: "bold"}}>STUDENT</p>}

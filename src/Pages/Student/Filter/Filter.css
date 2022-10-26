@@ -1,0 +1,23 @@
+.filter-root{
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 15px;
+    flex: 1;
+}
+
+.filter-header {
+    margin: 0;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.filter-subheader {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ea8317;
+}
+
+.check-labels {
+    margin-left: 10px;
+}

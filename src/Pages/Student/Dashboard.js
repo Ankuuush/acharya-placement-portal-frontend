@@ -23,9 +23,9 @@ const Dashboard = ({page=""}) => {
     }, [])
     
   return (
-    <Box sx={{ display: "flex"}}>
+    <div style={{ display: "flex"}}>
       <NavBar setComponent={changeSelectedComponent} currentComponent={component}/>
-      <div style={{flexGrow: 1}}>
+      <div style={{flexGrow: 1,backgroundColor: "#f3f4f8",height: "100vh"}}>
         <Topbar />
       <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
         {component==="explore-jobs" && <StudentDashboard activeStep={activeStep}
@@ -36,7 +36,7 @@ const Dashboard = ({page=""}) => {
         {component==="contact-us" && <ContactUs/>}
       </Box>
       </div>
-    </Box>
+    </div>
   )
 }
 
