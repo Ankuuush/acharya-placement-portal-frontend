@@ -1,39 +1,34 @@
-import { Box, Button } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
-import NavBar from "../../Components/navbar";
-import AuthContext from "../../Context/AuthContext/AuthContext";
 import ProfileForm from "./Profile Form/ProfileForm";
+import Search from "./Search/Search";
+import Filter from "./Filter/Filter";
+import "./index.css";
 
 const StudentDashboardComponent = () => {
-  const authContext = useContext(AuthContext);
-  const { currentUser, logout } = authContext;
-  let navigate = useNavigate();
+  const [drives, setDrives] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filterOpen, setFilterOpen] = useState(true);
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    try {
-      await logout();
-      navigate("/login");
-    } catch {
-      toast.error("Failed to logout.");
-    }
-  };
+  const setDriveData = (data) => {
+    setDrives(data);
+    setLoading(false);
+  }
+
+  const assignLoading = (value) => {
+    setLoading(value);
+  }
+
+  const toggleFilter = () => {
+    setFilterOpen(!filterOpen);
+  }
 
   return (
-    // <Box sx={{ display: "flex" }}>
-    //   <NavBar />
-    //   <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
-    <>
-      <div>Home</div>
-      <h4>Email: {currentUser.email}</h4>
-      <p>Name: {currentUser.displayName}</p>
-      <Button onClick={handleClick}>Logout</Button>
-    </>
-    //   </Box>
-    //  </Box>
+    <div className="explore-root">
+      <Search setDriveData={setDriveData} assignLoading={assignLoading} toggleFilter={toggleFilter} filter={filterOpen} dirves={drives} loading={loading} />
+      {filterOpen && <Filter />}
+      </div>
   );
 };
 

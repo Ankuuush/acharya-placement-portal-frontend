@@ -6,6 +6,7 @@ import FeedBack from '../FeedBack'
 import AppliedJobs from './AppliedJobs'
 import Resume from './Resume'
 import StudentDashboard from './StudentDashboard'
+import Topbar from '../../Components/Topbar/Topbar'
 
 const Dashboard = ({page=""}) => {
     const [component, setComponent] = useState("Explore Jobs")
@@ -22,8 +23,10 @@ const Dashboard = ({page=""}) => {
     }, [])
     
   return (
-    <Box sx={{ display: "flex" }}>
+    <div style={{ display: "flex"}}>
       <NavBar setComponent={changeSelectedComponent} currentComponent={component}/>
+      <div style={{flexGrow: 1,backgroundColor: "#f3f4f8",height: "100vh"}}>
+        <Topbar />
       <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
         {component==="explore-jobs" && <StudentDashboard activeStep={activeStep}
             setActiveStep={setActiveStep}/>}
@@ -32,7 +35,8 @@ const Dashboard = ({page=""}) => {
         {component==="feedback" && <FeedBack/>}
         {component==="contact-us" && <ContactUs/>}
       </Box>
-    </Box>
+      </div>
+    </div>
   )
 }
 
