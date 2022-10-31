@@ -1,0 +1,118 @@
+.jobitem-root {
+  padding: 15px 20px;
+  border-radius: 5px;
+  background-color: white;
+  margin-top: 25px;
+}
+
+.job-logo {
+  border-radius: 5px;
+}
+
+.job-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.job-role {
+  font-size: 19px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.job-header-group {
+  padding: 18px;
+}
+
+.job-company {
+  margin: 0;
+}
+
+.job-header-root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.save-job {
+  display: flex;
+  align-items: center;
+  background-color: #ebeff9;
+  padding: 7px 10px;
+  border-radius: 5px;
+  height: fit-content;
+  cursor: pointer;
+}
+
+.bookmark-icon {
+  margin-right: 5px;
+}
+
+.job-jd {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  margin-top: 8px;
+}
+
+.badge-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.job-bookmark-text {
+    margin: 0;
+    color: #203674;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.quick-action-root {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.job-salary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.job-salary-icon {
+    background-color: #ebeff9;
+    padding: 3px 13px;
+    width: fit-content;
+    color: #203674;
+    font-size: 22px;
+    border-radius: 1000px;
+    margin-right: 10px;
+}
+
+.job-salary-text {
+    color: #203674;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.job-hr {
+    margin-top: 20px;
+    border: 0.5px solid #ebeff9;
+    margin-bottom: 0;
+}
+
+.job-apply-button {
+    background-color: #203674;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border:none;
+    color: white;
+    font-size: 18px;
+}
