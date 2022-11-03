@@ -1,11 +1,5 @@
 import { Route } from "react-router-dom";
-import FeedBack from "../Pages/FeedBack";
-import ContactUs from "../Pages/ContactUs";
 import PrivateRoute from "../PrivateRoute";
-import { useState } from "react";
-import StudentDashboard from "../Pages/Student/StudentDashboard";
-import Resume from "../Pages/Student/Resume";
-import AppliedJobs from "../Pages/Student/AppliedJobs";
 import Dashboard from "../Pages/Student/Dashboard";
 import constants from "../Constants";
 const Student = () => {

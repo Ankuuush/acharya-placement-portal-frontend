@@ -73,7 +73,7 @@ const SkillsCategoryItem = ({
   };
 
   useEffect(() => {
-    if (profileData) {
+    if (profileData.length) {
       setSkills(profileData);
       if (count > -1) {
         setDisableBut(true);
