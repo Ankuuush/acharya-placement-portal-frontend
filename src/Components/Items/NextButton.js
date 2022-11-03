@@ -5,7 +5,7 @@ const NextButton = (props) => {
   const { setActiveStep, activeStep, disable, styleProp } = props;
 
   const onClick = () => {
-    setActiveStep((activeStep + 1) % 7);
+    setActiveStep(activeStep + 1);
   };
   return (
     <Button

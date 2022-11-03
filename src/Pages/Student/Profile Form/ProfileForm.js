@@ -8,9 +8,12 @@ import Projects from "../../../Components/ProfileForm/Projects/Projects";
 import Certifications from "../../../Components/ProfileForm/Certifications/Certifications";
 import Achievements from "../../../Components/ProfileForm/Achievements/Achievements";
 import Steps from "../../../Components/StepsFolder/Steps";
-import NavBar from "../../../Components/navbar";
+import ProgressBar from "../../../Components/ProgressBar";
+import PlacementLogoSmall from "../../../Components/Logo/PlacementLogoSmall";
+import { useNavigate } from "react-router-dom";
 
-const ProfileForm = ({ profileData, activeStep, setActiveStep }) => {
+const ProfileForm = ({setComponent, profileData, activeStep, setActiveStep }) => {
+  const navigate=useNavigate();
   const renderSwitch = () => {
     switch (activeStep) {
       case 0:
@@ -55,6 +58,9 @@ const ProfileForm = ({ profileData, activeStep, setActiveStep }) => {
         return (
           <Achievements activeStep={activeStep} setActiveStep={setActiveStep} />
         );
+        case 7:
+          setComponent('explore-jobs')
+          break;
       default:
         return (
           <PersonalInformation
@@ -68,15 +74,23 @@ const ProfileForm = ({ profileData, activeStep, setActiveStep }) => {
   return (
     // <Box sx={{ display: "flex" }}>
     //   <NavBar />
-    //   <Box
-    //     component="main"
-    //     sx={{ flexGrow: 1, p: 3, display: "flex", background: "" }}
-    //   >
-    <>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3}}
+      >
+        <div style={{ width:"100%",display:"flex",justifyContent:"space-between"}}>
+        <PlacementLogoSmall/>
+        <div style={{width:"20%",display:"flex",alignItems:"center"}}>
+      <ProgressBar progress={profileData.progress.completedPercentage}/>
+      </div>
+        </div>
+      <div style={{height:"1px",background:"grey",marginBottom:"2rem"}}></div>
+        
+    <div style={{display:"flex",margin:"0 10rem"}}>
         <Steps activeStep={activeStep} />
         {renderSwitch()}
-        </>
-    //   </Box>
+        </div>
+      </Box>
     // </Box>
   );
 };
