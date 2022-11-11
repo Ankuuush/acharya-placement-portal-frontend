@@ -7,7 +7,7 @@ import Filter from "../../Components/Filter/Filter";
 import JobItem from "../../Containers/Jobitem/Jobitem";
 import "./index.css";
 
-const StudentDashboardComponent = () => {
+const StudentDashboard = () => {
   const [drives, setDrives] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterOpen, setFilterOpen] = useState(true);

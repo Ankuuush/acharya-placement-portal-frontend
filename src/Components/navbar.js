@@ -16,7 +16,7 @@ import { Divider } from "@mui/material";
 import AuthContext from "../Context/AuthContext/AuthContext";
 import { useContext } from "react";
 import PlacementLogoSmall from "./Logo/PlacementLogoSmall";
-import FeatherIcon from 'feather-icons-react';
+import FeatherIcon from "feather-icons-react";
 import { useNavigate } from "react-router-dom";
 import constants from "../Constants";
 
@@ -88,7 +88,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function NavBar({setComponent,currentComponent}) {
+export default function NavBar({ setComponent, currentComponent }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -99,21 +99,14 @@ export default function NavBar({setComponent,currentComponent}) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const navIcons = [
-    "briefcase",
-    "user-check",
-    "file-text",
-    "headphones",
-    "phone-call",
-  ];
 
-  const authContext = useContext(AuthContext)
+  const authContext = useContext(AuthContext);
   let navigate = useNavigate();
-  const {currentUser,logout}=authContext
+  const { currentUser, logout } = authContext;
 
-  const handleClick=(code)=>{
-    setComponent(code)
-  }
+  const handleClick = (code) => {
+    setComponent(code);
+  };
 
   return (
     <>
@@ -154,22 +147,30 @@ export default function NavBar({setComponent,currentComponent}) {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} >
-        <DrawerHeader style={{borderBottom: "1px solid #e0e0e0" }}>
+      <Drawer variant="permanent" open={open}>
+        <DrawerHeader style={{ borderBottom: "1px solid #e0e0e0" }}>
           <IconButton onClick={handleDrawerClose} style={{ padding: 0 }}>
             {theme.direction === "rtl" ? (
               //   <ChevronRightIcon />
               <></>
             ) : (
               //   <ChevronLeftIcon />
-              <PlacementLogoSmall/>
+              <PlacementLogoSmall />
             )}
           </IconButton>
         </DrawerHeader>
-        
-        <List sx={{height:"100vh"}}>
-          {constants.STUDENT_MENU.map((item, index) => (
-            <ListItem key={item.code} disablePadding sx={{ display: "block",backgroundColor: currentComponent === item.code && "#eceef9" }} onClick={()=>handleClick(item.code)}>
+
+        <List sx={{ height: "100vh" }}>
+          {constants.STUDENT_MENU.map((item) => (
+            <ListItem
+              key={item.code}
+              disablePadding
+              sx={{
+                display: "block",
+                backgroundColor: currentComponent === item.code && "#eceef9",
+              }}
+              onClick={() => handleClick(item.code)}
+            >
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -178,59 +179,94 @@ export default function NavBar({setComponent,currentComponent}) {
                 }}
               >
                 <ListItemIcon sx={{ minWidth: "auto" }}>
-                <FeatherIcon icon={item.icon} color="#213780" style={{marginRight: open ? 20: 0}} />
+                  <FeatherIcon
+                    icon={item.icon}
+                    color="#213780"
+                    style={{ marginRight: open ? 20 : 0 }}
+                  />
                 </ListItemIcon>
-                <ListItemText primary={item.text} sx={{ fontWeight:"bold", opacity: open ? 1 : 0 }} />
+                <ListItemText
+                  primary={item.text}
+                  sx={{ fontWeight: "bold", opacity: open ? 1 : 0 }}
+                />
               </ListItemButton>
             </ListItem>
           ))}
-          <ListItem key={"logout"} disablePadding sx={{ display: "block",backgroundColor: "" }} onClick={async ()=>{
-             await logout()
-            navigate("/login")
-          }}>
-              <ListItemButton
+          <ListItem
+            key={"logout"}
+            disablePadding
+            sx={{ display: "block", backgroundColor: "" }}
+            onClick={async () => {
+              await logout();
+              navigate("/login");
+            }}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon sx={{ minWidth: "auto" }}>
+                <FeatherIcon
+                  icon={"log-out"}
+                  color="#213780"
+                  style={{ marginRight: open ? 20 : 0 }}
+                />
+              </ListItemIcon>
+              <ListItemText
+                primary={"Logout"}
+                sx={{ fontWeight: "bold", opacity: open ? 1 : 0 }}
+              />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: "block", position: "absolute", bottom: "0" }}
+          >
+            <div style={{ backgroundColor: "#fadab7", textAlign: "center" }}>
+              {open && (
+                <p style={{ color: "#ee8311", margin: 0, fontWeight: "bold" }}>
+                  STUDENT
+                </p>
+              )}
+            </div>
+            <Divider />
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                backgroundColor: "#213780",
+                color: "white",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
                 }}
               >
-                <ListItemIcon sx={{ minWidth: "auto" }}>
-                <FeatherIcon icon={"log-out"} color="#213780" style={{marginRight: open ? 20: 0}} />
-                </ListItemIcon>
-                <ListItemText primary={"Logout"} sx={{ fontWeight:"bold", opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          <ListItem disablePadding sx={{ display:"block", position:"absolute", bottom:"0" }}>
-          <div style={{backgroundColor: "#fadab7",textAlign:"center"}}>
-          {open && <p style={{color: "#ee8311",margin: 0,fontWeight: "bold"}}>STUDENT</p>}
-        </div>
-          <Divider/>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  backgroundColor: "#213780",
-                  color: "white",
-                  px: 2.5,
-                  
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img src={profilePic} alt="profile pic" style={{width:"3rem",height:"3rem"}}/>
-                </ListItemIcon>
-                <div style={{display:"flex", flexDirection:"column"}}>
-                <ListItemText primary={currentUser.displayName} sx={{display:open?"":"none", opacity: open ? 1 : 0 }} />
-                <ListItemText primary="1AY19IS012" sx={{display:open?"":"none", opacity: open ? 1 : 0 }} />
-                </div>
-              </ListItemButton>
-            </ListItem>
+                <img
+                  src={profilePic}
+                  alt="profile pic"
+                  style={{ width: "3rem", height: "3rem" }}
+                />
+              </ListItemIcon>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <ListItemText
+                  primary={currentUser.displayName}
+                  sx={{ display: open ? "" : "none", opacity: open ? 1 : 0 }}
+                />
+                <ListItemText
+                  primary="1AY19IS012"
+                  sx={{ display: open ? "" : "none", opacity: open ? 1 : 0 }}
+                />
+              </div>
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
     </>

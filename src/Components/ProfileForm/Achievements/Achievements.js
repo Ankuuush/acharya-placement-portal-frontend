@@ -99,7 +99,7 @@ const Achievements = ({activeStep,setActiveStep}) => {
             Add Another
           </Button>
           <NextButton setActiveStep={setActiveStep} activeStep={activeStep}
-            disable={newForm}
+            disable={false}
             styleProp={{ width: "48%" }}
           />
         </div>

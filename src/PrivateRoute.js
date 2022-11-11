@@ -1,14 +1,10 @@
-import { Box } from "@mui/system";
-import jwt_decode from "jwt-decode";
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
-import NavBar from "./Components/navbar";
 import AuthContext from "./Context/AuthContext/AuthContext";
 
 const PrivateRoute = ({role}) => {
   const authContext = useContext(AuthContext);
   const location = useLocation();
-
   const { currentUser } = authContext;
   const [token, setToken] = useState("");
   const navigate = useNavigate();
@@ -17,7 +13,13 @@ const PrivateRoute = ({role}) => {
       navigate("/login", { replace: true });
       return;
     }
-    setToken(jwt_decode(String(currentUser.accessToken)));
+    currentUser.getIdTokenResult().then((result)=>{
+      setToken(result.claims)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+
   }, []);
 
   return (

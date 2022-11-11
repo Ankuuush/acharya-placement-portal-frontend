@@ -55,7 +55,7 @@ const PersonalInformation = ({ profileData, activeStep, setActiveStep }) => {
     setPersonalInfo((prevState) => {
       return {
         ...prevState,
-        branch: BranchMap(prevState.studentMeta.department),
+        branch: BranchMap(profileData.studentMeta.department),
       };
     });
   }, []);
