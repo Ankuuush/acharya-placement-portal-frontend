@@ -8,9 +8,9 @@ export default function JobItem({ job }) {
     <div className="jobitem-root">
       <div className="job-header-root">
         <div className="job-header">
-          <img src={job.logo} height={60} className="job-logo" />
+          <img src={job.company.logoUrl} height={60} className="job-logo" />
           <div className="job-header-group">
-            <p className="job-company">{job.company}</p>
+            <p className="job-company">{job.company.name}</p>
             <p className="job-role">{job.role}</p>
           </div>
         </div>
@@ -36,7 +36,7 @@ export default function JobItem({ job }) {
         <div className="quick-action-root">
           <div className="job-salary">
             <p className="job-salary-icon">₹</p>
-            <p className="job-salary-text">{job.salary}</p>
+            <p className="job-salary-text">{job.ctc.toLocaleString('en-IN')} LPA</p>
           </div>
           <button className="job-apply-button">Apply Now</button>
         </div>

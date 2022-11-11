@@ -12,6 +12,13 @@ const StudentDashboardComponent = () => {
   const [loading, setLoading] = useState(true);
   const [filterOpen, setFilterOpen] = useState(true);
 
+  useEffect(() => {
+    api.get("/student/drives/all").then((response) => {
+      setDrives(response.data.data.drives);
+      setLoading(false);
+    });
+  }, []);
+
   const setDriveData = (data) => {
     setDrives(data);
     setLoading(false);
@@ -45,7 +52,7 @@ const StudentDashboardComponent = () => {
     <div className="explore-root">
       <div className="left-job-root">
       <Search setDriveData={setDriveData} assignLoading={assignLoading} toggleFilter={toggleFilter} filter={filterOpen} dirves={drives} loading={loading} />
-      {jobs.map((job, index) => (
+      {drives.map((job, index) => (
         <JobItem key={index} job={job} />
       ))}
       </div>
@@ -108,6 +115,7 @@ const StudentDashboard = ({ activeStep, setActiveStep }) => {
         toast.error("Server Error!");
       });
   }, []);
+
   return (
     <>
       {!loading &&
