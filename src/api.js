@@ -1,7 +1,7 @@
 import axios from "axios";
 import {auth} from "./firebase"
 const api= axios.create({
-  baseURL: "http://3.109.52.204/api",
+  baseURL: "https://placementdevapi.techstax.co/api",
   headers: {
     "Content-Type": "application/json",
   },
