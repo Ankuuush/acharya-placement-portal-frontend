@@ -12,6 +12,7 @@ import api from "../../api";
 import { toast } from "react-toastify";
 import ProfileForm from "./Profile Form/ProfileForm";
 import Spinner from "../../Components/Spinner/Spinner";
+import constants from "../../Constants";
 
 const Dashboard = ({ page = "" }) => {
   const authContext = useContext(AuthContext);
@@ -37,13 +38,12 @@ const Dashboard = ({ page = "" }) => {
           console.log(error);
         });
 
-      if (token.account == "student") {
+      if (token.account === "student") {
         api
           .get("/student/profile/progress")
           .then((response) => {
             if (response.data.data.progress.completed) {
-              if (page) 
-                setComponent(page);
+              if (page) setComponent(page);
               return;
             }
             setProfileData(response.data.data);
@@ -81,7 +81,7 @@ const Dashboard = ({ page = "" }) => {
                 setActiveStep(0);
             }
           })
-           .catch(() => {
+          .catch(() => {
             toast.error("Server Error!");
           });
       } else if (page) {
@@ -90,7 +90,6 @@ const Dashboard = ({ page = "" }) => {
     }
 
     studentProfile();
-    console.log(component)
   }, [page, currentUser]);
 
   if (!component)
@@ -103,7 +102,7 @@ const Dashboard = ({ page = "" }) => {
   if (component === "student-profile")
     return (
       <ProfileForm
-      setComponent={changeSelectedComponent}
+        setComponent={changeSelectedComponent}
         profileData={profileData}
         activeStep={activeStep}
         setActiveStep={setActiveStep}
@@ -113,6 +112,8 @@ const Dashboard = ({ page = "" }) => {
   return (
     <div style={{ display: "flex" }}>
       <NavBar
+        account={"STUDENT"}
+        menu={constants.STUDENT_MENU}
         setComponent={changeSelectedComponent}
         currentComponent={component}
       />
