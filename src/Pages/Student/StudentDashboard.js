@@ -32,22 +32,6 @@ const StudentDashboard = () => {
     setFilterOpen(!filterOpen);
   }
 
-  const jobs = [{ //TODO: Remove this
-    role: "Software Engineer I",
-    company: "Infosys",
-    logo: "https://professionallyspeaking.net/wp-content/uploads/2017/04/infosys-logo-298x300.jpg",
-    date: new Date(),
-    jd: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia",
-    salary: "3,00,000 LPA"
-  },{
-    role: "Associate Software Engineer",
-    company: "Capgemini",
-    logo: "https://media.glassdoor.com/sqll/589990/capgemini-invent-squareLogo-1633426082540.png",
-    date: new Date(),
-    jd: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nunc nisl eget nunc. Donec auctor, nisl eget ultricies lacinia",
-    salary: "5,50,000 LPA"
-  }]
-
   return (
     <div className="explore-root">
       <div className="left-job-root">
