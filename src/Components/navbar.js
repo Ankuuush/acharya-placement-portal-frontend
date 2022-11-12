@@ -18,7 +18,6 @@ import { useContext } from "react";
 import PlacementLogoSmall from "./Logo/PlacementLogoSmall";
 import FeatherIcon from "feather-icons-react";
 import { useNavigate } from "react-router-dom";
-import constants from "../Constants";
 
 const drawerWidth = 240;
 
@@ -88,7 +87,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function NavBar({ setComponent, currentComponent }) {
+export default function NavBar({account,menu, setComponent, currentComponent }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -161,7 +160,7 @@ export default function NavBar({ setComponent, currentComponent }) {
         </DrawerHeader>
 
         <List sx={{ height: "100vh" }}>
-          {constants.STUDENT_MENU.map((item) => (
+          {menu.map((item) => (
             <ListItem
               key={item.code}
               disablePadding
@@ -228,7 +227,7 @@ export default function NavBar({ setComponent, currentComponent }) {
             <div style={{ backgroundColor: "#fadab7", textAlign: "center" }}>
               {open && (
                 <p style={{ color: "#ee8311", margin: 0, fontWeight: "bold" }}>
-                  STUDENT
+                  {account}
                 </p>
               )}
             </div>

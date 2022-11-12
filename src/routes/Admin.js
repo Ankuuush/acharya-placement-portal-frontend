@@ -1,16 +1,21 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
+import constants from '../Constants'
 import AdminDashboard from '../Pages/Admin/AdminDashboard'
-import ContactUs from '../Pages/ContactUs'
-import FeedBack from '../Pages/FeedBack'
 import PrivateRoute from '../PrivateRoute'
 
 const Admin = () => {
   return (
-    <Route element={<PrivateRoute role={"admin"}/>}>
-      <Route exact path="/admin/explore-jobs" element={<AdminDashboard/>}/>
-      <Route exact path="/feedback" element={<FeedBack/>}/>
-      <Route exact path="/contact-us" element={<ContactUs/>}/>
+    <Route element={<PrivateRoute role={"admin"} />}>
+      {constants.ADMIN_MENU.map((item) => {
+        return (
+          <Route
+            exact
+            path={"/admin/"+item.code}
+            element={<AdminDashboard page={item.code} />}
+          />
+        );
+      })}
     </Route>
   )
 }

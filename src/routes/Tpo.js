@@ -1,19 +1,21 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import ContactUs from '../Pages/ContactUs'
-import FeedBack from '../Pages/FeedBack'
-import Tpodashboard from '../Pages/TPO/Tpodashboard'
+import constants from '../Constants'
 import PrivateRoute from '../PrivateRoute'
+import TpoDashboard from '../Pages/TPO/TpoDashboard'
 
 const Tpo = () => {
   return (
-    <Route element={<PrivateRoute role={"tpo"}/>}>
-      <Route exact path="/tpo/explore-jobs" element={<Tpodashboard/>}/>
-      <Route exact path="/tpo/post-jobs" element={<Tpodashboard/>}/>
-      <Route exact path="/tpo/student-list" element={<Tpodashboard/>}/>
-      <Route exact path="/tpo/registration" element={<Tpodashboard/>}/>
-      <Route exact path="/feedback" element={<FeedBack/>}/>
-      <Route exact path="/contact-us" element={<ContactUs/>}/>
+    <Route element={<PrivateRoute role={"tpo"} />}>
+      {constants.TPO_MENU.map((item) => {
+        return (
+          <Route
+            exact
+            path={"/tpo/"+item.code}
+            element={<TpoDashboard page={item.code} />}
+          />
+        );
+      })}
     </Route>
   )
 }
