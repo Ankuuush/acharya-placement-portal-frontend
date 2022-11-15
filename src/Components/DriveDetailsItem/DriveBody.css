@@ -1,0 +1,32 @@
+.drive-body-root {
+  border-radius: 5px;
+  background-color: white;
+} 
+
+.drive-jd {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  margin: 8px 0;
+}
+
+.drive-body-jd{
+  margin-top:1.5rem;
+  border:2px solid #C4C4C4;
+  padding:1rem;
+  border-radius: 0.5rem;
+}
+
+.drive-body-eligibility{
+  margin-top:1.5rem;
+  background-color: #E4EDFB;
+  padding:1rem;
+  border-radius: 0.5rem;
+}
+
+.drive-about-company{
+  margin: 1.5rem 0;
+}
