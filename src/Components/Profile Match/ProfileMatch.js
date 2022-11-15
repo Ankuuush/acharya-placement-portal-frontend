@@ -17,7 +17,7 @@ function CircularProgressWithLabel(props) {
           position: 'absolute',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'center'
         }}
       >
         <Typography variant="caption" component="div" color="text.secondary">
@@ -38,16 +38,21 @@ CircularProgressWithLabel.propTypes = {
 };
 
 export default function ProfileMatch() {
-  const [progress, setProgress] = React.useState(10);
+  const [progress, setProgress] = React.useState(30);
+  const styleProgress={
+    display:"flex",
+    width:"fit-content",
+    height:"fit-content",
+    alignItems:"center",
+    border:"2px solid rgba(0, 0, 0, 0.35)",
+    borderRadius:"10px",
+    padding:"8px"
+  }
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
-    }, 800);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-
-  return <CircularProgressWithLabel value={progress} />;
+  return(
+  <div style={styleProgress}>
+    <CircularProgressWithLabel value={progress} />
+    <p style={{marginLeft:"0.5rem",fontWeight:"600"}}>Profile Match</p>
+  </div> 
+  );
 }

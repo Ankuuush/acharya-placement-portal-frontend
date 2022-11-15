@@ -52,6 +52,7 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      margin-bottom: 0.8rem;
   }
   
   .drive-bookmark-text {
@@ -66,12 +67,14 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
+      height:auto
   }
   
   .drive-salary {
       display: flex;
       flex-direction: row;
       align-items: center;
+      margin-bottom: 0.8rem;
   }
   
   .drive-salary-icon {
@@ -97,4 +100,8 @@
       border:none;
       color: white;
       font-size: 18px;
+  }
+
+  .drive-salary-bookmark{
+    display: block;
   }
