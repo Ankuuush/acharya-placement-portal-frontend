@@ -151,10 +151,8 @@ export default function NavBar({ setComponent, currentComponent }) {
         <DrawerHeader style={{ borderBottom: "1px solid #e0e0e0" }}>
           <IconButton onClick={handleDrawerClose} style={{ padding: 0 }}>
             {theme.direction === "rtl" ? (
-              //   <ChevronRightIcon />
               <></>
             ) : (
-              //   <ChevronLeftIcon />
               <PlacementLogoSmall />
             )}
           </IconButton>

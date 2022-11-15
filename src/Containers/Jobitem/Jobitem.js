@@ -3,6 +3,21 @@ import "./Jobitem.css";
 import FeatherIcon from "feather-icons-react";
 import Badge from "../../Components/Badge/Badge";
 
+function parseRoleType(role) {
+  switch (role) {
+    case "fulltime":
+      return "Full Time";
+    case "part-time":
+      return "Part Time";
+    case "internship":
+      return "Internship";
+    case "contract":
+      return "Contract";
+    default:
+      return "Full Time";
+  }
+}
+
 export default function JobItem({ job }) {
   return (
     <div className="jobitem-root">
@@ -27,10 +42,12 @@ export default function JobItem({ job }) {
       <div className="job-body-root">
         <p className="job-jd">{job.jd}</p>
         <div className="badge-group">
-          <Badge icon={"clock"} text={"12th Novemeber, 23:59 p.m"} />
-          <Badge icon={"map-pin"} text={"Bangalore"} />
-          <Badge icon={"users"} text={"3 positions"} />
-          <Badge icon={"briefcase"} text={"Full Time Role"} />
+          <Badge icon={"clock"} text={new Date(job.regitrationDeadline).toLocaleString('en-in',{month:'short', year:'numeric', day:'numeric',hour: '2-digit', minute:'2-digit'})} color="#e67300" backgroundColor="#fff2e6" />
+          {job.bondApplicable && <Badge icon={"file-text"} text={`${job.bondDuration} Year Bond`} color="#da5885" backgroundColor="#fbeff5" />}
+          <Badge icon={"briefcase"} text={`${parseRoleType(job.role)} Role`} />
+          {job.noOfPositions && <Badge icon={"users"} text={`${job.noOfPositions} Positions`} />}
+          {job.location && <Badge icon={"map-pin"} text={"Bangalore"} />}
+          
         </div>
         <hr className="job-hr" />
         <div className="quick-action-root">

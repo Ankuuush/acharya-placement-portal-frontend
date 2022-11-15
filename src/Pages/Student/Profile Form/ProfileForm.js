@@ -10,7 +10,9 @@ import Achievements from "../../../Components/ProfileForm/Achievements/Achieveme
 import Steps from "../../../Components/StepsFolder/Steps";
 import ProgressBar from "../../../Components/ProgressBar";
 import PlacementLogoSmall from "../../../Components/Logo/PlacementLogoSmall";
+import SquareBadge from "../../../Components/SquareBadge/SquareBadge";
 import { useNavigate } from "react-router-dom";
+import "./ProfileForm.css";
 
 const ProfileForm = ({setComponent, profileData, activeStep, setActiveStep }) => {
   const navigate=useNavigate();
@@ -72,26 +74,32 @@ const ProfileForm = ({setComponent, profileData, activeStep, setActiveStep }) =>
   };
 
   return (
-    // <Box sx={{ display: "flex" }}>
-    //   <NavBar />
+    <div style={{display: "flex"}}>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3}}
+        sx={{ p: 3, flex: 3.5}}
       >
-        <div style={{ width:"100%",display:"flex",justifyContent:"space-between"}}>
+        <div style={{ width:"100%",display:"flex",justifyContent:"space-between", marginBottom: 50}}>
+        <div style={{display:"flex",alignItems: "center"}}>
         <PlacementLogoSmall/>
-        <div style={{width:"20%",display:"flex",alignItems:"center"}}>
+        <SquareBadge text="Student Onboarding" />
+        </div>
+        <div style={{width:"60%",display:"flex",alignItems:"center"}}>
       <ProgressBar progress={profileData.progress.completedPercentage}/>
+      <button>Logout</button>
       </div>
         </div>
-      <div style={{height:"1px",background:"grey",marginBottom:"2rem"}}></div>
+      {/* <div style={{height:"1px",background:"grey",marginBottom:"2rem"}}></div> */}
         
-    <div style={{display:"flex",margin:"0 10rem"}}>
-        <Steps activeStep={activeStep} />
+    <div style={{display:"flex"}}>
+        {/* <Steps activeStep={activeStep} /> */}
         {renderSwitch()}
         </div>
       </Box>
-    // </Box>
+      <div className="right-bloc-flow">
+        <p className="right-bloc-text">Add Your Basic Details</p>
+      </div>
+    </div>
   );
 };
 
