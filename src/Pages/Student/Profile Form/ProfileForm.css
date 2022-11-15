@@ -1,0 +1,16 @@
+.right-bloc-flow {
+    flex: 0.9;
+    background-color: #233780;
+    background-image: url("https://acharyaplacement-dev.s3.ap-south-1.amazonaws.com/public/website-assets/Untitled%20design%20%2816%29.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.right-bloc-text {
+    color: #fff;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 33px;
+}

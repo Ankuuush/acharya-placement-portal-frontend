@@ -62,9 +62,9 @@ const EducationalDetails = ({activeStep,setActiveStep}) => {
       <h2>Educational Details</h2>
 
         <EducationalDetailsItem educationalInfo={tenthInfo} setEducationalInfo={setTenthInfo} handleSubmit={handleSubmit} text={"10th"}/>
-        <EducationalDetailsItem  educationalInfo={twelththInfo} setEducationalInfo={setTwelthInfo} handleSubmit={handleSubmit} text={"12th"} />
+        {/* <EducationalDetailsItem  educationalInfo={twelththInfo} setEducationalInfo={setTwelthInfo} handleSubmit={handleSubmit} text={"12th"} />
         <EducationalDetailsItem educationalInfo={ugInfo} setEducationalInfo={setUgInfo}  handleSubmit={handleSubmit} text={"graduation"}/>
-        <NextButton setActiveStep={setActiveStep} activeStep={activeStep} disable={count!==3} styleProp={{width: "48%"}}/> 
+        <NextButton setActiveStep={setActiveStep} activeStep={activeStep} disable={count!==3} styleProp={{width: "48%"}}/>  */}
     </div>
   );
 };
