@@ -17,3 +17,7 @@ code {
 button {
   cursor: pointer;
 }
+
+*{
+  margin:0;
+}

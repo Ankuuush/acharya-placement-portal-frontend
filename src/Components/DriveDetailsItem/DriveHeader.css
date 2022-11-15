@@ -1,0 +1,107 @@
+.driveitem-root {
+    border-radius: 5px;
+    background-color: white;
+  }
+  
+  .drive-logo {
+    border-radius: 5px;
+  }
+  
+  .drive-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .drive-role {
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .drive-header-group {
+    padding: 18px;
+  }
+  
+  .drive-company {
+    margin: 0;
+  }
+  
+  .drive-header-root {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .drive-save-job {
+    display: flex;
+    align-items: center;
+    background-color: #ebeff9;
+    padding: 7px 10px;
+    border-radius: 5px;
+    height: fit-content;
+    cursor: pointer;
+  }
+  
+  .drive-bookmark-icon {
+    margin-right: 5px;
+  }
+  
+  .drive-badge-group {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-bottom: 0.8rem;
+  }
+  
+  .drive-bookmark-text {
+      margin: 0;
+      color: #203674;
+      font-weight: bold;
+      font-size: 15px;
+  }
+  
+  .drive-quick-action-root {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      height:auto
+  }
+  
+  .drive-salary {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 0.8rem;
+  }
+  
+  .drive-salary-icon {
+      background-color: #ebeff9;
+      padding: 3px 13px;
+      width: fit-content;
+      color: #203674;
+      font-size: 22px;
+      border-radius: 1000px;
+      margin-right: 10px;
+  }
+  
+  .drive-salary-text {
+      color: #203674;
+      font-size: 17px;
+      font-weight: bold;
+  }
+  
+  .drive-apply-button {
+      background-color: #203674;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border:none;
+      color: white;
+      font-size: 18px;
+  }
+
+  .drive-salary-bookmark{
+    display: block;
+  }

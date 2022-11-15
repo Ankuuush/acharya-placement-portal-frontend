@@ -5,16 +5,17 @@ import ContactUs from "../ContactUs";
 import FeedBack from "../FeedBack";
 import Topbar from "../../Components/Topbar/Topbar";
 import Spinner from "../../Components/Spinner/Spinner";
+import TpoExploreJobs from "./TpoExploreJobs";
+import PostJobs from "./PostJobs";
+import StudentList from "./StudentList";
+import Registration from "./Registration";
 import constants from "../../Constants";
-import Users from "./Users";
-import AddTpo from "./AddTpo";
-import AddAdmin from "./AddAdmin";
 
-const AdminDashboard = ({ page = "" }) => {
+const Dashboard = ({ page = "" }) => {
   const [component, setComponent] = useState("");
 
   const changeSelectedComponent = (component) => {
-    window.history.pushState({}, null, "/admin/" + component);
+    window.history.pushState({}, null, "/tpo/" + component);
     setComponent(component);
   };
 
@@ -32,8 +33,8 @@ const AdminDashboard = ({ page = "" }) => {
   return (
     <div style={{ display: "flex" }}>
       <NavBar
-        account={"ADMIN"}
-        menu={constants.ADMIN_MENU}
+        account={"TPO"}
+        menu={constants.TPO_MENU}
         setComponent={changeSelectedComponent}
         currentComponent={component}
       />
@@ -47,9 +48,10 @@ const AdminDashboard = ({ page = "" }) => {
       >
         <Topbar />
         <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#f3f4f8" }}>
-          {component === "users" && <Users />}
-          {component === "add-tpo" && <AddTpo />}
-          {component === "add-admin" && <AddAdmin />}
+          {component === "explore-jobs" && <TpoExploreJobs />}
+          {component === "post-jobs" && <PostJobs />}
+          {component === "student-list" && <StudentList />}
+          {component === "registration" && <Registration />}
           {component === "feedback" && <FeedBack />}
           {component === "contact-us" && <ContactUs />}
         </Box>
@@ -58,4 +60,4 @@ const AdminDashboard = ({ page = "" }) => {
   );
 };
 
-export default AdminDashboard;
+export default Dashboard;

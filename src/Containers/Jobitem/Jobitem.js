@@ -2,6 +2,7 @@ import React from "react";
 import "./Jobitem.css";
 import FeatherIcon from "feather-icons-react";
 import Badge from "../../Components/Badge/Badge";
+import { useNavigate } from "react-router-dom";
 
 function parseRoleType(role) {
   switch (role) {
@@ -19,6 +20,10 @@ function parseRoleType(role) {
 }
 
 export default function JobItem({ job }) {
+  const navigate=useNavigate()
+  const applyNow=()=>{
+    navigate('/student/drive-details',{state:{job:job}})
+  }
   return (
     <div className="jobitem-root">
       <div className="job-header-root">
@@ -55,7 +60,7 @@ export default function JobItem({ job }) {
             <p className="job-salary-icon">₹</p>
             <p className="job-salary-text">{job.ctc.toLocaleString('en-IN')} LPA</p>
           </div>
-          <button className="job-apply-button">Apply Now</button>
+          <button className="job-apply-button" onClick={applyNow}>Apply Now</button>
         </div>
       </div>
     </div>
