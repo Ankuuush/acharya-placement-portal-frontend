@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import ProfileForm from "./Profile Form/ProfileForm";
 import Spinner from "../../Components/Spinner/Spinner";
 import constants from "../../Constants";
+import DriveDetails from "./DriveDetails";
 
 const Dashboard = ({ page = "" }) => {
   const authContext = useContext(AuthContext);
@@ -137,6 +138,7 @@ const Dashboard = ({ page = "" }) => {
           {component === "resume" && <Resume />}
           {component === "feedback" && <FeedBack />}
           {component === "contact-us" && <ContactUs />}
+          {component === "drive-details" && <DriveDetails />}
         </Box>
       </div>
     </div>
