@@ -5,6 +5,7 @@ import ProfileForm from "./Profile Form/ProfileForm";
 import Search from "../../Components/Search/Search";
 import Filter from "../../Components/Filter/Filter";
 import JobItem from "../../Containers/Jobitem/Jobitem";
+import Spinner from "../../Components/Spinner/Spinner";
 import "./index.css";
 
 const StudentDashboard = () => {
@@ -36,7 +37,7 @@ const StudentDashboard = () => {
     <div className="explore-root">
       <div className="left-job-root">
       <Search setDriveData={setDriveData} assignLoading={assignLoading} toggleFilter={toggleFilter} filter={filterOpen} dirves={drives} loading={loading} />
-      {drives.map((job, index) => (
+      {loading ? <div style={{textAlign: "center"}}><Spinner/></div> : drives.map((job, index) => (
         <JobItem key={index} job={job} />
       ))}
       </div>
