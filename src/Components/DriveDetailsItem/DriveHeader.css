@@ -30,7 +30,7 @@
   .drive-header-root {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: top;
     justify-content: space-between;
   }
   
@@ -42,6 +42,9 @@
     border-radius: 5px;
     height: fit-content;
     cursor: pointer;
+    border: 1px solid blue;
+    width:fit-content;
+    margin-top: 0.5rem;
   }
   
   .drive-bookmark-icon {
@@ -52,7 +55,6 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      margin-bottom: 0.8rem;
   }
   
   .drive-bookmark-text {
@@ -67,7 +69,8 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      height:auto
+      height:auto;
+      margin-top: 0.3rem;
   }
   
   .drive-salary {
@@ -75,6 +78,7 @@
       flex-direction: row;
       align-items: center;
       margin-bottom: 0.8rem;
+      margin-right: 1rem;
   }
   
   .drive-salary-icon {
@@ -102,6 +106,10 @@
       font-size: 18px;
   }
 
-  .drive-salary-bookmark{
-    display: block;
+  .drive-body-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
   }
