@@ -51,7 +51,7 @@ export default function JobItem({ job }) {
           {job.bondApplicable && <Badge icon={"file-text"} text={`${job.bondDuration} Year Bond`} color="#da5885" backgroundColor="#fbeff5" />}
           <Badge icon={"briefcase"} text={`${parseRoleType(job.role)} Role`} />
           {job.noOfPositions && <Badge icon={"users"} text={`${job.noOfPositions} Positions`} />}
-          {job.location && <Badge icon={"map-pin"} text={"Bangalore"} />}
+          {job.location && <Badge icon={"map-pin"} text={job.location} />}
           
         </div>
         <hr className="job-hr" />

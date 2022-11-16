@@ -5,6 +5,22 @@ import "./DriveHeader.css"
 import moment from "moment/moment";
 import CircularProgressWithLabel from "@mui/material"
 import ProfileMatch from "../Profile Match/ProfileMatch";
+
+function parseRoleType(role) {
+  switch (role) {
+    case "fulltime":
+      return "Full Time";
+    case "part-time":
+      return "Part Time";
+    case "internship":
+      return "Internship";
+    case "contract":
+      return "Contract";
+    default:
+      return "Full Time";
+  }
+}
+
 const DriveHeader = ({ job }) => {
   const regitrationDeadline=moment(job.regitrationDeadline).format('DD/MM/YYYY')
   return (
@@ -21,10 +37,11 @@ const DriveHeader = ({ job }) => {
       </div>
       <div className="drive-body-root">
         <div className="drive-badge-group">
-          <Badge icon={"clock"} text={"12th Novemeber, 23:59 p.m"} />
-          <Badge icon={"map-pin"} text={job.location} />
-          <Badge icon={"users"} text={job.noOfPositions+" positions"} />
-          <Badge icon={"briefcase"} text={job.jobType} />
+        <Badge icon={"clock"} text={new Date(job.regitrationDeadline).toLocaleString('en-in',{month:'short', year:'numeric', day:'numeric',hour: '2-digit', minute:'2-digit'})} color="#e67300" backgroundColor="#fff2e6" />
+          {job.bondApplicable && <Badge icon={"file-text"} text={`${job.bondDuration} Year Bond`} color="#da5885" backgroundColor="#fbeff5" />}
+          <Badge icon={"briefcase"} text={`${parseRoleType(job.role)} Role`} />
+          {job.noOfPositions && <Badge icon={"users"} text={`${job.noOfPositions} Positions`} />}
+          {job.location && <Badge icon={"map-pin"} text={job.location} />}
         </div>
         <div className="drive-quick-action-root">
           <div className="drive-salary-bookmark">
