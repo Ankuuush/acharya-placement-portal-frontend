@@ -29,17 +29,23 @@ function butStyle(text){
       return {backgroundColor:"rgba(230, 58, 20, 0.51)",color:"#E53A14",pointerEvents:"none"}
     case "Selected":
       return {backgroundColor:"rgba(28, 139, 46, 0.51)",color:"#16530C",pointerEvents:"none"}
+    default:
+      return {backgroundColor:"#ededed",color:"#62666c"};
   }
 }
 
 export default function JobItem({ job,text }) {
   const navigate=useNavigate()
   const applyNow=()=>{
-    navigate('/student/drive-details',{state:{job:job}})
+    navigate('/student/drives/'+ job._id)
   }
+
+  const deadlinePassed = new Date(job.regitrationDeadline) < new Date()
 
   return (
     <div className="jobitem-root">
+      {deadlinePassed && <div className="expired-tag">Expired</div>}
+      <div className="jobitem-inner-root">
       <div className="job-header-root">
         <div className="job-header">
           <img src={job.company.logoUrl} height={60} className="job-logo" />
@@ -74,8 +80,21 @@ export default function JobItem({ job,text }) {
             <p className="job-salary-icon">₹</p>
             <p className="job-salary-text">{job.ctc.toLocaleString('en-IN')} LPA</p>
           </div>
-          <button className="job-apply-button" style={butStyle(text)} onClick={applyNow}>{text}</button>
+          <div className="job-apply-container">
+          {/* //TODO: Add eligibility check */}
+            <div className="job-eligbility">
+            <FeatherIcon
+            icon={"check"}
+            color="green"
+            size={19}
+            className="bookmark-icon"
+          />
+          <p className="eligible">Eligible</p>
+            </div>
+          <button className="job-apply-button" style={deadlinePassed ? butStyle("expired") : butStyle(text)} onClick={applyNow}>{deadlinePassed ? "View Details" : text}</button>
+          </div>
         </div>
+      </div>
       </div>
     </div>
   );
