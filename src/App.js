@@ -10,20 +10,17 @@ import "react-toastify/dist/ReactToastify.css";
 import Student from "./routes/Student";
 import Admin from "./routes/Admin";
 import Tpo from "./routes/Tpo";
-import ProfileForm from "./Pages/Student/Profile Form/ProfileForm";
-import DriveDetails from "./Pages/Student/DriveDetails";
 
 function App() {
   return (
     <AuthProvider>
-    <Router>
-      <ToastContainer />
+      <Router>
+        <ToastContainer />
         <Routes>
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/forgot-password" element={<ForgotPassword />} />
           <Route exact path="/verify-email" element={<VerifyEmail />} />
-          <Route exact path="/testing" element={<DriveDetails />} />
           <Route element={<PrivateRoute role={""} />}>
             <Route exact path="/" element={<></>} />
           </Route>
@@ -31,7 +28,7 @@ function App() {
           {Admin()}
           {Tpo()}
         </Routes>
-    </Router>
+      </Router>
     </AuthProvider>
   );
 }

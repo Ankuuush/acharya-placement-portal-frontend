@@ -3,26 +3,24 @@ import PrivateRoute from "../PrivateRoute";
 import Dashboard from "../Pages/Student/Dashboard";
 import constants from "../Constants";
 const Student = () => {
- 
   return (
     <Route element={<PrivateRoute role={"student"} />}>
       {constants.STUDENT_MENU.map((item) => {
         return (
           <Route
             exact
-            path={"/student/"+item.code}
+            path={"/student/" + item.code}
             element={<Dashboard page={item.code} />}
           />
         );
       })}
       <Route
-            exact
-            path={"/student/drives/:driveid"}
-            element={<Dashboard page={"drive-details"} />}
-          />
+        exact
+        path={"/student/drives/:driveid"}
+        element={<Dashboard page={"drive-details"} />}
+      />
     </Route>
   );
 };
 
 export default Student;
-

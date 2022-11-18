@@ -14,17 +14,19 @@ import ProfileForm from "./Profile Form/ProfileForm";
 import Spinner from "../../Components/Spinner/Spinner";
 import constants from "../../Constants";
 import DriveDetails from "./DriveDetails";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = ({ page = "" }) => {
+  const navigate = useNavigate();
   const authContext = useContext(AuthContext);
   const { currentUser } = authContext;
   const [component, setComponent] = useState("");
   const [activeStep, setActiveStep] = useState(0);
   const [profileData, setProfileData] = useState(null);
 
-  const changeSelectedComponent = (component) => {
-    window.history.pushState({}, null, "/student/" + component);
-    setComponent(component);
+  const changeSelectedComponent = (component, scope) => {
+    navigate("/student/" + component); //useful to pass params in url
+    setComponent(scope || component);
   };
 
   useEffect(() => {
@@ -129,10 +131,7 @@ const Dashboard = ({ page = "" }) => {
         <Topbar />
         <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#f3f4f8" }}>
           {component === "explore-jobs" && (
-            <StudentDashboard
-              activeStep={activeStep}
-              setActiveStep={setActiveStep}
-            />
+            <StudentDashboard change={changeSelectedComponent} />
           )}
           {component === "applied-jobs" && <AppliedJobs />}
           {component === "resume" && <Resume />}
