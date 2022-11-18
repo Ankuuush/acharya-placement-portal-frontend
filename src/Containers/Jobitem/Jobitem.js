@@ -19,11 +19,25 @@ function parseRoleType(role) {
   }
 }
 
-export default function JobItem({ job }) {
+function butStyle(text){
+  switch(text){
+    case "Apply Now":
+      return {backgroundColor:"#203674",color:"white"};
+    case "Ongoing":
+      return {backgroundColor:"rgba(244, 148, 36, 0.24)",color:"#F49424",pointerEvents:"none"}
+    case "Rejected":
+      return {backgroundColor:"rgba(230, 58, 20, 0.51)",color:"#E53A14",pointerEvents:"none"}
+    case "Selected":
+      return {backgroundColor:"rgba(28, 139, 46, 0.51)",color:"#16530C",pointerEvents:"none"}
+  }
+}
+
+export default function JobItem({ job,text }) {
   const navigate=useNavigate()
   const applyNow=()=>{
     navigate('/student/drive-details',{state:{job:job}})
   }
+
   return (
     <div className="jobitem-root">
       <div className="job-header-root">
@@ -60,7 +74,7 @@ export default function JobItem({ job }) {
             <p className="job-salary-icon">₹</p>
             <p className="job-salary-text">{job.ctc.toLocaleString('en-IN')} LPA</p>
           </div>
-          <button className="job-apply-button" onClick={applyNow}>Apply Now</button>
+          <button className="job-apply-button" style={butStyle(text)} onClick={applyNow}>{text}</button>
         </div>
       </div>
     </div>
