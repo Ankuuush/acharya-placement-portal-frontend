@@ -17,7 +17,7 @@ const Student = () => {
       })}
       <Route
             exact
-            path={"/student/drive-details"}
+            path={"/student/drives/:driveid"}
             element={<Dashboard page={"drive-details"} />}
           />
     </Route>

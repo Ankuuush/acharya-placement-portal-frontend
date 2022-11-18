@@ -24,7 +24,7 @@ const Search = (props) => {
         <div className='search-component'>
         <div className='search-box'>
             <FeatherIcon icon='search' size='20' className='search-icon'/>
-            <input type='text' placeholder='Enter a job title' className='search-input' onChange={handleChange}/>
+            <input type='text' placeholder='Enter a job title/company name' className='search-input' onChange={handleChange}/>
         </div>
         <button className='filter-button' onClick={toggleFilter} style={{borderBottom: props.filter ? "4px solid #29a329": null}}> <FeatherIcon icon='filter' size='13'/> Filters</button>
         </div>
