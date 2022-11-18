@@ -5,6 +5,22 @@ import "./DriveHeader.css";
 import ProfileMatch from "../Profile Match/ProfileMatch";
 import api from "../../api";
 import { toast } from "react-toastify";
+
+function parseRoleType(role) {
+  switch (role) {
+    case "fulltime":
+      return "Full Time";
+    case "part-time":
+      return "Part Time";
+    case "internship":
+      return "Internship";
+    case "contract":
+      return "Contract";
+    default:
+      return "Full Time";
+  }
+}
+
 const DriveHeader = ({ job }) => {
   const handleSave = () => {
     api.post(`/student/${job._id}/bookmark`)
