@@ -87,7 +87,7 @@ const AppliedJobs = () => {
         <Search
           data={drives} setDriveData={setDriveData} assignLoading={assignLoading} toggleFilter={toggleFilter} filter={filterOpen} loading={loading}
         />
-        {loading ? (
+        {/* {loading ? (
           <div style={{ textAlign: "center" }}>
             <Spinner />
           </div>
@@ -95,9 +95,9 @@ const AppliedJobs = () => {
           searchDrives.map((job, index) => (
             <JobItem key={index} job={job} text={"Selected"} />
           )):<h3 style={{textAlign:"center",marginTop:"2rem"}}>No drive found!!</h3>
-        )}
+        )} */}
       </div>
-      {filterOpen && <Filter />}
+      {/* {filterOpen && <Filter />} */}
     </div>
   );
 };

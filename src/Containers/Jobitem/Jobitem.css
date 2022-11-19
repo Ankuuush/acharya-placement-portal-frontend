@@ -153,4 +153,10 @@
 
 .eligible {
   color: green;
+  font-weight: bold;
+}
+
+.n-eligible {
+  color: #d45d87;
+  font-weight: bold;
 }

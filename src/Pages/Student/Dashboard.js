@@ -137,7 +137,9 @@ const Dashboard = ({ page = "" }) => {
           {component === "resume" && <Resume />}
           {component === "feedback" && <FeedBack />}
           {component === "contact-us" && <ContactUs />}
-          {component === "drive-details" && <DriveDetails />}
+          {component === "drive-details" && <div style={{padding: "0px 20px"}}>
+          <DriveDetails />
+            </div>}
         </Box>
       </div>
     </div>

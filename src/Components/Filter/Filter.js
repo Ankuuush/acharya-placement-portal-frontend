@@ -3,7 +3,12 @@ import "./Filter.css"
 
 const Filter = () => {
   return (
-    <div className='filter-root'>
+    <div className='right-component-context'>
+      <div className='advert-root'>
+        <p className='advert-textt'>Download The Official App</p>
+        <img src="https://www.citypng.com/public/uploads/small/11639742304fqp5upggd2cke76potjqc5jqctz0p7owqgwzyh1kua0pst1w4oyyrnrzqnzjscwbdvcmgefmcd7ujhczx0cjugnqgllnx8zktb2k.png" height={37} style={{marginTop: 10, cursor: "pointer"}}/>
+      </div>
+      <div className='filter-root'>
         <p className='filter-header'>Filter Drives</p>
         <p className='filter-subheader'>Job Location</p>
         <input type="checkbox" id="location1" name="location1" value="location1"/>
@@ -21,6 +26,7 @@ const Filter = () => {
         <input type="checkbox" id="location2" name="location1" value="location1"/>
         <label for="location2" className='check-labels'>Upto 10 lacs</label><br/>
         <input type="range" min="0" max="100" value="50" className="slider" id="myRange"/>
+    </div>
     </div>
   )
 }

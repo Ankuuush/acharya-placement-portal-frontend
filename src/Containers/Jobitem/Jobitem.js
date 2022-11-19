@@ -117,8 +117,7 @@ export default function JobItem({ job, text, change }) {
               </p>
             </div>
             <div className="job-apply-container">
-              {/* //TODO: Add eligibility check */}
-              <div className="job-eligbility">
+              {job.calculatedEligibility.eligible ? <div className="job-eligbility">
                 <FeatherIcon
                   icon={"check"}
                   color="green"
@@ -126,13 +125,21 @@ export default function JobItem({ job, text, change }) {
                   className="bookmark-icon"
                 />
                 <p className="eligible">Eligible</p>
-              </div>
+              </div>: <div className="job-eligbility">
+                <FeatherIcon
+                  icon={"x"}
+                  color="#d45d87"
+                  size={19}
+                  className="bookmark-icon"
+                />
+                <p className="n-eligible">Not Eligible</p>
+              </div>}
               <button
                 className="job-apply-button"
-                style={deadlinePassed ? butStyle("expired") : butStyle(text)}
+                style={butStyle(text)}
                 onClick={applyNow}
               >
-                {deadlinePassed ? "View Details" : text}
+                {!job.calculatedEligibility.eligible ? "View Details" : text}
               </button>
             </div>
           </div>
