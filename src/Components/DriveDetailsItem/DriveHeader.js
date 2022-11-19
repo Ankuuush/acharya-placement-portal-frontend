@@ -43,47 +43,51 @@ const DriveHeader = ({ job }) => {
             <p className="drive-role">{job.role}</p>
           </div>
         </div>
-        {/* <Badge
+        {!job.calculatedEligibility.eligible ? <Badge
               icon={"x"}
               text={"Not Eligible To Apply"}
               color="#d65885"
               backgroundColor="#fbeff5"
-            /> */}
-          <Badge
-              icon={"check"}
-              text={"Eligible To Apply"}
-              color="green"
-              backgroundColor="#e7fde8"
-            />
+            /> : <Badge
+            icon={"check"}
+            text={"Eligible To Apply"}
+            color="green"
+            backgroundColor="#e7fde8"
+          />}
         {/* <ProfileMatch /> TODO:Do we need this? */}
       </div>
       <div className="drive-body-root">
         <div className="drive-body-top">
-        <div className="drive-badge-group">
-          <Badge
-            icon={"clock"}
-            text={new Date(job.regitrationDeadline).toLocaleString("en-in", {
-              month: "short",
-              year: "numeric",
-              day: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-            color="#e67300"
-            backgroundColor="#fff2e6"
-          />
-          <Badge icon={"map-pin"} text={job.location} />
-          {job.bondApplicable && (
+        <div className="badge-group">
             <Badge
-              icon={"file-text"}
-              text={`${job.bondDuration} Year Bond`}
-              color="#da5885"
-              backgroundColor="#fbeff5"
+              icon={"clock"}
+              text={new Date(job.regitrationDeadline).toLocaleString("en-in", {
+                month: "short",
+                year: "numeric",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+              color="#e67300"
+              backgroundColor="#fff2e6"
             />
-          )}
-          <Badge icon={"users"} text={job.noOfPositions + " positions"} />
-          <Badge icon={"briefcase"} text={job.jobType} />
-        </div>
+            {job.bondApplicable && (
+              <Badge
+                icon={"file-text"}
+                text={`${job.bondDuration} Year Bond`}
+                color="#da5885"
+                backgroundColor="#fbeff5"
+              />
+            )}
+            <Badge
+              icon={"briefcase"}
+              text={`${parseRoleType(job.role)} Role`}
+            />
+            {job.noOfPositions && (
+              <Badge icon={"users"} text={`${job.noOfPositions} Positions`} />
+            )}
+            {job.location && <Badge icon={"map-pin"} text={job.location} />}
+          </div>
             </div>
         <div className="drive-quick-action-root" style={{marginTop: 30}}>
             <div className="drive-salary">
@@ -100,7 +104,7 @@ const DriveHeader = ({ job }) => {
               size={17}
             />
           </div>
-          <button className="drive-apply-button">Apply To Drive</button>
+          <button className="drive-apply-button" disabled={!job.calculatedEligibility.eligible} style={{cursor: !job.calculatedEligibility.eligible && "not-allowed", backgroundColor: !job.calculatedEligibility.eligible && "#ededed", color: !job.calculatedEligibility.eligible && "#62666c"}}>{job.calculatedEligibility.eligible ? "Apply To Drive" : "Not Eligible"}</button>
             </div>
         </div>
       </div>

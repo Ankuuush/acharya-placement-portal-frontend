@@ -3,8 +3,25 @@
     padding: 15px;
     border-radius: 5px;
     margin-left: 20px;
-    flex: 1;
     height: fit-content;
+}
+
+.advert-root {
+    background: #1f357e;
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 20px;
+    height: fit-content;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.advert-textt {
+    color: white;
+}
+
+.right-component-context {
+    flex: 1.15;
 }
 
 .filter-header {
