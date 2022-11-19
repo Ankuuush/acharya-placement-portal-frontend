@@ -6,9 +6,9 @@ import JobItem from "../../Containers/Jobitem/Jobitem";
 import Spinner from "../../Components/Spinner/Spinner";
 import "./index.css";
 
-const StudentDashboard = () => {
+const StudentDashboard = ({ change }) => {
   const [drives, setDrives] = useState([]);
-  const [searchDrives, setSearchDrives] = useState([])
+  const [searchDrives, setSearchDrives] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterOpen, setFilterOpen] = useState(true);
 
@@ -23,26 +23,43 @@ const StudentDashboard = () => {
   const setDriveData = (data) => {
     setSearchDrives(data);
     setLoading(false);
-  }
+  };
 
   const assignLoading = (value) => {
     setLoading(value);
-  }
+  };
 
   const toggleFilter = () => {
     setFilterOpen(!filterOpen);
-  }
+  };
 
   return (
     <div className="explore-root">
       <div className="left-job-root">
-      <Search data={drives} setDriveData={setDriveData} assignLoading={assignLoading} toggleFilter={toggleFilter} filter={filterOpen} loading={loading} />
-      {loading ? <div style={{textAlign: "center"}}><Spinner/></div> :searchDrives.length>0? searchDrives.map((job, index) => (
-        <JobItem key={index} job={job} text={"Apply Now"} />
-      )):<h3 style={{textAlign:"center",marginTop:"2rem"}}>No drive found!!</h3>}
+        <Search
+          data={drives}
+          setDriveData={setDriveData}
+          assignLoading={assignLoading}
+          toggleFilter={toggleFilter}
+          filter={filterOpen}
+          loading={loading}
+        />
+        {loading ? (
+          <div style={{ textAlign: "center" }}>
+            <Spinner />
+          </div>
+        ) : searchDrives.length > 0 ? (
+          searchDrives.map((job, index) => (
+            <JobItem key={index} job={job} text={"Apply Now"} change={change} />
+          ))
+        ) : (
+          <h3 style={{ textAlign: "center", marginTop: "2rem" }}>
+            No drive found!!
+          </h3>
+        )}
       </div>
       {filterOpen && <Filter />}
-      </div>
+    </div>
   );
 };
 

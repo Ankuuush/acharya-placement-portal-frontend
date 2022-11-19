@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, {useContext} from "react";
 import EducationalDetails from "../../../Components/ProfileForm/EducationalDetails/educationalDetails";
 import PersonalInformation from "../../../Components/ProfileForm/Personal Information/personalInformation";
 import Skills from "../../../Components/ProfileForm/Skills/Skills";
@@ -12,10 +12,13 @@ import ProgressBar from "../../../Components/ProgressBar";
 import PlacementLogoSmall from "../../../Components/Logo/PlacementLogoSmall";
 import SquareBadge from "../../../Components/SquareBadge/SquareBadge";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../../Context/AuthContext/AuthContext";
 import "./ProfileForm.css";
 
 const ProfileForm = ({setComponent, profileData, activeStep, setActiveStep }) => {
   const navigate=useNavigate();
+  const authContext = useContext(AuthContext);
+  const { logout } = authContext;
   const renderSwitch = () => {
     switch (activeStep) {
       case 0:
@@ -86,7 +89,7 @@ const ProfileForm = ({setComponent, profileData, activeStep, setActiveStep }) =>
         </div>
         <div style={{width:"60%",display:"flex",alignItems:"center"}}>
       <ProgressBar progress={profileData.progress.completedPercentage}/>
-      <button>Logout</button>
+      <button onClick={async()=> await logout()}>Logout</button>
       </div>
         </div>
       {/* <div style={{height:"1px",background:"grey",marginBottom:"2rem"}}></div> */}
