@@ -29,3 +29,26 @@
 .drive-about-company{
   margin: 1.5rem 0;
 }
+
+.eligibility-param {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+.eligibility-param-check {
+  background: #d0fbd2;
+  border-radius: 1000px;
+  height: fit-content;
+  padding: 2px 5px 0px 5px;
+  margin-right: 7px;
+}
+
+.eligibility-param-x {
+  background: #fbeff5;
+  border-radius: 1000px;
+  height: fit-content;
+  padding: 2px 5px 0px 5px;
+  margin-right: 7px;
+}
