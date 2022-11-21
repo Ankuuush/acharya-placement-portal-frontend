@@ -64,6 +64,14 @@ const DriveHeader = ({ job, refreshJob , toggleDriveBookmark}) => {
               color="#e67300"
               backgroundColor="#fff2e6"
             />
+            {job.locked && (
+              <Badge
+                icon={"lock"}
+                text={`Locked`}
+                color="#da5885"
+                backgroundColor="#fbeff5"
+              />
+            )}
             {job.bondApplicable && (
               <Badge
                 icon={"file-text"}
