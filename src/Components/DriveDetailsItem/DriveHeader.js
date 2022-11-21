@@ -72,6 +72,14 @@ const DriveHeader = ({ job, refreshJob , toggleDriveBookmark}) => {
                 backgroundColor="#fbeff5"
               />
             )}
+            {job.openForAll && (
+              <Badge
+                icon={"check"}
+                text={`Open For All`}
+                color="#20781f"
+                backgroundColor="#e7fce8"
+              />
+            )}
             <Badge
               icon={"briefcase"}
               text={`${parseRoleType(job.role)} Role`}
