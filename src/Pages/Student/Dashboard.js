@@ -29,6 +29,17 @@ const Dashboard = ({ page = "" }) => {
     setComponent(scope || component);
   };
 
+  const toggleDriveBookmark = (driveId, cb) => {
+    api.post(`/student/drives/${driveId}/bookmark`)
+    .then((response) => {
+      cb(response.data.data.bookmarked);
+      toast.success(response.data.data.bookmark ? "Drive Bookmarked" : "Bookmark Removed")
+    })
+    .catch((error)=>{
+      toast.error("Server Error!!")
+    });
+  }
+
   useEffect(() => {
     async function studentProfile() {
       let token = "";
@@ -95,6 +106,8 @@ const Dashboard = ({ page = "" }) => {
     studentProfile();
   }, [page, currentUser]);
 
+
+
   if (!component)
     return (
       <div style={{ marginTop: "40vh", marginLeft: "50vw" }}>
@@ -131,14 +144,14 @@ const Dashboard = ({ page = "" }) => {
         <Topbar />
         <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#f3f4f8" }}>
           {component === "explore-jobs" && (
-            <StudentDashboard change={changeSelectedComponent} />
+            <StudentDashboard change={changeSelectedComponent} toggleDriveBookmark={toggleDriveBookmark} />
           )}
           {component === "applied-jobs" && <AppliedJobs />}
           {component === "resume" && <Resume />}
           {component === "feedback" && <FeedBack />}
           {component === "contact-us" && <ContactUs />}
           {component === "drive-details" && <div style={{padding: "0px 20px"}}>
-          <DriveDetails />
+          <DriveDetails toggleDriveBookmark={toggleDriveBookmark} />
             </div>}
         </Box>
       </div>

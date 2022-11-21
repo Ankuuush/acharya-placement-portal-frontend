@@ -46,8 +46,7 @@ function butStyle(text) {
   }
 }
 
-export default function JobItem({ job, text, change }) {
-  const navigate = useNavigate();
+export default function JobItem({ job, text, change, toggleDriveBookmark, getAllDrives }) {
   const applyNow = () => {
     change("drives/" + job._id, "drive-details");
   };
@@ -66,14 +65,18 @@ export default function JobItem({ job, text, change }) {
               <p className="job-role">{job.role}</p>
             </div>
           </div>
-          <div className="save-job">
+          <div className="save-job" style={{background: job.bookmarked ? "#1f357e" : null}} onClick={()=> {
+            toggleDriveBookmark(job._id, function(bookmarked){
+              getAllDrives();
+            });
+          }}>
             <FeatherIcon
               icon={"bookmark"}
-              color="#213780"
+              color={job.bookmarked ? "white" : "#213780"}
               size={17}
-              className="bookmark-icon"
+              className="bookmark-icon-main"
             />
-            <p className="job-bookmark-text">Bookmark</p>
+            {/* <p className="job-bookmark-text" style={{color: job.bookmarked ? "white" : null}}>{job.bookmarked ? "Bookmarked":"Bookmark"}</p> */}
           </div>
         </div>
         <div className="job-body-root">
