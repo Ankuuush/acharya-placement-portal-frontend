@@ -6,7 +6,7 @@ import JobItem from "../../Containers/Jobitem/Jobitem";
 import Spinner from "../../Components/Spinner/Spinner";
 import "./index.css";
 
-const StudentDashboard = ({ change }) => {
+const StudentDashboard = ({ change, toggleDriveBookmark }) => {
   const [drives, setDrives] = useState([]);
   const [searchDrives, setSearchDrives] = useState([]);
   const [filterDrives, setFilterDrives] = useState([]);
@@ -15,13 +15,22 @@ const StudentDashboard = ({ change }) => {
   const [filterArray, setFilterArray] = useState([]);
 
   useEffect(() => {
+    getAllDrives();
+
+    setInterval(() => {
+      getAllDrives();
+    }, 10000);
+
+  }, []);
+
+  function getAllDrives() {
     api.get("/student/drives/all").then((response) => {
       setDrives(response.data.data.drives);
       setSearchDrives(response.data.data.drives);
       setFilterDrives(response.data.data.drives);
       setLoading(false);
     });
-  }, []);
+  }
 
   const setDriveData = (data) => {
     setSearchDrives(data);
@@ -110,7 +119,7 @@ const StudentDashboard = ({ change }) => {
           </div>
         ) : filterDrives.length > 0 ? (
           filterDrives.map((job, index) => (
-            <JobItem key={index} job={job} text={"Apply Now"} change={change} />
+            <JobItem key={index} job={job} text={"Apply Now"} change={change} toggleDriveBookmark={toggleDriveBookmark} getAllDrives={getAllDrives} />
           ))
         ) : (
           <h3 style={{ textAlign: "center", marginTop: "2rem" }}>
