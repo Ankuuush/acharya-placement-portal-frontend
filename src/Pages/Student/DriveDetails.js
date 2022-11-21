@@ -7,13 +7,21 @@ import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "../../Components/Spinner/Spinner";
 import api from "../../api";
 
-const DriveDetails = () => {
+const DriveDetails = ({toggleDriveBookmark}) => {
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const {driveid} = useParams();
 
   useEffect(() => {
+    getSingleDrive();
+
+    setInterval(() => {
+      getSingleDrive();
+    } , 10000);
+  }, []);
+
+  function getSingleDrive() {
     api.get("/student/drives/"+ driveid).then((response) => {
       setJob(response.data.data.drive);
       setLoading(false);
@@ -21,7 +29,7 @@ const DriveDetails = () => {
       setError(error.response.data.error.message);
       setLoading(false);
     });
-  }, []);
+  }
 
     const navigate=useNavigate()
     const driveStyle={
@@ -51,7 +59,7 @@ const DriveDetails = () => {
      <p>Back</p>
      </div>
     <div style={driveStyle} >
-      <DriveHeader job={job}/>
+      <DriveHeader job={job} refreshJob={getSingleDrive} toggleDriveBookmark={toggleDriveBookmark}/>
       <DriveBody job={job} />
       </div>
       </div>}

@@ -2,9 +2,6 @@ import React from "react";
 import Badge from "../Badge/Badge";
 import FeatherIcon from "feather-icons-react";
 import "./DriveHeader.css";
-import ProfileMatch from "../Profile Match/ProfileMatch";
-import api from "../../api";
-import { toast } from "react-toastify";
 
 function parseRoleType(role) {
   switch (role) {
@@ -21,14 +18,10 @@ function parseRoleType(role) {
   }
 }
 
-const DriveHeader = ({ job }) => {
+const DriveHeader = ({ job, refreshJob , toggleDriveBookmark}) => {
   const handleSave = () => {
-    api.post(`/student/${job._id}/bookmark`)
-    .then((response) => {
-      toast.success("Job Saved!!")
-    })
-    .catch((error)=>{
-      toast.error("Server Error!!")
+    toggleDriveBookmark(job._id, function(bookmarked){
+      refreshJob();
     });
   };
   return (
@@ -97,11 +90,12 @@ const DriveHeader = ({ job }) => {
               </p>
             </div>
             <div style={{display: "flex",alignItems: "center"}}>
-            <div className="save-job" onClick={handleSave} style={{padding: 12,marginRight: 15}}>
+            <div className="save-job" onClick={handleSave} style={{padding: 12,marginRight: 15, background: job.bookmarked ? "#1f357e" : null}}>
             <FeatherIcon
               icon={"bookmark"}
-              color="#213780"
+              color={job.bookmarked ? "white" : "#213780"}
               size={17}
+              className="bookmark-icon"
             />
           </div>
           <button className="drive-apply-button" disabled={!job.calculatedEligibility.eligible} style={{cursor: !job.calculatedEligibility.eligible && "not-allowed", backgroundColor: !job.calculatedEligibility.eligible && "#ededed", color: !job.calculatedEligibility.eligible && "#62666c"}}>{job.calculatedEligibility.eligible ? "Apply To Drive" : "Not Eligible"}</button>
