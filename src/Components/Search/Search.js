@@ -3,7 +3,7 @@ import "./Search.css"
 import FeatherIcon from 'feather-icons-react';
 
 const Search = (props) => {
-  const {data,setDriveData,assignLoading,toggleFilter,filter,loading}=props
+  const {data,setDriveData,assignLoading,toggleFilter,assignFilter}=props
   const handleChange=(e)=>{
     assignLoading(true)
     if(!e.target.value)

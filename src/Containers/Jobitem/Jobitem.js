@@ -101,7 +101,7 @@ export default function JobItem({ job, text, change }) {
             )}
             <Badge
               icon={"briefcase"}
-              text={`${parseRoleType(job.role)} Role`}
+              text={`${parseRoleType(job.jobType)} Role`}
             />
             {job.noOfPositions && (
               <Badge icon={"users"} text={`${job.noOfPositions} Positions`} />
