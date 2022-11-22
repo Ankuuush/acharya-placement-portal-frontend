@@ -21,6 +21,16 @@
   
 }
 
+.locked-tag {
+  background-color: #ffefe1;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #df7512;
+  font-weight: bold;
+  padding: 0px;
+  text-align: center;
+}
+
 .job-logo {
   border-radius: 5px;
 }

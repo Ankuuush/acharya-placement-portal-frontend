@@ -52,10 +52,12 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
   };
 
   const deadlinePassed = new Date(job.regitrationDeadline) < new Date();
+  const locked = job.locked
 
   return (
     <div className="jobitem-root">
       {deadlinePassed && <div className="expired-tag">Expired</div>}
+      {!deadlinePassed && locked && <div className="locked-tag">Locked</div>}
       <div className="jobitem-inner-root">
         <div className="job-header-root">
           <div className="job-header">
@@ -100,6 +102,14 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
                 text={`${job.bondDuration} Year Bond`}
                 color="#da5885"
                 backgroundColor="#fbeff5"
+              />
+            )}
+            {job.openForAll && (
+              <Badge
+                icon={"check"}
+                text={`Open For All`}
+                color="#20781f"
+                backgroundColor="#e7fce8"
               />
             )}
             <Badge
