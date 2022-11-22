@@ -39,3 +39,9 @@
 .check-labels {
     margin-left: 10px;
 }
+
+.filter-amount{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

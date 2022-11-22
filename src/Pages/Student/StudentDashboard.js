@@ -9,8 +9,10 @@ import "./index.css";
 const StudentDashboard = ({ change, toggleDriveBookmark }) => {
   const [drives, setDrives] = useState([]);
   const [searchDrives, setSearchDrives] = useState([]);
+  const [filterDrives, setFilterDrives] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterOpen, setFilterOpen] = useState(true);
+  const [filterArray, setFilterArray] = useState([]);
 
   useEffect(() => {
     getAllDrives();
@@ -25,12 +27,14 @@ const StudentDashboard = ({ change, toggleDriveBookmark }) => {
     api.get("/student/drives/all").then((response) => {
       setDrives(response.data.data.drives);
       setSearchDrives(response.data.data.drives);
+      setFilterDrives(response.data.data.drives);
       setLoading(false);
     });
   }
 
   const setDriveData = (data) => {
     setSearchDrives(data);
+    setFilterDrives(data)
     setLoading(false);
   };
 
@@ -42,6 +46,61 @@ const StudentDashboard = ({ change, toggleDriveBookmark }) => {
     setFilterOpen(!filterOpen);
   };
 
+  const assignFilter = () => {
+    let iniArr = [...searchDrives];
+    let newArr = [];
+    filterArray.forEach((item) => {
+      let negArr = [];
+      switch (item) {
+        case "Remote":
+          iniArr.forEach((item2) => {
+            if (item2.location === item) newArr.push(item2);
+            else negArr.push(item2);
+          });
+          break;
+        case "On-Site":
+          iniArr.forEach((item2) => {
+            if (item2.location !== "Remote") newArr.push(item2);
+            else negArr.push(item2);
+          });
+          break;
+        case "full-time":
+          iniArr.forEach((item2) => {
+            if (item2.jobType === item) newArr.push(item2);
+            else negArr.push(item2);
+          });
+          break;
+        case "Internship":
+          iniArr.forEach((item2) => {
+            if (item2.jobType === item) newArr.push(item2);
+            else negArr.push(item2);
+          });
+          break;
+        default:
+          iniArr.forEach((item2) => {
+            if (item2.ctc <= item[1] && item2.ctc>= item[0]){
+               newArr.push(item2);
+            }
+            else negArr.push(item2);
+          });
+          break;
+      }
+      iniArr=negArr
+    });
+    if(filterArray.length)
+    {
+      setFilterDrives(newArr);
+    }
+    else
+    setFilterDrives(searchDrives)
+  };
+
+
+  useEffect(() => {
+    assignFilter()
+  }, [filterArray,searchDrives])
+  
+
   return (
     <div className="explore-root">
       <div className="left-job-root">
@@ -52,13 +111,14 @@ const StudentDashboard = ({ change, toggleDriveBookmark }) => {
           toggleFilter={toggleFilter}
           filter={filterOpen}
           loading={loading}
+          assignFilter={assignFilter}
         />
         {loading ? (
           <div style={{ textAlign: "center" }}>
             <Spinner />
           </div>
-        ) : searchDrives.length > 0 ? (
-          searchDrives.map((job, index) => (
+        ) : filterDrives.length > 0 ? (
+          filterDrives.map((job, index) => (
             <JobItem key={index} job={job} text={"Apply Now"} change={change} toggleDriveBookmark={toggleDriveBookmark} getAllDrives={getAllDrives} />
           ))
         ) : (
@@ -67,7 +127,13 @@ const StudentDashboard = ({ change, toggleDriveBookmark }) => {
           </h3>
         )}
       </div>
-      {filterOpen && <Filter />}
+      {filterOpen && (
+        <Filter
+          assignFilter={assignFilter}
+          filterArray={filterArray}
+          setFilterArray={setFilterArray}
+        />
+      )}
     </div>
   );
 };
