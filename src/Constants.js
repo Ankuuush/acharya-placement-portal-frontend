@@ -24,6 +24,10 @@ const constants = {
         code: "applied-jobs",
         icon: "user-check"
     },{
+        text: "Saved Drives",
+        code: "saved-jobs",
+        icon: "bookmark"
+    },{
         text: "Build Resume",
         code: "resume",
         icon: "file-text"

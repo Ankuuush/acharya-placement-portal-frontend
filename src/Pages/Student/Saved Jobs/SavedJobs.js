@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import api from "../../api";
-import JobDashboard from "../../Components/JobDashboard/JobDashboard";
+import api from "../../../api";
+import JobDashboard from "../../../Components/JobDashboard/JobDashboard";
 
-const StudentDashboard = ({ change, toggleDriveBookmark }) => {
+const SavedJobs = ({ change, toggleDriveBookmark }) => {
   const [drives, setDrives] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchDrives, setSearchDrives] = useState([]);
@@ -17,10 +17,10 @@ const StudentDashboard = ({ change, toggleDriveBookmark }) => {
   }, []);
 
   const getAllDrives = () => {
-    api.get("/student/drives/all").then((response) => {
-      setDrives(response.data.data.drives);
-      setSearchDrives(response.data.data.drives);
-      setFilterDrives(response.data.data.drives);
+    api.get("/student/drives/bookmarks").then((response) => {
+      setDrives(response.data.data.bookmarks);
+      setSearchDrives(response.data.data.bookmarks);
+      setFilterDrives(response.data.data.bookmarks);
       setLoading(false);
     });
   };
@@ -40,4 +40,4 @@ const StudentDashboard = ({ change, toggleDriveBookmark }) => {
   );
 };
 
-export default StudentDashboard;
+export default SavedJobs;
