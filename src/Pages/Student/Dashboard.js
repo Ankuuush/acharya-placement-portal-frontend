@@ -15,6 +15,7 @@ import Spinner from "../../Components/Spinner/Spinner";
 import constants from "../../Constants";
 import DriveDetails from "./DriveDetails";
 import { useNavigate } from "react-router-dom";
+import SavedJobs from "./Saved Jobs/SavedJobs";
 
 const Dashboard = ({ page = "" }) => {
   const navigate = useNavigate();
@@ -153,6 +154,9 @@ const Dashboard = ({ page = "" }) => {
           {component === "drive-details" && <div style={{padding: "0px 20px"}}>
           <DriveDetails toggleDriveBookmark={toggleDriveBookmark} />
             </div>}
+            {component === "saved-jobs" && (
+            <SavedJobs change={changeSelectedComponent} toggleDriveBookmark={toggleDriveBookmark} />
+          )}
         </Box>
       </div>
     </div>
