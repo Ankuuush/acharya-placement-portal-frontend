@@ -33,6 +33,9 @@
 
 .job-logo {
   border-radius: 5px;
+  object-fit: cover;
+  width: 60px;
+  height: 60px;
 }
 
 .job-header {
@@ -170,4 +173,9 @@
 .n-eligible {
   color: #d45d87;
   font-weight: bold;
+}
+
+.application-status {
+  display: flex;
+  align-items: center;
 }

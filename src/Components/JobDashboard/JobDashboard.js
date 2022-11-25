@@ -16,6 +16,7 @@ const JobDashboard = ({
   change,
   toggleDriveBookmark,
   getAllDrives,
+  from
 }) => {
   const [filterOpen, setFilterOpen] = useState(true);
   const [filterArray, setFilterArray] = useState([]);
@@ -108,6 +109,7 @@ const JobDashboard = ({
               change={change}
               toggleDriveBookmark={toggleDriveBookmark}
               getAllDrives={getAllDrives}
+              from={from}
             />
           ))
         ) : (
