@@ -36,6 +36,7 @@ const SavedJobs = ({ change, toggleDriveBookmark }) => {
       change={change}
       toggleDriveBookmark={toggleDriveBookmark}
       getAllDrives={getAllDrives}
+      from="bookmarks"
     />
   );
 };

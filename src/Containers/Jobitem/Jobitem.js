@@ -46,7 +46,7 @@ function butStyle(text) {
   }
 }
 
-export default function JobItem({ job, text, change, toggleDriveBookmark, getAllDrives }) {
+export default function JobItem({ job, text, change, toggleDriveBookmark, getAllDrives, from }) {
   const applyNow = () => {
     change("drives/" + job._id, "drive-details");
   };
@@ -64,17 +64,28 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
             <img src={job.company.logoUrl} height={60} className="job-logo" />
             <div className="job-header-group">
               <p className="job-company">{job.company.name}</p>
+              <div className="application-status">
               <p className="job-role">{job.role}</p>
+              {job.applied && <div className="job-eligbility" style={{marginLeft: 20, backgroundColor: "#e6fbe7", padding: "2px 5px", borderRadius: 3}}>
+                <FeatherIcon
+                  icon={"check"}
+                  color="green"
+                  size={19}
+                  className="bookmark-icon"
+                />
+                <p className="eligible">Applied</p>
+              </div>}
+              </div>
             </div>
           </div>
-          <div className="save-job" style={{background: job.bookmarked ? "#1f357e" : null}} onClick={()=> {
+          <div className="save-job" style={{background: job.bookmarked || from === "bookmarks" ? "#1f357e" : null}} onClick={()=> {
             toggleDriveBookmark(job._id, function(bookmarked){
               getAllDrives();
             });
           }}>
             <FeatherIcon
               icon={"bookmark"}
-              color={job.bookmarked ? "white" : "#213780"}
+              color={job.bookmarked || from === "bookmarks" ? "white" : "#213780"}
               size={17}
               className="bookmark-icon-main"
             />
@@ -130,7 +141,8 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
               </p>
             </div>
             <div className="job-apply-container">
-              {job.calculatedEligibility.eligible ? <div className="job-eligbility">
+              {!job.applied ? <div>
+                {job.calculatedEligibility.eligible ? <div className="job-eligbility">
                 <FeatherIcon
                   icon={"check"}
                   color="green"
@@ -147,12 +159,13 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
                 />
                 <p className="n-eligible">Not Eligible</p>
               </div>}
+                </div> : null}
               <button
                 className="job-apply-button"
                 style={butStyle(text)}
                 onClick={applyNow}
               >
-                {!job.calculatedEligibility.eligible ? "View Details" : text}
+                {!job.calculatedEligibility.eligible || job.applied  ? "View Details" : text}
               </button>
             </div>
           </div>
