@@ -14,3 +14,11 @@
     margin-top: 40px;
     font-size: 33px;
 }
+
+.profile-logout {
+    background-color: #233780;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 5px;
+    color: white;
+}
