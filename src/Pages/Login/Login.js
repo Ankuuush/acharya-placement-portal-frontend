@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Button, Container, TextField } from "@mui/material";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate , useSearchParams} from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 import "../../Styles/LoginSignUp.css";
 import jwt_decode from "jwt-decode";
@@ -17,7 +17,9 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const [searchParams] = useSearchParams();
+  console.log(location);
+  const from = location.state?.from?.pathname || searchParams.get("redirect") || "/";
   const [random_quote] = useState(constants.RANDOM_QUOTE());
 
   const onChange = (e) => {

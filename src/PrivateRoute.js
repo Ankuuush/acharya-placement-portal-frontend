@@ -10,7 +10,7 @@ const PrivateRoute = ({role}) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!currentUser) {
-      navigate("/login", { replace: true });
+      navigate("/login?redirect=" + location.pathname, { replace: true });
       return;
     }
     currentUser.getIdTokenResult().then((result)=>{

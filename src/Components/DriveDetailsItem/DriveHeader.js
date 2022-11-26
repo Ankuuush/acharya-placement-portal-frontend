@@ -18,9 +18,9 @@ function parseRoleType(role) {
   }
 }
 
-const DriveHeader = ({ job, refreshJob , toggleDriveBookmark}) => {
+const DriveHeader = ({ job, refreshJob, toggleDriveBookmark }) => {
   const handleSave = () => {
-    toggleDriveBookmark(job._id, function(bookmarked){
+    toggleDriveBookmark(job._id, function (bookmarked) {
       refreshJob();
     });
   };
@@ -30,28 +30,37 @@ const DriveHeader = ({ job, refreshJob , toggleDriveBookmark}) => {
         <div className="drive-header">
           <img src={job.company.logoUrl} height={60} className="drive-logo" />
           <div className="drive-header-group">
-            <p className="drive-company">
-              {job.company.name}
-            </p>
+            <p className="drive-company">{job.company.name}</p>
             <p className="drive-role">{job.role}</p>
           </div>
         </div>
-        {!job.calculatedEligibility.eligible ? <Badge
-              icon={"x"}
-              text={"Not Eligible To Apply"}
-              color="#d65885"
-              backgroundColor="#fbeff5"
-            /> : <Badge
+        {job.applied ? (
+          <Badge
+            icon={"check"}
+            text={"Already Applied"}
+            color="green"
+            backgroundColor="#e7fde8"
+          />
+        ) : !job.calculatedEligibility.eligible ? (
+          <Badge
+            icon={"x"}
+            text={"Not Eligible To Apply"}
+            color="#d65885"
+            backgroundColor="#fbeff5"
+          />
+        ) : (
+          <Badge
             icon={"check"}
             text={"Eligible To Apply"}
             color="green"
             backgroundColor="#e7fde8"
-          />}
+          />
+        )}
         {/* <ProfileMatch /> TODO:Do we need this? */}
       </div>
       <div className="drive-body-root">
         <div className="drive-body-top">
-        <div className="badge-group">
+          <div className="badge-group">
             <Badge
               icon={"clock"}
               text={new Date(job.regitrationDeadline).toLocaleString("en-in", {
@@ -97,25 +106,46 @@ const DriveHeader = ({ job, refreshJob , toggleDriveBookmark}) => {
             )}
             {job.location && <Badge icon={"map-pin"} text={job.location} />}
           </div>
-            </div>
-        <div className="drive-quick-action-root" style={{marginTop: 30}}>
-            <div className="drive-salary">
-              <p className="drive-salary-icon">₹</p>
-              <p className="drive-salary-text">
-                {job.ctc.toLocaleString("en-IN")} LPA
-              </p>
-            </div>
-            <div style={{display: "flex",alignItems: "center"}}>
-            <div className="save-job" onClick={handleSave} style={{padding: 12,marginRight: 15, background: job.bookmarked ? "#1f357e" : null}}>
-            <FeatherIcon
-              icon={"bookmark"}
-              color={job.bookmarked ? "white" : "#213780"}
-              size={17}
-              className="bookmark-icon"
-            />
+        </div>
+        <div className="drive-quick-action-root" style={{ marginTop: 30 }}>
+          <div className="drive-salary">
+            <p className="drive-salary-icon">₹</p>
+            <p className="drive-salary-text">
+              {job.ctc.toLocaleString("en-IN")} LPA
+            </p>
           </div>
-          <button className="drive-apply-button" disabled={!job.calculatedEligibility.eligible} style={{cursor: !job.calculatedEligibility.eligible && "not-allowed", backgroundColor: !job.calculatedEligibility.eligible && "#ededed", color: !job.calculatedEligibility.eligible && "#62666c"}}>{job.calculatedEligibility.eligible ? "Apply To Drive" : "Not Eligible"}</button>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <div
+              className="save-job"
+              onClick={handleSave}
+              style={{
+                padding: 12,
+                marginRight: 15,
+                background: job.bookmarked ? "#1f357e" : null,
+              }}
+            >
+              <FeatherIcon
+                icon={"bookmark"}
+                color={job.bookmarked ? "white" : "#213780"}
+                size={17}
+                className="bookmark-icon"
+              />
             </div>
+            <button
+              className="drive-apply-button"
+              disabled={!job.calculatedEligibility.eligible}
+              style={{
+                cursor: !job.calculatedEligibility.eligible && "not-allowed",
+                backgroundColor:
+                  !job.calculatedEligibility.eligible && "#ededed",
+                color: !job.calculatedEligibility.eligible && "#62666c",
+              }}
+            >
+              {job.applied ? "View Application" : job.calculatedEligibility.eligible
+                ? "Apply To Drive"
+                : "Not Eligible"}
+            </button>
+          </div>
         </div>
       </div>
       <hr className="job-hr" />
