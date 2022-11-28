@@ -166,6 +166,14 @@ const DriveHeader = ({ job, refreshJob, toggleDriveBookmark }) => {
             </p>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
+          {job.applicants.total > 0 && <div style={{marginRight: 15}}>
+            <div style={{display: "flex", alignItems: "center"}}>
+            <p style={{marginRight: 30}}>{job.applicants.total} {job.applicants.total > 1 ? "Applicants" : "Applicant"}</p>
+              {job.applicants.photos.map((photo) => (
+                  <img src={photo} height={35} width={35} style={{borderRadius: "50%", marginRight: 5, marginLeft: -20}} />
+              ))}
+              </div>
+            </div>}
             <div
               className="save-job"
               onClick={handleSave}
