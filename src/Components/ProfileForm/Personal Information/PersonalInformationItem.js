@@ -1,14 +1,9 @@
 import React, { useRef, useState } from "react";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import {
-  getStorage,
-  ref as firebaseRef,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
-import {
   Box,
   Button,
+  CircularProgress,
   FormControl,
   InputLabel,
   MenuItem,
@@ -16,24 +11,38 @@ import {
   TextField,
 } from "@mui/material";
 import { toast } from "react-toastify";
+import api from "../../../api";
 
 const PersonalInformationItem = ({
   personalInfo,
   setPersonalInfo,
   handleSubmit,
 }) => {
-  const storage = getStorage();
   const ref = useRef(null);
   const onClick = (e) => {
     ref.current.click();
   };
-  const [progress, setProgress] = useState(0);
-  const [uploaded, setUploaded] = useState(false);
-  const [profileImage, setProfileImage] = useState(null);
+  const [uploading, setUploading] = useState(false);
   const handleChange = async (e) => {
-    if (e.target.files[0]) {
-      setProfileImage(e.target.files[0]);
-    }
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("scope", "profile_picture");
+    formData.append("file", e.target.files[0]);
+    api
+      .post("/student/upload", formData)
+      .then((res) => {
+        setPersonalInfo({ ...personalInfo, photoUrl: res.data.data.location });
+        toast.success("Profile Picture Uploaded!", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+          hideProgressBar: true,
+        });
+        setUploading(false);
+      })
+      .catch((err) => {
+        toast.error("Server Error!");
+        setUploading(false);
+      });
   };
   const [loading, setLoading] = useState(false);
 
@@ -41,56 +50,13 @@ const PersonalInformationItem = ({
     setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.value });
   };
 
-  const handleUpload = () => {
-    setUploaded(true);
-    const metadata = {
-      contentType: "image/jpeg",
-    };
-
-    const storageRef = firebaseRef(storage, "images/" + profileImage.name);
-    const uploadTask = uploadBytesResumable(storageRef, profileImage, metadata);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setProgress(progress);
-      },
-      (error) => {
-        toast.error("Server Error!");
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setPersonalInfo({ ...personalInfo, photoUrl: downloadURL });
-          toast.success("Profile Picture Uploaded!", {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 1500,
-            hideProgressBar: true,
-          });
-        });
-      }
-    );
-  };
+  const handleUpload = () => {};
 
   const handleSubmitBut = (e) => {
     e.preventDefault();
     setLoading(true);
     if (handleSubmit()) setLoading(false);
   };
-
-  // useEffect(() => {
-  //   const displayName = currentUser.displayName.split(" ");
-  //   const firstName = displayName[0];
-  //   let lastName = "";
-  //   for (let i = 1; i < displayName.length; i++)
-  //     lastName += displayName[i] + " ";
-  //   setUserData({
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     email: currentUser.email,
-  //   });
-  // }, [currentUser]);
 
   return (
     <div
@@ -122,32 +88,33 @@ const PersonalInformationItem = ({
           justifyContent: "center",
           alignItems: "center",
           cursor: "pointer",
+          marginBottom: 20
         }}
       >
-        <CameraAltIcon style={{ color: "white" }} />
+        {uploading ? (
+          <CircularProgress />
+        ) : <div>
+          {!personalInfo.photoUrl ? (
+          <CameraAltIcon style={{ color: "white" }} />
+        ) : (
+          <img
+            src={personalInfo.photoUrl}
+            alt="Profile"
+            style={{
+              width: "6em",
+              height: "6em",
+              borderRadius: "3em",
+              background: "rgba(0, 0, 0, 0.36)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer",
+            }}
+          />
+        )}
+          </div>} 
+        
       </div>
-      <Button
-        size="small"
-        variant="contained"
-        disabled={profileImage?false:true}
-        style={{
-          display: uploaded ? "none" : "",
-          width: "20%",
-          margin: "0.5em",
-        }}
-        onClick={handleUpload}
-      >
-        Upload
-      </Button>
-      <progress
-        style={{
-          display: !uploaded ? "none" : "",
-          width: "20%",
-          margin: "0.5em",
-        }}
-        value={progress}
-        max="100"
-      />
       <form
         onSubmit={handleSubmitBut}
         style={{
@@ -232,7 +199,7 @@ const PersonalInformationItem = ({
           onChange={onChange}
           value={personalInfo.usn}
           size="normal"
-          label="USN"
+          label="USNN"
           type="text"
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}

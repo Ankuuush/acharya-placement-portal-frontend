@@ -16,9 +16,9 @@ const DriveDetails = ({toggleDriveBookmark}) => {
   useEffect(() => {
     getSingleDrive();
 
-    setInterval(() => {
-      getSingleDrive();
-    } , 10000);
+    // setInterval(() => {
+    //   getSingleDrive();
+    // } , 10000);
   }, []);
 
   function getSingleDrive() {

@@ -89,19 +89,22 @@ const ProfileForm = ({setComponent, profileData, activeStep, setActiveStep }) =>
         </div>
         <div style={{width:"60%",display:"flex",alignItems:"center"}}>
       <ProgressBar progress={profileData.progress.completedPercentage}/>
-      <button onClick={async()=> await logout()}>Logout</button>
+      <button onClick={async()=> {
+        await logout()
+        navigate('/login')
+      }} className="profile-logout">Logout</button>
       </div>
         </div>
       {/* <div style={{height:"1px",background:"grey",marginBottom:"2rem"}}></div> */}
         
-    <div style={{display:"flex"}}>
-        {/* <Steps activeStep={activeStep} /> */}
+    <div style={{display:"flex", height: "100vh", overflow: "scroll"}}>
+        <Steps activeStep={activeStep} />
         {renderSwitch()}
         </div>
       </Box>
-      <div className="right-bloc-flow">
+      {/* <div className="right-bloc-flow">
         <p className="right-bloc-text">Add Your Basic Details</p>
-      </div>
+      </div> */}
     </div>
   );
 };
