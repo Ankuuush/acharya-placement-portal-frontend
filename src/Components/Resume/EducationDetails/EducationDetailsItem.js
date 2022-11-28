@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../../api";
+import Modal from "../../ModalComponent";
 import EducationalDetailsItem from "../../ProfileForm/EducationalDetails/educationalDetailsItem";
-import UpdateResumeModal from "../../UpdateResumeModal";
 
 const ResumeEducationDetailsItem = ({ text, data, setData, showModal }) => {
   const [childOpen, setChildOpen] = useState(false);
@@ -33,7 +33,7 @@ const ResumeEducationDetailsItem = ({ text, data, setData, showModal }) => {
   };
   return (
     <>
-      <UpdateResumeModal
+      <Modal
         open={childOpen}
         setOpen={setChildOpen}
         component={

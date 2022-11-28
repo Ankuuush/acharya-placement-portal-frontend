@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
 import PersonalInformationItem from "../ProfileForm/Personal Information/PersonalInformationItem";
-import UpdateResumeModal from "../UpdateResumeModal";
 import FormatDate from "../Items/FormatDate";
+import ModalComponent from "../ModalComponent";
 
 const PersonalInformation = ({ data, setData }) => {
   const [open, setOpen] = useState(false);
@@ -40,7 +40,7 @@ const PersonalInformation = ({ data, setData }) => {
   
   return (
     <>
-      <UpdateResumeModal
+      <ModalComponent
         open={open}
         setOpen={setOpen}
         component={

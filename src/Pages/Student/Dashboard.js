@@ -107,8 +107,6 @@ const Dashboard = ({ page = "" }) => {
     studentProfile();
   }, [page, currentUser]);
 
-
-
   if (!component)
     return (
       <div style={{ marginTop: "40vh", marginLeft: "50vw" }}>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CertificationsItem from "../../ProfileForm/Certifications/CertificationsItem";
 import { toast } from "react-toastify";
 import api from "../../../api";
-import UpdateResumeModal from "../../UpdateResumeModal";
+import Modal from "../../ModalComponent";
 
 const ResumeCertificationItem = ({ item, setData, showModal }) => {
   const [childOpen, setChildOpen] = useState(false);
@@ -42,7 +42,7 @@ const ResumeCertificationItem = ({ item, setData, showModal }) => {
   }
   return (
     <div>
-      <UpdateResumeModal
+      <Modal
         open={childOpen}
         setOpen={setChildOpen}
         component={

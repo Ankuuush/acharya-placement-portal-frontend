@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UpdateResumeModal from "../../UpdateResumeModal";
+import Modal from "../../ModalComponent";
 import ResumeAchievementItem from "./AchievementItem";
 
 const AchievementsComponent = ({ data,setData,showModal,setOpen }) => {
@@ -21,7 +21,7 @@ const Achievements=({data,setData})=>{
   const [open, setOpen] = useState(false);
   return (
     <>
-      <UpdateResumeModal
+      <Modal
         open={open} setOpen={setOpen}
         component={<AchievementsComponent data={data} setData={setData} showModal={true} setOpen={setOpen} />}/>
       <AchievementsComponent data={data} showModal={false} setOpen={setOpen} />

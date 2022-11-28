@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../../api";
 import SkillItem from "../../Items/SkillItem";
+import Modal from "../../ModalComponent";
 import SkillsCategoryItem from "../../ProfileForm/Skills/SkillsCategoryItem";
-import UpdateResumeModal from "../../UpdateResumeModal";
 
 const ResumeSkillCategoryItem = ({
   skillType,
@@ -43,7 +43,7 @@ const ResumeSkillCategoryItem = ({
   };
   return (
     <>
-      <UpdateResumeModal
+      <Modal
         open={childOpen}
         setOpen={setChildOpen}
         component={

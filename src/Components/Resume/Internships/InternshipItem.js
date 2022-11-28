@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import UpdateResumeModal from "../../UpdateResumeModal";
 import InternshipItem from "../../ProfileForm/Internship Experience/internshipItem";
 import { toast } from "react-toastify";
 import api from "../../../api";
+import Modal from "../../ModalComponent";
 
 const ResumeInternshipItem = ({ item, setData, showModal }) => {
   const [childOpen, setChildOpen] = useState(false);
@@ -46,7 +46,7 @@ const ResumeInternshipItem = ({ item, setData, showModal }) => {
   }
   return (
     <>
-      <UpdateResumeModal
+      <Modal
         open={childOpen}
         setOpen={setChildOpen}
         component={

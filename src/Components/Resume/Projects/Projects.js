@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UpdateResumeModal from "../../UpdateResumeModal";
+import Modal from "../../ModalComponent";
 import ResumeProjectItem from "./ProjectItem";
 
 const ProjectsComponent = ({ data,setData,showModal,setOpen }) => {
@@ -21,7 +21,7 @@ const Projects=({data,setData})=>{
   const [open, setOpen] = useState(false);
   return (
     <>
-      <UpdateResumeModal
+      <Modal
         open={open} setOpen={setOpen}
         component={<ProjectsComponent data={data} setData={setData} showModal={true} setOpen={setOpen} />}/>
       <ProjectsComponent data={data} showModal={false} setOpen={setOpen} />

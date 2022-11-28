@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Badge from "../Badge/Badge";
 import FeatherIcon from "feather-icons-react";
 import "./DriveHeader.css";
+import api from "../../api";
+import { toast } from "react-toastify";
+import QuestionForm from "./QuestionsForm/QuestionForm";
+import ModalComponent from "../ModalComponent";
+import { useNavigate } from "react-router-dom";
 
 function parseRoleType(role) {
   switch (role) {
@@ -19,12 +24,58 @@ function parseRoleType(role) {
 }
 
 const DriveHeader = ({ job, refreshJob, toggleDriveBookmark }) => {
+  const [open, setOpen] = useState(false);
+  const [initialQues, setInitialQues] = useState({})
+  const navigate=useNavigate()
+  useEffect(() => {
+    let newAnswers={}
+    job.additionalQuestions?.forEach((item)=>{
+      if (item.type === "options")
+      {
+        newAnswers[item._id]={}
+        newAnswers[item._id].question=item._id
+        newAnswers[item._id].option=[]
+      }
+      else{
+        newAnswers[item._id]={}
+        newAnswers[item._id].question=item._id
+        newAnswers[item._id].answer=""
+      }
+    })
+    setInitialQues(newAnswers)
+  }, [])
+  
+  
+
   const handleSave = () => {
     toggleDriveBookmark(job._id, function (bookmarked) {
       refreshJob();
     });
   };
+
+  const handleApply=()=>{
+    if(job.applied)
+    {
+      console.log("applied")
+      return 
+    }
+    if(job.additionalQuestions?.length)
+    setOpen(true)
+    else
+    {
+      api.post(`/student/drives/${job._id}/apply`).then((response)=>{
+        toast.success("Application successful!!")
+      navigate('/student/applied-jobs')
+      }).catch((error)=>{
+        toast.error("Server Error!!")
+      })
+      
+    }
+  }
+
   return (
+    <>
+    <ModalComponent  open={open} setOpen={setOpen} component={<QuestionForm job={job} initialQues={initialQues} />} />
     <div className="driveitem-root">
       <div className="drive-header-root">
         <div className="drive-header">
@@ -140,6 +191,7 @@ const DriveHeader = ({ job, refreshJob, toggleDriveBookmark }) => {
                   !job.calculatedEligibility.eligible && "#ededed",
                 color: !job.calculatedEligibility.eligible && "#62666c",
               }}
+              onClick={handleApply}
             >
               {job.applied ? "View Application" : job.calculatedEligibility.eligible
                 ? "Apply To Drive"
@@ -150,6 +202,7 @@ const DriveHeader = ({ job, refreshJob, toggleDriveBookmark }) => {
       </div>
       <hr className="job-hr" />
     </div>
+    </>
   );
 };
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Badge from "../../Components/Badge/Badge";
 import FeatherIcon from "feather-icons-react";
 import DriveHeader from "../../Components/DriveDetailsItem/DriveHeader";
 import DriveBody from "../../Components/DriveDetailsItem/DriveBody";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UpdateResumeModal from "../../UpdateResumeModal";
+import Modal from "../../ModalComponent";
 import ResumeEducationDetailsItem from "./EducationDetailsItem";
 
 const EducationDetailsComponent = ({ data,setData, showModal, setOpen }) => {
@@ -21,7 +21,7 @@ const EducationDetails = ({ data,setData }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <UpdateResumeModal
+      <Modal
         open={open} setOpen={setOpen}
         component={<EducationDetailsComponent data={data} setData={setData} showModal={true} setOpen={setOpen} />}/>
       <EducationDetailsComponent data={data} showModal={false} setOpen={setOpen} />
