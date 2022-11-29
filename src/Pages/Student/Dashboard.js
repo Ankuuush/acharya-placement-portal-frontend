@@ -16,6 +16,7 @@ import constants from "../../Constants";
 import DriveDetails from "./DriveDetails";
 import { useNavigate } from "react-router-dom";
 import SavedJobs from "./Saved Jobs/SavedJobs";
+import Application from "./Application/Application";
 
 const Dashboard = ({ page = "" }) => {
   const navigate = useNavigate();
@@ -119,8 +120,6 @@ const Dashboard = ({ page = "" }) => {
     setActiveStep(step);
   }
 
-
-
   if (!component)
     return (
       <div style={{ marginTop: "40vh", marginLeft: "50vw" }}>
@@ -169,6 +168,7 @@ const Dashboard = ({ page = "" }) => {
             {component === "saved-jobs" && (
             <SavedJobs change={changeSelectedComponent} toggleDriveBookmark={toggleDriveBookmark} />
           )}
+          {component === "application-details" && <Application />}
         </Box>
       </div>
     </div>

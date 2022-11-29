@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UpdateResumeModal from "../../UpdateResumeModal";
+import Modal from "../../ModalComponent";
 import ResumeSkillCategoryItem from "./SkillCategoryItem";
 
 const SkillsComponent = ({
@@ -58,7 +58,7 @@ const Skills = ({
   const [open, setOpen] = useState(false);
   return (
     <>
-      <UpdateResumeModal
+      <Modal
         open={open}
         setOpen={setOpen}
         component={

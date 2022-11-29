@@ -1,10 +1,8 @@
-import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
 import BranchMap from "../../Components/Items/BranchMap";
 import FormatDate from "../../Components/Items/FormatDate";
-import NavBar from "../../Components/navbar";
 import Achievements from "../../Components/Resume/Achievements/Achievements";
 import Certifications from "../../Components/Resume/Certifications/Certifications";
 import EducationDetails from "../../Components/Resume/EducationDetails/EducationDetails";

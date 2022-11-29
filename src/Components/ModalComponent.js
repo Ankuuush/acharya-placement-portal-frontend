@@ -15,7 +15,7 @@ const style = {
   overflow:"scroll"
 };
 
-export default function UpdateResumeModal({open,setOpen,component}) {
+export default function ModalComponent({open,setOpen,component}) {
   const handleClose = () => setOpen(false);
 
   return (

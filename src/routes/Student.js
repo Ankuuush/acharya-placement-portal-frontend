@@ -19,6 +19,11 @@ const Student = () => {
         path={"/student/drives/:driveid"}
         element={<Dashboard page={"drive-details"} />}
       />
+      <Route
+        exact
+        path={"/student/application/:applicationId"}
+        element={<Dashboard page={"application-details"} />}
+      />
     </Route>
   );
 };

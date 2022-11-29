@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ResumeCertificationItem from "./CertificationItem";
-import UpdateResumeModal from "../../UpdateResumeModal";
+import Modal from "../../ModalComponent";
 
 const CertificationsComponent = ({ data,setData,showModal,setOpen }) => {
   const handleOpen = () => {
@@ -21,7 +21,7 @@ const Certifications=({data,setData})=>{
   const [open, setOpen] = useState(false);
   return (
     <>
-      <UpdateResumeModal
+      <Modal
         open={open} setOpen={setOpen}
         component={<CertificationsComponent data={data} setData={setData} showModal={true} setOpen={setOpen} />}/>
       <CertificationsComponent data={data} showModal={false} setOpen={setOpen} />
