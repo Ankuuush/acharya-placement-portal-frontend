@@ -8,7 +8,7 @@ const EducationDetailsComponent = ({ data,setData, showModal, setOpen }) => {
   };
   return (
     <div>
-      <h3>Education Details</h3>
+      <h3 style={{marginBottom: 30}}>Education Detailss</h3>
       <ResumeEducationDetailsItem text={"10th"} data={data.tenth} setData={setData} showModal={showModal}/>
       <ResumeEducationDetailsItem text={"12th"} data={data.twelfth} setData={setData} showModal={showModal}/>
       <ResumeEducationDetailsItem text={"graduation"} data={data.ug} setData={setData} showModal={showModal}/>

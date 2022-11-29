@@ -26,6 +26,9 @@ const Dashboard = ({ page = "" }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [profileData, setProfileData] = useState(null);
 
+
+  
+
   const changeSelectedComponent = (component, scope) => {
     navigate("/student/" + component); //useful to pass params in url
     setComponent(scope || component);
@@ -43,70 +46,79 @@ const Dashboard = ({ page = "" }) => {
   }
 
   useEffect(() => {
-    async function studentProfile() {
-      let token = "";
-      await currentUser
-        .getIdTokenResult()
-        .then((result) => {
-          token = result.claims;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
-      if (token.account === "student") {
-        api
-          .get("/student/profile/progress")
-          .then((response) => {
-            if (response.data.data.progress.completed) {
-              if (page) setComponent(page);
-              return;
-            }
-            setProfileData(response.data.data);
-            setComponent("student-profile");
-            if (!response.data.data.progress.completedPercentage) {
-              setActiveStep(0);
-              return;
-            }
-            console.log(response);
-            switch (response.data.data.progress.goToStep) {
-              case "basicDetails":
-                setActiveStep(0);
-                break;
-              case "educationDetails":
-                setActiveStep(1);
-                break;
-              case "skills":
-              case "softSkills":
-              case "languages":
-                setActiveStep(2);
-                break;
-              case "internshipDetails":
-                setActiveStep(3);
-                break;
-              case "projects":
-                setActiveStep(4);
-                break;
-              case "certifications":
-                setActiveStep(5);
-                break;
-              case "achievements":
-                setActiveStep(6);
-                break;
-              default:
-                setActiveStep(0);
-            }
-          })
-          .catch(() => {
-            toast.error("Server Error!");
-          });
-      } else if (page) {
-        setComponent(page);
-      }
-    }
-
     studentProfile();
   }, [page, currentUser]);
+
+  async function studentProfile() {
+    let token = "";
+    await currentUser
+      .getIdTokenResult()
+      .then((result) => {
+        token = result.claims;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    if (token.account === "student") {
+      api
+        .get("/student/profile/progress")
+        .then((response) => {
+          if (response.data.data.progress.completed) {
+            if (page) setComponent(page);
+            return;
+          }
+          setProfileData(response.data.data);
+          setComponent("student-profile");
+          if (!response.data.data.progress.completedPercentage) {
+            setActiveStep(0);
+            return;
+          }
+          console.log(response);
+          switch (response.data.data.progress.goToStep) {
+            case "basicDetails":
+              setActiveStep(0);
+              break;
+            case "educationDetails":
+              setActiveStep(1);
+              break;
+            case "skills":
+            case "softSkills":
+            case "languages":
+              setActiveStep(2);
+              break;
+            case "internshipDetails":
+              setActiveStep(3);
+              break;
+            case "projects":
+              setActiveStep(4);
+              break;
+            case "certifications":
+              setActiveStep(5);
+              break;
+            case "achievements":
+              setActiveStep(6);
+              break;
+            default:
+              setActiveStep(0);
+          }
+        })
+        .catch(() => {
+          toast.error("Server Error!");
+        });
+    } else if (page) {
+      setComponent(page);
+    }
+  }
+
+  const ChangeActiveStep = async (step) => {
+    await studentProfile();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    setActiveStep(step);
+  }
 
   if (!component)
     return (
@@ -121,7 +133,7 @@ const Dashboard = ({ page = "" }) => {
         setComponent={changeSelectedComponent}
         profileData={profileData}
         activeStep={activeStep}
-        setActiveStep={setActiveStep}
+        setActiveStep={ChangeActiveStep}
       />
     );
 
@@ -146,7 +158,7 @@ const Dashboard = ({ page = "" }) => {
           {component === "explore-jobs" && (
             <StudentDashboard change={changeSelectedComponent} toggleDriveBookmark={toggleDriveBookmark} />
           )}
-          {component === "applied-jobs" && <AppliedJobs />}
+          {component === "applied-jobs" && <AppliedJobs change={changeSelectedComponent} />}
           {component === "resume" && <Resume />}
           {component === "feedback" && <FeedBack />}
           {component === "contact-us" && <ContactUs />}

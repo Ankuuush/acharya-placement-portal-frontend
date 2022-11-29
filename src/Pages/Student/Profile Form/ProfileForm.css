@@ -22,3 +22,10 @@
     border-radius: 5px;
     color: white;
 }
+
+.profile-form-root {
+    display: flex;           /* establish flex container */
+    flex-direction: row;  /* make main axis vertical */
+    justify-content: center; /* center items vertically, in this case */
+    align-items: center;
+}

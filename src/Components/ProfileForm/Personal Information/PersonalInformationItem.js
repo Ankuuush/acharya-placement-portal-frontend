@@ -68,6 +68,7 @@ const PersonalInformationItem = ({
         alignItems: "center",
       }}
     >
+      <h3 style={{marginBottom: 30}}>Personal Details</h3>
       <input
         name="Profile Picture"
         ref={ref}
@@ -121,7 +122,7 @@ const PersonalInformationItem = ({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          width: "80%",
+          width: "100%",
         }}
       >
         <div style={{ position: "relative", width: "100%" }}>
@@ -199,7 +200,7 @@ const PersonalInformationItem = ({
           onChange={onChange}
           value={personalInfo.usn}
           size="normal"
-          label="USNN"
+          label="USN"
           type="text"
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
