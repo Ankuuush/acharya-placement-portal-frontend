@@ -77,12 +77,12 @@ const ProfileForm = ({setComponent, profileData, activeStep, setActiveStep }) =>
   };
 
   return (
-    <div style={{display: "flex"}}>
+    <div style={{display: "flex", backgroundColor: "rgb(243, 244, 248)"}}>
       <Box
         component="main"
         sx={{ p: 3, flex: 3.5}}
       >
-        <div style={{ width:"100%",display:"flex",justifyContent:"space-between", marginBottom: 50}}>
+        <div style={{ width:"100%",display:"flex",justifyContent:"space-between", marginBottom: 60}}>
         <div style={{display:"flex",alignItems: "center"}}>
         <PlacementLogoSmall/>
         <SquareBadge text="Student Onboarding" />
@@ -97,14 +97,15 @@ const ProfileForm = ({setComponent, profileData, activeStep, setActiveStep }) =>
         </div>
       {/* <div style={{height:"1px",background:"grey",marginBottom:"2rem"}}></div> */}
         
-    <div style={{display:"flex", height: "100vh", overflow: "scroll"}}>
+    <div>
+        <div className="profile-form-root">
+        <div style={{display: "flex", boxShadow: "rgba(17, 17, 26, 0.1) 0px 0px 16px", padding: 20, background: "white", borderRadius: 15, minWidth: "60%"}}>
         <Steps activeStep={activeStep} />
         {renderSwitch()}
         </div>
+        </div>
+        </div>
       </Box>
-      {/* <div className="right-bloc-flow">
-        <p className="right-bloc-text">Add Your Basic Details</p>
-      </div> */}
     </div>
   );
 };

@@ -59,12 +59,12 @@ const EducationalDetails = ({activeStep,setActiveStep}) => {
         alignItems: "center",
       }}
     >
-      <h2>Educational Details</h2>
+      <h2 style={{marginBottom: 50}}>Educational Details</h2>
 
-        <EducationalDetailsItem educationalInfo={tenthInfo} setEducationalInfo={setTenthInfo} handleSubmit={handleSubmit} text={"10th"}/>
-        {/* <EducationalDetailsItem  educationalInfo={twelththInfo} setEducationalInfo={setTwelthInfo} handleSubmit={handleSubmit} text={"12th"} />
-        <EducationalDetailsItem educationalInfo={ugInfo} setEducationalInfo={setUgInfo}  handleSubmit={handleSubmit} text={"graduation"}/>
-        <NextButton setActiveStep={setActiveStep} activeStep={activeStep} disable={count!==3} styleProp={{width: "48%"}}/>  */}
+       {count == 0 && <EducationalDetailsItem educationalInfo={tenthInfo} setEducationalInfo={setTenthInfo} handleSubmit={handleSubmit} text={"10th"}/>}
+        {count == 1 && <EducationalDetailsItem  educationalInfo={twelththInfo} setEducationalInfo={setTwelthInfo} handleSubmit={handleSubmit} text={"12th"} />}
+        {count == 2 && <EducationalDetailsItem educationalInfo={ugInfo} setEducationalInfo={setUgInfo}  handleSubmit={handleSubmit} text={"graduation"}/>}
+        <NextButton setActiveStep={setActiveStep} activeStep={activeStep} disable={count!==3} styleProp={{width: "48%"}}/> 
     </div>
   );
 };
