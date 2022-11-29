@@ -18,7 +18,6 @@ const Login = () => {
   let navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
-  console.log(location);
   const from = location.state?.from?.pathname || searchParams.get("redirect") || "/";
   const [random_quote] = useState(constants.RANDOM_QUOTE());
 

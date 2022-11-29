@@ -56,8 +56,8 @@ const DriveHeader = ({ job, refreshJob, toggleDriveBookmark }) => {
   const handleApply=()=>{
     if(job.applied)
     {
-      console.log("applied")
-      return 
+      navigate(`/student/application/${job.applicationId}`)
+      return
     }
     if(job.additionalQuestions?.length)
     setOpen(true)
