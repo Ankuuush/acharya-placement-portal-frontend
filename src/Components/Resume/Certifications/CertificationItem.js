@@ -55,7 +55,7 @@ const ResumeCertificationItem = ({ item, setData, showModal }) => {
         }
       />
       <p>{item.organization}</p>
-      <p>{item.name}</p>
+      <h4>{item.name}</h4>
       <p>{item.description}</p>
       <p>{item.certificateLink}</p>
       {showModal && <button onClick={handleClick}>Edit</button>}

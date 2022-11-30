@@ -8,11 +8,19 @@ const ProjectsComponent = ({ data,setData,showModal,setOpen }) => {
   };
   return (
     <div>
-      <h3>Projects</h3>
+      <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}>Projects</h4>
+      <div style={{display:"flex", flexDirection:"row", paddingLeft:"58rem"}}>
+        {!showModal && <button onClick={handleOpen}>Edit</button>}
+      </div>
+      <ul>
+      <li>
       {data.map((item) => (
         <ResumeProjectItem key={item._id} item={item} setData={setData} showModal={showModal} />
       ))}
-      {!showModal && <button onClick={handleOpen}>Edit</button>}
+      </li> </ul>
+      <div style={{paddingTop:"0.5rem"}}>
+        <hr className="job-hr"/>
+      </div>
     </div>
   );
 };

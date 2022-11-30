@@ -17,16 +17,24 @@ const SkillsComponent = ({
   };
   return (
     <div>
-      <h3>Skills</h3>
-      <h5> Coding Skills </h5>
+      <h3 style={{color:"orange", paddingTop:"1.5rem"}}> Skills</h3>
+      <div style={{display:"flex", flexDirection:"row"}}>
+      <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}> Coding Skills </h4>
+      <div style={{paddingLeft:"52rem"}}>
+      {!showModal && <button onClick={handleOpen}>Edit</button>}
+      </div></div>
+      <div style={{display:"flex", flexDirection:"row", }}>
       <ResumeSkillCategoryItem
         skillType={"Coding Skills"}
         endpoint={"/student/profile/skills"}
         data={skills}
         setData={setSkills}
         showModal={showModal}
-      />
-      <h5> Interpersonal Skills </h5>
+        
+      /></div>
+      
+      
+      <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}> Interpersonal Skills </h4>
       <ResumeSkillCategoryItem
         skillType={"Interpersonal Skills"}
         endpoint={"/student/profile/softskills"}
@@ -34,7 +42,7 @@ const SkillsComponent = ({
         setData={setSoftSkills}
         showModal={showModal}
       />
-      <h5> Languages </h5>
+      <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}> Languages </h4>
       <ResumeSkillCategoryItem
         skillType={"Languages"}
         endpoint={"/student/profile/languages"}
@@ -42,7 +50,7 @@ const SkillsComponent = ({
         setData={setLanguages}
         showModal={showModal}
       />
-      {!showModal && <button onClick={handleOpen}>Edit</button>}
+      
     </div>
   );
 };
