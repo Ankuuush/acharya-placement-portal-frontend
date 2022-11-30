@@ -6,7 +6,7 @@ const SkillItem = ({ skill,disableBut,onDelete,skillStyle }) => {
   return (
     <div
       style={{
-        width: "7rem",
+        width: "fit-content",
         height: "1.6rem",
         display: "flex",
         flexDirection: "row",
@@ -43,7 +43,7 @@ const SkillItem = ({ skill,disableBut,onDelete,skillStyle }) => {
       {!disableBut &&<button
       onClick={()=>onDelete(skill._id)}
         style={{
-          width: "30%",
+          width: "fit-content",
           height: "100%",
           padding: "0",
           border: "none",

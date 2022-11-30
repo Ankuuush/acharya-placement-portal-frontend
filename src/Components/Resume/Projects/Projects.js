@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../../ModalComponent";
 import ResumeProjectItem from "./ProjectItem";
+import FeatherIcon from "feather-icons-react";
 
 const ProjectsComponent = ({ data,setData,showModal,setOpen }) => {
   const handleOpen = () => {
@@ -10,16 +11,25 @@ const ProjectsComponent = ({ data,setData,showModal,setOpen }) => {
     <div>
       <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}>Projects</h4>
       <div style={{display:"flex", flexDirection:"row", paddingLeft:"58rem"}}>
-        {!showModal && <button onClick={handleOpen}>Edit</button>}
+        {!showModal && <button onClick={handleOpen}><FeatherIcon icon="edit" size={15} color="#064709" /></button>}
       </div>
-      <ul>
-      <li>
+      
+       
       {data.map((item) => (
-        <ResumeProjectItem key={item._id} item={item} setData={setData} showModal={showModal} />
+        <div className="grid-container" style={{width:"700px", paddingBottom:"1rem"}}>
+        <div className="grid-item">
+       <ul>
+       <li> 
+        <ResumeProjectItem key={item._id} item={item} setData={setData} showModal={showModal} /> 
+       </li> 
+       </ul>
+       </div>
+       </div>
       ))}
-      </li> </ul>
-      <div style={{paddingTop:"0.5rem"}}>
-        <hr className="job-hr"/>
+      
+     
+      <div style={{paddingTop:"1.5rem"}}>
+        <hr className="resume-hr"/>
       </div>
     </div>
   );

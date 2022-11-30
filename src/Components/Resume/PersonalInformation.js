@@ -4,6 +4,7 @@ import api from "../../api";
 import PersonalInformationItem from "../ProfileForm/Personal Information/PersonalInformationItem";
 import FormatDate from "../Items/FormatDate";
 import ModalComponent from "../ModalComponent";
+import FeatherIcon from "feather-icons-react";
 
 const PersonalInformation = ({ data, setData }) => {
   const [open, setOpen] = useState(false);
@@ -61,18 +62,18 @@ const PersonalInformation = ({ data, setData }) => {
       <div style={{display:"flex", flexDirection:"row"}}>
       <div style={{paddingLeft:"1rem"}}><h3>{data?.firstName}</h3></div>
       <div style={{paddingLeft:"0.5rem"}}><h3>{data?.lastName}</h3></div>
-      <div style={{display:"flex", flexDirection:"row", paddingLeft:"44rem"}}>
-      <button onClick={handleClick}>Edit</button>
+      <div style={{display:"flex", flexDirection:"row", paddingLeft:"41rem"}}>
+      <button onClick={handleClick}><FeatherIcon icon="edit" size={15} color="#064709" /></button>
       </div>
       </div> 
       
-      <div style={{paddingLeft:"1rem"}}>{data?.email}</div>
-      <div style={{paddingLeft:"1rem"}}>{data?.dob}</div>
-      <div style={{paddingLeft:"1rem"}}>{data?.phone}</div>
+      <div style={{paddingLeft:"1rem", fontWeight:"600",color:"#696969"}}>{data?.email}</div>
+      <div style={{paddingLeft:"1rem", fontWeight:"600",color:"#696969"}}>{data?.dob}</div>
+      <div style={{paddingLeft:"1rem", fontWeight:"600",color:"#696969"}}>{data?.phone}</div>
       </div>
       </div>
-      <div style={{paddingTop:"0.5rem"}}>
-        <hr className="job-hr"/>
+      <div style={{paddingTop:"1.5rem"}}>
+        <hr className="resume-hr"/>
       </div>
       
       

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../../ModalComponent";
 import ResumeEducationDetailsItem from "./EducationDetailsItem";
+import FeatherIcon from "feather-icons-react";
 
 const EducationDetailsComponent = ({ data,setData, showModal, setOpen }) => {
   const handleOpen = () => {
@@ -14,22 +15,22 @@ const EducationDetailsComponent = ({ data,setData, showModal, setOpen }) => {
       <h4>X :</h4>
       <div style={{display:"flex", flexDirection:"column", paddingLeft:"1.1rem"}}>
       <ResumeEducationDetailsItem data={data.tenth} setData={setData} showModal={showModal}/></div>  
-      <div style={{paddingLeft:"53rem"}}>
+      <div style={{paddingLeft:"47rem"}}>
 
-      {!showModal && <button onClick={handleOpen}>Edit</button>}
+      {!showModal && <button onClick={handleOpen}><FeatherIcon icon="edit" size={15} color="#064709" /></button>}
       </div>  
       </div>
       <div style={{display:"flex", flexDirection:"row", paddingTop:"0.5rem"}}>
       <h4>XII :</h4>
       <div style={{display:"flex", flexDirection:"column", paddingLeft:"0.5rem"}}>
-      <ResumeEducationDetailsItem text={"12th"} data={data.twelfth} setData={setData} showModal={showModal}/> </div></div>
+      <ResumeEducationDetailsItem  data={data.twelfth} setData={setData} showModal={showModal}/> </div></div>
       <div style={{display:"flex", flexDirection:"row", paddingTop:"0.5rem"}}>
       <h4>BE :</h4>
       <div style={{display:"flex", flexDirection:"column", paddingLeft:"0.5rem"}}>
-      <ResumeEducationDetailsItem text={"graduation"} data={data.ug} setData={setData} showModal={showModal}/></div></div>
+      <ResumeEducationDetailsItem  data={data.ug} setData={setData} showModal={showModal}/></div></div>
      
-      <div style={{paddingTop:"0.5rem"}}>
-        <hr className="job-hr"/>
+      <div style={{paddingTop:"1.5rem"}}>
+        <hr className="resume-hr"/>
       </div>
     
     </div>

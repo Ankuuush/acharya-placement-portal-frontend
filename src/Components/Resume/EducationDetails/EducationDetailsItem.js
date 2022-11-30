@@ -47,11 +47,11 @@ const ResumeEducationDetailsItem = ({ text, data, setData, showModal }) => {
       />
       <div>{text}</div>
       
-      <div>{data.institution}</div>
-      <div>{data.startyear}</div>
-      <div>{data.endYear}</div>
-      <div>{data.gradeScale}</div>
-      <div>{data.grade}</div>
+      <div style={{fontWeight:"600"}}>{data.institution}</div>
+      <div style={{fontWeight:"600",color:"#696969"}}>{data.startyear}</div>
+      <div style={{fontWeight:"600",color:"#696969"}}>{data.endYear}</div>
+      <div style={{fontWeight:"600",color:"#696969"}}>{data.gradeScale}</div>
+      <div style={{fontWeight:"600",color:"#696969"}}>{data.grade}</div>
       {showModal && <button onClick={handleClick}>Edit</button>}
     </>
   );

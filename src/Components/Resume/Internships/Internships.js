@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../../ModalComponent";
 import ResumeInternshipItem from "./InternshipItem";
+import FeatherIcon from "feather-icons-react";
 
 const InternshipsComponent = ({ data,setData, showModal, setOpen }) => {
   const handleOpen = () => {
@@ -11,7 +12,7 @@ const InternshipsComponent = ({ data,setData, showModal, setOpen }) => {
       
       <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}>Internship</h4>
       <div style={{display:"flex", flexDirection:"row", paddingLeft:"58rem"}}>
-      {!showModal && <button onClick={handleOpen}>Edit</button>}
+      {!showModal && <button onClick={handleOpen}><FeatherIcon icon="edit" size={15} color="#064709" /></button>}
       </div>
      <ul>
       <li>
@@ -19,8 +20,8 @@ const InternshipsComponent = ({ data,setData, showModal, setOpen }) => {
         <ResumeInternshipItem key={item._id} item={item} setData={setData} showModal={showModal} />
       ))}
       </li></ul>
-      <div style={{paddingTop:"0.5rem"}}>
-        <hr className="job-hr"/>
+      <div style={{paddingTop:"1.5rem"}}>
+        <hr className="resume-hr"/>
       </div>
     </div>
     

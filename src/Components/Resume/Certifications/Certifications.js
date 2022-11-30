@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ResumeCertificationItem from "./CertificationItem";
 import Modal from "../../ModalComponent";
+import FeatherIcon from "feather-icons-react";
 
 const CertificationsComponent = ({ data,setData,showModal,setOpen }) => {
   const handleOpen = () => {
@@ -10,16 +11,19 @@ const CertificationsComponent = ({ data,setData,showModal,setOpen }) => {
     <div>
       <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}>Certifications</h4>
       <div style={{display:"flex", flexDirection:"row", paddingLeft:"58rem"}}>
-        {!showModal && <button onClick={handleOpen}>Edit</button>}
+        {!showModal && <button onClick={handleOpen}><FeatherIcon icon="edit" size={15} color="#064709" /></button>}
       </div>
+     
+      {data.map((item) => ( 
+      <div style={{width:"700px", paddingBottom:"1rem"}}>
       <ul>
       <li>
-      {data.map((item) => (
-        <ResumeCertificationItem key={item._id} item={item} setData={setData} showModal={showModal} />
+        <ResumeCertificationItem key={item._id} item={item} setData={setData} showModal={showModal} /></li></ul>
+        </div>
       ))}
-      </li></ul>
+      
       <div style={{paddingTop:"0.5rem"}}>
-        <hr className="job-hr"/>
+        <hr className="resume-hr"/>
       </div>
     </div>
   );

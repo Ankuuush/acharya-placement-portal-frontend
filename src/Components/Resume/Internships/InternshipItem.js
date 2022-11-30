@@ -59,17 +59,17 @@ const ResumeInternshipItem = ({ item, setData, showModal }) => {
         }
       />
       <div>
-        <h4>{item.companyName}</h4>
-        <h5><p>{item.role}</p></h5>
-        <div style={{display:"flex", flexDirection:"row"}}>
+        <h4><p>{item.role}</p></h4>
+        <div style={{fontWeight:"600",color:"#696969",fontSize:"14px"}}>{item.companyName}</div>
+        <div style={{display:"flex", flexDirection:"row", fontWeight:"600",color:"#696969",fontSize:"14px"}}>
         <p>{item.startMonth}</p>
-        <div style={{paddingLeft:"0.5rem"}}><p>{item.startYear}</p></div>
+        <div style={{paddingLeft:"0.5rem", fontWeight:"600",color:"#696969",fontSize:"14px"}}><p>{item.startYear}</p></div>
         </div>
-        <div style={{display:"flex", flexDirection:"row"}}>
+        <div style={{display:"flex", flexDirection:"row", fontWeight:"600",color:"#696969",fontSize:"14px"}}>
         <p>{item.endMonth}</p>
-        <div style={{paddingLeft:"0.5rem"}}><p>{item.endYear}</p></div>
+        <div style={{paddingLeft:"0.5rem", fontWeight:"600",color:"#696969",fontSize:"14px"}}><p>{item.endYear}</p></div>
         </div>
-        <p>{item.description}</p>
+        <p style={{fontWeight:"600",color:"#696969",fontSize:"14px"}}>{item.description}</p>
         <p>{item.ongoing}</p>
         {showModal && <button onClick={handleClick}>Edit</button>}
         {showModal && <button onClick={handleDelete}>Delete</button>}

@@ -52,10 +52,11 @@ const ResumeProjectItem = ({ item, setData, showModal }) => {
           />
         }
       />
+      
       <div>
         <h4>{item.title}</h4>
-        <p>{item.link}</p>
-        <p>{item.description}</p>
+        <p style={{fontWeight:"600",color:"#696969",fontSize:"14px"}}>{item.link}</p>
+        <p style={{fontWeight:"600",color:"#696969",fontSize:"14px"}}>{item.description}</p>
       </div>
       {showModal && <button onClick={handleClick}>Edit</button>}
       {showModal && <button onClick={handleDelete}>Delete</button>}
