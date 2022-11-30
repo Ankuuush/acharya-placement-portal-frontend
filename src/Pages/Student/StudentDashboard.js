@@ -10,10 +10,13 @@ const StudentDashboard = ({ change, toggleDriveBookmark }) => {
 
   useEffect(() => {
     getAllDrives();
-
-    setInterval(() => {
+    const interval=setInterval(() => {
       getAllDrives();
     }, 10000);
+
+    return ()=>{
+      return clearInterval(interval)
+    }
   }, []);
 
   const getAllDrives = () => {
@@ -36,6 +39,7 @@ const StudentDashboard = ({ change, toggleDriveBookmark }) => {
       change={change}
       toggleDriveBookmark={toggleDriveBookmark}
       getAllDrives={getAllDrives}
+      text="Apply Now"
     />
   );
 };
