@@ -21,7 +21,7 @@ const SkillsComponent = ({
       <h3 style={{color:"orange", paddingTop:"1.5rem"}}> Skills</h3>
       <div style={{display:"flex", flexDirection:"row"}}>
       <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}> Coding Skills </h4>
-      <div style={{paddingLeft:"52rem"}}>
+      <div style={{paddingLeft:"49rem"}}>
       {!showModal && <button onClick={handleOpen}><FeatherIcon icon="edit" size={15} color="#064709" /></button>}
       </div></div>
       <div style={{display:"flex", flexDirection:"row", }}>

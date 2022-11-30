@@ -65,7 +65,7 @@ const Resume = () => {
     //   <NavBar />
     //   <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
     <>
-    <div style={{width:"1130px", backgroundColor:"white",padding:"4rem", borderRadius:"10px"}}>
+    <div style={{width:"1130px", backgroundColor:"white",padding:"6rem", borderRadius:"10px"}}>
         <PersonalInformation data={basicDetails} setData={setBasicDetails} />
         <EducationDetails
           data={educationDetails}

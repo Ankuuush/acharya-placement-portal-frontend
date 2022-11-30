@@ -10,7 +10,7 @@ const ProjectsComponent = ({ data,setData,showModal,setOpen }) => {
   return (
     <div>
       <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}>Projects</h4>
-      <div style={{display:"flex", flexDirection:"row", paddingLeft:"58rem"}}>
+      <div style={{display:"flex", flexDirection:"row", paddingLeft:"55rem"}}>
         {!showModal && <button onClick={handleOpen}><FeatherIcon icon="edit" size={15} color="#064709" /></button>}
       </div>
       

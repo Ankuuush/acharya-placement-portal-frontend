@@ -15,7 +15,7 @@ const EducationDetailsComponent = ({ data,setData, showModal, setOpen }) => {
       <h4>X :</h4>
       <div style={{display:"flex", flexDirection:"column", paddingLeft:"1.1rem"}}>
       <ResumeEducationDetailsItem data={data.tenth} setData={setData} showModal={showModal}/></div>  
-      <div style={{paddingLeft:"47rem"}}>
+      <div style={{paddingLeft:"44rem"}}>
 
       {!showModal && <button onClick={handleOpen}><FeatherIcon icon="edit" size={15} color="#064709" /></button>}
       </div>  

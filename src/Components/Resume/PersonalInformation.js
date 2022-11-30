@@ -62,7 +62,7 @@ const PersonalInformation = ({ data, setData }) => {
       <div style={{display:"flex", flexDirection:"row"}}>
       <div style={{paddingLeft:"1rem"}}><h3>{data?.firstName}</h3></div>
       <div style={{paddingLeft:"0.5rem"}}><h3>{data?.lastName}</h3></div>
-      <div style={{display:"flex", flexDirection:"row", paddingLeft:"41rem"}}>
+      <div style={{display:"flex", flexDirection:"row", paddingLeft:"37.5rem"}}>
       <button onClick={handleClick}><FeatherIcon icon="edit" size={15} color="#064709" /></button>
       </div>
       </div> 
