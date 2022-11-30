@@ -8,7 +8,17 @@ import {
 import logo from "../../Assets/Acharya_logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
+<<<<<<< Updated upstream
 import '../LoginSignUp.css'
+=======
+
+import jwt_decode from "jwt-decode";
+import taxi from "../../Assets/taxi.png";
+import { toast } from "react-toastify";
+import PlacementLogo from "../../Components/Logo/PlacementLogo";
+import constants from "../../Constants";
+import Spinner from "../../Components/Spinner/Spinner";
+>>>>>>> Stashed changes
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
