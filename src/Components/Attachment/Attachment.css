@@ -1,0 +1,31 @@
+.attachment-root {
+    min-width: 250px;
+    max-width: 250px;
+    text-align: center;
+    /* box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; */
+    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    margin-right: 20px;
+}
+
+.open-btn-atta {
+    background-color: #1f357e;
+    padding: 5px 13px;
+    border-radius: 1000px;
+    cursor: pointer;
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.atta-key-text {
+    font-size: 18px;
+    white-space: nowrap;
+  overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.atta-info {
+    color: #8c8c8c;
+}

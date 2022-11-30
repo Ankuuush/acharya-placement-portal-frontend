@@ -1,0 +1,12 @@
+.explore-root {
+    height: auto;
+    padding: 5px;
+    display: flex;
+    background-color:#f3f4f8;
+}
+
+.left-job-root {
+    flex: 4;
+    height: fit-content;
+}
+

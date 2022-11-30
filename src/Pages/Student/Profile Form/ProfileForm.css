@@ -1,0 +1,31 @@
+.right-bloc-flow {
+    flex: 0.9;
+    background-color: #233780;
+    background-image: url("https://acharyaplacement-dev.s3.ap-south-1.amazonaws.com/public/website-assets/Untitled%20design%20%2816%29.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.right-bloc-text {
+    color: #fff;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 33px;
+}
+
+.profile-logout {
+    background-color: #233780;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 5px;
+    color: white;
+}
+
+.profile-form-root {
+    display: flex;           /* establish flex container */
+    flex-direction: row;  /* make main axis vertical */
+    justify-content: center; /* center items vertically, in this case */
+    align-items: center;
+}

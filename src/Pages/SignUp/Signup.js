@@ -1,13 +1,15 @@
 import React, { useContext, useState } from "react";
-import {
-  Button,
-  Container,
-  TextField,
-  Alert,
-} from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Button, Container, TextField } from "@mui/material";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
-import '../LoginSignUp.css'
+import "../../Styles/LoginSignUp.css";
+import jwt_decode from "jwt-decode";
+import logo from "../../Assets/Acharya_logo.png";
+import taxi from "../../Assets/taxi.png";
+import { toast } from "react-toastify";
+import PlacementLogo from "../../Components/Logo/PlacementLogo";
+import constants from "../../Constants";
+import Spinner from "../../Components/Spinner/Spinner";
 
 import jwt_decode from "jwt-decode";
 import logo from "../../Assets/Acharya_logo.png";
@@ -25,59 +27,109 @@ const Signup = () => {
     firstName: "",
     lastName: "",
   });
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
   const authContext = useContext(AuthContext);
-  const { signup,updateName } = authContext;
+  const { signup } = authContext;
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+  const [random_quote] = useState(constants.RANDOM_QUOTE());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (credentials.password !== credentials.confirmPassword) {
-      return setError("Passwords do not match.");
+      return toast.error("Passwords Do Not Match!");
     }
     try {
-      setError("");
       setLoading(true);
-      await signup(credentials.email, credentials.password);
-      await updateName(credentials.firstName+" "+credentials.lastName)
-      navigate("/");
-    } catch {
-      setError("Failed to create an account");
+      let response = await signup(
+        credentials.email,
+        credentials.password,
+        credentials.firstName,
+        credentials.lastName
+      );
+      if (response.data) {
+        toast.success("Signup Successful! Check your email to verify your account.", {
+          position: "bottom-center",
+          theme: "colored",
+        });
+        navigate("/login");
+      } else {
+        response =response.response;
+        toast.error(typeof response.data.error === "object" ? response.data.error.message ||  response.data.error.code : response.data.error , {
+          position: "bottom-center",
+          theme: "colored",
+        });
+      }
+    } catch(err) {
+      console.log(err)
+      toast.error("Failed to create an account!", {
+        position: "bottom-center",
+        theme: "colored",
+      });
     }
     setLoading(false);
   };
 
-  
   return (
     <div id="login-signup-container">
-      <div id="left-component">
-        <img src="https://research.collegeboard.org/media/2022-02/iStock_000021255451_Large-780x585.jpg" alt="left component" width="100%" height="100%" />
-      </div>
       <div id="right-component">
-      <h2 style={{ textAlign: "center", marginTop: "6rem" }}>Let's Get You Registered!</h2>
-        <Container style={{ width: "70%", marginTop: "2rem" }}>
-          {error && (
-            <Alert style={{ marginBottom: "1rem" }} severity="error">
-              {error}
-            </Alert>
-          )}
+        <div className="quote-component">
+        <h3>{random_quote.text}</h3>
+          <p>-{random_quote.author}</p>
+        </div>
+        <img src={taxi} alt="taxi" height={520} className="display-vector" />
+      </div>
+      <div id="left-component">
+      <Container style={{ width: "90%", margin: 0, padding: "20px 20px" }}>
+      <PlacementLogo />
+      
+        <div className="login-form">
+        <h2 className="login-header">
+        Let's Get You Registered!
+      </h2>
           <form
             onSubmit={handleSubmit}
             style={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
             }}
           >
+            <div style={{ position: "relative", width: "100%" }}>
+              <TextField
+                name="firstName"
+                onChange={onChange}
+                value={credentials.firstName}
+                size="normal"
+                label="First Name"
+                type="text"
+                variant="outlined"
+                style={{ width: "48%", margin: "0.35rem 0" }}
+                required
+              />
+              <TextField
+                name="lastName"
+                onChange={onChange}
+                value={credentials.lastName}
+                size="normal"
+                label="Last Name"
+                type="text"
+                variant="outlined"
+                style={{
+                  width: "48%",
+                  position: "absolute",
+                  right: "0",
+                  margin: "0.35rem 0",
+                }}
+                required
+              />
+            </div>
             <TextField
               name="email"
               onChange={onChange}
               value={credentials.email}
-              size="small"
+              size="normal"
               label="Email"
               variant="outlined"
               type="email"
@@ -88,7 +140,7 @@ const Signup = () => {
               name="password"
               onChange={onChange}
               value={credentials.password}
-              size="small"
+              size="normal"
               label="Password"
               type="password"
               variant="outlined"
@@ -99,54 +151,52 @@ const Signup = () => {
               name="confirmPassword"
               onChange={onChange}
               value={credentials.passwordConfirm}
-              size="small"
+              size="normal"
               label="Confirm Password"
               type="password"
               variant="outlined"
               style={{ width: "100%", margin: "0.35rem 0" }}
               required
             />
-            <div style={{position:"relative", width:"100%"}}>
-            <TextField
-              name="firstName"
-              onChange={onChange}
-              value={credentials.firstName}
-              size="small"
-              label="First Name"
-              type="text"
-              variant="outlined"
-              style={{ width: "48%" }}
-              required
-            />
-            <TextField
-              name="lastName"
-              onChange={onChange}
-              value={credentials.lastName}
-              size="small"
-              label="Last Name"
-              type="text"
-              variant="outlined"
-              style={{ width: "48%",position:"absolute", right:"0" }}
-              required
-            />
-            </div>
-            <Button
+             <div style={{display: "flex",alignItems: "center", textAlign: "center", verticalAlign: "center"}}>
+            <button
               disabled={loading}
-              size="small"
+              size="large"
               variant="contained"
               color="warning"
               type="submit"
-              style={{ width: "60%", marginTop: "2rem", marginBottom: "0.5rem" }}
+              style={{
+                width: "60%",
+                marginTop: "1.5rem",
+                marginBottom: "0.5rem",
+                border: "none",
+                padding: "1rem 2rem",
+                borderRadius: 5,
+                fontSize: 20,
+                backgroundColor: "#f1922e",
+                color: "white",
+                cursor: "pointer",
+              }}
             >
               Next
-            </Button>
+            </button>
+            {loading && <Spinner />}
+            </div>
           </form>
-          <p style={{ margin: "0", textAlign: "center" }}>
-        Already Registered?<Link to="/login"> Log In</Link>
-      </p>
-        </Container>
+          <div className="prompts">
+            <p className="prompt-tags">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                style={{ color: "#4A75B5", textDecoration: "none" }}
+              >
+                Login Here.
+              </Link>
+            </p>
+          </div>
         </div>
-      
+      </Container>
+      </div>
     </div>
   );
 };

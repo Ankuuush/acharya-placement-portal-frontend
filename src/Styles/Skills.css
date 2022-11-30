@@ -1,0 +1,30 @@
+
+.autocomplete {
+    height:10rem;
+     overflow:auto;
+    position: absolute;
+    width: 100%;
+    background:#fff;
+    border-radius: 0.5rem;
+    box-shadow:0 0.2rem 0.6rem rgba(0,0,0,0.3);
+    z-index:2
+}
+
+.autocompleteItems {
+    border-bottom: 1px solid #e6e6e6;
+    padding: 0.5rem 0.2rem;
+    cursor: pointer;
+    display: flex;
+    align-content: center;
+}
+
+.autocompleteItems:hover{
+    background-color:#e6e6e6;
+}
+
+.autocompleteItems-p{
+    margin:0;
+    margin-left: 0.5rem;
+    height: 100%;
+    
+}
