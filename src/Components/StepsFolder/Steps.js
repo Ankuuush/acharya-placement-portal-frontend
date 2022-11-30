@@ -39,7 +39,7 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
 function Steps({activeStep}) {
 
     return(
-        <div style={{ width: "18rem", margin: "0 3rem" ,height:"90vh", backgroundColor: "#1E4786", display: "flex", justifyContent:"center", borderRadius:"15px"}}>
+        <div style={{height:"90vh", backgroundColor: "#1E4786", display: "flex", justifyContent:"center", borderRadius:"15px", padding: "30px 50px", marginRight: 50}}>
            
            <Stepper  activeStep={activeStep} connector={<QontoConnector />} orientation={"vertical"} style={{color:"white"}}>
         {steps.map((label) => (

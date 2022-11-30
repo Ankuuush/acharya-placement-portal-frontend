@@ -1,0 +1,10 @@
+.a-jobitem-root {
+    flex: 1;
+    border-radius: 5px;
+    background-color: white;
+    display: grid;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+  padding: 10px;
+
+  }

@@ -49,7 +49,7 @@ const DriveDetails = ({toggleDriveBookmark}) => {
   return (
     <>
     {loading ? <Spinner/> : error ? <div style={{textAlign: "center"}}>
-      <img src="https://i.imgur.com/qIufhof.png" height={400} />
+      <img src="https://acharyaplacement-dev.s3.ap-south-1.amazonaws.com/public/website-assets/qIufhof.png" height={400} />
       <p>{error}</p>
     </div> 
     :<div>

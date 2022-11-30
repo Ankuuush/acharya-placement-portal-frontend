@@ -62,6 +62,7 @@ const ResumeSkillCategoryItem = ({
           disableBut={true}
           onDelete={() => {}}
           skillStyle={{ width: "100%" }}
+          style={{display:"flex", flexDirection:"row", paddingRight:"1rem"}}
         />
       ))}
       {showModal && <button onClick={handleClick}>Edit</button>}

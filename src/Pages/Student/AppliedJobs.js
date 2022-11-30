@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Search from "../../Components/Search/Search";
-import Filter from "../../Components/Filter/Filter";
-import JobItem from "../../Containers/Jobitem/Jobitem";
+import AppliedItem from "../../Containers/Driveitem/Applieditem";
 import Spinner from "../../Components/Spinner/Spinner";
 import api from "../../api";
+import "./index.css";
 
-const AppliedJobs = () => {
+const AppliedJobs = ({ change }) => {
   const [drives, setDrives] = useState([]);
-  const [searchDrives, setSearchDrives] = useState(drives)
+  const [searchDrives, setSearchDrives] = useState(drives);
   const [loading, setLoading] = useState(false);
   const [filterOpen, setFilterOpen] = useState(true);
-
 
   useEffect(() => {
     getAppliedDrives();
@@ -26,8 +24,8 @@ const AppliedJobs = () => {
 
   const getAppliedDrives = () => {
     api.get("/student/drives/applied").then((response) => {
-      setDrives(response.data.data.bookmarks);
-      setSearchDrives(response.data.data.bookmarks);
+      setDrives(response.data.data.applications);
+      setSearchDrives(response.data.data.applications);
       // setFilterDrives(response.data.data.bookmarks);
       setLoading(false);
     });
@@ -61,18 +59,35 @@ const AppliedJobs = () => {
   return (
     <div style={styleAppliedRoot}>
       <div style={styleLeftJobRoot}>
-        <Search
-          data={drives} setDriveData={setDriveData} assignLoading={assignLoading} toggleFilter={toggleFilter} filter={filterOpen} loading={loading}
-        />
-        {/* {loading ? (
+        <div
+          className="search-root"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <h4>Applied Drives</h4>
+          <p>gg</p>
+        </div>
+        {loading ? (
           <div style={{ textAlign: "center" }}>
             <Spinner />
           </div>
-        ) : (searchDrives.length>0?
-          searchDrives.map((job, index) => (
-            <JobItem key={index} job={job} text={"Selected"} />
-          )):<h3 style={{textAlign:"center",marginTop:"2rem"}}>No drive found!!</h3>
-        )} */}
+        ) : searchDrives.length > 0 ? (
+          <div className="applied-jobs-grid">
+            {searchDrives.map((job, index) => (
+              <AppliedItem
+                key={index}
+                job={job.drive}
+                text={"Selected"}
+                application={job}
+                change={change}
+              />
+            ))}
+            
+          </div>
+        ) : (
+          <h3 style={{ textAlign: "center", marginTop: "2rem" }}>
+            No applications found!!
+          </h3>
+        )}
       </div>
       {/* {filterOpen && <Filter />} */}
     </div>
