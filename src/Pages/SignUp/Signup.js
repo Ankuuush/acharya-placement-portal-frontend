@@ -7,9 +7,7 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
-<<<<<<< Updated upstream
 import '../LoginSignUp.css'
-=======
 
 import jwt_decode from "jwt-decode";
 import logo from "../../Assets/Acharya_logo.png";
@@ -18,7 +16,6 @@ import { toast } from "react-toastify";
 import PlacementLogo from "../../Components/Logo/PlacementLogo";
 import constants from "../../Constants";
 import Spinner from "../../Components/Spinner/Spinner";
->>>>>>> Stashed changes
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
