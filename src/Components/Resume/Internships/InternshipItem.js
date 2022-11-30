@@ -59,12 +59,16 @@ const ResumeInternshipItem = ({ item, setData, showModal }) => {
         }
       />
       <div>
-        {item.companyName}
-        <p>{item.role}</p>
+        <h4>{item.companyName}</h4>
+        <h5><p>{item.role}</p></h5>
+        <div style={{display:"flex", flexDirection:"row"}}>
         <p>{item.startMonth}</p>
-        <p>{item.startYear}</p>
+        <div style={{paddingLeft:"0.5rem"}}><p>{item.startYear}</p></div>
+        </div>
+        <div style={{display:"flex", flexDirection:"row"}}>
         <p>{item.endMonth}</p>
-        <p>{item.endYear}</p>
+        <div style={{paddingLeft:"0.5rem"}}><p>{item.endYear}</p></div>
+        </div>
         <p>{item.description}</p>
         <p>{item.ongoing}</p>
         {showModal && <button onClick={handleClick}>Edit</button>}
