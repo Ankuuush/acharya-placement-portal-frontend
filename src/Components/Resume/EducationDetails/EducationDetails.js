@@ -8,10 +8,6 @@ const EducationDetailsComponent = ({ data,setData, showModal, setOpen }) => {
   };
   return (
     <div>
-      <h3 style={{marginBottom: 30}}>Education Detailss</h3>
-      <ResumeEducationDetailsItem text={"10th"} data={data.tenth} setData={setData} showModal={showModal}/>
-      <ResumeEducationDetailsItem text={"12th"} data={data.twelfth} setData={setData} showModal={showModal}/>
-      <ResumeEducationDetailsItem text={"graduation"} data={data.ug} setData={setData} showModal={showModal}/>
 
       <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}>Education Details</h4>
       <div style={{display:"flex", flexDirection:"row"}}>

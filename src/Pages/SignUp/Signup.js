@@ -11,14 +11,6 @@ import PlacementLogo from "../../Components/Logo/PlacementLogo";
 import constants from "../../Constants";
 import Spinner from "../../Components/Spinner/Spinner";
 
-import jwt_decode from "jwt-decode";
-import logo from "../../Assets/Acharya_logo.png";
-import taxi from "../../Assets/taxi.png";
-import { toast } from "react-toastify";
-import PlacementLogo from "../../Components/Logo/PlacementLogo";
-import constants from "../../Constants";
-import Spinner from "../../Components/Spinner/Spinner";
-
 const Signup = () => {
   const [credentials, setCredentials] = useState({
     email: "",
