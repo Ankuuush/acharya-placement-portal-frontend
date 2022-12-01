@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import CertificationsItem from "./CertificationsItem";
 import { toast } from "react-toastify";
 
-const Certifications = ({activeStep,setActiveStep}) => {
+const Certifications = ({activeStep,setActiveStep,handleAdd=false}) => {
   const [certificationsArray, setCertificationsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
   const [certifications, setCertifications] = useState({
@@ -30,7 +30,7 @@ const Certifications = ({activeStep,setActiveStep}) => {
           certificateLink: certifications.certificateLink,
           description: certifications.description,
       })
-      .then(() => {
+      .then((response) => {
         toast.success("Data saved!");
         setCertifications({
           organization: "",
@@ -39,6 +39,10 @@ const Certifications = ({activeStep,setActiveStep}) => {
           description: "",
         });
         setNewForm(false);
+        if(handleAdd)
+        {
+          handleAdd(response.data.data.profile.certifications)
+        }
       })
       .catch(() => {
         toast.error("Server Error!");
@@ -75,7 +79,7 @@ const Certifications = ({activeStep,setActiveStep}) => {
             handleSubmit={handleSubmit}
           />
         )}
-        <div
+        {!handleAdd && <div
           style={{
             width: "100%",
             display: "flex",
@@ -103,7 +107,7 @@ const Certifications = ({activeStep,setActiveStep}) => {
             disable={false}
             styleProp={{ width: "48%" }}
           />
-        </div>
+        </div>}
       </div>
     </div>
   );

@@ -16,7 +16,8 @@ const JobDashboard = ({
   change,
   toggleDriveBookmark,
   getAllDrives,
-  from
+  from,
+  text
 }) => {
   const [filterOpen, setFilterOpen] = useState(true);
   const [filterArray, setFilterArray] = useState([]);
@@ -105,7 +106,7 @@ const JobDashboard = ({
             <JobItem
               key={index}
               job={job}
-              text={"Apply Now"}
+              text={text}
               change={change}
               toggleDriveBookmark={toggleDriveBookmark}
               getAllDrives={getAllDrives}

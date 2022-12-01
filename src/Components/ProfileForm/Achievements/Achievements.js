@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import AchievementItem from "./AchievementItem";
 import { toast } from "react-toastify";
 
-const Achievements = ({activeStep,setActiveStep}) => {
+const Achievements = ({activeStep,setActiveStep,handleAdd=false}) => {
   const [achievementsArray, setAchievementsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
   const [achievements, setAchievements] = useState({
@@ -28,7 +28,7 @@ const Achievements = ({activeStep,setActiveStep}) => {
         link: achievements.link,
         description: achievements.description
       })
-      .then(() => {
+      .then((response) => {
         toast.success("Data saved!");
         setAchievements({
           organization: "",
@@ -37,6 +37,10 @@ const Achievements = ({activeStep,setActiveStep}) => {
           description: "",
       });
         setNewForm(false);
+        if(handleAdd)
+        {
+          handleAdd(response.data.data.profile.achievements)
+        }
       })
       .catch(() => {
         toast.error("Server Error!");
@@ -74,7 +78,7 @@ const Achievements = ({activeStep,setActiveStep}) => {
             handleSubmit={handleSubmit}
           />
         )}
-        <div
+        {!handleAdd && <div
           style={{
             width: "100%",
             display: "flex",
@@ -102,7 +106,7 @@ const Achievements = ({activeStep,setActiveStep}) => {
             disable={false}
             styleProp={{ width: "48%" }}
           />
-        </div>
+        </div>}
       </div>
     </div>
   )

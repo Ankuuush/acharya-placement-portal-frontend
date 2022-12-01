@@ -13,9 +13,13 @@ const AppliedJobs = ({ change }) => {
   useEffect(() => {
     getAppliedDrives();
 
-    setInterval(() => {
+    const interval=setInterval(() => {
       getAppliedDrives();
     }, 10000);
+
+    return ()=>{
+      return clearInterval(interval)
+    }
   }, []);
 
   const getAppliedDrives = () => {
