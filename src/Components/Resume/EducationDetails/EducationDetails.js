@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../../ModalComponent";
 import ResumeEducationDetailsItem from "./EducationDetailsItem";
+import FeatherIcon from "feather-icons-react";
 
 const EducationDetailsComponent = ({ data,setData, showModal, setOpen }) => {
   const handleOpen = () => {
@@ -16,7 +17,7 @@ const EducationDetailsComponent = ({ data,setData, showModal, setOpen }) => {
       <ResumeEducationDetailsItem data={data.tenth} setData={setData} showModal={showModal}/></div>  
       <div style={{paddingLeft:"53rem"}}>
 
-      {!showModal && <button onClick={handleOpen}>Edit</button>}
+      {!showModal && <FeatherIcon icon='edit-2' onClick={handleOpen} style={{cursor:"pointer"}} />}
       </div>  
       </div>
       <div style={{display:"flex", flexDirection:"row", paddingTop:"0.5rem"}}>

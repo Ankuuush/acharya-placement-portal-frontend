@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../../ModalComponent";
 import ResumeSkillCategoryItem from "./SkillCategoryItem";
+import FeatherIcon from "feather-icons-react";
 
 const SkillsComponent = ({
   skills,
@@ -21,7 +22,7 @@ const SkillsComponent = ({
       <div style={{display:"flex", flexDirection:"row"}}>
       <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}> Coding Skills </h4>
       <div style={{paddingLeft:"52rem"}}>
-      {!showModal && <button onClick={handleOpen}>Edit</button>}
+      {!showModal && <FeatherIcon icon='edit-2' onClick={handleOpen} style={{cursor:"pointer"}} />}
       </div></div>
       <div style={{display:"flex", flexDirection:"row", }}>
       <ResumeSkillCategoryItem

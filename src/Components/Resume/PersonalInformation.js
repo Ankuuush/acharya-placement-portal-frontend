@@ -4,6 +4,7 @@ import api from "../../api";
 import PersonalInformationItem from "../ProfileForm/Personal Information/PersonalInformationItem";
 import FormatDate from "../Items/FormatDate";
 import ModalComponent from "../ModalComponent";
+import FeatherIcon from "feather-icons-react";
 
 const PersonalInformation = ({ data, setData }) => {
   const [open, setOpen] = useState(false);
@@ -62,7 +63,7 @@ const PersonalInformation = ({ data, setData }) => {
       <div style={{paddingLeft:"1rem"}}><h3>{data?.firstName}</h3></div>
       <div style={{paddingLeft:"0.5rem"}}><h3>{data?.lastName}</h3></div>
       <div style={{display:"flex", flexDirection:"row", paddingLeft:"44rem"}}>
-      <button onClick={handleClick}>Edit</button>
+      <FeatherIcon icon='edit-2' onClick={handleClick} style={{cursor:"pointer"}} />
       </div>
       </div> 
       

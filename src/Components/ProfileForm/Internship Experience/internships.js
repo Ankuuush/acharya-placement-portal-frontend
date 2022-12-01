@@ -6,7 +6,7 @@ import api from "../../../api";
 import { Button } from "@mui/material";
 import { toast } from "react-toastify";
 
-const Internships = ({ activeStep, setActiveStep }) => {
+const Internships = ({ activeStep, setActiveStep,handleAdd=false }) => {
   const [internshipsArray, setInternshipsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
   const [internships, setInternships] = useState({
@@ -38,7 +38,7 @@ const Internships = ({ activeStep, setActiveStep }) => {
         description: internships.description,
         role: internships.role,
       })
-      .then(() => {
+      .then((response) => {
         toast.success("Data saved!");
         setInternships({
           companyName: "",
@@ -51,6 +51,10 @@ const Internships = ({ activeStep, setActiveStep }) => {
           description: "",
         });
         setNewForm(false);
+        if(handleAdd)
+        {
+          handleAdd(response.data.data.profile.internshipDetails)
+        }
       })
       .catch(() => {
         toast.error("Server Error!");
@@ -88,7 +92,7 @@ const Internships = ({ activeStep, setActiveStep }) => {
             handleSubmit={handleSubmit}
           />
         )}
-        <div
+        {!handleAdd && <div
           style={{
             width: "100%",
             display: "flex",
@@ -118,7 +122,7 @@ const Internships = ({ activeStep, setActiveStep }) => {
             disable={newForm}
             styleProp={{ width: "48%" }}
           />
-        </div>
+        </div>}
       </div>
     </div>
   );
