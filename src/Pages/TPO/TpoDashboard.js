@@ -10,13 +10,16 @@ import PostJobs from "./PostJobs";
 import StudentList from "./StudentList";
 import Registration from "./Registration";
 import constants from "../../Constants";
+import { useNavigate } from "react-router-dom";
+import DriveDetails from "../Student/DriveDetails";
 
 const Dashboard = ({ page = "" }) => {
+  const navigate = useNavigate();
   const [component, setComponent] = useState("");
 
-  const changeSelectedComponent = (component) => {
-    window.history.pushState({}, null, "/tpo/" + component);
-    setComponent(component);
+  const changeSelectedComponent = (component, scope) => {
+    navigate("/tpo/" + component); //useful to pass params in url
+    setComponent(scope || component);
   };
 
   useEffect(() => {
@@ -48,7 +51,8 @@ const Dashboard = ({ page = "" }) => {
       >
         <Topbar />
         <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#f3f4f8" }}>
-          {component === "explore-jobs" && <TpoExploreJobs />}
+          {component === "explore-jobs" && <TpoExploreJobs change={changeSelectedComponent} />}
+          {component === "drive-details" && <DriveDetails />}
           {component === "post-jobs" && <PostJobs />}
           {component === "student-list" && <StudentList />}
           {component === "registration" && <Registration />}

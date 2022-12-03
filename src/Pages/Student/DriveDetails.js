@@ -21,7 +21,7 @@ const DriveDetails = ({toggleDriveBookmark}) => {
   }, []);
 
   function getSingleDrive() {
-    api.get("/student/drives/"+ driveid).then((response) => {
+    api.get("/tpo/drives/"+ driveid).then((response) => {
       setJob(response.data.data.drive);
       setLoading(false);
     }).catch((error) => {
