@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import ProjectsItem from "./ProjectsItem";
 import { toast } from "react-toastify";
 
-const Projects = ({ activeStep, setActiveStep }) => {
+const Projects = ({ activeStep, setActiveStep,handleAdd=false }) => {
   const [projectsArray, setProjectsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
   const [projects, setProjects] = useState({
@@ -26,7 +26,7 @@ const Projects = ({ activeStep, setActiveStep }) => {
         description: projects.description,
         link: projects.link,
       })
-      .then(() => {
+      .then((response) => {
         toast.success("Data saved!");
         setProjects({
           title: "",
@@ -34,6 +34,10 @@ const Projects = ({ activeStep, setActiveStep }) => {
           link: "",
         });
         setNewForm(false);
+        if(handleAdd)
+        {
+          handleAdd(response.data.data.profile.projects)
+        }
       })
       .catch(() => {
         toast.error("Server Error!");
@@ -70,7 +74,7 @@ const Projects = ({ activeStep, setActiveStep }) => {
             handleSubmit={handleSubmit}
           />
         )}
-        <div
+        {!handleAdd && <div
           style={{
             width: "100%",
             display: "flex",
@@ -100,7 +104,7 @@ const Projects = ({ activeStep, setActiveStep }) => {
             disable={false}
             styleProp={{ width: "48%" }}
           />
-        </div>
+        </div>}
       </div>
     </div>
   );

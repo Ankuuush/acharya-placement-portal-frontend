@@ -1,11 +1,12 @@
 import React from "react";
 import ClearIcon from "@mui/icons-material/Clear";
+import { PaddingOutlined } from "@mui/icons-material";
 
 const SkillItem = ({ skill,disableBut,onDelete,skillStyle }) => {
   return (
     <div
       style={{
-        width: "5rem",
+        width: "7rem",
         height: "1.6rem",
         display: "flex",
         flexDirection: "row",
@@ -14,7 +15,9 @@ const SkillItem = ({ skill,disableBut,onDelete,skillStyle }) => {
         border: "2px solid rgba(0, 0, 0, 0.21)",
         borderRadius: "0.4rem",
         boxShadow: "none",
-        marginBottom:"1rem"
+        marginBottom:"1rem",
+        marginRight:"1rem"
+        
       }}
     >
       <p
@@ -31,7 +34,8 @@ const SkillItem = ({ skill,disableBut,onDelete,skillStyle }) => {
           fontSize: "0.8em",
           whiteSpace:"nowrap",
           overflow:"hidden",
-          textOverflow:"ellipsis"
+          textOverflow:"ellipsis",
+          
         }}
       >
         {skill.name}

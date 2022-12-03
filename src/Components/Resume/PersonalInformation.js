@@ -4,6 +4,7 @@ import api from "../../api";
 import PersonalInformationItem from "../ProfileForm/Personal Information/PersonalInformationItem";
 import FormatDate from "../Items/FormatDate";
 import ModalComponent from "../ModalComponent";
+import FeatherIcon from "feather-icons-react";
 
 const PersonalInformation = ({ data, setData }) => {
   const [open, setOpen] = useState(false);
@@ -51,19 +52,33 @@ const PersonalInformation = ({ data, setData }) => {
           />
         }
       />
-      <h3>Personal Info</h3>
-      <img
+     <div style={{display:"flex", flexDirection:"row"}}>
+      <img 
         src={data?.photoUrl}
         alt="Profile Picture"
-        style={{ width: "5rem", height: "5rem" }}
-      />
-      <div>{data?.gender}</div>
-      <div>{data?.firstName}</div>
-      <div>{data?.lastName}</div>
-      <div>{data?.email}</div>
-      <div>{data?.dob}</div>
-      <div>{data?.phone}</div>
-      <button onClick={handleClick}>Edit</button>
+        style={{ width: "6.5rem", height: "6.5rem" , borderRadius:"8rem"}}
+      />  
+      <div style={{display:"flex", flexDirection:"column"}}>
+      <div style={{display:"flex", flexDirection:"row"}}>
+      <div style={{paddingLeft:"1rem"}}><h3>{data?.firstName}</h3></div>
+      <div style={{paddingLeft:"0.5rem"}}><h3>{data?.lastName}</h3></div>
+      <div style={{display:"flex", flexDirection:"row", paddingLeft:"44rem"}}>
+      <FeatherIcon icon='edit-2' onClick={handleClick} style={{cursor:"pointer"}} />
+      </div>
+      </div> 
+      
+      <div style={{paddingLeft:"1rem"}}>{data?.email}</div>
+      <div style={{paddingLeft:"1rem"}}>{data?.dob}</div>
+      <div style={{paddingLeft:"1rem"}}>{data?.phone}</div>
+      </div>
+      </div>
+      <div style={{paddingTop:"0.5rem"}}>
+        <hr className="job-hr"/>
+      </div>
+      
+      
+      
+      
     </>
   );
 };

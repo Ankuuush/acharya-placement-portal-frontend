@@ -11,9 +11,13 @@ const SavedJobs = ({ change, toggleDriveBookmark }) => {
   useEffect(() => {
     getAllDrives();
 
-    setInterval(() => {
+    const interval=setInterval(() => {
       getAllDrives();
     }, 10000);
+
+    return ()=>{
+      return clearInterval(interval)
+    }
   }, []);
 
   const getAllDrives = () => {
@@ -37,6 +41,7 @@ const SavedJobs = ({ change, toggleDriveBookmark }) => {
       toggleDriveBookmark={toggleDriveBookmark}
       getAllDrives={getAllDrives}
       from="bookmarks"
+      text="Apply Now"
     />
   );
 };
