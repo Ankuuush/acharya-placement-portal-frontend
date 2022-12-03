@@ -51,6 +51,7 @@ const PersonalInformation = ({ profileData, activeStep, setActiveStep }) => {
       firstName: firstName,
       lastName: lastName,
       email: currentUser.email,
+      usn: profileData.usn,
     });
     setPersonalInfo((prevState) => {
       return {
