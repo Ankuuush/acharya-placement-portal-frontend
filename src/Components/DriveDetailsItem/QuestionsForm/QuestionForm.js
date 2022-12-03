@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../../api";
+import "./QuestionForm.css";
 
 const QuestionForm = ({job,initialQues}) => {
     const [answers, setAnswers] = useState(initialQues)
@@ -50,19 +51,24 @@ const QuestionForm = ({job,initialQues}) => {
   
   
   return (
+    <>
+    <p className="drive-role" style={{textAlign: "center", marginBottom: "40px", fontSize: 23}}>Application Form</p>
     <form onSubmit={handleSubmit}>
-      {job.additionalQuestions.map((item) => {
+      {job.additionalQuestions.map((item,index) => {
         if (item.type === "free-text") {
           return (
             <div key={item._id}>
-              <label htmlFor={`${item._id}`}>{item.question} </label>
-              <input type="text" id={`${item._id}`} value={answers[item._id].answer} required onChange={event=>handleText(event,item)} />
+              <p htmlFor={`${item._id}`} className="add_question">{index+1 + ") " + item.question}  <span style={{color: "red"}}>{ item.required && "*"}</span></p>
+             <div style={{paddingLeft: 20, marginTop: 20, marginBottom: 10}}>
+             <input type="text" id={`${item._id}`} value={answers[item._id].answer} required={item.required} onChange={event=>handleText(event,item)} className="add_free_Text" />
+             </div>
             </div>
           );
         } else if (item.type === "options" && item.multiSelect) {
           return (
             <div key={item._id}>
-              <p>{item.question} </p>
+              <p className="add_question">{index+1 + ") " + item.question}  <span style={{color: "red"}}>{ item.required && "*"}</span> </p>
+              <div style={{paddingLeft: 20}}>
               {item.options.map((optionsItem) => {
                 return (
                   <div key={optionsItem._id}>
@@ -71,6 +77,8 @@ const QuestionForm = ({job,initialQues}) => {
                       id={`${optionsItem._id}`}
                       value={optionsItem._id}
                       onChange={event=>handleCheckbox(event,item)}
+                      className="add_check_button"
+                      required={item.required && answers[item._id].option.length===0}
                     />
                     <label htmlFor={`${optionsItem._id}`}>
                       {optionsItem.text}{" "}
@@ -78,12 +86,14 @@ const QuestionForm = ({job,initialQues}) => {
                   </div>
                 );
               })}
+              </div>
             </div>
           );
         } else {
           return (
             <div key={item._id}>
-              <p>{item.question} </p>
+              <p className="add_question">{index+1 + ") " + item.question} <span style={{color: "red"}}>{ item.required && "*"}</span> </p>
+              <div style={{paddingLeft: 20}}>
               {item.options.map((optionsItem) => {
                 return (
                   <div key={optionsItem._id}>
@@ -93,7 +103,8 @@ const QuestionForm = ({job,initialQues}) => {
                       name={item._id}
                       value={optionsItem._id}
                       onChange={event=>handleRadio(event,item)}
-                      required
+                      required={item.required}
+                      className="add_radio_button"
                     />
                     <label htmlFor={`${optionsItem._id}`}>
                       {optionsItem.text}{" "}
@@ -101,12 +112,17 @@ const QuestionForm = ({job,initialQues}) => {
                   </div>
                 );
               })}
+              </div>
             </div>
           );
         }
       })}
-      <button type="submit">Submit</button>
+      <div style={{display: "flex", alignItems: "flex-end"}}>
+      <button type="submit" className="drive-apply-button apply_btn_app">Apply</button>
+      <button className="drive-apply-button apply_btn_app">Cancel</button>
+      </div>
     </form>
+    </>
   );
 };
 

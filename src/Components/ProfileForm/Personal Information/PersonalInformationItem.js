@@ -204,7 +204,7 @@ const PersonalInformationItem = ({
           type="text"
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
-          required
+          disabled
         />
         <TextField
           name="branch"

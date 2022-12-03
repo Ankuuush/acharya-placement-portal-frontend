@@ -1,0 +1,36 @@
+.add_question {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: large;
+}
+
+.add_radio_button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: large;
+    transform: scale(1.5);
+    margin-right: 15px;
+    accent-color: #203574;
+}
+
+.add_check_button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: large;
+    transform: scale(1.5);
+    margin-right: 15px;
+    accent-color: #203574;
+}
+
+.add_free_Text {
+    width: 90%;
+    padding: 10px;
+    font-size: 19px;
+    font-family: "Lato";
+    outline-width: 0;
+}
+
+.apply_btn_app {
+    padding-left: 20px;
+    margin: 30px;
+}

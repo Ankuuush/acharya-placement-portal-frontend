@@ -8,14 +8,19 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: "40vw",
   bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
+  boxShadow: 44,
   p: 4,
-  height:"80vh",
-  overflow:"scroll"
+  height: "80vh",
+  overflow: "scroll",
+  borderRadius: "1rem",
+  borderTop: "20px solid #1f357e",
+  padding: "20px 30px",
+  borderRadius: "10px",
+  backgroundColor: "white",
+  boxShadow: "rgba(17, 17, 26, 0.1) 0px 0px 16px",
 };
 
-export default function ModalComponent({open,setOpen,component}) {
+export default function ModalComponent({ open, setOpen, component }) {
   const handleClose = () => setOpen(false);
 
   return (
@@ -27,12 +32,7 @@ export default function ModalComponent({open,setOpen,component}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography> */}
-          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}> */}
-            {component}
-          {/* </Typography> */}
+          {component}
         </Box>
       </Modal>
     </div>
