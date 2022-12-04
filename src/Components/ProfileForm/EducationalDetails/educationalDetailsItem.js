@@ -32,12 +32,11 @@ const EducationalDetailsItem = (props) => {
     <form
       onSubmit={handleSubmitBut}
       style={{
-        width: "80%",
         position: "relative",
         marginBottom: "2rem",
       }}
     >
-      <h4>Enter Your {text} details below.</h4>
+      <h3 style={{marginBottom: 30, marginTop: 20}}>Enter your {text} details below</h3>
       <TextField
         name="institution"
         onChange={onChange}
@@ -59,7 +58,7 @@ const EducationalDetailsItem = (props) => {
           label="Start Year"
           inputProps={{ min: 1900, max: 2022 }}
           variant="outlined"
-          style={{ width: "48%", margin: "0.35rem 0" }}
+          style={{ width: "48%", margin: "1rem 0" }}
           required
         />
         <TextField
@@ -75,7 +74,7 @@ const EducationalDetailsItem = (props) => {
             width: "48%",
             position: "absolute",
             right: "0",
-            margin: "0.35rem 0",
+            margin: "1rem 0",
           }}
           required
         />
@@ -87,7 +86,7 @@ const EducationalDetailsItem = (props) => {
           width: "100%",
         }}
       >
-        <Box sx={{ width: "48%", margin: "0.35rem 0" }}>
+        <Box sx={{ width: "48%", margin: "1rem 0" }}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Scale</InputLabel>
             <Select
@@ -99,8 +98,8 @@ const EducationalDetailsItem = (props) => {
               onChange={onChange}
               required
             >
-              <MenuItem value={"10"}>10</MenuItem>
-              <MenuItem value={"100"}>100</MenuItem>
+              <MenuItem value={"10"}>CGPA</MenuItem>
+              <MenuItem value={"100"}>Percentage</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -114,7 +113,7 @@ const EducationalDetailsItem = (props) => {
           variant="outlined"
           style={{
             width: "48%",
-            margin: "0.35rem 0",
+            margin: "1rem 0",
           }}
           disabled={educationalInfo.scale === "" ? true : false}
           inputProps={{ min: 0, max: maxScale }}
@@ -125,9 +124,9 @@ const EducationalDetailsItem = (props) => {
         disabled={disableBut}
         size="large"
         variant="contained"
+        color="warning"
         type="submit"
         style={{
-          marginLeft: "52%",
           width: "48%",
           marginTop: "1rem",
           fontSize: "0.8rem",

@@ -13,16 +13,25 @@ const ProjectsComponent = ({ data,setData,showModal,setOpen,setAddOpen }) => {
   }
   return (
     <div>
-      <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}>Projects</h4>
+      <div className="flex-tie">
+      <div className="flex-tie margin-top-bottom" style={{marginBottom: 10}}>
+          <FeatherIcon
+            icon="inbox"
+            color="#f69131"
+            style={{ marginRight: 10 }}
+          />
+          <h4 className="section_title_resume">Projects</h4>
+        </div>
+        {!showModal && <div style={{display:"flex",width:"5rem",justifyContent:"space-between",alignItems:"center"}}><FeatherIcon icon='plus' onClick={handleAddOpen} style={{cursor:"pointer"}} /> <FeatherIcon icon='edit-2' onClick={handleOpen} style={{cursor:"pointer"}} /> </div>}
+      </div>
       <div style={{display:"flex", flexDirection:"row", paddingLeft:"58rem"}}>
-      {!showModal && <div style={{display:"flex",width:"5rem",justifyContent:"space-between",alignItems:"center"}}><FeatherIcon icon='plus' onClick={handleAddOpen} style={{cursor:"pointer"}} /> <FeatherIcon icon='edit-2' onClick={handleOpen} style={{cursor:"pointer"}} /> </div>}
       </div>
       <ul>
-      <li>
+      
       {data.map((item) => (
-        <ResumeProjectItem key={item._id} item={item} setData={setData} showModal={showModal} />
+       <li style={{marginTop: 20}}> <ResumeProjectItem key={item._id} item={item} setData={setData} showModal={showModal} /> </li>
       ))}
-      </li> </ul>
+      </ul>
       <div style={{paddingTop:"0.5rem"}}>
         <hr className="job-hr"/>
       </div>

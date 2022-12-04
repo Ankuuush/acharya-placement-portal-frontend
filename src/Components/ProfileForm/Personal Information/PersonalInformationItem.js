@@ -50,8 +50,6 @@ const PersonalInformationItem = ({
     setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.value });
   };
 
-  const handleUpload = () => {};
-
   const handleSubmitBut = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -63,7 +61,6 @@ const PersonalInformationItem = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "30em",
         justifyContent: "center",
         alignItems: "center",
       }}

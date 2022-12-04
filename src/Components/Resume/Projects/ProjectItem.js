@@ -54,11 +54,16 @@ const ResumeProjectItem = ({ item, setData, showModal }) => {
       />
       <div>
         <h4>{item.title}</h4>
-        <p>{item.link}</p>
+        {item.link && <a href={item.link} style={{
+        textDecoration: "none",
+        color: "#20367f"
+      }} target="_blank">{item.link}<br /></a>}
         <p>{item.description}</p>
       </div>
-      {showModal && <button onClick={handleClick}>Edit</button>}
-      {showModal && <button onClick={handleDelete}>Delete</button>}
+      <div style={{marginTop: 10, marginBottom: 10}}>
+      {showModal && <button onClick={handleClick} className="section_edit_btn" style={{marginRight: 10}}>Edit</button>}
+      {showModal && <button onClick={handleDelete} className="section_delete_btn">Delete</button>}
+      </div>
     </>
   );
 };

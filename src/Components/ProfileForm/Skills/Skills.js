@@ -38,7 +38,6 @@ const Skills = ({ profileData, activeStep, setActiveStep }) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "30em",
         justifyContent: "center",
         alignItems: "center",
       }}
