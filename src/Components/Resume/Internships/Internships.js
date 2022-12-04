@@ -23,7 +23,7 @@ const InternshipsComponent = ({ data,setData, showModal, setOpen,setAddOpen }) =
             color="#f69131"
             style={{ marginRight: 10 }}
           />
-          <h4 className="section_title_resume">Interships</h4>
+          <h4 className="section_title_resume">Internships</h4>
         </div>
         {!showModal && <div style={{display:"flex",width:"5rem",justifyContent:"space-between",alignItems:"center"}}><FeatherIcon icon='plus' onClick={handleAddOpen} style={{cursor:"pointer"}} /> <FeatherIcon icon='edit-2' onClick={handleOpen} style={{cursor:"pointer"}} /> </div>}
       </div>

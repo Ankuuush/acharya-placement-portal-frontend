@@ -168,7 +168,7 @@ const Dashboard = ({ page = "" }) => {
             {component === "saved-jobs" && (
             <SavedJobs change={changeSelectedComponent} toggleDriveBookmark={toggleDriveBookmark} />
           )}
-          {component === "application-details" && <Application />}
+          {component === "application-details" && <div style={{padding: "0px 30px"}}><Application /></div>}
         </Box>
       </div>
     </div>
