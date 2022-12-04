@@ -57,7 +57,7 @@ const ResumeCertificationItem = ({ item, setData, showModal }) => {
       
       <h4>{item.name}</h4>
       <div style={{color: "#737373", marginTop: 10}}>Organisation: <span style={{color: "black"}}>{item.organization}</span></div>
-      <p>{item.description}</p>
+      <p style={{"maxWidth":"80%"}}>{item.description}</p>
       {item.certificateLink && <>
         <a href={item.certificateLink} style={{
         textDecoration: "none",

@@ -91,11 +91,11 @@ const SkillsCategoryItem = ({
         onChange={onChange}
         value={value}
         size="small"
-        label="Enter Skill Name"
+        label="Start typing to search..."
         type="search"
         variant="outlined"
         className="search"
-        style={{ width: "100%" }}
+        style={{ width: "100%" ,marginTop: 30 }}
       />
 
       {search.length > 0 && (
@@ -114,9 +114,8 @@ const SkillsCategoryItem = ({
       <div
         style={{
           width: "100%",
-          display: "grid",
-          grid: "auto /auto auto auto auto",
-          height: "100%",
+          display: "flex",
+          flexWrap: "wrap",
           marginTop: "1rem",
         }}
       >
@@ -135,12 +134,14 @@ const SkillsCategoryItem = ({
         disabled={skills.length === 0 || disableBut}
         size="small"
         variant="contained"
+        color="warning"
         style={{
           position: "relative",
           margin: "1rem 20%",
           width: "60%",
           fontSize: "0.9rem",
           padding: "0.5rem",
+          marginTop: 30
         }}
       >
         Save

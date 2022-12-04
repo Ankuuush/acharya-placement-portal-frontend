@@ -29,7 +29,6 @@ const SkillItem = ({ skill,disableBut,onDelete,skillStyle }) => {
       {!disableBut &&<button
       onClick={()=>onDelete(skill._id)}
         style={{
-          width: "30%",
           height: "100%",
           padding: "0",
           border: "none",
@@ -37,7 +36,8 @@ const SkillItem = ({ skill,disableBut,onDelete,skillStyle }) => {
           background: "#fff",
           display: "flex",
           alignItems: "center",
-          cursor:"pointer"
+          cursor:"pointer",
+          marginLeft: 10
         }}
       >
         <ClearIcon style={{ height: "50%" }} />
