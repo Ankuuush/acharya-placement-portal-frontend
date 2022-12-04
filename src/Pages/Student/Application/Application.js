@@ -30,7 +30,7 @@ const Application = () => {
 
   const navigate = useNavigate();
   const driveStyle = {
-    padding: "20px 25px",
+    padding: "25px 35px",
     borderRadius: "5px",
     backgroundColor: "white",
     borderTop: "10px solid #1f357e",
@@ -90,14 +90,57 @@ const Application = () => {
                   <p className="drive-role">{job.drive.role}</p>
                 </div>
               </div>
-              <Badge
+             <div style={{display: "flex"}}>
+             <Badge
               icon={"hash"}
               text={job._id}
               color="#e67300"
               backgroundColor="#fff2e6"
             />
+             <Badge
+              icon={"check"}
+              text={job.status === "applied" ? "Applied" : job.status === "rejected" ? "Rejected": "Selected"}
+              color={job.status === "applied" ? "#20781f" : job.status === "rejected" ? "#da5885": "#20781f"}
+              backgroundColor={job.status === "applied" ? "#e7fce8" : job.status === "rejected" ? "#fbeff5": "#e7fce8"}
+            />
+             </div>
             </div>
-            <h3>gg</h3>
+            <div style={{marginTop: 30}}>
+            <div className="flex-tie">
+            <div className="eligibility-param-check">
+                      <FeatherIcon icon="check" size={15} color="#064709" />
+            </div>
+            <p>You have successfully applied to this drive on <b>{new Date(job.appliedOn).toLocaleString("en-in", {
+                month: "short",
+                year: "numeric",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}</b></p>
+            </div>
+            <div style={{marginTop: 40}}>
+            <h3>Application Progress</h3>
+            <p style={{marginTop: 20}}>There is no round data available yet.You will be notified of any changes.</p>
+            </div>
+            <hr className="job-hr" />
+            <div style={{marginTop: 40}}>
+            <h3>Answered Questions</h3>
+            {!job.answers && <p style={{marginTop: 20}}>There are no questions associated to this drive.</p>}
+
+            <div style={{marginTop: 20}}>
+            {job.answers && job.answers.map((answer, index) => (
+              <div style={{marginTop: 25}}>
+              <p style={{fontWeight: "bold"}}>{index + 1}. {answer.question}</p>
+              <div style={{marginTop: 10}}>
+              {answer.options ? answer.options.map((option, index) => (
+                <p>{option}</p>
+              )) : <p>{answer.answer}</p>}
+              </div>
+              </div>
+            ))}
+            </div>
+            </div>
+            </div>
           </div>
         </div>
       )}
