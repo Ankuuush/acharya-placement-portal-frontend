@@ -2,50 +2,106 @@ import React, { useState } from "react";
 import Modal from "../../ModalComponent";
 import ResumeEducationDetailsItem from "./EducationDetailsItem";
 import FeatherIcon from "feather-icons-react";
+import "../index.css";
 
-const EducationDetailsComponent = ({ data,setData, showModal, setOpen }) => {
+const EducationDetailsComponent = ({ data, setData, showModal, setOpen, refreshProfile }) => {
   const handleOpen = () => {
     setOpen(true);
   };
   return (
     <div>
-
-      <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}>Education Details</h4>
-      <div style={{display:"flex", flexDirection:"row"}}>
-      <h4>X :</h4>
-      <div style={{display:"flex", flexDirection:"column", paddingLeft:"1.1rem"}}>
-      <ResumeEducationDetailsItem data={data.tenth} setData={setData} showModal={showModal}/></div>  
-      <div style={{paddingLeft:"53rem"}}>
-
-      {!showModal && <FeatherIcon icon='edit-2' onClick={handleOpen} style={{cursor:"pointer"}} />}
-      </div>  
+      <div className="flex-tie">
+        <div className="flex-tie margin-top-bottom">
+          <FeatherIcon
+            icon="book"
+            color="#f69131"
+            style={{ marginRight: 10 }}
+          />
+          <h4 className="section_title_resume">Education Details</h4>
+        </div>
+        {!showModal && (
+          <FeatherIcon
+            icon="edit-2"
+            onClick={handleOpen}
+            style={{ cursor: "pointer" }}
+          />
+        )}
       </div>
-      <div style={{display:"flex", flexDirection:"row", paddingTop:"0.5rem"}}>
-      <h4>XII :</h4>
-      <div style={{display:"flex", flexDirection:"column", paddingLeft:"0.5rem"}}>
-      <ResumeEducationDetailsItem text={"12th"} data={data.twelfth} setData={setData} showModal={showModal}/> </div></div>
-      <div style={{display:"flex", flexDirection:"row", paddingTop:"0.5rem"}}>
-      <h4>BE :</h4>
-      <div style={{display:"flex", flexDirection:"column", paddingLeft:"0.5rem"}}>
-      <ResumeEducationDetailsItem text={"graduation"} data={data.ug} setData={setData} showModal={showModal}/></div></div>
-     
-      <div style={{paddingTop:"0.5rem"}}>
-        <hr className="job-hr"/>
+      <div
+      >
+        <div>
+          <h4>10th (Schooling)</h4>
+          <div style={{ display: "flex", flexDirection: "column"}}>
+            <ResumeEducationDetailsItem
+            text={"10th"}
+              data={data.tenth}
+              setData={setData}
+              showModal={showModal}
+            />
+          </div>
+        </div>
       </div>
-    
+      <div
+        style={{ marginTop: 30 }}
+      >
+        <h4>12th (Pre-University)</h4>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <ResumeEducationDetailsItem
+          text={"12th"}
+            data={data.twelfth}
+            setData={setData}
+            showModal={showModal}
+          />
+        </div>
+      </div>
+      <div
+        style={{ marginTop: 30 }}
+      >
+        <h4>Graduation</h4>
+        <div
+        >
+          <ResumeEducationDetailsItem
+          text={"graduation"}
+            data={data.ug}
+            setData={setData}
+            showModal={showModal}
+          />
+        </div>
+      </div>
+
+      <div style={{ paddingTop: "0.5rem" }}>
+        <hr className="job-hr" />
+      </div>
     </div>
-    
   );
 };
 
-const EducationDetails = ({ data,setData }) => {
+const EducationDetails = ({ data, setData }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
       <Modal
-        open={open} setOpen={setOpen}
-        component={<EducationDetailsComponent data={data} setData={setData} showModal={true} setOpen={setOpen} />}/>
-      <EducationDetailsComponent data={data} showModal={false} setOpen={setOpen} />
+        open={open}
+        setOpen={setOpen}
+        component={
+          <EducationDetailsComponent
+            data={data}
+            setData={setData}
+            showModal={true}
+            setOpen={setOpen}
+          />
+        }
+      />
+      <EducationDetailsComponent
+        data={data}
+        showModal={false}
+        setOpen={setOpen}
+      />
     </>
   );
 };

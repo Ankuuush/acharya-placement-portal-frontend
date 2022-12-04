@@ -48,12 +48,11 @@ const Projects = ({ activeStep, setActiveStep,handleAdd=false }) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "30em",
         justifyContent: "center",
         alignItems: "center"
       }}
     >
-      <h2>Projects</h2>
+      <h2 style={{marginBottom: 25}}>Add A Project</h2>
       <div style={{ position: "relative", width: "80%" }}>
         {projectsArray.map((pArr, key) => {
           return (

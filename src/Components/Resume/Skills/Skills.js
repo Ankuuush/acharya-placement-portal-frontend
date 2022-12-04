@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "../../ModalComponent";
 import ResumeSkillCategoryItem from "./SkillCategoryItem";
 import FeatherIcon from "feather-icons-react";
+import '../index.css';
 
 const SkillsComponent = ({
   skills,
@@ -18,13 +19,20 @@ const SkillsComponent = ({
   };
   return (
     <div>
-      <h3 style={{color:"orange", paddingTop:"1.5rem"}}> Skills</h3>
-      <div style={{display:"flex", flexDirection:"row"}}>
-      <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}> Coding Skills </h4>
-      <div style={{paddingLeft:"52rem"}}>
-      {!showModal && <FeatherIcon icon='edit-2' onClick={handleOpen} style={{cursor:"pointer"}} />}
-      </div></div>
-      <div style={{display:"flex", flexDirection:"row", }}>
+      <div className="flex-tie">
+      <div className="flex-tie margin-top-bottom">
+          <FeatherIcon
+            icon="box"
+            color="#f69131"
+            style={{ marginRight: 10 }}
+          />
+          <h4 className="section_title_resume">Skills</h4>
+        </div>
+        {!showModal && <FeatherIcon icon='edit-2' onClick={handleOpen} style={{cursor:"pointer"}} />}
+      </div>
+
+      <div>
+      <h4 style={{color:"black", marginBottom:"10px", marginTop: 5}}> Technical Skills </h4></div>
       <ResumeSkillCategoryItem
         skillType={"Coding Skills"}
         endpoint={"/student/profile/skills"}
@@ -32,10 +40,10 @@ const SkillsComponent = ({
         setData={setSkills}
         showModal={showModal}
         
-      /></div>
+      />
       
       
-      <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}> Interpersonal Skills </h4>
+      <h4 style={{color:"black", marginBottom:"10px", marginTop: 30}}> Interpersonal Skills </h4>
       <ResumeSkillCategoryItem
         skillType={"Interpersonal Skills"}
         endpoint={"/student/profile/softskills"}
@@ -43,7 +51,7 @@ const SkillsComponent = ({
         setData={setSoftSkills}
         showModal={showModal}
       />
-      <h4 style={{color:"orange", paddingTop:"1.5rem", paddingBottom:"0.7rem"}}> Languages </h4>
+      <h4 style={{color:"black", marginBottom:"10px", marginTop: 30}}> Languages </h4>
       <ResumeSkillCategoryItem
         skillType={"Languages"}
         endpoint={"/student/profile/languages"}
@@ -51,6 +59,8 @@ const SkillsComponent = ({
         setData={setLanguages}
         showModal={showModal}
       />
+
+<hr className="job-hr" />
       
     </div>
   );

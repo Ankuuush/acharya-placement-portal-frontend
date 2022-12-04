@@ -6,18 +6,16 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "40vw",
+  width: "45vw",
   bgcolor: "background.paper",
-  boxShadow: 44,
-  p: 4,
-  height: "80vh",
+  height: "90vh",
   overflow: "scroll",
-  borderRadius: "1rem",
   borderTop: "20px solid #1f357e",
   padding: "20px 30px",
-  borderRadius: "10px",
+  borderRadius: "5px",
   backgroundColor: "white",
   boxShadow: "rgba(17, 17, 26, 0.1) 0px 0px 16px",
+  outline: "none"
 };
 
 export default function ModalComponent({ open, setOpen, component }) {

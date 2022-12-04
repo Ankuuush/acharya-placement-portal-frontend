@@ -55,17 +55,20 @@ const ResumeSkillCategoryItem = ({
           />
         }
       />
+      <div className="flex-tie">
+      <div style={{display: "flex", flexWrap: "wrap"}}>
       {profileData.map((skill) => (
         <SkillItem
           key={skill._id}
           skill={skill}
           disableBut={true}
           onDelete={() => {}}
-          skillStyle={{ width: "100%" }}
           style={{display:"flex", flexDirection:"row", paddingRight:"1rem"}}
         />
       ))}
-      {showModal && <button onClick={handleClick}>Edit</button>}
+        </div>
+      {showModal && <button onClick={handleClick}  className="section_edit_btn" style={{marginLeft: 15}}>✎Edit</button>}
+      </div>
     </>
   );
 };

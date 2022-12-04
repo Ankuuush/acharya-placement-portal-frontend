@@ -53,12 +53,11 @@ const Certifications = ({activeStep,setActiveStep,handleAdd=false}) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "30em",
         justifyContent: "center",
         alignItems: "center"
       }}
     >
-      <h2>Certifications</h2>
+      <h2 style={{marginBottom: 30}}>Add a Certification</h2>
       <div style={{ position: "relative", width: "80%" }}>
         {certificationsArray.map((cArr, key) => {
           return (

@@ -10,6 +10,7 @@ import Internships from "../../Components/Resume/Internships/Internships";
 import PersonalInformation from "../../Components/Resume/PersonalInformation";
 import Projects from "../../Components/Resume/Projects/Projects";
 import Skills from "../../Components/Resume/Skills/Skills";
+import "./index.css"
 
 const Resume = () => {
   const [achievements, setAchievements] = useState([]);
@@ -20,7 +21,7 @@ const Resume = () => {
     twelfth: {},
     ug: {},
   });
-  
+
   const [languages, setLanguages] = useState([]);
   const [internshipDetails, setInternshipDetails] = useState([]);
   const [projects, setProjects] = useState([]);
@@ -28,6 +29,10 @@ const Resume = () => {
   const [softSkills, setSoftSkills] = useState([]);
 
   useEffect(() => {
+    getProfile();
+  }, []);
+
+  function getProfile() {
     api
       .get("/student/profile")
       .then((response) => {
@@ -46,30 +51,62 @@ const Resume = () => {
       .catch(() => {
         toast.error("Server Error!!");
       });
-  }, []);
+  }
 
   const updateBasicDetails = () => {
     setBasicDetails((prevState) => {
-      const dobDate=FormatDate(prevState.dob)
+      const dobDate = FormatDate(prevState.dob);
       return {
         ...prevState,
         branch: BranchMap(prevState.studentMeta.department),
-        dob:dobDate
+        dob: dobDate,
       };
     });
-    
   };
 
+  const downloadResumePdf = () => {
+    api
+      .get("/student/profile/pdf", {
+        responseType: "blob",
+      })
+      .then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "resume.pdf");
+        document.body.appendChild(link);
+        link.click();
+
+        toast.success("Resume Downloaded!");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Server Error!!");
+      }
+      );
+  }
+
   return (
-    // <Box sx={{ display: "flex" }}>
-    //   <NavBar />
-    //   <Box component="main" sx={{ flexGrow: 1, p: 3, background: "" }}>
-    <>
-    <div style={{width:"1120px", backgroundColor:"white",padding:"4rem"}}>
+    <div>
+      <div style={{padding: "5px 30px", display: "flex", alignItems: "flex-end",justifyContent: "space-between"}}>
+        <h3>Your Resume</h3>
+      <button onClick={downloadResumePdf} className="down_resume_btn">Download Resume</button>
+      </div>
+      <div style={{padding: 30}}>
+      <div
+        style={{
+          backgroundColor: "white",
+          padding: "4rem",
+          borderTop: "10px solid #1f357e",
+          boxShadow: "rgba(17, 17, 26, 0.1) 0px 0px 16px",
+          borderRadius: 5,
+        }}
+      >
         <PersonalInformation data={basicDetails} setData={setBasicDetails} />
         <EducationDetails
           data={educationDetails}
           setData={setEducationDetails}
+          refreshProfile={getProfile}
         />
         <Skills
           skills={skills}
@@ -83,10 +120,9 @@ const Resume = () => {
         <Projects data={projects} setData={setProjects} />
         <Certifications data={certifications} setData={setCertifications} />
         <Achievements data={achievements} setData={setAchievements} />
-        </div>
-        </>
-    //   </Box>
-    // </Box>
+      </div>
+    </div>
+    </div>
   );
 };
 
