@@ -131,7 +131,7 @@ const Login = () => {
                 Reset Here.
               </Link>
             </p>
-            <p className="prompt-tags">
+            {/* <p className="prompt-tags">
               New student?{" "}
               <Link
                 to="/signup"
@@ -139,7 +139,7 @@ const Login = () => {
               >
                 Register Here.
               </Link>
-            </p>
+            </p> */}
             </div>
           </div>
         </Container>

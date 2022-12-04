@@ -10,6 +10,7 @@ import Internships from "../../Components/Resume/Internships/Internships";
 import PersonalInformation from "../../Components/Resume/PersonalInformation";
 import Projects from "../../Components/Resume/Projects/Projects";
 import Skills from "../../Components/Resume/Skills/Skills";
+import Spinner from "../../Components/Spinner/Spinner"
 import "./index.css"
 
 const Resume = () => {
@@ -27,8 +28,10 @@ const Resume = () => {
   const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
   const [softSkills, setSoftSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     getProfile();
   }, []);
 
@@ -47,9 +50,11 @@ const Resume = () => {
         setSkills(profileData.skills);
         setSoftSkills(profileData.softSkills);
         updateBasicDetails();
+        setLoading(false);
       })
       .catch(() => {
         toast.error("Server Error!!");
+        setLoading(false);
       });
   }
 
@@ -88,6 +93,7 @@ const Resume = () => {
 
   return (
     <div>
+      {loading ? <Spinner /> : <div>
       <div style={{padding: "3px 30px", display: "flex", alignItems: "flex-end",justifyContent: "space-between"}}>
         <h3>Your Resume</h3>
       <button onClick={downloadResumePdf} className="down_resume_btn">Download Resume</button>
@@ -122,6 +128,7 @@ const Resume = () => {
         <Achievements data={achievements} setData={setAchievements} />
       </div>
     </div>
+        </div>}
     </div>
   );
 };
