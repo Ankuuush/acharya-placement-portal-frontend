@@ -58,7 +58,7 @@ const ResumeProjectItem = ({ item, setData, showModal }) => {
         textDecoration: "none",
         color: "#20367f"
       }} target="_blank">{item.link}<br /></a>}
-        <p>{item.description}</p>
+        <p style={{"maxWidth":"80%"}}>{item.description}</p>
       </div>
       <div style={{marginTop: 10, marginBottom: 10}}>
       {showModal && <button onClick={handleClick} className="section_edit_btn" style={{marginRight: 10}}>Edit</button>}

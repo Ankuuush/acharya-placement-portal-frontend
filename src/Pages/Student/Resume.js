@@ -88,7 +88,7 @@ const Resume = () => {
 
   return (
     <div>
-      <div style={{padding: "5px 30px", display: "flex", alignItems: "flex-end",justifyContent: "space-between"}}>
+      <div style={{padding: "3px 30px", display: "flex", alignItems: "flex-end",justifyContent: "space-between"}}>
         <h3>Your Resume</h3>
       <button onClick={downloadResumePdf} className="down_resume_btn">Download Resume</button>
       </div>

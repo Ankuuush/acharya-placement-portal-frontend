@@ -63,7 +63,7 @@ const ResumeInternshipItem = ({ item, setData, showModal }) => {
         <div style={{color: "#737373", marginTop: 10}}>Organisation: <span style={{color: "black"}}>{item.companyName}</span></div>
         <div style={{color: "#737373", marginTop: 3}}>Start: <span style={{color: "black"}}>{item.startMonth.split("")[0].toUpperCase() + item.startMonth.slice(1)} {item.startYear}</span></div>
         {!item.ongoing && <div style={{color: "#737373", marginTop: 3}}>End: <span style={{color: "black"}}>{item.endMonth.split("")[0].toUpperCase() + item.endMonth.slice(1)} {item.endYear}</span></div>}
-        <p>{item.description}</p>
+        <p style={{"maxWidth":"80%"}}>{item.description}</p>
         <div style={{marginTop: 15}}>
         {showModal && <button onClick={handleClick} className="section_edit_btn" style={{marginRight: 10}}>Edit</button>}
         {showModal && <button onClick={handleDelete} className="section_delete_btn">Delete</button>}

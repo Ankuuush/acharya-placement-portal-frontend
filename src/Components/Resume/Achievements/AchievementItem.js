@@ -61,7 +61,7 @@ const ResumeAchievementItem = ({ item, setData, showModal }) => {
         color: "#20367f"
       }} target="_blank">{item.link}</a>
       <br /></>}
-      <p>{item.description}</p>
+      <p style={{"maxWidth":"80%"}}>{item.description}</p>
       <div style={{marginTop: 10, marginBottom: 10}}>
       {showModal && <button onClick={handleClick} className="section_edit_btn" style={{marginRight: 10}}>Edit</button>}
         {showModal && <button onClick={handleDelete} className="section_delete_btn">Delete</button>}
