@@ -18,11 +18,10 @@ const ProjectsItem = (props) => {
       disabled={disableForm}
       onSubmit={handleSubmit}
       style={{
-        position: "relative",
         margin: "0",
       }}
     >
-      <h3>Enter the details</h3>
+      <h3 style={{marginBottom: 20}}>Enter the details</h3>
       <TextField
         name="title"
         onChange={onChange}
@@ -41,7 +40,7 @@ const ProjectsItem = (props) => {
         value={projects.link}
         disabled={disableForm}
         size="normal"
-        label="Projects Link"
+        label="Project Link"
         type="url"
         variant="outlined"
         style={{ width: "100%", margin: "0.35rem 0" }}
@@ -68,8 +67,9 @@ const ProjectsItem = (props) => {
           size="large"
           variant="contained"
           type="submit"
+          color="warning"
           style={{
-            width: "100%",
+            width: "50%",
             marginTop: "1rem",
             marginBottom: "0.5rem",
             fontSize: "0.9rem",

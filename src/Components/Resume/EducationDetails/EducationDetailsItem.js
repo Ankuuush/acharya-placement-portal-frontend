@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import api from "../../../api";
 import Modal from "../../ModalComponent";
 import EducationalDetailsItem from "../../ProfileForm/EducationalDetails/educationalDetailsItem";
+import "../index.css"
 
 const ResumeEducationDetailsItem = ({ text, data, setData, showModal }) => {
   const [childOpen, setChildOpen] = useState(false);
@@ -45,14 +46,16 @@ const ResumeEducationDetailsItem = ({ text, data, setData, showModal }) => {
           />
         }
       />
-      <div>{text}</div>
-      
-      <div>{data.institution}</div>
-      <div>{data.startyear}</div>
-      <div>{data.endYear}</div>
-      <div>{data.gradeScale}</div>
-      <div>{data.grade}</div>
-      {showModal && <button onClick={handleClick}>Edit</button>}
+      <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
+      <div>
+      <div style={{color: "#737373", marginTop: 10}}>Institution: <span style={{color: "black"}}>{data.institution}</span></div>
+      <div style={{color: "#737373", marginTop: 10}}>Start Year: <span style={{color: "black"}}>{data.startYear}</span></div>
+      <div style={{color: "#737373", marginTop: 10}}>Completion Year: <span style={{color: "black"}}>{data.endYear}</span></div>
+      <div style={{color: "#737373", marginTop: 10}}>Grade: <span style={{color: "black"}}>{data.grade}{data.gradeScale === 100 ? "%" : " CGPA"}</span></div>
+      </div>
+      {showModal && <button onClick={handleClick} className="section_edit_btn">✎ Edit</button>}
+      </div>
+      {showModal && <hr className="job-hr" />}
     </>
   );
 };

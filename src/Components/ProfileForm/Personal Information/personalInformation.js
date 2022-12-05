@@ -27,7 +27,6 @@ const PersonalInformation = ({ profileData, activeStep, setActiveStep }) => {
         photoUrl: personalInfo.photoUrl,
         phone: personalInfo.phone,
         gender: personalInfo.gender,
-        usn: personalInfo.usn,
         dob: personalInfo.dob,
       })
       .then(() => {
@@ -51,6 +50,7 @@ const PersonalInformation = ({ profileData, activeStep, setActiveStep }) => {
       firstName: firstName,
       lastName: lastName,
       email: currentUser.email,
+      usn: profileData.usn,
     });
     setPersonalInfo((prevState) => {
       return {

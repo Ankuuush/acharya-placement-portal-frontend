@@ -50,8 +50,6 @@ const PersonalInformationItem = ({
     setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.value });
   };
 
-  const handleUpload = () => {};
-
   const handleSubmitBut = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -63,7 +61,6 @@ const PersonalInformationItem = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "30em",
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -204,7 +201,7 @@ const PersonalInformationItem = ({
           type="text"
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
-          required
+          disabled
         />
         <TextField
           name="branch"

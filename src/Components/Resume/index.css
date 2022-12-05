@@ -1,0 +1,34 @@
+.flex-tie {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.section_title_resume {
+    color: #f69131;
+    font-size: 20px;
+}
+
+.margin-top-bottom {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.section_edit_btn{
+    border: none;
+    background-color: #1e347d;
+    color: white;
+    padding: 5px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.section_delete_btn {
+    border: none;
+    background-color: #f2903f;
+    color: white;
+    padding: 5px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+}

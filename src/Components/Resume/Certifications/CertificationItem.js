@@ -54,12 +54,20 @@ const ResumeCertificationItem = ({ item, setData, showModal }) => {
           />
         }
       />
-      <p>{item.organization}</p>
+      
       <h4>{item.name}</h4>
-      <p>{item.description}</p>
-      <p>{item.certificateLink}</p>
-      {showModal && <button onClick={handleClick}>Edit</button>}
-      {showModal && <button onClick={handleDelete}>Delete</button>}
+      <div style={{color: "#737373", marginTop: 10}}>Organisation: <span style={{color: "black"}}>{item.organization}</span></div>
+      <p style={{"maxWidth":"80%"}}>{item.description}</p>
+      {item.certificateLink && <>
+        <a href={item.certificateLink} style={{
+        textDecoration: "none",
+        color: "#20367f"
+      }} target="_blank">{item.certificateLink}</a>
+      <br /></>}
+      <div style={{marginTop: 15}}>
+      {showModal && <button onClick={handleClick} className="section_edit_btn" style={{marginRight: 10}}>Edit</button>}
+        {showModal && <button onClick={handleDelete} className="section_delete_btn">Delete</button>}
+        </div>
     </div>
   );
 };

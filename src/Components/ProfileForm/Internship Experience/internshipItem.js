@@ -34,7 +34,7 @@ const InternshipItem = (props) => {
         margin: "0",
       }}
     >
-      <h3>Enter the details</h3>
+      <h3 style={{marginBottom: 20}}>Enter the details</h3>
       <TextField
         name="role"
         onChange={onChange}
@@ -44,7 +44,7 @@ const InternshipItem = (props) => {
         label="Designation"
         type="text"
         variant="outlined"
-        style={{ width: "100%", margin: "0.35rem 0" }}
+        style={{ width: "100%", margin: "1rem 0" }}
         required
       />
       <TextField
@@ -56,7 +56,7 @@ const InternshipItem = (props) => {
         label="Company Name"
         type="text"
         variant="outlined"
-        style={{ width: "100%", margin: "0.35rem 0" }}
+        style={{ width: "100%", margin: "1rem 0" }}
         required
       />
       <div
@@ -67,7 +67,7 @@ const InternshipItem = (props) => {
           width: "100%",
         }}
       >
-        <Box sx={{ width: "48%", margin: "0.35rem 0" }}>
+        <Box sx={{ width: "48%", margin: "1rem 0" }}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Start Month</InputLabel>
             <Select
@@ -107,7 +107,7 @@ const InternshipItem = (props) => {
           variant="outlined"
           style={{
             width: "48%",
-            margin: "0.35rem 0",
+            margin: "1rem 0",
             position: "absolute",
             right: "0",
           }}
@@ -126,7 +126,7 @@ const InternshipItem = (props) => {
         label="Ongoing?"
       />
 
-      <div
+      {!checked && <div
         style={{
           display: "flex",
           flexDirection: "row",
@@ -134,7 +134,7 @@ const InternshipItem = (props) => {
           width: "100%",
         }}
       >
-        <Box sx={{ width: "48%", margin: "0.35rem 0" }}>
+        <Box sx={{ width: "48%", margin: "1rem 0" }}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">End Month</InputLabel>
             <Select
@@ -176,13 +176,13 @@ const InternshipItem = (props) => {
           variant="outlined"
           style={{
             width: "48%",
-            margin: "0.35rem 0",
+            margin: "1rem 0",
             position: "absolute",
             right: "0",
           }}
           required
         />
-      </div>
+      </div>}
       <TextField
         name="description"
         onChange={onChange}
@@ -194,7 +194,7 @@ const InternshipItem = (props) => {
         rows={3}
         type="text"
         variant="outlined"
-        style={{ width: "100%", margin: "0.35rem 0" }}
+        style={{ width: "100%", margin: "1rem 0" }}
         required
       />
 
@@ -203,8 +203,9 @@ const InternshipItem = (props) => {
           size="large"
           variant="contained"
           type="submit"
+          color="warning"
           style={{
-            width: "100%",
+            width: "50%",
             marginTop: "1rem",
             marginBottom: "0.5rem",
             fontSize: "0.9rem",

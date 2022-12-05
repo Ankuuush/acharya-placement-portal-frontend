@@ -6,36 +6,22 @@ const SkillItem = ({ skill,disableBut,onDelete,skillStyle }) => {
   return (
     <div
       style={{
-        width: "7rem",
-        height: "1.6rem",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        border: "2px solid rgba(0, 0, 0, 0.21)",
+        flexWrap: "wrap",
         borderRadius: "0.4rem",
-        boxShadow: "none",
-        marginBottom:"1rem",
-        marginRight:"1rem"
-        
+        marginRight:"1rem",
+        background: "#f2f2f2",
+        width: "fit-content",
+        padding: "5px 10px",
+        marginTop: "10px"
       }}
     >
       <p
         style={{
-          ...skillStyle,
-          height: "100%",
-          paddingLeft:"5%",
-          paddingRight:"5%",
-          boxSizing: "border-box",
           margin: "0",
           textAlign: "center",
-          lineHeight: "1.6rem",
-          fontWeight: "bold",
-          fontSize: "0.8em",
-          whiteSpace:"nowrap",
-          overflow:"hidden",
-          textOverflow:"ellipsis",
-          
+          whiteSpace: "nowrap",
         }}
       >
         {skill.name}
@@ -43,7 +29,6 @@ const SkillItem = ({ skill,disableBut,onDelete,skillStyle }) => {
       {!disableBut &&<button
       onClick={()=>onDelete(skill._id)}
         style={{
-          width: "30%",
           height: "100%",
           padding: "0",
           border: "none",
@@ -51,7 +36,8 @@ const SkillItem = ({ skill,disableBut,onDelete,skillStyle }) => {
           background: "#fff",
           display: "flex",
           alignItems: "center",
-          cursor:"pointer"
+          cursor:"pointer",
+          marginLeft: 10
         }}
       >
         <ClearIcon style={{ height: "50%" }} />

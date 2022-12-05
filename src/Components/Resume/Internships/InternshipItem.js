@@ -59,20 +59,16 @@ const ResumeInternshipItem = ({ item, setData, showModal }) => {
         }
       />
       <div>
-        <h4>{item.companyName}</h4>
-        <h5><p>{item.role}</p></h5>
-        <div style={{display:"flex", flexDirection:"row"}}>
-        <p>{item.startMonth}</p>
-        <div style={{paddingLeft:"0.5rem"}}><p>{item.startYear}</p></div>
+        <h4>{item.role}</h4>
+        <div style={{color: "#737373", marginTop: 10}}>Organisation: <span style={{color: "black"}}>{item.companyName}</span></div>
+        <div style={{color: "#737373", marginTop: 3}}>Start: <span style={{color: "black"}}>{item.startMonth.split("")[0].toUpperCase() + item.startMonth.slice(1)} {item.startYear}</span></div>
+        {!item.ongoing && <div style={{color: "#737373", marginTop: 3}}>End: <span style={{color: "black"}}>{item.endMonth.split("")[0].toUpperCase() + item.endMonth.slice(1)} {item.endYear}</span></div>}
+        <p style={{"maxWidth":"80%"}}>{item.description}</p>
+        <div style={{marginTop: 15}}>
+        {showModal && <button onClick={handleClick} className="section_edit_btn" style={{marginRight: 10}}>Edit</button>}
+        {showModal && <button onClick={handleDelete} className="section_delete_btn">Delete</button>}
         </div>
-        <div style={{display:"flex", flexDirection:"row"}}>
-        <p>{item.endMonth}</p>
-        <div style={{paddingLeft:"0.5rem"}}><p>{item.endYear}</p></div>
-        </div>
-        <p>{item.description}</p>
-        <p>{item.ongoing}</p>
-        {showModal && <button onClick={handleClick}>Edit</button>}
-        {showModal && <button onClick={handleDelete}>Delete</button>}
+
       </div>
     </>
   );

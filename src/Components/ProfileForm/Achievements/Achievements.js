@@ -51,13 +51,11 @@ const Achievements = ({activeStep,setActiveStep,handleAdd=false}) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "30em",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: "3em",
       }}
     >
-      <h2>Achievements</h2>
+      <h2 style={{marginBottom: 30}}>Add An Achievement</h2>
       <div style={{ position: "relative", width: "80%" }}>
         {achievementsArray.map((aArr, key) => {
           return (

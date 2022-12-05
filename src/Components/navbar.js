@@ -165,6 +165,7 @@ export default function NavBar({account,menu, setComponent, currentComponent }) 
               sx={{
                 display: "block",
                 backgroundColor: currentComponent === item.code && "#eceef9",
+                borderRight: currentComponent === item.code && "5px solid #1f357e",
               }}
               onClick={() => handleClick(item.code)}
             >

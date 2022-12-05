@@ -66,13 +66,12 @@ const Internships = ({ activeStep, setActiveStep,handleAdd=false }) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "30em",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <h2>Internship Experience</h2>
-      <div style={{ position: "relative", width: "80%" }}>
+      <h2 style={{marginBottom: 20}}>Internship Experience</h2>
+      <div style={{ position: "relative" }}>
         {internshipsArray.map((iArr, key) => {
           return (
             <InternshipItem
