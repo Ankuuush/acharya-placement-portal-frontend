@@ -5,21 +5,13 @@ import AuthContext from "./Context/AuthContext/AuthContext";
 const PrivateRoute = ({role}) => {
   const authContext = useContext(AuthContext);
   const location = useLocation();
-  const { currentUser } = authContext;
-  const [token, setToken] = useState("");
+  const { token } = authContext;
   const navigate = useNavigate();
   useEffect(() => {
-    if (!currentUser) {
+    if (!token) {
       navigate("/login?redirect=" + location.pathname, { replace: true });
       return;
     }
-    currentUser.getIdTokenResult().then((result)=>{
-      setToken(result.claims)
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-
   }, []);
 
   return (
