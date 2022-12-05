@@ -22,6 +22,7 @@ function parseRoleType(role) {
 function butStyle(text) {
   switch (text) {
     case "Apply Now":
+    case "View Details":
       return { backgroundColor: "#203674", color: "white" };
     case "Ongoing":
       return {
@@ -78,7 +79,7 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
               </div>
             </div>
           </div>
-          <div className="save-job" style={{background: job.bookmarked || from === "bookmarks" ? "#1f357e" : null}} onClick={()=> {
+          {text!=="View Details"?<div className="save-job" style={{background: job.bookmarked || from === "bookmarks" ? "#1f357e" : null}} onClick={()=> {
             toggleDriveBookmark(job._id, function(bookmarked){
               getAllDrives();
             });
@@ -90,7 +91,7 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
               className="bookmark-icon-main"
             />
             {/* <p className="job-bookmark-text" style={{color: job.bookmarked ? "white" : null}}>{job.bookmarked ? "Bookmarked":"Bookmark"}</p> */}
-          </div>
+          </div>:null }
         </div>
         <div className="job-body-root">
           <p className="job-jd">{job.jd}</p>
@@ -141,7 +142,7 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
               </p>
             </div>
             <div className="job-apply-container">
-              {!job.applied ? <div>
+              {job.applied==false ? <div>
                 {job.calculatedEligibility.eligible ? <div className="job-eligbility">
                 <FeatherIcon
                   icon={"check"}
@@ -165,7 +166,7 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
                 style={butStyle(text)}
                 onClick={applyNow}
               >
-                {!job.calculatedEligibility.eligible || job.applied  ? "View Details" : text}
+                {text==="View Details"?text:!job.calculatedEligibility.eligible || job.applied  ? "View Details" : text}
               </button>
             </div>
           </div>

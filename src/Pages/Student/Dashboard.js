@@ -26,9 +26,6 @@ const Dashboard = ({ page = "" }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [profileData, setProfileData] = useState(null);
 
-
-  
-
   const changeSelectedComponent = (component, scope) => {
     navigate("/student/" + component); //useful to pass params in url
     setComponent(scope || component);

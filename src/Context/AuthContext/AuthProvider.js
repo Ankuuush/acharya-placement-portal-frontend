@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 const AuthProvider = (props) => {
   const [currentUser, setCurrentUser] = useState("");
   const [loading, setLoading] = useState(true);
+  const [token, setToken] = useState(null);
 
   const signup = async (email, password, firstName, lastName) => {
     // const response= await fetch(`https://acharya-palcement-portal.herokuapp.com/api/auth/register`, {
@@ -57,6 +58,15 @@ const AuthProvider = (props) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+      if(user){
+      user.getIdTokenResult().then((result)=>{
+        setToken(result.claims)
+      })
+      .catch((error)=>{
+        console.log(error)
+      })}
+      else
+      setToken(null)
       setLoading(false);
     });
     return unsubscribe;
@@ -68,6 +78,7 @@ const AuthProvider = (props) => {
         signup,
         login,
         currentUser,
+        token,
         logout,
         resetPassword,
         setLoading,
