@@ -21,7 +21,7 @@ import Application from "./Application/Application";
 const Dashboard = ({ page = "" }) => {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
-  const { currentUser } = authContext;
+  const { token } = authContext;
   const [component, setComponent] = useState("");
   const [activeStep, setActiveStep] = useState(0);
   const [profileData, setProfileData] = useState(null);
@@ -44,18 +44,9 @@ const Dashboard = ({ page = "" }) => {
 
   useEffect(() => {
     studentProfile();
-  }, [page, currentUser]);
+  }, [page, token]);
 
   async function studentProfile() {
-    let token = "";
-    await currentUser
-      .getIdTokenResult()
-      .then((result) => {
-        token = result.claims;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
 
     if (token.account === "student") {
       api
@@ -71,7 +62,6 @@ const Dashboard = ({ page = "" }) => {
             setActiveStep(0);
             return;
           }
-          console.log(response);
           switch (response.data.data.progress.goToStep) {
             case "basicDetails":
               setActiveStep(0);

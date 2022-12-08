@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Student from "./routes/Student";
 import Admin from "./routes/Admin";
 import Tpo from "./routes/Tpo";
-
+import './index.css'
 function App() {
   return (
     <AuthProvider>

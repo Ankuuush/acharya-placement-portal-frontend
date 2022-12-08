@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import api from "../../../api";
 import {
   Box,
   Button,
@@ -34,6 +33,7 @@ const EducationalDetailsItem = (props) => {
       style={{
         position: "relative",
         marginBottom: "2rem",
+        width:"100%"
       }}
     >
       <h3 style={{marginBottom: 30, marginTop: 20}}>Enter your {text} details below</h3>

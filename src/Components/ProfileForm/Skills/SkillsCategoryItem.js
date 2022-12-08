@@ -83,7 +83,7 @@ const SkillsCategoryItem = ({
   }, []);
 
   return (
-    <div>
+    <div style={{width:"100%"}}>
       <h4 style={{ color: "#F49424" }}>{skillType}</h4>
       <TextField
         disabled={disableBut}

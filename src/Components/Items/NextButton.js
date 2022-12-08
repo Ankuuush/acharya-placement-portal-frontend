@@ -2,10 +2,9 @@ import { Button } from "@mui/material";
 import React from "react";
 
 const NextButton = (props) => {
-  const { setActiveStep, activeStep, disable, styleProp } = props;
-
+  const { setActiveStep, disable, styleProp } = props;
   const onClick = () => {
-    setActiveStep(activeStep + 1);
+    setActiveStep(prev=> prev + 1);
   };
   return (
     <Button

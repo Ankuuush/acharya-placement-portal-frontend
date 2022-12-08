@@ -15,6 +15,7 @@ const AchievementItem = (props) => {
         style={{
           position: "relative",
           margin: "0",
+          width:"100%"
         }}
       >
         <h3 style={{marginBottom: 20}}>Enter the details</h3>

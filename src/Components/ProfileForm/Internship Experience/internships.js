@@ -6,7 +6,7 @@ import api from "../../../api";
 import { Button } from "@mui/material";
 import { toast } from "react-toastify";
 
-const Internships = ({ activeStep, setActiveStep,handleAdd=false }) => {
+const Internships = ({setActiveStep,handleAdd=false }) => {
   const [internshipsArray, setInternshipsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
   const [internships, setInternships] = useState({
@@ -68,6 +68,7 @@ const Internships = ({ activeStep, setActiveStep,handleAdd=false }) => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        width:"100%"
       }}
     >
       <h2 style={{marginBottom: 20}}>Internship Experience</h2>
@@ -117,7 +118,6 @@ const Internships = ({ activeStep, setActiveStep,handleAdd=false }) => {
           </Button>
           <NextButton
             setActiveStep={setActiveStep}
-            activeStep={activeStep}
             disable={newForm}
             styleProp={{ width: "48%" }}
           />
