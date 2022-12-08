@@ -40,6 +40,8 @@ const EducationalDetails = ({setActiveStep}) => {
       .then(() => {
         toast.success("Data saved!");
         setCount(count + 1);
+        if(count+1===3)
+        setActiveStep(prev=>prev+1)
         return false
       })
       .catch(() => {
@@ -64,7 +66,7 @@ const EducationalDetails = ({setActiveStep}) => {
        {count == 0 && <EducationalDetailsItem educationalInfo={tenthInfo} setEducationalInfo={setTenthInfo} handleSubmit={handleSubmit} text={"10th"}/>}
         {count == 1 && <EducationalDetailsItem  educationalInfo={twelththInfo} setEducationalInfo={setTwelthInfo} handleSubmit={handleSubmit} text={"12th"} />}
         {count == 2 && <EducationalDetailsItem educationalInfo={ugInfo} setEducationalInfo={setUgInfo}  handleSubmit={handleSubmit} text={"graduation"}/>}
-        <NextButton setActiveStep={setActiveStep} disable={count!==3} styleProp={{width: "48%"}}/> 
+        {/* <NextButton setActiveStep={setActiveStep} disable={count!==3} styleProp={{width: "48%"}}/>  */}
     </div>
   );
 };
