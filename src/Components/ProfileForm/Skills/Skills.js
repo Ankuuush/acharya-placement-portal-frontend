@@ -4,7 +4,7 @@ import api from "../../../api";
 import NextButton from "../../Items/NextButton";
 import SkillsCategoryItem from "./SkillsCategoryItem";
 
-const Skills = ({ profileData, activeStep, setActiveStep }) => {
+const Skills = ({ profileData, setActiveStep }) => {
   const [count, setCount] = useState(0);
   
   const handleSubmit = async (skillType,endpoint,skills) => {
@@ -40,10 +40,11 @@ const Skills = ({ profileData, activeStep, setActiveStep }) => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        width:"100%"
       }}
     >
       <h2>Skill Set</h2>
-      <div style={{ position: "relative", width: "80%" }}>
+      <div style={{ position: "relative", width: "100%" }}>
         <SkillsCategoryItem
           skillType={"Coding Skills"}
           endpoint={"/student/profile/skills"}
@@ -70,7 +71,6 @@ const Skills = ({ profileData, activeStep, setActiveStep }) => {
         />
         <NextButton
           setActiveStep={setActiveStep}
-          activeStep={activeStep}
           disable={count !== 3}
           styleProp={{ width: "48%", marginLeft: "52%" }}
         />

@@ -63,6 +63,7 @@ const PersonalInformationItem = ({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        width:"100%"
       }}
     >
       <h3 style={{marginBottom: 30}}>Personal Details</h3>

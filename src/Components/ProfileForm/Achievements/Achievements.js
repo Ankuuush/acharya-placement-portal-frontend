@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import AchievementItem from "./AchievementItem";
 import { toast } from "react-toastify";
 
-const Achievements = ({activeStep,setActiveStep,handleAdd=false}) => {
+const Achievements = ({setActiveStep,handleAdd=false}) => {
   const [achievementsArray, setAchievementsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
   const [achievements, setAchievements] = useState({
@@ -53,10 +53,11 @@ const Achievements = ({activeStep,setActiveStep,handleAdd=false}) => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        width:"100%"
       }}
     >
       <h2 style={{marginBottom: 30}}>Add An Achievement</h2>
-      <div style={{ position: "relative", width: "80%" }}>
+      <div style={{ position: "relative", width:"100%" }}>
         {achievementsArray.map((aArr, key) => {
           return (
             <AchievementItem
@@ -100,7 +101,7 @@ const Achievements = ({activeStep,setActiveStep,handleAdd=false}) => {
           >
             Add Another
           </Button>
-          <NextButton setActiveStep={setActiveStep} activeStep={activeStep}
+          <NextButton setActiveStep={setActiveStep}
             disable={false}
             styleProp={{ width: "48%" }}
           />

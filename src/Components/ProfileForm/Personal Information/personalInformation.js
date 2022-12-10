@@ -5,7 +5,7 @@ import PersonalInformationItem from "./PersonalInformationItem.js";
 import AuthContext from "../../../Context/AuthContext/AuthContext.js";
 import BranchMap from "../../Items/BranchMap";
 
-const PersonalInformation = ({ profileData, activeStep, setActiveStep }) => {
+const PersonalInformation = ({ profileData,  setActiveStep }) => {
   const authContext = useContext(AuthContext);
   const { currentUser } = authContext;
   const [personalInfo, setPersonalInfo] = useState({
@@ -31,7 +31,7 @@ const PersonalInformation = ({ profileData, activeStep, setActiveStep }) => {
       })
       .then(() => {
         toast.success("Data saved!");
-        setActiveStep((activeStep + 1) % 7);
+        setActiveStep(prev=>prev+1);
       })
       .catch(() => {
         toast.error("Server Error!");

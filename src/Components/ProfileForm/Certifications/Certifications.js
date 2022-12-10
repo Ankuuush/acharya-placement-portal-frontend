@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import CertificationsItem from "./CertificationsItem";
 import { toast } from "react-toastify";
 
-const Certifications = ({activeStep,setActiveStep,handleAdd=false}) => {
+const Certifications = ({setActiveStep,handleAdd=false}) => {
   const [certificationsArray, setCertificationsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
   const [certifications, setCertifications] = useState({
@@ -54,11 +54,12 @@ const Certifications = ({activeStep,setActiveStep,handleAdd=false}) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        width:"100%"
       }}
     >
       <h2 style={{marginBottom: 30}}>Add a Certification</h2>
-      <div style={{ position: "relative", width: "80%" }}>
+      <div style={{ position: "relative", width:"100%" }}>
         {certificationsArray.map((cArr, key) => {
           return (
             <CertificationsItem
@@ -102,7 +103,7 @@ const Certifications = ({activeStep,setActiveStep,handleAdd=false}) => {
           >
             Add Another
           </Button>
-          <NextButton setActiveStep={setActiveStep} activeStep={activeStep}
+          <NextButton setActiveStep={setActiveStep}
             disable={false}
             styleProp={{ width: "48%" }}
           />

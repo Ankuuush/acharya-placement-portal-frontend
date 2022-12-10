@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FeatherIcon from "feather-icons-react";
 import DriveHeader from "../../Components/DriveDetailsItem/DriveHeader";
 import DriveBody from "../../Components/DriveDetailsItem/DriveBody";
 import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "../../Components/Spinner/Spinner";
 import api from "../../api";
+import AuthContext from "../../Context/AuthContext/AuthContext";
 
 const DriveDetails = ({toggleDriveBookmark}) => {
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const {driveid} = useParams();
+  const authContext = useContext(AuthContext);
+  const { token } = authContext;
 
   useEffect(() => {
     getSingleDrive();
@@ -21,7 +24,7 @@ const DriveDetails = ({toggleDriveBookmark}) => {
   }, []);
 
   function getSingleDrive() {
-    api.get("/student/drives/"+ driveid).then((response) => {
+    api.get(`/${token.account}/drives/${driveid}`).then((response) => {
       setJob(response.data.data.drive);
       setLoading(false);
     }).catch((error) => {
