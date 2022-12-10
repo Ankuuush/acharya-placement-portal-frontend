@@ -1,0 +1,70 @@
+.dashboard-report-root{
+    padding: 15px 25px;
+}
+
+.align-center-report {
+    text-align: center;
+}
+
+.report-card{
+    background: white;
+    border-radius: 5px;
+    padding: 20px;
+    flex: 1;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+
+.dashboard-report-top-bundle {
+    display: flex;
+    gap: 25px;
+}
+
+.report-text {
+    color: #575d63;
+}
+
+.report-number {
+    margin-top: 10px;
+    color:rgb(31, 53, 126);
+}
+
+.report-company-list {
+    display: grid;
+    grid-template-columns: repeat(2, 3fr);
+}
+
+.rep-com-root {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.rep-com-root:hover {
+    background: #f3f4f8;
+    cursor: pointer;
+}
+
+.report-ack-button {
+    border: none;
+    background: white;
+    border-radius: 2px;
+    padding: 5px 8px;
+    color:rgb(31, 53, 126);
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.flex-align-report {
+    display: flex;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+
+.report-just-cent {
+    justify-content: center;
+}
+
+.flex-boy {
+    display: flex;
+    align-items: center;
+}

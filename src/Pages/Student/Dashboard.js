@@ -6,6 +6,7 @@ import FeedBack from "../FeedBack";
 import AppliedJobs from "./AppliedJobs";
 import Resume from "./Resume";
 import StudentDashboard from "./StudentDashboard";
+import DashboardReport from "./DashboardReport";
 import Topbar from "../../Components/Topbar/Topbar";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 import api from "../../api";
@@ -17,6 +18,7 @@ import DriveDetails from "./DriveDetails";
 import { useNavigate } from "react-router-dom";
 import SavedJobs from "./Saved Jobs/SavedJobs";
 import Application from "./Application/Application";
+import Company from "./Company/Company";
 
 const Dashboard = ({ page = "" }) => {
   const navigate = useNavigate();
@@ -162,6 +164,7 @@ const Dashboard = ({ page = "" }) => {
           {component === "resume" && <Resume />}
           {component === "feedback" && <FeedBack />}
           {component === "contact-us" && <ContactUs />}
+          {component === "dashboard" && <DashboardReport change={changeSelectedComponent} />}
           {component === "drive-details" && <div style={{padding: "0px 20px"}}>
           <DriveDetails toggleDriveBookmark={toggleDriveBookmark} />
             </div>}
@@ -169,6 +172,7 @@ const Dashboard = ({ page = "" }) => {
             <SavedJobs change={changeSelectedComponent} toggleDriveBookmark={toggleDriveBookmark} />
           )}
           {component === "application-details" && <div style={{padding: "0px 30px"}}><Application /></div>}
+          {component === "company-details" && <div style={{padding: "0px 30px"}}><Company toggleDriveBookmark={toggleDriveBookmark} change={changeSelectedComponent} /></div>}
         </Box>
       </div>
     </div>

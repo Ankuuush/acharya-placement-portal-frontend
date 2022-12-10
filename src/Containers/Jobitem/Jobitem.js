@@ -46,7 +46,7 @@ function butStyle(text) {
   }
 }
 
-export default function JobItem({ job, text, change, toggleDriveBookmark, getAllDrives, from }) {
+export default function JobItem({ job, text, change, toggleDriveBookmark, getAllDrives, from, removeCompanyHeader }) {
   const applyNow = () => {
     change("drives/" + job._id, "drive-details");
   };
@@ -61,9 +61,9 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
       <div className="jobitem-inner-root">
         <div className="job-header-root">
           <div className="job-header">
-            <img src={job.company.logoUrl} height={60} className="job-logo" />
-            <div className="job-header-group">
-              <p className="job-company">{job.company.name}</p>
+            {!removeCompanyHeader && <img src={job.company.logoUrl} height={60} className="job-logo" />}
+            <div className="job-header-group" style={{padding: removeCompanyHeader && 0}}>
+              {!removeCompanyHeader && <p className="job-company" onClick={()=> change("company/" + job.company.slug, "company-details")}>{job.company.name}</p>}
               <div className="application-status">
               <p className="job-role">{job.role}</p>
               {job.applied && <div className="job-eligbility" style={{marginLeft: 20, backgroundColor: "#e6fbe7", padding: "2px 5px", borderRadius: 3}}>
@@ -78,7 +78,7 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
               </div>
             </div>
           </div>
-          <div className="save-job" style={{background: job.bookmarked || from === "bookmarks" ? "#1f357e" : null}} onClick={()=> {
+          {!removeCompanyHeader && <div className="save-job" style={{background: job.bookmarked || from === "bookmarks" ? "#1f357e" : null}} onClick={()=> {
             toggleDriveBookmark(job._id, function(bookmarked){
               getAllDrives();
             });
@@ -90,7 +90,7 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
               className="bookmark-icon-main"
             />
             {/* <p className="job-bookmark-text" style={{color: job.bookmarked ? "white" : null}}>{job.bookmarked ? "Bookmarked":"Bookmark"}</p> */}
-          </div>
+          </div>}
         </div>
         <div className="job-body-root">
           <p className="job-jd">{job.jd}</p>
