@@ -33,13 +33,13 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
     },
   }));
 
-  const steps = ['Personal Details', 'Educational Details', 'Skill Set', 'Internship Experience', 'Projects', 'Certifications', 'Achievements'];
+  
 
 
-function Steps({activeStep}) {
+function Steps({activeStep,steps}) {
 
     return(
-        <div style={{height:"90vh", backgroundColor: "#1E4786", display: "flex", justifyContent:"center", borderRadius:"15px", padding: "30px 50px", marginRight: 50}}>
+        <div style={{height:"fitContent", backgroundColor: "#1E4786", display: "flex", justifyContent:"center", borderRadius:"15px", padding: "2rem 2rem",width:"100%"}}>
            
            <Stepper  activeStep={activeStep} connector={<QontoConnector />} orientation={"vertical"} style={{color:"white"}}>
         {steps.map((label) => (

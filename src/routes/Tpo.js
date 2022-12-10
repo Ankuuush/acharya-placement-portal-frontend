@@ -16,6 +16,11 @@ const Tpo = () => {
           />
         );
       })}
+      <Route
+        exact
+        path={"/tpo/drives/:driveid"}
+        element={<TpoDashboard page={"drive-details"} />}
+      />
     </Route>
   )
 }

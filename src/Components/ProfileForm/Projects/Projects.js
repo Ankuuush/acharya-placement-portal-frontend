@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import ProjectsItem from "./ProjectsItem";
 import { toast } from "react-toastify";
 
-const Projects = ({ activeStep, setActiveStep,handleAdd=false }) => {
+const Projects = ({ setActiveStep,handleAdd=false }) => {
   const [projectsArray, setProjectsArray] = useState([]);
   const [newForm, setNewForm] = useState(true);
   const [projects, setProjects] = useState({
@@ -49,11 +49,12 @@ const Projects = ({ activeStep, setActiveStep,handleAdd=false }) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        width:"100%"
       }}
     >
       <h2 style={{marginBottom: 25}}>Add A Project</h2>
-      <div style={{ position: "relative", width: "80%" }}>
+      <div style={{ position: "relative", width: "100%" }}>
         {projectsArray.map((pArr, key) => {
           return (
             <ProjectsItem
@@ -99,7 +100,6 @@ const Projects = ({ activeStep, setActiveStep,handleAdd=false }) => {
           </Button>
           <NextButton
             setActiveStep={setActiveStep}
-            activeStep={activeStep}
             disable={false}
             styleProp={{ width: "48%" }}
           />

@@ -4,7 +4,7 @@ import api from "../../../api";
 import NextButton from "../../Items/NextButton";
 import EducationalDetailsItem from "./educationalDetailsItem";
 
-const EducationalDetails = ({activeStep,setActiveStep}) => {
+const EducationalDetails = ({setActiveStep}) => {
   const [count, setCount] = useState(0)
   const [tenthInfo, setTenthInfo] = useState({
     institution: "",
@@ -40,6 +40,8 @@ const EducationalDetails = ({activeStep,setActiveStep}) => {
       .then(() => {
         toast.success("Data saved!");
         setCount(count + 1);
+        if(count+1===3)
+        setActiveStep(prev=>prev+1)
         return false
       })
       .catch(() => {
@@ -56,6 +58,7 @@ const EducationalDetails = ({activeStep,setActiveStep}) => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        width:"100%"
       }}
     >
       <h2 style={{marginBottom: 50}}>Educational Details</h2>
@@ -63,7 +66,7 @@ const EducationalDetails = ({activeStep,setActiveStep}) => {
        {count == 0 && <EducationalDetailsItem educationalInfo={tenthInfo} setEducationalInfo={setTenthInfo} handleSubmit={handleSubmit} text={"10th"}/>}
         {count == 1 && <EducationalDetailsItem  educationalInfo={twelththInfo} setEducationalInfo={setTwelthInfo} handleSubmit={handleSubmit} text={"12th"} />}
         {count == 2 && <EducationalDetailsItem educationalInfo={ugInfo} setEducationalInfo={setUgInfo}  handleSubmit={handleSubmit} text={"graduation"}/>}
-        <NextButton setActiveStep={setActiveStep} activeStep={activeStep} disable={count!==3} styleProp={{width: "48%"}}/> 
+        {/* <NextButton setActiveStep={setActiveStep} disable={count!==3} styleProp={{width: "48%"}}/>  */}
     </div>
   );
 };
