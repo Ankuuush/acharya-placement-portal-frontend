@@ -79,7 +79,7 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
               </div>
             </div>
           </div>
-          {!removeCompanyHeader && <div className="save-job" style={{background: job.bookmarked || from === "bookmarks" ? "#1f357e" : null}} onClick={()=> {
+          {!removeCompanyHeader && text!=="View Details" && <div className="save-job" style={{background: job.bookmarked || from === "bookmarks" ? "#1f357e" : null}} onClick={()=> {
             toggleDriveBookmark(job._id, function(bookmarked){
               getAllDrives();
             });
