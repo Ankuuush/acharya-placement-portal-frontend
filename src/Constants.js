@@ -16,6 +16,10 @@ const constants = {
         return constants.QUOTES[Math.floor(Math.random() * constants.QUOTES.length)]
     },
     STUDENT_MENU: [{
+        text: "Dashboard",
+        code: "dashboard",
+        icon: "compass"
+    },{
         text: "Explore Drives",
         code: "explore-jobs",
         icon: "briefcase"

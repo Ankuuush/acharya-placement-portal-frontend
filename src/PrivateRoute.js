@@ -20,7 +20,7 @@ const PrivateRoute = ({role}) => {
         <Outlet />
       ) : token?.account === "student" ? (
         <Navigate
-          to="/student/explore-jobs"
+          to="/student/dashboard"
           state={{ from: location }}
           replace
         />

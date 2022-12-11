@@ -24,6 +24,13 @@ const Student = () => {
         path={"/student/application/:applicationId"}
         element={<Dashboard page={"application-details"} />}
       />
+      <Route
+        exact
+        path={"/student/company/:companySlug"}
+        element={<Dashboard page={"company-details"} />}
+      />
+      //404 page
+      <Route path="*" element={<h1>404</h1>} />
     </Route>
   );
 };

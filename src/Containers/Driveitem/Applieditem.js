@@ -10,6 +10,7 @@ export default function AppliedItem({
   getAllDrives,
   from,
   application,
+  fromDashboard
 }) {
   const viewDrive = () => {
     change("drives/" + job._id, "drive-details");
@@ -35,7 +36,7 @@ export default function AppliedItem({
   }
 
   return (
-    <div className="a-jobitem-root">
+    <div className="a-jobitem-root" style={{padding: fromDashboard && 0}}>
       <div className="jobitem-inner-root">
         <div className="job-header-root">
           <div className="job-header">
@@ -48,7 +49,7 @@ export default function AppliedItem({
             </div>
           </div>
         </div>
-        <div className="job-body-root">
+        <div className="job-body-root"  style={{display: fromDashboard ? "flex":null, justifyContent: "space-between", alignItems: "center"}}>
           <div className="badge-group">
             <Badge
               icon={"clock"}
@@ -73,7 +74,7 @@ export default function AppliedItem({
               text={application.appliedBy === "self" ? "Self Applied" : "TPO"}
             />
           </div>
-          <hr className="job-hr" />
+          <hr className="job-hr" style={{display: fromDashboard ? "none":null}} />
           <div className="quick-action-root">
             <div className="job-apply-container">
               <button
