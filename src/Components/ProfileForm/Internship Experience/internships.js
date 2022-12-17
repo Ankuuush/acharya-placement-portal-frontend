@@ -118,7 +118,7 @@ const Internships = ({setActiveStep,handleAdd=false }) => {
           </Button>
           <NextButton
             setActiveStep={setActiveStep}
-            disable={newForm}
+            disable={false}
             styleProp={{ width: "48%" }}
           />
         </div>}

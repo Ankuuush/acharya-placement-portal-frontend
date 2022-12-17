@@ -11,7 +11,10 @@ import Student from "./routes/Student";
 import Admin from "./routes/Admin";
 import Tpo from "./routes/Tpo";
 import './index.css'
+import ProfileForm from "./Pages/Student/Profile Form/ProfileForm";
+import { useState } from "react";
 function App() {
+  const [activeStep, setActiveStep] = useState(3)
   return (
     <AuthProvider>
       <Router>
@@ -21,6 +24,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/forgot-password" element={<ForgotPassword />} />
           <Route exact path="/verify-email" element={<VerifyEmail />} />
+          <Route exact path="/test" element={<ProfileForm setComponent={{}} profileData={{progress:{completedPercentage:0}}} activeStep={activeStep} setActiveStep={setActiveStep} />} />
           <Route element={<PrivateRoute role={""} />}>
             <Route exact path="/" element={<></>} />
           </Route>
