@@ -27,7 +27,7 @@ const CompanyDetails = ({ setActiveStep, postJob, setPostJob }) => {
               required
             >
               <MenuItem value={"Google"}>Google</MenuItem>
-              <MenuItem value={"ACB"}>Ajit Chat Bhandar</MenuItem>
+              <MenuItem value={"Infosys"}>Infosys</MenuItem>
             </Select>
           </FormControl>
         </Box>

@@ -1,0 +1,33 @@
+.student-list{
+    background-color: white;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 5px;
+    width: 100%;
+}
+.student-list-main-header{
+    display:flex;
+    flex-direction: row;
+}
+
+.student-list-main-body{
+    margin-top:1rem;
+}
+
+.student-list-item{
+    height:5rem;
+    display:flex;
+    flex-direction: row;
+    justify-content:space-between ;
+    align-items: center;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.35);
+}
+
+.student-list-item-main{
+    height:fit-content;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.3rem;
+    color: #1E4786
+}
