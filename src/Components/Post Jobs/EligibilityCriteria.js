@@ -12,6 +12,10 @@ const EligibilityCriteria = ({setActiveStep,postJob, setPostJob}) => {
 
   const handleSubmit=(e)=>{
     e.preventDefault();
+    // Convert eligibility to array by taking only skill id from skill object
+    postJob.eligibility.skills = postJob.eligibility.skills.map(skill=>skill._id)
+    postJob.eligibility.softSkills = postJob.eligibility.softSkills.map(skill=>skill._id)
+    postJob.eligibility.languages = postJob.eligibility.languages.map(skill=>skill._id)
     api.post('/tpo/drives',postJob).then(response=>{
       console.log(response)
     }).catch(error=>{
