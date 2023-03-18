@@ -1,18 +1,42 @@
 import { Button, TextField } from '@mui/material';
 import React from 'react'
+import { toast } from 'react-toastify';
+import api from '../../api';
+import Skills from '../ProfileForm/Skills/Skills';
+import SkillsSearch from '../ProfileForm/Skills/SkillsSearch';
 
 const EligibilityCriteria = ({setActiveStep,postJob, setPostJob}) => {
   const onChange = (e) => {
-    setPostJob({ ...postJob, [e.target.name]: e.target.value });
+    setPostJob({ ...postJob, [e.target.name]: Number(e.target.value) });
   };
 
   const handleSubmit=(e)=>{
     e.preventDefault();
-    setActiveStep(prev=> prev+1)
+    api.post('/tpo/drives',postJob).then(response=>{
+      console.log(response)
+    }).catch(error=>{
+      toast.error("Server Error!!")
+    })
+    console.log(postJob)
+  }
+  const setSkills=(data)=>{
+    setPostJob({...postJob,eligibility:{...postJob.eligibility,skills:data}})
+  }
+  const setSoftSkills=(data)=>{
+    setPostJob({...postJob,eligibility:{...postJob.eligibility,softSkills:data}})
+  }
+  const setLanguages=(data)=>{
+    setPostJob({...postJob,eligibility:{...postJob.eligibility,languages:data}})
   }
   return (
     <div>
       <h3>Eligibility Criteria</h3>
+      <h4 style={{ color: "#F49424",marginTop: 20 }}>Coding Skills</h4>
+      <SkillsSearch endpoint={"/tpo/skills"} disableBut={false} skills={postJob.eligibility.skills} setSkills={setSkills} skillType={'Coding Skills'} />
+      <h4 style={{ color: "#F49424" }}>Interpersonal Skills</h4>
+      <SkillsSearch endpoint={"/tpo/softSkills"} disableBut={false} skills={postJob.eligibility.softSkills} setSkills={setSoftSkills} skillType={'Interpersonal Skills'} />
+      <h4 style={{ color: "#F49424" }}>Languages</h4>
+      <SkillsSearch endpoint={"/tpo/languages"} disableBut={false} skills={postJob.eligibility.languages} setSkills={setLanguages} skillType={'Languages'} />
       <form onSubmit={handleSubmit}>
         <TextField
           name="age"

@@ -10,36 +10,36 @@ const PostJobs = () => {
   const [postJob, setPostJob] = useState({
     company: "",
   jobType: "",
-  role: "",
-  jd: "",
-  ctc: "",
-  regitrationDeadline: "",
+  // role: "",
+  // jd: "",
+  // ctc: 0,
+  // regitrationDeadline:"" ,
   eligibility: {
-    age: "",
-    tenthPercentage: "",
-    twelfthPercentage: "",
-    graduationPercentage: "",
-    internshipCount: "",
-    projectCount: "",
-    certificationCount: "",
-    achievementCount: "",
+    // age: 0,
+    // tenthPercentage: 0,
+    // twelfthPercentage: 0,
+    // graduationPercentage: 0,
+    // internshipCount: 0,
+    // projectCount: 0,
+    // certificationCount: 0,
+    // achievementCount: 0,
     skills: [],
     softSkills: [],
     languages: []
   },
-  noOfPositions: "",
-  bondApplicable: true,
-  bondDuration: "",
-  bondStatement: "",
-  location: "",
-  venue: "",
-  additionalInfo: ""
+  // noOfPositions: 0,
+  bondApplicable: false,
+  // bondDuration: 0,
+  // bondStatement: "",
+  // location: "",
+  // venue: "",
+  // additionalInfo: ""
 })
   const renderSwitch = () => {
     switch (activeStep) {
-      case 0:return <CompanyDetails setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob} />
+      case 0: return <CompanyDetails setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob} />
       case 1: return <JobDetails setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob}/>
-      case 2: return <EligibilityCriteria setActiveStep={setActiveStep} activeStep={activeStep} postJob={postJob} setPostJob={setPostJob}/>
+      case 2: return <EligibilityCriteria setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob}/>
       default: return <CompanyDetails setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob}/>
     }
   }

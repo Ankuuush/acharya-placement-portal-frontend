@@ -1,4 +1,3 @@
-import Signup from "./Pages/SignUp/Signup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import AuthProvider from "./Context/AuthContext/AuthProvider";
@@ -13,6 +12,7 @@ import Tpo from "./routes/Tpo";
 import './index.css'
 import ProfileForm from "./Pages/Student/Profile Form/ProfileForm";
 import { useState } from "react";
+import Signup from "./Pages/SignUp/Signup";
 function App() {
   const [activeStep, setActiveStep] = useState(3)
   return (

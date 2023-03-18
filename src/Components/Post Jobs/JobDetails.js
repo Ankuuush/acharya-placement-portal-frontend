@@ -10,12 +10,10 @@ import {
   TextField,
 } from "@mui/material";
 import React from "react";
-import { useState } from "react";
 
 const JobDetails = ({ setActiveStep, postJob, setPostJob }) => {
-  const [checked, setChecked] = useState(false);
   const handleBond = () => {
-    setChecked(!checked);
+    setPostJob({ ...postJob,bondApplicable:!postJob.bondApplicable})
   };
   const onChange = (e) => {
     setPostJob({ ...postJob, [e.target.name]: e.target.value });
@@ -71,10 +69,10 @@ const JobDetails = ({ setActiveStep, postJob, setPostJob }) => {
           </FormControl>
         </Box>
         <TextField
-          name="registrationDeadline"
+          name="regitrationDeadline"
           InputLabelProps={{ shrink: true }}
           onChange={onChange}
-          value={postJob.registrationDeadline}
+          value={postJob.regitrationDeadline}
           size="normal"
           label="Registration Deadline"
           type="date"
@@ -109,7 +107,7 @@ const JobDetails = ({ setActiveStep, postJob, setPostJob }) => {
         <FormControlLabel
           control={
             <Checkbox
-              checked={checked}
+              checked={postJob.bondApplicable}
               onChange={handleBond}
               inputProps={{ "aria-label": "controlled" }}
             />
@@ -117,7 +115,7 @@ const JobDetails = ({ setActiveStep, postJob, setPostJob }) => {
           label="Bond Applicable"
         />
         <TextField
-          disabled={!checked}
+          disabled={!postJob.bondApplicable}
           name="bondDuration"
           onChange={onChange}
           value={postJob.bondDuration}
@@ -130,7 +128,7 @@ const JobDetails = ({ setActiveStep, postJob, setPostJob }) => {
           required
         />
         <TextField
-        disabled={!checked}
+        disabled={!postJob.bondApplicable}
           name="bondStatement"
           onChange={onChange}
           value={postJob.bondStatement}

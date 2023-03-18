@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { useCallback } from "react";
-import _debounce from "lodash/debounce";
-import api from "../../../api";
-import { Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import "../../../Styles/Skills.css";
-import { toast } from "react-toastify";
 import { useEffect } from "react";
-import SkillItem from "../../Items/SkillItem";
+import SkillsSearch from "./SkillsSearch";
 
 const SkillsCategoryItem = ({
   skillType = "",
@@ -16,48 +12,10 @@ const SkillsCategoryItem = ({
   profileData = "",
   handleSubmit = "",
 }) => {
-  const [value, setValue] = useState("");
-  const [search, setSearch] = useState([]);
+  
   const [skills, setSkills] = useState([]);
   const [disableBut, setDisableBut] = useState(false);
-
-  const addSkill = (element) => {
-    for (let index = 0; index < skills.length; index++) {
-      if (skills[index]._id === element._id) {
-        toast.error("Skill already added!");
-        return;
-      }
-    }
-    let newSkills = skills;
-    newSkills.push(element);
-    setSkills(newSkills);
-    setValue("");
-    setSearch([]);
-  };
-
-  const debounceFn = useCallback(_debounce(handleDebounceFn, 500), []);
-
-  function handleDebounceFn(inputValue) {
-    if (inputValue.length >= 2) {
-      try {
-        api.get(`${endpoint}/search?q=${inputValue}`).then((res) => {
-          let response = [];
-          if (skillType === "Coding Skills") response = res.data.data.skills;
-          else if (skillType === "Interpersonal Skills")
-            response = res.data.data.softSkills;
-          else response = res.data.data.languages;
-          setSearch(response);
-        });
-      } catch (error) {
-        toast.error("Server Error!");
-      }
-    } else setSearch([]);
-  }
-
-  const onChange = (event) => {
-    setValue(event.target.value);
-    debounceFn(event.target.value);
-  };
+  
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -67,10 +25,7 @@ const SkillsCategoryItem = ({
     if (await handleSubmit(skillType, endpoint, skills)) setDisableBut(false);
   };
 
-  const onDelete = (id) => {
-    let newskills = skills.filter((skill) => skill._id !== id);
-    setSkills(newskills);
-  };
+  
 
   useEffect(() => {
     if (profileData.length) {
@@ -85,50 +40,7 @@ const SkillsCategoryItem = ({
   return (
     <div style={{width:"100%"}}>
       <h4 style={{ color: "#F49424" }}>{skillType}</h4>
-      <TextField
-        disabled={disableBut}
-        name="search"
-        onChange={onChange}
-        value={value}
-        size="small"
-        label="Start typing to search..."
-        type="search"
-        variant="outlined"
-        className="search"
-        style={{ width: "100%" ,marginTop: 30 }}
-      />
-
-      {search.length > 0 && (
-        <div className="autocomplete">
-          {search.map((element) => (
-            <div
-              className="autocompleteItems"
-              key={element._id}
-              onClick={() => addSkill(element)}
-            >
-              <p className="autocompleteItems-p">{element.name}</p>
-            </div>
-          ))}
-        </div>
-      )}
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          flexWrap: "wrap",
-          marginTop: "1rem",
-        }}
-      >
-        {skills.map((skill) => (
-          <SkillItem
-            key={skill._id}
-            skill={skill}
-            disableBut={disableBut}
-            onDelete={onDelete}
-            skillStyle={{ width: "70%" }}
-          />
-        ))}
-      </div>
+      <SkillsSearch endpoint={endpoint} disableBut={disableBut} skills={skills} setSkills={setSkills} skillType={skillType} />
       <Button
         onClick={onSubmit}
         disabled={skills.length === 0 || disableBut}
