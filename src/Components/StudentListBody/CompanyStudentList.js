@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Filter from '../../Components/Filter/Filter';
 import Search from '../../Components/Search/Search'
-import StudentListBody from '../../Components/StudentListBody/StudentListBody'
+import CompanyStudentListBody from './CompanyStudentListBody';
 
-const StudentList = () => {
+const CompanyStudentList = () => {
   const [filterOpen, setFilterOpen] = useState(true);
   return (
     <div style={{height: "auto",
@@ -20,10 +20,17 @@ const StudentList = () => {
     // loading={loading}
     // assignFilter={assignFilter}
     />
-  <StudentListBody />
+  <CompanyStudentListBody />
   </div>
+  {filterOpen && (
+        <Filter
+          // assignFilter={assignFilter}
+          // filterArray={filterArray}
+          // setFilterArray={setFilterArray}
+        />
+      )}
   </div>
   )
 }
 
-export default StudentList
+export default CompanyStudentList
