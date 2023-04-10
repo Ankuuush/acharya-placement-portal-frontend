@@ -5,8 +5,8 @@ import StudentItem from "./StudentItem";
 import api from "../../api";
 import { toast } from "react-toastify";
 
-const StudentListBody = () => {
-  const [students,setStudents]=useState([])
+const StudentListBody = ({students}) => {
+  
   const headingStyle = {
     color: "#1E4786",
     textDecoration: "underline",
@@ -15,15 +15,6 @@ const StudentListBody = () => {
     textUnderlineOffset: "5px",
     cursor:"pointer"
   };
-
-  useEffect(() => {
-    api.get('/tpo/students').then((response)=>{
-        setStudents(response.data.data.students)
-    }).catch((error)=>{
-        toast.error('Server Error')
-    })
-  
-  }, [])
   
 
   return (

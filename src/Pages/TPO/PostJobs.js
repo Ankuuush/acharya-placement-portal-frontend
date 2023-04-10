@@ -7,6 +7,7 @@ import Steps from "../../Components/StepsFolder/Steps";
 const PostJobs = () => {
   const steps = ["Company details", "Job Details", "Eligibility Criteria"];
   const [activeStep, setActiveStep] = useState(0);
+  const [company, setCompany] = useState({})
   const [postJob, setPostJob] = useState({
     company: "",
   jobType: "",
@@ -37,10 +38,10 @@ const PostJobs = () => {
 })
   const renderSwitch = () => {
     switch (activeStep) {
-      case 0: return <CompanyDetails setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob} />
+      case 0: return <CompanyDetails setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob} company={company} setCompany={setCompany} />
       case 1: return <JobDetails setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob}/>
-      case 2: return <EligibilityCriteria setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob}/>
-      default: return <CompanyDetails setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob}/>
+      case 2: return <EligibilityCriteria setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob} company={company}/>
+      default: return <CompanyDetails setActiveStep={setActiveStep} postJob={postJob} setPostJob={setPostJob} company={company}setCompany={setCompany} />
     }
   }
   return (

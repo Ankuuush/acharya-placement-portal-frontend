@@ -12,6 +12,8 @@ import Registration from "./Registration";
 import constants from "../../Constants";
 import { useNavigate } from "react-router-dom";
 import DriveDetails from "../Student/DriveDetails";
+import JobPreview from "./JobPreview/JobPreview";
+import ShortlistedStudents from "./JobPreview/ShortlistedStudents";
 
 const Dashboard = ({ page = "" }) => {
   const navigate = useNavigate();
@@ -58,6 +60,8 @@ const Dashboard = ({ page = "" }) => {
           {component === "registration" && <Registration />}
           {component === "feedback" && <FeedBack />}
           {component === "contact-us" && <ContactUs />}
+          {component === "job-preview" && <JobPreview />}
+          {component === "preview-students" && <ShortlistedStudents />}
         </Box>
       </div>
     </div>

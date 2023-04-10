@@ -1,14 +1,21 @@
 import { Button, TextField } from '@mui/material';
-import React from 'react'
+import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import api from '../../api';
 import Skills from '../ProfileForm/Skills/Skills';
 import SkillsSearch from '../ProfileForm/Skills/SkillsSearch';
+import { useNavigate } from 'react-router-dom';
 
-const EligibilityCriteria = ({setActiveStep,postJob, setPostJob}) => {
+const EligibilityCriteria = ({setActiveStep,postJob, setPostJob,company}) => {
+  const [eligbilityData, setEligbilityData] = useState({})
   const onChange = (e) => {
     setPostJob({ ...postJob, [e.target.name]: Number(e.target.value) });
+    setEligbilityData({ ...eligbilityData, [e.target.name]: Number(e.target.value) });
   };
+
+  const navigate=useNavigate();
+
+  const [skillData, setSkillData] = useState({})
 
   const handleSubmit=(e)=>{
     e.preventDefault();
@@ -16,20 +23,22 @@ const EligibilityCriteria = ({setActiveStep,postJob, setPostJob}) => {
     postJob.eligibility.skills = postJob.eligibility.skills.map(skill=>skill._id)
     postJob.eligibility.softSkills = postJob.eligibility.softSkills.map(skill=>skill._id)
     postJob.eligibility.languages = postJob.eligibility.languages.map(skill=>skill._id)
-    api.post('/tpo/drives',postJob).then(response=>{
-      console.log(response)
-    }).catch(error=>{
-      toast.error("Server Error!!")
-    })
-    console.log(postJob)
+    navigate('/tpo/post-jobs/preview',{state:{job:postJob,company:company,skillData:skillData,eligbilityData:eligbilityData}})
+
   }
   const setSkills=(data)=>{
+    setEligbilityData({ ...eligbilityData, skills:data._id})
+    setSkillData({...skillData,skills:data})
     setPostJob({...postJob,eligibility:{...postJob.eligibility,skills:data}})
   }
   const setSoftSkills=(data)=>{
+    setEligbilityData({ ...eligbilityData, softSkills:data._id})
+    setSkillData({...skillData,softSkills:data})
     setPostJob({...postJob,eligibility:{...postJob.eligibility,softSkills:data}})
   }
   const setLanguages=(data)=>{
+    setEligbilityData({ ...eligbilityData, languages:data._id})
+    setSkillData({...skillData,languages:data})
     setPostJob({...postJob,eligibility:{...postJob.eligibility,languages:data}})
   }
   return (

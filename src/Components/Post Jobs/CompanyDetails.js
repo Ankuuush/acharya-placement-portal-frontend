@@ -118,7 +118,13 @@ const Company = () => {
   );
 };
 
-const CompanyDetails = ({ setActiveStep, postJob, setPostJob }) => {
+const CompanyDetails = ({ setActiveStep, postJob, setPostJob,company, setCompany }) => {
+
+  const onChangeCompany=(e)=>{
+    const val=e.target.value
+    setPostJob({ ...postJob, [e.target.name]: val._id });
+    setCompany(val)
+  }
   const onChange = (e) => {
     setPostJob({ ...postJob, [e.target.name]: e.target.value });
   };
@@ -129,6 +135,7 @@ const CompanyDetails = ({ setActiveStep, postJob, setPostJob }) => {
     setActiveStep((prev) => prev + 1);
   };
   const [companies, setCompanies] = useState([]);
+
   useEffect(() => {
     api
       .get("/tpo/company")
@@ -139,6 +146,7 @@ const CompanyDetails = ({ setActiveStep, postJob, setPostJob }) => {
         toast.error("Server Error!");
       });
   }, []);
+
 
   return (
     <div>
@@ -152,14 +160,14 @@ const CompanyDetails = ({ setActiveStep, postJob, setPostJob }) => {
               name="company"
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={postJob.company}
+              value={company.name}
               label="Company"
-              onChange={onChange}
+              onChange={onChangeCompany}
               required
             >
               {companies.map((item) => {
                 return (
-                  <MenuItem key={item._id} value={item._id}>
+                  <MenuItem key={item._id} value={item}>
                     {item.name}
                   </MenuItem>
                 );
