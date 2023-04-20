@@ -27,6 +27,22 @@ const Internships = ({setActiveStep,handleAdd=false }) => {
     newinternshipsArray.push(internships);
     setInternshipsArray(newinternshipsArray);
 
+    let bodyData = {
+      companyName: internships.companyName,
+      startMonth: internships.startMonth,
+      startYear: parseInt(internships.startYear),
+      endMonth: internships.endMonth,
+      endYear: parseInt(internships.endYear),
+      ongoing: internships.ongoing,
+      description: internships.description,
+      role: internships.role,
+    }
+
+    if(internships.ongoing) {
+      delete bodyData.endMonth;
+      delete bodyData.endYear;
+    }
+
     api
       .post(`/student/profile/internships`, {
         companyName: internships.companyName,
