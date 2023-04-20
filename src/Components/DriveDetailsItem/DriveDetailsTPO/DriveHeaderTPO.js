@@ -33,10 +33,11 @@ const DriveHeaderTPO = ({ job,company,eligibilityData }) => {
     api.post('/tpo/drives',job).then(response=>{
         console.log(response)
         toast.success("Job posted!!")
-        navigate('/tpo/post-jobs')
+        // navigate('/tpo/post-jobs')
       }).catch(error=>{
         toast.error("Server Error!!")
       })
+    console.log(job)
   }
 
   return (
@@ -51,7 +52,7 @@ const DriveHeaderTPO = ({ job,company,eligibilityData }) => {
         </div>
         {/* <ProfileMatch /> TODO:Do we need this? */}
         <div>
-        <Button onClick={handleStudents}>View Shortlisted Students</Button>
+        {/* <Button onClick={handleStudents}>View Shortlisted Students</Button> */}
         <Button onClick={handleSubmit}>Post Job</Button>
         </div>
       </div>

@@ -23,37 +23,37 @@ const DriveDetailsTPO = ({job,company,skillData,eligibilityData}) => {
     navigate(-1);
   };
   return (
-      // <div>
-      //   {/* implement back button */}
-      //   {/* <div
-      //     style={{
-      //       display: "flex",
-      //       alignItems: "center",
-      //       marginBottom: 20,
-      //       cursor: "pointer",
-      //     }}
-      //     onClick={handleBack}
-      //   >
-      //     <button style={buttonStyle}>
-      //       <FeatherIcon
-      //         icon={"arrow-left"}
-      //         color="#213780"
-      //         size={18}
-      //         style={{ marginRight: 5 }}
-      //       />
-      //     </button>
-      //     <p>Back</p>
-      //   </div> */}
-      //   <div style={driveStyle}>
-      //     <DriveHeaderTPO
-      //       job={job}
-      //       company={company}
-      //       eligibilityData={eligibilityData}
-      //     />
-      //     <DriveBodyTPO job={job} skills={skillData} />
-      //   </div>
-      // </div>
-      <h2>yo</h2>
+      <div>
+        {/* implement back button */}
+        {/* <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: 20,
+            cursor: "pointer",
+          }}
+          onClick={handleBack}
+        >
+          <button style={buttonStyle}>
+            <FeatherIcon
+              icon={"arrow-left"}
+              color="#213780"
+              size={18}
+              style={{ marginRight: 5 }}
+            />
+          </button>
+          <p>Back</p>
+        </div> */}
+        <div style={driveStyle}>
+          <DriveHeaderTPO
+            job={job}
+            company={company}
+            eligibilityData={eligibilityData}
+          />
+          <DriveBodyTPO job={job} skills={skillData} />
+        </div>
+      </div>
+      // <h2>yo</h2>
   );
 };
 

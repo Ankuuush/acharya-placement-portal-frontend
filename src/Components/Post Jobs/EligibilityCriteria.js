@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const EligibilityCriteria = ({setActiveStep,postJob, setPostJob,company}) => {
   const [eligbilityData, setEligbilityData] = useState({})
   const onChange = (e) => {
-    setPostJob({ ...postJob, [e.target.name]: Number(e.target.value) });
+    setPostJob({ ...postJob,eligibility:{...postJob.eligibility, [e.target.name]: Number(e.target.value)} });
     setEligbilityData({ ...eligbilityData, [e.target.name]: Number(e.target.value) });
   };
 
