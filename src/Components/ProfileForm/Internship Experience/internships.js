@@ -38,22 +38,15 @@ const Internships = ({setActiveStep,handleAdd=false }) => {
       role: internships.role,
     }
 
+    alert("gi")
+
     if(internships.ongoing) {
       delete bodyData.endMonth;
       delete bodyData.endYear;
     }
 
     api
-      .post(`/student/profile/internships`, {
-        companyName: internships.companyName,
-        startMonth: internships.startMonth,
-        startYear: parseInt(internships.startYear),
-        endMonth: internships.endMonth,
-        endYear: parseInt(internships.endYear),
-        ongoing: internships.ongoing,
-        description: internships.description,
-        role: internships.role,
-      })
+      .post(`/student/profile/internships`, bodyData)
       .then((response) => {
         toast.success("Data saved!");
         setInternships({
