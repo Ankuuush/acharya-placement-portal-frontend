@@ -39,7 +39,7 @@ const TpoExploreJobs = ({ change, toggleDriveBookmark }) => {
       change={change}
       toggleDriveBookmark={toggleDriveBookmark}
       getAllDrives={getAllDrives}
-      text="View Details"
+      text="View Students"
     />
   );
 };

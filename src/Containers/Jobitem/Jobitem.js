@@ -52,6 +52,10 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
     change("drives/" + job._id, "drive-details");
   };
 
+  const viewStudents=()=>{
+    change("student-list","student-list")
+  }
+
   const deadlinePassed = new Date(job.regitrationDeadline) < new Date();
   const locked = job.locked
 
@@ -161,13 +165,19 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
                 <p className="n-eligible">Not Eligible</p>
               </div>}
                 </div> : null}
+                {text==='View Students'?
+                <button
+                className="job-apply-button"
+                style={butStyle('View Details')}
+                onClick={viewStudents}
+                >{text}</button>:
               <button
                 className="job-apply-button"
                 style={butStyle(text)}
                 onClick={applyNow}
               >
                 {text==="View Details"?text:!job.calculatedEligibility.eligible || job.applied  ? "View Details" : text}
-              </button>
+              </button>}
             </div>
           </div>
         </div>

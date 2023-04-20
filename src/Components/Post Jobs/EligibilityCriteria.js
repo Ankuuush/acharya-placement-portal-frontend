@@ -1,18 +1,55 @@
 import { Button, TextField } from '@mui/material';
-import React from 'react'
+import React, { useState } from 'react'
+import { toast } from 'react-toastify';
+import api from '../../api';
+import Skills from '../ProfileForm/Skills/Skills';
+import SkillsSearch from '../ProfileForm/Skills/SkillsSearch';
+import { useNavigate } from 'react-router-dom';
 
-const EligibilityCriteria = ({setActiveStep,postJob, setPostJob}) => {
+const EligibilityCriteria = ({setActiveStep,postJob, setPostJob,company}) => {
+  const [eligbilityData, setEligbilityData] = useState({})
   const onChange = (e) => {
-    setPostJob({ ...postJob, [e.target.name]: e.target.value });
+    setPostJob({ ...postJob, [e.target.name]: Number(e.target.value) });
+    setEligbilityData({ ...eligbilityData, [e.target.name]: Number(e.target.value) });
   };
+
+  const navigate=useNavigate();
+
+  const [skillData, setSkillData] = useState({})
 
   const handleSubmit=(e)=>{
     e.preventDefault();
-    setActiveStep(prev=> prev+1)
+    // Convert eligibility to array by taking only skill id from skill object
+    postJob.eligibility.skills = postJob.eligibility.skills.map(skill=>skill._id)
+    postJob.eligibility.softSkills = postJob.eligibility.softSkills.map(skill=>skill._id)
+    postJob.eligibility.languages = postJob.eligibility.languages.map(skill=>skill._id)
+    navigate('/tpo/post-jobs/preview',{state:{job:postJob,company:company,skillData:skillData,eligbilityData:eligbilityData}})
+
+  }
+  const setSkills=(data)=>{
+    setEligbilityData({ ...eligbilityData, skills:data._id})
+    setSkillData({...skillData,skills:data})
+    setPostJob({...postJob,eligibility:{...postJob.eligibility,skills:data}})
+  }
+  const setSoftSkills=(data)=>{
+    setEligbilityData({ ...eligbilityData, softSkills:data._id})
+    setSkillData({...skillData,softSkills:data})
+    setPostJob({...postJob,eligibility:{...postJob.eligibility,softSkills:data}})
+  }
+  const setLanguages=(data)=>{
+    setEligbilityData({ ...eligbilityData, languages:data._id})
+    setSkillData({...skillData,languages:data})
+    setPostJob({...postJob,eligibility:{...postJob.eligibility,languages:data}})
   }
   return (
     <div>
       <h3>Eligibility Criteria</h3>
+      <h4 style={{ color: "#F49424",marginTop: 20 }}>Coding Skills</h4>
+      <SkillsSearch endpoint={"/tpo/skills"} disableBut={false} skills={postJob.eligibility.skills} setSkills={setSkills} skillType={'Coding Skills'} />
+      <h4 style={{ color: "#F49424" }}>Interpersonal Skills</h4>
+      <SkillsSearch endpoint={"/tpo/softSkills"} disableBut={false} skills={postJob.eligibility.softSkills} setSkills={setSoftSkills} skillType={'Interpersonal Skills'} />
+      <h4 style={{ color: "#F49424" }}>Languages</h4>
+      <SkillsSearch endpoint={"/tpo/languages"} disableBut={false} skills={postJob.eligibility.languages} setSkills={setLanguages} skillType={'Languages'} />
       <form onSubmit={handleSubmit}>
         <TextField
           name="age"

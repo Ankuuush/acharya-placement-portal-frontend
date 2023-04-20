@@ -18,6 +18,7 @@ const ResumeSkillCategoryItem = ({
     setChildOpen(true);
   };
   const handleSubmit = async (skillType, endpoint, skills) => {
+    console.log(skills)
     try {
       if (skillType === "Coding Skills") {
         await api.post(`${endpoint}`, {

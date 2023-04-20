@@ -21,6 +21,22 @@ const Tpo = () => {
         path={"/tpo/drives/:driveid"}
         element={<TpoDashboard page={"drive-details"} />}
       />
+      <Route
+        exact
+        path={"/tpo/post-jobs/preview"}
+        element={<TpoDashboard page={"job-preview"} /> }
+      />
+      <Route
+        exact
+        path={"/tpo/post-jobs/students"}
+        element={<TpoDashboard page={"preview-students"} /> }
+      />
+      <Route
+        exact
+        path={"/tpo/student-details"}
+        // element={<h2>hii</h2> }
+        element={<TpoDashboard page={"student-details"} /> }
+      />
     </Route>
   )
 }
