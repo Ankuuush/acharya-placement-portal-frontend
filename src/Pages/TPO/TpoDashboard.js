@@ -11,9 +11,11 @@ import StudentList from "./StudentList";
 import Registration from "./Registration";
 import constants from "../../Constants";
 import { useNavigate } from "react-router-dom";
-import DriveDetails from "../Student/DriveDetails";
 import JobPreview from "./JobPreview/JobPreview";
 import ShortlistedStudents from "./JobPreview/ShortlistedStudents";
+import DriveDetailsTPO from "../../Components/DriveDetailsItem/DriveDetailsTPO/DriveDetailsTPO";
+import DriveDetails from "../Student/DriveDetails";
+import StudentDetails from "./StudentDetails";
 
 const Dashboard = ({ page = "" }) => {
   const navigate = useNavigate();
@@ -54,7 +56,7 @@ const Dashboard = ({ page = "" }) => {
         <Topbar />
         <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#f3f4f8" }}>
           {component === "explore-jobs" && <TpoExploreJobs change={changeSelectedComponent} />}
-          {component === "drive-details" && <DriveDetails />}
+          {component === "drive-details" && <DriveDetailsTPO />}
           {component === "post-jobs" && <PostJobs />}
           {component === "student-list" && <StudentList />}
           {component === "registration" && <Registration />}
@@ -62,6 +64,7 @@ const Dashboard = ({ page = "" }) => {
           {component === "contact-us" && <ContactUs />}
           {component === "job-preview" && <JobPreview />}
           {component === "preview-students" && <ShortlistedStudents />}
+          {component === "student-details" && <StudentDetails />}
         </Box>
       </div>
     </div>

@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 const StudentListBody = ({students}) => {
   
   const headingStyle = {
+    fontSize:"1.5rem",
+    fontWeight:700,
     color: "#1E4786",
     textDecoration: "underline",
     textDecorationColor: "#1E4786",
@@ -20,11 +22,11 @@ const StudentListBody = ({students}) => {
   return (
     <div className="student-list">
       <div className="student-list-main-header">
-        <h4
+        <p
           style={headingStyle} 
         >
           STUDENTS LIST
-        </h4>
+        </p>
       </div>
       <hr />
       <div className="student-list-main-body">
