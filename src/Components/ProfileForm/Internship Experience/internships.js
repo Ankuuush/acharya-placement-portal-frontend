@@ -38,8 +38,6 @@ const Internships = ({setActiveStep,handleAdd=false }) => {
       role: internships.role,
     }
 
-    alert("gi")
-
     if(internships.ongoing) {
       delete bodyData.endMonth;
       delete bodyData.endYear;
