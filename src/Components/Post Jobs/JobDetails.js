@@ -25,7 +25,8 @@ const JobDetails = ({ setActiveStep, postJob, setPostJob }) => {
   };
   return (
     <div>
-      <h3>Job Details</h3>
+      <h3>Drive Details</h3>
+      <p style={{margin:  "10px 0px"}}>Add in basic drive details</p>
       <form onSubmit={handleSubmit}>
         <TextField
           name="role"
