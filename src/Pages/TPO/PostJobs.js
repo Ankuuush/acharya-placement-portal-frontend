@@ -5,7 +5,7 @@ import JobDetails from "../../Components/Post Jobs/JobDetails";
 import Steps from "../../Components/StepsFolder/Steps";
 
 const PostJobs = () => {
-  const steps = ["Company details", "Job Details", "Eligibility Criteria"];
+  const steps = ["Company details", "Drive Details", "Eligibility Criteria"];
   const [activeStep, setActiveStep] = useState(0);
   const [company, setCompany] = useState({})
   const [postJob, setPostJob] = useState({
@@ -45,21 +45,27 @@ const PostJobs = () => {
     }
   }
   return (
-    <div
+    <div>
+      <div style={{paddingLeft: 60, marginTop: 30}}>
+      <h3>Post a new Drive</h3>
+      <p>Add a new drive from here, all eligible students will be automatically calculated, notified and shortlisted</p>
+      </div>
+      <div
       style={{
         display: "flex",
         boxShadow: "rgba(17, 17, 26, 0.1) 0px 0px 16px",
         padding: 20,
         background: "white",
         borderRadius: 15,
-        width:"70%",
+        width:"90%",
         margin:"2rem auto"
       }}
     >
-      <div style={{width:"37%",marginRight:"8%"}}>
+      <div style={{width:"22%",marginRight:"8%"}}>
       <Steps activeStep={activeStep} steps={steps} />
       </div>
       <div style={{width:"55%"}}>{renderSwitch()}</div>
+    </div>
     </div>
   );
 };
