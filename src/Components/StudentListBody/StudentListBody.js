@@ -30,8 +30,8 @@ const StudentListBody = ({students}) => {
       </div>
       <hr />
       <div className="student-list-main-body">
-        {students.map((item, index) => {
-              return <StudentItem key={index} item={`${item.student.firstName} ${item.student.lastName}`} />;
+        {students.map((student, index) => {
+              return <StudentItem key={index} student={student} />;
             })
           }
       </div>
