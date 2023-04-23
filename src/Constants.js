@@ -47,11 +47,11 @@ const constants = {
     ],
 
     TPO_MENU: [{
-        text: "Explore Jobs",
+        text: "Drives List",
         code: "explore-jobs",
         icon: "briefcase"
     },{
-        text: "Post Jobs",
+        text: "Post A Drive",
         code: "post-jobs",
         icon: "user-check"
     },{
@@ -59,7 +59,7 @@ const constants = {
         code: "student-list",
         icon: "file-text"
     },{
-        text: "Registration",
+        text: "Add A Student",
         code: "registration",
         icon: "user-plus"
     },{
