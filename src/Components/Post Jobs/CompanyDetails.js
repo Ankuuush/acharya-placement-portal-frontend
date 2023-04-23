@@ -23,7 +23,7 @@ const Company = ({fetchCompanies, setOpen}) => {
     if (company.length > 2) {
       try {
         const response = await axios.post(
-          "http://localhost:3001/scrape-company",
+          "https://glass-getter.herokuapp.com/scrape-company/scrape-company",
           {
             company: company,
           }
