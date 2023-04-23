@@ -30,8 +30,17 @@ const DriveHeaderTPO = ({ job,company }) => {
   // }
 
   const handleSubmit=()=>{
+    //Cleanup the data before sending
+    if(job.eligibility.languages && job.eligibility.languages.length===0){
+      delete job.eligibility.languages
+    }
+    if(job.eligibility.skills && job.eligibility.skills.length===0){
+      delete job.eligibility.skills
+    }
+    if(job.eligibility.softSkills && job.eligibility.softSkills.length===0){
+      delete job.eligibility.softSkills
+    }
     api.post('/tpo/drives',job).then(response=>{
-        console.log(response)
         toast.success("Job posted!!")
         // navigate('/tpo/post-jobs')
       }).catch(error=>{

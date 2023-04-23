@@ -44,7 +44,7 @@ const JobDetails = ({ setActiveStep, postJob, setPostJob }) => {
           onChange={onChange}
           value={postJob.ctc}
           size="normal"
-          label="Compensation"
+          label="Proposed CTC (In INR without commas)"
           type="number"
           variant="outlined"
           InputProps={{ inputProps: { min: 0 } }}

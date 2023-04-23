@@ -43,14 +43,15 @@ const EligibilityCriteria = ({setActiveStep,postJob, setPostJob,company}) => {
   return (
     <div>
       <h3>Eligibility Criteria</h3>
-      <h4 style={{ color: "#F49424",marginTop: 20 }}>Coding Skills</h4>
+      <p style={{margin:  "10px 0px"}}>In this section, set the eligibility for this drive, only marks are a compulsory eligibility.</p>
+      <h4 style={{ color: "#F49424",marginTop: 20 }}>Coding Skills (good to have)</h4>
       <SkillsSearch endpoint={"/tpo/skills"} disableBut={false} skills={postJob.eligibility.skills} setSkills={setSkills} skillType={'Coding Skills'} />
-      <h4 style={{ color: "#F49424" }}>Interpersonal Skills</h4>
+      <h4 style={{ color: "#F49424" }}>Interpersonal Skills (good to have)</h4>
       <SkillsSearch endpoint={"/tpo/softSkills"} disableBut={false} skills={postJob.eligibility.softSkills} setSkills={setSoftSkills} skillType={'Interpersonal Skills'} />
-      <h4 style={{ color: "#F49424" }}>Languages</h4>
+      <h4 style={{ color: "#F49424" }}>Languages (good to have)</h4>
       <SkillsSearch endpoint={"/tpo/languages"} disableBut={false} skills={postJob.eligibility.languages} setSkills={setLanguages} skillType={'Languages'} />
       <form onSubmit={handleSubmit}>
-        <TextField
+        {/* <TextField
           name="age"
           onChange={onChange}
           value={postJob.age}
@@ -60,44 +61,41 @@ const EligibilityCriteria = ({setActiveStep,postJob, setPostJob,company}) => {
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
           required
-        />
+        /> */}
         <TextField
           name="tenthPercentage"
           onChange={onChange}
           value={postJob.tenthPercentage}
           size="normal"
-          label="Tenth Percentage"
+          label="Tenth Percentage (in %)"
           InputProps={{ inputProps: { min: 0, max: 100 } }}
           type="number"
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
-          required
         />
           <TextField
             name="twelfthPercentage"
             onChange={onChange}
             value={postJob.twelfthPercentage}
             size="normal"
-            label="Twelfth Percentage"
+            label="Twelfth Percentage (in %)"
             InputProps={{ inputProps: { min: 0, max: 100 } }}
             type="number"
             variant="outlined"
             style={{ width: "100%", margin: "0.35rem 0" }}
-            required
           />
         <TextField
           name="graduationPercentage"
           onChange={onChange}
           value={postJob.graduationPercentage}
           size="normal"
-          label="Graduation Percentage"
+          label="Graduation Percentage (in %)"
           InputProps={{ inputProps: { min: 0, max: 100 } }}
           type="number"
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
-          required
         />
-        <TextField
+        {/* <TextField
           name="internshipCount"
           onChange={onChange}
           value={postJob.internshipCount}
@@ -144,7 +142,7 @@ const EligibilityCriteria = ({setActiveStep,postJob, setPostJob,company}) => {
           variant="outlined"
           style={{ width: "100%", margin: "0.35rem 0" }}
           required
-        />
+        /> */}
         <Button
           size="large"
           variant="contained"

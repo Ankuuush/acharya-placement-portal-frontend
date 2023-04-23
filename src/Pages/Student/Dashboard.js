@@ -55,6 +55,8 @@ const Dashboard = ({ page = "" }) => {
         .get("/student/profile/progress")
         .then((response) => {
           if (response.data.data.progress.completed) {
+            localStorage.setItem("avatar", response.data.data.profile.basicDetails.photoUrl);
+            localStorage.setItem("usn", response.data.data.profile.basicDetails.usn);
             if (page) setComponent(page);
             return;
           }
