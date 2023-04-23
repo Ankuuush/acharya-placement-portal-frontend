@@ -20,14 +20,14 @@ function parseRoleType(role) {
   }
 }
 
-const DriveHeaderTPO = ({ job,company,eligibilityData }) => {
+const DriveHeaderTPO = ({ job,company }) => {
 
   const navigate=useNavigate()
 
-  const handleStudents=()=>{
-    console.log(eligibilityData)
-    navigate('/tpo/post-jobs/students',{state:{eligibilityData:eligibilityData}})
-  }
+  // const handleStudents=()=>{
+  //   console.log(eligibilityData)
+  //   navigate('/tpo/post-jobs/students',{state:{eligibilityData:eligibilityData}})
+  // }
 
   const handleSubmit=()=>{
     api.post('/tpo/drives',job).then(response=>{

@@ -24,7 +24,6 @@ const EligibilityCriteria = ({setActiveStep,postJob, setPostJob,company}) => {
     postJob.eligibility.softSkills = postJob.eligibility.softSkills.map(skill=>skill._id)
     postJob.eligibility.languages = postJob.eligibility.languages.map(skill=>skill._id)
     navigate('/tpo/post-jobs/preview',{state:{job:postJob,company:company,skillData:skillData,eligbilityData:eligbilityData}})
-
   }
   const setSkills=(data)=>{
     setEligbilityData({ ...eligbilityData, skills:data._id})

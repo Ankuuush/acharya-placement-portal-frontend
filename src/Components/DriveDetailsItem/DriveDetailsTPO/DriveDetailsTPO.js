@@ -48,9 +48,8 @@ const DriveDetailsTPO = ({job,company,skillData,eligibilityData}) => {
           <DriveHeaderTPO
             job={job}
             company={company}
-            eligibilityData={eligibilityData}
           />
-          <DriveBodyTPO job={job} skills={skillData} />
+          <DriveBodyTPO job={job} skills={skillData} eligibilityData={eligibilityData} />
         </div>
       </div>
       // <h2>yo</h2>

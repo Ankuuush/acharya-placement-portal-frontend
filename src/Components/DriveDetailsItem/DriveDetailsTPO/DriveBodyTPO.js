@@ -2,8 +2,17 @@ import React from "react";
 import "../DriveBody.css";
 import FeatherIcon from "feather-icons-react";
 import Badge from "../../Badge/Badge";
+import StudentListBody from "../../StudentListBody/StudentListBody";
+import api from "../../../api";
 
-const DriveBodyTPO = ({ job,skills }) => {
+const DriveBodyTPO = ({ job,skills,eligibilityData }) => {
+
+  const [students, setStudents] = React.useState([])
+  React.useEffect(()=>{
+    api.get('/tpo/eligibility/calculate',eligibilityData).then((res)=>{
+      setStudents(res.data.data.students)
+    })
+  })
   return (
     <div className="drive-body-root">
       <div className="drive-body-jd">
@@ -56,6 +65,7 @@ const DriveBodyTPO = ({ job,skills }) => {
         <h3>About the Company</h3>
         <p className="drive-jd">{job.jd}</p>
       </div> */}
+      <StudentListBody students={students} />
     </div>
   );
 };
