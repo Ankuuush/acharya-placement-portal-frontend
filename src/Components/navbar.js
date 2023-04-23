@@ -248,9 +248,9 @@ export default function NavBar({account,menu, setComponent, currentComponent }) 
                 }}
               >
                 <img
-                  src={profilePic}
+                  src={localStorage.getItem("avatar") || profilePic}
                   alt="profile pic"
-                  style={{ width: "3rem", height: "3rem" }}
+                  style={{ width: "3rem", height: "3rem", borderRadius: 1000 }}
                 />
               </ListItemIcon>
               <div style={{ display: "flex", flexDirection: "column" }}>
@@ -259,7 +259,7 @@ export default function NavBar({account,menu, setComponent, currentComponent }) 
                   sx={{ display: open ? "" : "none", opacity: open ? 1 : 0 }}
                 />
                 <ListItemText
-                  primary="1AY19IS012"
+                  primary={localStorage.getItem("usn") || ""}
                   sx={{ display: open ? "" : "none", opacity: open ? 1 : 0 }}
                 />
               </div>
