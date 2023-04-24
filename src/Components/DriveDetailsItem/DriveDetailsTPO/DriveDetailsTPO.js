@@ -23,7 +23,7 @@ const DriveDetailsTPO = ({job,company,skillData,eligibilityData}) => {
     navigate(-1);
   };
   return (
-      <div>
+      <div style={{padding: 15}}>
         {/* implement back button */}
         {/* <div
           style={{
@@ -44,6 +44,8 @@ const DriveDetailsTPO = ({job,company,skillData,eligibilityData}) => {
           </button>
           <p>Back</p>
         </div> */}
+            <h3>Drive Preview</h3>
+    <p style={{margin:  "15px 0px"}}>This is the final step before the drive is posted, this is how the drive will look to the students. Re-check the details you have entered, you may also view the students that are eligible for this drive. Click on <b>Post Drive</b> when ready.</p>
         <div style={driveStyle}>
           <DriveHeaderTPO
             job={job}
