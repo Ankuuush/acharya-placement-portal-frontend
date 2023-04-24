@@ -114,6 +114,28 @@ const Company = ({toggleDriveBookmark, change}) => {
                 </div>)}
               </div>
             </div>
+            {company.pros && company.cons && company.pros.length > 0 && company.cons.length > 0 && <div style={{display: "flex", alignItems: "center", width: "100%"}}>
+              <div style={{flex: 1, border: "2px solid #88D096", borderRadius: 5, padding: 10, background: "#DFF7E7", marginRight: 20}}>
+              <p className="drive-description" style={{color: "#49b65f", fontWeight: "bold", marginBottom: 10}}>Positive Reviews</p>
+              { company.pros.sort(() => Math.random() - Math.random()).slice(0, 3)
+                .map((pro) => {
+                  return (
+                    <p className="drive-description">"{pro}"</p>
+                  );
+                }
+                )}
+              </div>
+              <div style={{flex: 1, border: "2px solid #EE9B93", borderRadius: 5, padding: 10, background: "#FFF2F2", marginRight: 20}}>
+              <p className="drive-description" style={{color: "#e35b4f", fontWeight: "bold", marginBottom: 10}}>Negative Reviews</p>
+              { company.cons.sort(() => Math.random() - Math.random()).slice(0, 3)
+                .map((con) => {
+                  return (
+                    <p className="drive-description">"{con}"</p>
+                  );
+                }
+                )}
+              </div>
+            </div>}
           </div>
           <div className="flex-boy" style={{ marginTop: 25, padding: 10 }}>
             <FeatherIcon
