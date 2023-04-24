@@ -5,6 +5,7 @@ import Spinner from "../../../Components/Spinner/Spinner";
 import api from "../../../api";
 import Badge from "../../../Components/Badge/Badge";
 import JobItem from "../../../Containers/Jobitem/Jobitem";
+import Rating from '@mui/material/Rating';
 
 const Company = ({toggleDriveBookmark, change}) => {
   const [company, setCompany] = useState(null);
@@ -80,36 +81,69 @@ const Company = ({toggleDriveBookmark, change}) => {
             <p>Back</p>
           </div>
           <div style={driveStyle}>
-          <div className="drive-header" style={{marginTop: 5}} onClick={()=> navigate("/student/company/" + company.slug)}>
-          <img src={company.logoUrl} style={{height: 80,width: 80}} className="drive-logo" />
-          <div className="drive-header-group">
-            <h2 className="drive-company">{company.name}</h2>
-            {company.website && <a href={company.website} target="_blank" style={{
-        textDecoration: "none",
-        color: "#20367f"
-      }}>{company.website}</a>}
-          </div>
-        </div>
-          </div>
-          <div className="flex-boy" style={{marginTop: 25, padding: 10}}>
-          <FeatherIcon icon={"briefcase"} size={20} style={{ marginRight: 5 }} />
-          <h3 className="drive-company">Drives from this company</h3>
-          <hr />
-          </div>
-          {drives? drives.map((drive) => {
-            return (
-              <JobItem
-                key={drive._id}
-                job={drive}
-                company={company}
-                style={{ marginTop: 10 }}
-                removeCompanyHeader
-                toggleDriveBookmark={toggleDriveBookmark}
-                change={change}
-                text="Apply Now"
+            <div
+              className="drive-header"
+              style={{ marginTop: 5 }}
+              onClick={() => navigate("/student/company/" + company.slug)}
+            >
+              <img
+                src={company.logoUrl}
+                style={{ height: 80, width: 80 }}
+                className="drive-logo"
               />
-            );
-          }): <div style={{textAlign: "center", marginTop: 20}}><p>No drives found</p></div> }
+              <div className="drive-header-group">
+                <h2 className="drive-company">{company.name}</h2>
+                {company.website && (
+                  <a
+                    href={company.website}
+                    target="_blank"
+                    style={{
+                      textDecoration: "none",
+                      color: "#20367f",
+                    }}
+                  >
+                    {company.website}
+                  </a>
+                )}
+                {company.rating && (<div>
+                  <div style={{display: "flex", alignItems: "center", marginTop: 5}}>
+                  <Rating name="read-only" value={company.rating} readOnly precision={0.1} />
+                  <p style={{marginLeft: 10}}>{company.rating}/5</p>
+                </div>
+                <p style={{padding: 3}}>Based on {company.reviews.length} reviews</p>
+                </div>)}
+              </div>
+            </div>
+          </div>
+          <div className="flex-boy" style={{ marginTop: 25, padding: 10 }}>
+            <FeatherIcon
+              icon={"briefcase"}
+              size={20}
+              style={{ marginRight: 5 }}
+            />
+            <h3 className="drive-company">Drives from this company</h3>
+            <hr />
+          </div>
+          {drives ? (
+            drives.map((drive) => {
+              return (
+                <JobItem
+                  key={drive._id}
+                  job={drive}
+                  company={company}
+                  style={{ marginTop: 10 }}
+                  removeCompanyHeader
+                  toggleDriveBookmark={toggleDriveBookmark}
+                  change={change}
+                  text="Apply Now"
+                />
+              );
+            })
+          ) : (
+            <div style={{ textAlign: "center", marginTop: 20 }}>
+              <p>No drives found</p>
+            </div>
+          )}
         </div>
       )}
     </>

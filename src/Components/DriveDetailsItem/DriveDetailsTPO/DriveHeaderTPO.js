@@ -50,6 +50,7 @@ const DriveHeaderTPO = ({ job,company }) => {
   }
 
   return (
+    <div>
     <div className="driveitem-root">
       <div className="drive-header-root">
         <div className="drive-header">
@@ -62,7 +63,8 @@ const DriveHeaderTPO = ({ job,company }) => {
         {/* <ProfileMatch /> TODO:Do we need this? */}
         <div>
         {/* <Button onClick={handleStudents}>View Shortlisted Students</Button> */}
-        <Button onClick={handleSubmit}>Post Job</Button>
+        <Button onClick={handleSubmit} color="warning" size="large"
+          variant="contained">Post Drive</Button>
         </div>
       </div>
       <div className="drive-body-root">
@@ -126,6 +128,7 @@ const DriveHeaderTPO = ({ job,company }) => {
         </div>
       </div>
       <hr className="job-hr" />
+    </div>
     </div>
   );
 };
