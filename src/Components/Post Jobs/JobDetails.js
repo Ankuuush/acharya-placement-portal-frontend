@@ -25,7 +25,8 @@ const JobDetails = ({ setActiveStep, postJob, setPostJob }) => {
   };
   return (
     <div>
-      <h3>Job Details</h3>
+      <h3>Drive Details</h3>
+      <p style={{margin:  "10px 0px"}}>Add in basic drive details</p>
       <form onSubmit={handleSubmit}>
         <TextField
           name="role"
@@ -43,7 +44,7 @@ const JobDetails = ({ setActiveStep, postJob, setPostJob }) => {
           onChange={onChange}
           value={postJob.ctc}
           size="normal"
-          label="Compensation"
+          label="Proposed CTC (In INR without commas)"
           type="number"
           variant="outlined"
           InputProps={{ inputProps: { min: 0 } }}

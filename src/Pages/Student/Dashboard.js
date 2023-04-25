@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import NavBar from "../../Components/navbar";
 import ContactUs from "../ContactUs";
+import Companies from "../Companies";
 import FeedBack from "../FeedBack";
 import AppliedJobs from "./AppliedJobs";
 import Resume from "./Resume";
@@ -55,6 +56,8 @@ const Dashboard = ({ page = "" }) => {
         .get("/student/profile/progress")
         .then((response) => {
           if (response.data.data.progress.completed) {
+            localStorage.setItem("avatar", response.data.data.profile.basicDetails.photoUrl);
+            localStorage.setItem("usn", response.data.data.profile.basicDetails.usn);
             if (page) setComponent(page);
             return;
           }
@@ -151,6 +154,7 @@ const Dashboard = ({ page = "" }) => {
           {component === "resume" && <Resume />}
           {component === "feedback" && <FeedBack />}
           {component === "contact-us" && <ContactUs />}
+          {component === "companies" && <Companies />}
           {component === "dashboard" && <DashboardReport change={changeSelectedComponent} />}
           {component === "drive-details" && <div style={{padding: "0px 20px"}}>
           <DriveDetails toggleDriveBookmark={toggleDriveBookmark} />
