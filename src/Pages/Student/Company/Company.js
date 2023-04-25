@@ -114,7 +114,7 @@ const Company = ({toggleDriveBookmark, change}) => {
                 </div>)}
               </div>
             </div>
-            {company.pros && company.cons && company.pros.length > 0 && company.cons.length > 0 && <div style={{display: "flex", alignItems: "center", width: "100%"}}>
+            {company.pros && company.cons && company.pros.length > 0 && company.cons.length > 0 && <div style={{display: "flex", width: "100%"}}>
               <div style={{flex: 1, border: "2px solid #88D096", borderRadius: 5, padding: 10, background: "#DFF7E7", marginRight: 20}}>
               <p className="drive-description" style={{color: "#49b65f", fontWeight: "bold", marginBottom: 10}}>Positive Reviews</p>
               { company.pros.sort(() => Math.random() - Math.random()).slice(0, 3)
@@ -146,7 +146,7 @@ const Company = ({toggleDriveBookmark, change}) => {
             <h3 className="drive-company">Drives from this company</h3>
             <hr />
           </div>
-          {drives ? (
+          {drives && drives.length > 0 ? (
             drives.map((drive) => {
               return (
                 <JobItem
@@ -162,7 +162,7 @@ const Company = ({toggleDriveBookmark, change}) => {
               );
             })
           ) : (
-            <div style={{ textAlign: "center", marginTop: 20 }}>
+            <div style={{ textAlign: "center", marginTop: 20, backgroundColor: "white", borderRadius: 10, padding: 15 }}>
               <p>No drives found</p>
             </div>
           )}
