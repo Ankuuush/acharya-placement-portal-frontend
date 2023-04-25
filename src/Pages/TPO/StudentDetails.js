@@ -16,6 +16,7 @@ import { useLocation } from "react-router-dom";
 
 const StudentDetails = () => {
   const location=useLocation();
+  console.log(location.state)
   let profileData=location.state.data.profile
   profileData={...profileData,basicDetails:{...profileData.basicDetails,...location.state.data.student}}
   const [achievements, setAchievements] = useState([]);

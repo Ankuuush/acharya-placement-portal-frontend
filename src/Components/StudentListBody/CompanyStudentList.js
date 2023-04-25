@@ -11,24 +11,8 @@ const CompanyStudentList = () => {
       display: "flex",
       backgroundColor:"#f3f4f8"}}>
       <div style={{flex:"4", height:"fitContent"}}>
-      <Search
-    // data={drives}
-    // setDriveData={setDriveData}
-    // assignLoading={assignLoading}
-    // toggleFilter={toggleFilter}
-    // filter={filterOpen}
-    // loading={loading}
-    // assignFilter={assignFilter}
-    />
   <CompanyStudentListBody />
   </div>
-  {filterOpen && (
-        <Filter
-          // assignFilter={assignFilter}
-          // filterArray={filterArray}
-          // setFilterArray={setFilterArray}
-        />
-      )}
   </div>
   )
 }
