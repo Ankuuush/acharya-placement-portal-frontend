@@ -36,6 +36,10 @@ const constants = {
         code: "resume",
         icon: "file-text"
     },{
+        text: "Companies",
+        code: "companies",
+        icon: "globe"
+    },{
         text: "Feedback",
         code: "feedback",
         icon: "headphones"
