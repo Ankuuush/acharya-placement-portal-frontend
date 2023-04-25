@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import DriveHeaderTPO from "./DriveHeaderTPO";
 import DriveBodyTPO from "./DriveBodyTPO";
 
-const DriveDetailsTPO = ({job,company,skillData,eligibilityData}) => {
+const DriveDetailsTPO = ({job,company,skillData,details}) => {
 
   const navigate = useNavigate();
   const driveStyle = {
@@ -48,8 +48,9 @@ const DriveDetailsTPO = ({job,company,skillData,eligibilityData}) => {
           <DriveHeaderTPO
             job={job}
             company={company}
+            details={details}
           />
-          <DriveBodyTPO job={job} skills={skillData} eligibilityData={eligibilityData} />
+          <DriveBodyTPO job={job} skills={skillData} details={details} />
         </div>
       </div>
       // <h2>yo</h2>

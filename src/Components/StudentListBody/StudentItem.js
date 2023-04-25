@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const StudentItem = ({ student }) => {
   const navigate=useNavigate();
+  console.log(student)
   const name=student.student.firstName+" "+ student.student.lastName
   const handleProfile=()=>{
     navigate("/tpo/student-details",{state:{data:student}})

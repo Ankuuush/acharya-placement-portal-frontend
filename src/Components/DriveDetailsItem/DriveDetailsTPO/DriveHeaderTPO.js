@@ -3,7 +3,7 @@ import Badge from "../../Badge/Badge";
 import "../DriveHeader.css";
 import api from "../../../api";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function parseRoleType(role) {
   switch (role) {
@@ -20,14 +20,17 @@ function parseRoleType(role) {
   }
 }
 
-const DriveHeaderTPO = ({ job,company }) => {
+const DriveHeaderTPO = ({ job,company,details }) => {
 
   const navigate=useNavigate()
 
-  // const handleStudents=()=>{
-  //   console.log(eligibilityData)
-  //   navigate('/tpo/post-jobs/students',{state:{eligibilityData:eligibilityData}})
-  // }
+  const {driveid}=useParams()
+  console.log(driveid)
+  console.log(job.eligibility)
+
+  const handleStudents=()=>{
+    navigate(`/tpo/drives/${driveid}/students`)
+  }
 
   const handleSubmit=()=>{
     api.post('/tpo/drives',job).then(response=>{
@@ -52,8 +55,8 @@ const DriveHeaderTPO = ({ job,company }) => {
         </div>
         {/* <ProfileMatch /> TODO:Do we need this? */}
         <div>
-        {/* <Button onClick={handleStudents}>View Shortlisted Students</Button> */}
-        <Button onClick={handleSubmit}>Post Job</Button>
+        {details && <Button onClick={handleStudents}>View Shortlisted Students</Button>}
+        {details || <Button onClick={handleSubmit}>Post Job</Button>}
         </div>
       </div>
       <div className="drive-body-root">

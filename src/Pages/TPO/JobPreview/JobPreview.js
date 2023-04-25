@@ -4,9 +4,9 @@ import DriveDetailsTPO from '../../../Components/DriveDetailsItem/DriveDetailsTP
 
 const JobPreview = () => {
     const location = useLocation()
-    const {job,company,skillData,eligibilityData}=location.state;
+    const {job,company,skillData}=location.state;
   return (
-    <DriveDetailsTPO job={job} company={company} skillData={skillData} eligibilityData={eligibilityData} />
+    <DriveDetailsTPO job={job} company={company} skillData={skillData} details={false} />
   )
 }
 

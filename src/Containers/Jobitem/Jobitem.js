@@ -3,6 +3,8 @@ import "./Jobitem.css";
 import FeatherIcon from "feather-icons-react";
 import Badge from "../../Components/Badge/Badge";
 import { useNavigate } from "react-router-dom";
+import api from "../../api";
+import { toast } from "react-toastify";
 
 function parseRoleType(role) {
   switch (role) {
@@ -47,17 +49,29 @@ function butStyle(text) {
   }
 }
 
-export default function JobItem({ job, text, change, toggleDriveBookmark, getAllDrives, from, removeCompanyHeader }) {
+export default function JobItem({
+  job,
+  text,
+  change,
+  toggleDriveBookmark,
+  getAllDrives,
+  from,
+  removeCompanyHeader,
+}) {
+
+  const navigate=useNavigate()
   const applyNow = () => {
-    change("drives/" + job._id, "drive-details");
+    // change("drives/" + job._id, "drive-details");
+    api.get(`/tpo/drives/${job._id}`).then((res)=>{
+      const response=res.data.data.drive.drive
+      navigate(`/tpo/drives/${job._id}`,{state:{job:response}})
+    }).catch(()=>{
+      toast.error('Server error!!')
+    })
   };
 
-  const viewStudents=()=>{
-    change("student-list","student-list")
-  }
-
   const deadlinePassed = new Date(job.regitrationDeadline) < new Date();
-  const locked = job.locked
+  const locked = job.locked;
 
   return (
     <div className="jobitem-root">
@@ -66,36 +80,71 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
       <div className="jobitem-inner-root">
         <div className="job-header-root">
           <div className="job-header">
-            {!removeCompanyHeader && <img src={job.company.logoUrl} height={60} className="job-logo" />}
-            <div className="job-header-group" style={{padding: removeCompanyHeader && 0}}>
-              {!removeCompanyHeader && <p className="job-company" onClick={()=> change("company/" + job.company.slug, "company-details")}>{job.company.name}</p>}
+            {!removeCompanyHeader && (
+              <img src={job.company.logoUrl} height={60} className="job-logo" />
+            )}
+            <div
+              className="job-header-group"
+              style={{ padding: removeCompanyHeader && 0 }}
+            >
+              {!removeCompanyHeader && (
+                <p
+                  className="job-company"
+                  onClick={() =>
+                    change("company/" + job.company.slug, "company-details")
+                  }
+                >
+                  {job.company.name}
+                </p>
+              )}
               <div className="application-status">
-              <p className="job-role">{job.role}</p>
-              {job.applied && <div className="job-eligbility" style={{marginLeft: 20, backgroundColor: "#e6fbe7", padding: "2px 5px", borderRadius: 3}}>
-                <FeatherIcon
-                  icon={"check"}
-                  color="green"
-                  size={19}
-                  className="bookmark-icon"
-                />
-                <p className="eligible">Applied</p>
-              </div>}
+                <p className="job-role">{job.role}</p>
+                {job.applied && (
+                  <div
+                    className="job-eligbility"
+                    style={{
+                      marginLeft: 20,
+                      backgroundColor: "#e6fbe7",
+                      padding: "2px 5px",
+                      borderRadius: 3,
+                    }}
+                  >
+                    <FeatherIcon
+                      icon={"check"}
+                      color="green"
+                      size={19}
+                      className="bookmark-icon"
+                    />
+                    <p className="eligible">Applied</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
-          {!removeCompanyHeader && text!=="View Details" && <div className="save-job" style={{background: job.bookmarked || from === "bookmarks" ? "#1f357e" : null}} onClick={()=> {
-            toggleDriveBookmark(job._id, function(bookmarked){
-              getAllDrives();
-            });
-          }}>
-            <FeatherIcon
-              icon={"bookmark"}
-              color={job.bookmarked || from === "bookmarks" ? "white" : "#213780"}
-              size={17}
-              className="bookmark-icon-main"
-            />
-            {/* <p className="job-bookmark-text" style={{color: job.bookmarked ? "white" : null}}>{job.bookmarked ? "Bookmarked":"Bookmark"}</p> */}
-          </div>}
+          {!removeCompanyHeader && text !== "View Details" && (
+            <div
+              className="save-job"
+              style={{
+                background:
+                  job.bookmarked || from === "bookmarks" ? "#1f357e" : null,
+              }}
+              onClick={() => {
+                toggleDriveBookmark(job._id, function (bookmarked) {
+                  getAllDrives();
+                });
+              }}
+            >
+              <FeatherIcon
+                icon={"bookmark"}
+                color={
+                  job.bookmarked || from === "bookmarks" ? "white" : "#213780"
+                }
+                size={17}
+                className="bookmark-icon-main"
+              />
+              {/* <p className="job-bookmark-text" style={{color: job.bookmarked ? "white" : null}}>{job.bookmarked ? "Bookmarked":"Bookmark"}</p> */}
+            </div>
+          )}
         </div>
         <div className="job-body-root">
           <p className="job-jd">{job.jd}</p>
@@ -146,38 +195,43 @@ export default function JobItem({ job, text, change, toggleDriveBookmark, getAll
               </p>
             </div>
             <div className="job-apply-container">
-              {job.applied==false ? <div>
-                {job.calculatedEligibility.eligible ? <div className="job-eligbility">
-                <FeatherIcon
-                  icon={"check"}
-                  color="green"
-                  size={19}
-                  className="bookmark-icon"
-                />
-                <p className="eligible">Eligible</p>
-              </div>: <div className="job-eligbility">
-                <FeatherIcon
-                  icon={"x"}
-                  color="#d45d87"
-                  size={19}
-                  className="bookmark-icon"
-                />
-                <p className="n-eligible">Not Eligible</p>
-              </div>}
-                </div> : null}
-                {text==='View Students'?
-                <button
-                className="job-apply-button"
-                style={butStyle('View Details')}
-                onClick={viewStudents}
-                >{text}</button>:
+              {job.applied == false ? (
+                <div>
+                  {job.calculatedEligibility.eligible ? (
+                    <div className="job-eligbility">
+                      <FeatherIcon
+                        icon={"check"}
+                        color="green"
+                        size={19}
+                        className="bookmark-icon"
+                      />
+                      <p className="eligible">Eligible</p>
+                    </div>
+                  ) : (
+                    <div className="job-eligbility">
+                      <FeatherIcon
+                        icon={"x"}
+                        color="#d45d87"
+                        size={19}
+                        className="bookmark-icon"
+                      />
+                      <p className="n-eligible">Not Eligible</p>
+                    </div>
+                  )}
+                </div>
+              ) : null}
+
               <button
                 className="job-apply-button"
                 style={butStyle(text)}
                 onClick={applyNow}
               >
-                {text==="View Details"?text:!job.calculatedEligibility.eligible || job.applied  ? "View Details" : text}
-              </button>}
+                {text === "View Details"
+                  ? text
+                  : !job.calculatedEligibility.eligible || job.applied
+                  ? "View Details"
+                  : text}
+              </button>
             </div>
           </div>
         </div>
