@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../Components/navbar";
 import ContactUs from "../ContactUs";
 import FeedBack from "../FeedBack";
+import Announcement from "./Announcement";
 import Topbar from "../../Components/Topbar/Topbar";
 import Spinner from "../../Components/Spinner/Spinner";
 import TpoExploreJobs from "./TpoExploreJobs";
@@ -66,6 +67,7 @@ const Dashboard = ({ page = "" }) => {
           {component === "job-preview" && <JobPreview />}
           {component === "preview-students" && <ShortlistedStudents />}
           {component === "student-details" && <StudentDetails />}
+          {component === "noticeboard" && <Announcement />}
         </Box>
       </div>
     </div>
