@@ -8,10 +8,9 @@ import { toast } from "react-toastify";
 const StudentListBody = ({students}) => {
   
   const headingStyle = {
-    fontSize:"1.5rem",
+    fontSize:"1.2rem",
     fontWeight:700,
     color: "#1E4786",
-    textDecoration: "underline",
     textDecorationColor: "#1E4786",
     textDecorationThickness:"2px",
     textUnderlineOffset: "5px",
@@ -25,12 +24,13 @@ const StudentListBody = ({students}) => {
         <p
           style={headingStyle} 
         >
-          STUDENTS LIST
+          Student List
         </p>
       </div>
       <hr />
       <div className="student-list-main-body">
         {students.map((student, index) => {
+          console.log(student);
               return <StudentItem key={index} student={student} />;
             })
           }
