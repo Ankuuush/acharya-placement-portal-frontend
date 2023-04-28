@@ -3,22 +3,22 @@ import Search from '../../../Components/Search/Search'
 import { toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
 import api from '../../../api';
-import StudentListBody from '../../../Components/StudentListBody/StudentListBody';
+import CompanyStudentList from '../../../Components/StudentListBody/CompanyStudentList';
 
 const ShortlistedStudents = () => {
-  const [students,setStudents]=useState([])
-  const location=useLocation()
-  const {eligibilityData}=location.state
-  useEffect(() => {
-    console.log(eligibilityData)
-    // api.get('/tpo/eligibility/calculate',eligibilityData).then((response)=>{
-    //     setStudents(response.data.data.students)
-    //     console.log(response)
-    // }).catch((error)=>{
-    //     toast.error('Server Error')
-    // })
+  console.log("abc")
+  // const location=useLocation()
+  // const {eligibilityData}=location.state
+  // useEffect(() => {
+  //   console.log(eligibilityData)
+  //   // api.get('/tpo/eligibility/calculate',eligibilityData).then((response)=>{
+  //   //     setStudents(response.data.data.students)
+  //   //     console.log(response)
+  //   // }).catch((error)=>{
+  //   //     toast.error('Server Error')
+  //   // })
   
-  }, [])
+  // }, [])
   return (
     <div style={{height: "auto",
       padding: "5px",
@@ -34,7 +34,8 @@ const ShortlistedStudents = () => {
     // loading={loading}
     // assignFilter={assignFilter}
     />
-  {/* <StudentListBody students={students} /> */}
+  {/* <CompanyStudentList /> */}
+  <h1>hii</h1>
   </div>
   </div>
   )

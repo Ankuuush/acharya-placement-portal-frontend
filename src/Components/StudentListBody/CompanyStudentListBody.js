@@ -1,26 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "@mui/material";
 import "./StudentListBody.css";
 import Check from "../Check";
 import StudentItem from "./StudentItem";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import api from "../../api";
 
 const CompanyStudentListBody = () => {
-  const shortlistedData = [
-    "Ankush Kumar",
-    "Monish Basaniwal",
-    "Ashutosh Kumar",
-    "Nanditha C P",
-  ];
-  const appliedData = [
-    "Ramesh",
-    "Suresh",
-    "Mahesh",
-    "Rajesh",
-    "Brajesh",
-    "Rakesh",
-  ];
+  const [shortlistedData, setShortlistedData] = useState([])
+  const [appliedData, setAppliedData] = useState([])
   const [studentType, setStudentType] = useState(true);
+  const {driveid}=useParams()
+  console.log(driveid)
+  useEffect(() => {
+    api.get(`/tpo/drives/${driveid}/applications`).then((res)=>{
+      console.log(res.data)
+      setAppliedData(res.data.data.applications)
+    }).catch(()=>{
+      toast.error("Server error!!")
+    }
+    )
+    api.post(`tpo/drives/${driveid}/eligibleStudents`).then((res)=>{
+      console.log(res.data)
+      setShortlistedData(res.data.data.students)
+    }).catch(()=>{
+      toast.error("Server error!!")
+    }
+    )
+  }, [])
+  
+
   const checkedStyle = {
     color: "#1E4786",
     textDecoration: "underline",
@@ -53,13 +64,16 @@ const CompanyStudentListBody = () => {
       </div>
       <hr />
       <div className="student-list-main-body">
-        {studentType
+        {
+        studentType
           ? shortlistedData.map((item, index) => {
-              return <StudentItem key={index} item={item} />;
+              return <StudentItem key={index} student={item} />;
             })
-          : appliedData.map((item, index) => {
-              return <StudentItem key={index} item={item} />;
-            })}
+          : 
+          appliedData.map((item, index) => {
+              return <StudentItem key={index} student={item} />;
+            })
+            }
       </div>
     </div>
   );

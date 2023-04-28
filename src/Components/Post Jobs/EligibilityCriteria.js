@@ -7,10 +7,8 @@ import SkillsSearch from '../ProfileForm/Skills/SkillsSearch';
 import { useNavigate } from 'react-router-dom';
 
 const EligibilityCriteria = ({setActiveStep,postJob, setPostJob,company}) => {
-  const [eligbilityData, setEligbilityData] = useState({})
   const onChange = (e) => {
     setPostJob({ ...postJob,eligibility:{...postJob.eligibility, [e.target.name]: Number(e.target.value)} });
-    setEligbilityData({ ...eligbilityData, [e.target.name]: Number(e.target.value) });
   };
 
   const navigate=useNavigate();
@@ -23,21 +21,17 @@ const EligibilityCriteria = ({setActiveStep,postJob, setPostJob,company}) => {
     postJob.eligibility.skills = postJob.eligibility.skills.map(skill=>skill._id)
     postJob.eligibility.softSkills = postJob.eligibility.softSkills.map(skill=>skill._id)
     postJob.eligibility.languages = postJob.eligibility.languages.map(skill=>skill._id)
-    navigate('/tpo/post-jobs/preview',{state:{job:postJob,company:company,skillData:skillData,eligbilityData:eligbilityData}})
-
+    navigate('/tpo/post-jobs/preview',{state:{job:postJob,company:company,skillData:skillData}})
   }
   const setSkills=(data)=>{
-    setEligbilityData({ ...eligbilityData, skills:data._id})
     setSkillData({...skillData,skills:data})
     setPostJob({...postJob,eligibility:{...postJob.eligibility,skills:data}})
   }
   const setSoftSkills=(data)=>{
-    setEligbilityData({ ...eligbilityData, softSkills:data._id})
     setSkillData({...skillData,softSkills:data})
     setPostJob({...postJob,eligibility:{...postJob.eligibility,softSkills:data}})
   }
   const setLanguages=(data)=>{
-    setEligbilityData({ ...eligbilityData, languages:data._id})
     setSkillData({...skillData,languages:data})
     setPostJob({...postJob,eligibility:{...postJob.eligibility,languages:data}})
   }

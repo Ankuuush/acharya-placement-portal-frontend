@@ -2,15 +2,17 @@ import { Button } from "@mui/material";
 import Check from "../Check";
 import { useNavigate } from "react-router-dom";
 
-const StudentItem = ({ item }) => {
+const StudentItem = ({ student }) => {
   const navigate=useNavigate();
+  console.log(student)
+  const name=student.student.firstName+" "+ student.student.lastName
   const handleProfile=()=>{
-    navigate("/tpo/student-details")
+    navigate("/tpo/student-details",{state:{data:student}})
   }
     return (
       <div className="student-list-item">
         <div className="student-list-item-main">
-          <h5 style={{marginRight:"0.5rem"}}>{item}</h5>
+          <h5 style={{marginRight:"0.5rem"}}>{name}</h5>
           <Check />
         </div>
         <Button onClick={handleProfile} size="large"

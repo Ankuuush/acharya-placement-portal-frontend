@@ -12,8 +12,13 @@ import Projects from "../../Components/Resume/Projects/Projects";
 import Skills from "../../Components/Resume/Skills/Skills";
 import Spinner from "../../Components/Spinner/Spinner"
 import "../Student/index.css"
+import { useLocation } from "react-router-dom";
 
 const StudentDetails = () => {
+  const location=useLocation();
+  console.log(location.state)
+  let profileData=location.state.data.profile
+  profileData={...profileData,basicDetails:{...profileData.basicDetails,...location.state.data.student}}
   const [achievements, setAchievements] = useState([]);
   const [basicDetails, setBasicDetails] = useState({ studentMeta: {} });
   const [certifications, setCertifications] = useState([]);
@@ -35,159 +40,159 @@ const StudentDetails = () => {
     getProfile();
   }, []);
 
-  const profileData={
-    "_id": "631f67d3cdb9fda27895b705",
-    "uid": "JluFMmhlJ5UNOhYrjtCvhJbu3OI2",
-    "__v": 0,
-    "achievements": [
-        {
-            "title": "dfgddg",
-            "description": "dfgfg",
-            "link": "http://www.facebook.com",
-            "organization": "dsffdsfsf",
-            "_id": "6388b24c5c14b637bad560ba"
-        }
-    ],
-    "basicDetails": {
-        "photoUrl": "https://acharyaplacement-dev.s3.ap-south-1.amazonaws.com/public/profile-pictures/JluFMmhlJ5UNOhYrjtCvhJbu3OI2",
-        "phone": "1234567890",
-        "gender": "male",
-        "usn": "1AY19IS012",
-        "dob": "2022-10-13T00:00:00.000Z",
-        "_id": "631399ed934ddabffcc78ecf",
-        "firstName": "Ankush",
-        "lastName": "Kumar",
-        "email": "ankushk.19.beis@acharya.ac.in",
-        "createdOn": 1662228029043,
-        "blacklisted": false,
-        "uid": "JluFMmhlJ5UNOhYrjtCvhJbu3OI2",
-        "role": "student",
-        "studentMeta": {
-            "department": "BEIS",
-            "year": 19,
-            "placed": false
-        },
-        "created_by": "system",
-        "slug": "ankush-kumar-3Ok6bS0IV",
-        "__v": 0
-    },
-    "certifications": [
-        {
-            "organization": "Google",
-            "name": "ACE Certified",
-            "description": "Certified on the Google Cloud Platform",
-            "certificateLink": "https://www.facebook.com",
-            "_id": "63296b858dde1c4f358c58df"
-        },
-        {
-            "organization": "dsggssgs",
-            "name": "42gears",
-            "description": "dsgsdgsssd",
-            "certificateLink": "http://www.facebook.com",
-            "_id": "63296cc88dde1c4f358c58e5"
-        },
-        {
-            "organization": "Tesla",
-            "name": "dsfdsf",
-            "description": "fsfsfsf",
-            "certificateLink": "http://www.facebook.com",
-            "_id": "6388b840ba7afb47fc584cbe"
-        }
-    ],
-    "educationDetails": {
-        "tenth": {
-            "institution": "acharya",
-            "startYear": 1900,
-            "endYear": 1900,
-            "gradeScale": 10,
-            "grade": 9,
-            "_id": "63f22f1caadef232605a418a"
-        },
-        "twelfth": {
-            "institution": "acharya",
-            "startYear": 1901,
-            "endYear": 1902,
-            "gradeScale": 10,
-            "grade": 2,
-            "_id": "6392257a468beb25b3bc1c4f"
-        },
-        "ug": {
-            "institution": "acharya",
-            "startYear": 1901,
-            "endYear": 1901,
-            "gradeScale": 10,
-            "grade": 2,
-            "_id": "63922581468beb25b3bc1c54"
-        }
-    },
-    "internshipDetails": [
-        {
-            "companyName": "Google",
-            "startMonth": "jan",
-            "startYear": 2018,
-            "endMonth": "jan",
-            "endYear": 2018,
-            "role": "Software Engineer",
-            "description": "Worked on the Google Cloud Platform",
-            "ongoing": true,
-            "_id": "63262145b17804641c04582f"
-        },
-        {
-            "companyName": "Amazon",
-            "startMonth": "jan",
-            "startYear": 2000,
-            "endMonth": "jan",
-            "endYear": 2000,
-            "role": "CEO",
-            "description": "I am the ceo bitch",
-            "ongoing": true,
-            "_id": "6326b005d3ca1d77bb93833f"
-        },
-        {
-            "companyName": "BHatindHa",
-            "startMonth": "feb",
-            "startYear": 2022,
-            "endMonth": "jan",
-            "endYear": 2000,
-            "role": "Founder",
-            "description": "hytgjntgjgj",
-            "ongoing": true,
-            "_id": "63270073cce8886f8728334a"
-        }
-    ],
-    "languages": [
-        {
-            "_id": "6307a2000f099383daab6473",
-            "name": "Scottish"
-        }
-    ],
-    "projects": [
-        {
-            "title": "Event Management System",
-            "description": "Event Management System",
-            "link": "http://www.facebook.com",
-            "_id": "63a42a209ef76b1476919070"
-        },
-        {
-            "title": "dfgffdgd",
-            "description": "dfgfd",
-            "link": "http://www.facebook.com",
-            "_id": "63f22f82aadef232605a41b1"
-        }
-    ],
-    "skills": [
-        {
-            "_id": "63062e20c029d7293780cc8f",
-            "name": "Cold Fusion"
-        }
-    ],
-    "softSkills": [
-        {
-            "_id": "6307a6488344cc779086e63d",
-            "name": "Logical reasoning"
-        }
-    ]
-}
+//   const profileData={
+//     "_id": "631f67d3cdb9fda27895b705",
+//     "uid": "JluFMmhlJ5UNOhYrjtCvhJbu3OI2",
+//     "__v": 0,
+//     "achievements": [
+//         {
+//             "title": "dfgddg",
+//             "description": "dfgfg",
+//             "link": "http://www.facebook.com",
+//             "organization": "dsffdsfsf",
+//             "_id": "6388b24c5c14b637bad560ba"
+//         }
+//     ],
+//     "basicDetails": {
+//         "photoUrl": "https://acharyaplacement-dev.s3.ap-south-1.amazonaws.com/public/profile-pictures/JluFMmhlJ5UNOhYrjtCvhJbu3OI2",
+//         "phone": "1234567890",
+//         "gender": "male",
+//         "usn": "1AY19IS012",
+//         "dob": "2022-10-13T00:00:00.000Z",
+//         "_id": "631399ed934ddabffcc78ecf",
+//         "firstName": "Ankush",
+//         "lastName": "Kumar",
+//         "email": "ankushk.19.beis@acharya.ac.in",
+//         "createdOn": 1662228029043,
+//         "blacklisted": false,
+//         "uid": "JluFMmhlJ5UNOhYrjtCvhJbu3OI2",
+//         "role": "student",
+//         "studentMeta": {
+//             "department": "BEIS",
+//             "year": 19,
+//             "placed": false
+//         },
+//         "created_by": "system",
+//         "slug": "ankush-kumar-3Ok6bS0IV",
+//         "__v": 0
+//     },
+//     "certifications": [
+//         {
+//             "organization": "Google",
+//             "name": "ACE Certified",
+//             "description": "Certified on the Google Cloud Platform",
+//             "certificateLink": "https://www.facebook.com",
+//             "_id": "63296b858dde1c4f358c58df"
+//         },
+//         {
+//             "organization": "dsggssgs",
+//             "name": "42gears",
+//             "description": "dsgsdgsssd",
+//             "certificateLink": "http://www.facebook.com",
+//             "_id": "63296cc88dde1c4f358c58e5"
+//         },
+//         {
+//             "organization": "Tesla",
+//             "name": "dsfdsf",
+//             "description": "fsfsfsf",
+//             "certificateLink": "http://www.facebook.com",
+//             "_id": "6388b840ba7afb47fc584cbe"
+//         }
+//     ],
+//     "educationDetails": {
+//         "tenth": {
+//             "institution": "acharya",
+//             "startYear": 1900,
+//             "endYear": 1900,
+//             "gradeScale": 10,
+//             "grade": 9,
+//             "_id": "63f22f1caadef232605a418a"
+//         },
+//         "twelfth": {
+//             "institution": "acharya",
+//             "startYear": 1901,
+//             "endYear": 1902,
+//             "gradeScale": 10,
+//             "grade": 2,
+//             "_id": "6392257a468beb25b3bc1c4f"
+//         },
+//         "ug": {
+//             "institution": "acharya",
+//             "startYear": 1901,
+//             "endYear": 1901,
+//             "gradeScale": 10,
+//             "grade": 2,
+//             "_id": "63922581468beb25b3bc1c54"
+//         }
+//     },
+//     "internshipDetails": [
+//         {
+//             "companyName": "Google",
+//             "startMonth": "jan",
+//             "startYear": 2018,
+//             "endMonth": "jan",
+//             "endYear": 2018,
+//             "role": "Software Engineer",
+//             "description": "Worked on the Google Cloud Platform",
+//             "ongoing": true,
+//             "_id": "63262145b17804641c04582f"
+//         },
+//         {
+//             "companyName": "Amazon",
+//             "startMonth": "jan",
+//             "startYear": 2000,
+//             "endMonth": "jan",
+//             "endYear": 2000,
+//             "role": "CEO",
+//             "description": "I am the ceo bitch",
+//             "ongoing": true,
+//             "_id": "6326b005d3ca1d77bb93833f"
+//         },
+//         {
+//             "companyName": "BHatindHa",
+//             "startMonth": "feb",
+//             "startYear": 2022,
+//             "endMonth": "jan",
+//             "endYear": 2000,
+//             "role": "Founder",
+//             "description": "hytgjntgjgj",
+//             "ongoing": true,
+//             "_id": "63270073cce8886f8728334a"
+//         }
+//     ],
+//     "languages": [
+//         {
+//             "_id": "6307a2000f099383daab6473",
+//             "name": "Scottish"
+//         }
+//     ],
+//     "projects": [
+//         {
+//             "title": "Event Management System",
+//             "description": "Event Management System",
+//             "link": "http://www.facebook.com",
+//             "_id": "63a42a209ef76b1476919070"
+//         },
+//         {
+//             "title": "dfgffdgd",
+//             "description": "dfgfd",
+//             "link": "http://www.facebook.com",
+//             "_id": "63f22f82aadef232605a41b1"
+//         }
+//     ],
+//     "skills": [
+//         {
+//             "_id": "63062e20c029d7293780cc8f",
+//             "name": "Cold Fusion"
+//         }
+//     ],
+//     "softSkills": [
+//         {
+//             "_id": "6307a6488344cc779086e63d",
+//             "name": "Logical reasoning"
+//         }
+//     ]
+// }
 
   function getProfile() {
         setBasicDetails(profileData.basicDetails);

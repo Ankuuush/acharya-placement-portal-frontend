@@ -2,8 +2,31 @@ import React from "react";
 import "../DriveBody.css";
 import FeatherIcon from "feather-icons-react";
 import Badge from "../../Badge/Badge";
+import StudentListBody from "../../StudentListBody/StudentListBody";
+import api from "../../../api";
+import { toast } from "react-toastify";
 
-const DriveBodyTPO = ({ job,skills }) => {
+const DriveBodyTPO = ({ job, skills, details }) => {
+  console.log(job);
+
+  const [students, setStudents] = React.useState([]);
+  React.useEffect(() => {
+    if (!details) {
+      api
+        .post("/tpo/eligibility/calculate", {
+          tenthPercentage: job.eligibility.tenthPercentage,
+          twelfthPercentage: job.eligibility.twelfthPercentage,
+          graduationPercentage: job.eligibility.graduationPercentage,
+        })
+        .then((res) => {
+          setStudents(res.data.data.students);
+        })
+        .catch((error) => {
+          toast.error("Server error!!");
+        });
+    }
+  },[]);
+
   return (
     <div className="drive-body-root">
       <div className="drive-body-jd">
@@ -18,9 +41,8 @@ const DriveBodyTPO = ({ job,skills }) => {
               flexDirection: "row",
               flexWrap: "wrap",
             }}
-          >
-          </div>
-          {skills.skills && skills.skills.length >0 && (
+          ></div>
+          {skills.skills && skills.skills.length > 0 && (
             <div>
               <h3 style={{ marginTop: "2rem" }}>Required Skills</h3>
               <div className="badge-group">
@@ -56,6 +78,7 @@ const DriveBodyTPO = ({ job,skills }) => {
         <h3>About the Company</h3>
         <p className="drive-jd">{job.jd}</p>
       </div> */}
+      {details || <StudentListBody students={students} />}
     </div>
   );
 };

@@ -17,6 +17,7 @@ import ShortlistedStudents from "./JobPreview/ShortlistedStudents";
 import DriveDetailsTPO from "../../Components/DriveDetailsItem/DriveDetailsTPO/DriveDetailsTPO";
 import DriveDetails from "../Student/DriveDetails";
 import StudentDetails from "./StudentDetails";
+import DriveDetailsPage from "./DriveDetailsPage";
 
 const Dashboard = ({ page = "" }) => {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ const Dashboard = ({ page = "" }) => {
         <Topbar />
         <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#f3f4f8" }}>
           {component === "explore-jobs" && <TpoExploreJobs change={changeSelectedComponent} />}
-          {component === "drive-details" && <DriveDetailsTPO />}
+          {component === "drive-details" && <DriveDetailsPage />}
           {component === "post-jobs" && <PostJobs />}
           {component === "student-list" && <StudentList />}
           {component === "registration" && <Registration />}
