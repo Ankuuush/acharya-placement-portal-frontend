@@ -40,6 +40,10 @@ const constants = {
         code: "companies",
         icon: "globe"
     },{
+        text: "Noticeboard",
+        code: "noticeboard",
+        icon: "speaker"
+    },{
         text: "Feedback",
         code: "feedback",
         icon: "headphones"
@@ -63,6 +67,11 @@ const constants = {
         code: "student-list",
         icon: "file-text"
     },{
+        text: "Noticeboard",
+        code: "noticeboard",
+        icon: "speaker"
+    },
+    {
         text: "Add A Student",
         code: "registration",
         icon: "user-plus"
