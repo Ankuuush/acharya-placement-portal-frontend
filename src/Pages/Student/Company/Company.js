@@ -42,6 +42,8 @@ const Company = ({toggleDriveBookmark, change}) => {
   const buttonStyle = {
     padding: 0,
     border: "none",
+    background: "rgb(243, 244, 248)",
+    alignItems: "center"
   };
 
   const handleBack = () => {
@@ -67,6 +69,7 @@ const Company = ({toggleDriveBookmark, change}) => {
               alignItems: "center",
               marginBottom: 20,
               cursor: "pointer",
+              background: "rgb(243, 244, 248)"
             }}
             onClick={handleBack}
           >
@@ -74,11 +77,11 @@ const Company = ({toggleDriveBookmark, change}) => {
               <FeatherIcon
                 icon={"arrow-left"}
                 color="#213780"
-                size={18}
+                size={24.01}
                 style={{ marginRight: 5 }}
               />
             </button>
-            <p>Back</p>
+            <p style={{fontSize: 18}}>Back</p>
           </div>
           <div style={driveStyle}>
             <div
