@@ -30,6 +30,7 @@ const DriveHeaderTPO = ({ job,company,details }) => {
 
   const handleStudents=()=>{
     navigate(`/tpo/drives/${driveid}/students`)
+    window.location.reload()
   }
 
   const handleSubmit=()=>{
