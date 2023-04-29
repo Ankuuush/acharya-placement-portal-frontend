@@ -40,6 +40,7 @@ const StudentDashboard = ({ change, toggleDriveBookmark }) => {
       toggleDriveBookmark={toggleDriveBookmark}
       getAllDrives={getAllDrives}
       text="Apply Now"
+      view="student"
     />
   );
 };
