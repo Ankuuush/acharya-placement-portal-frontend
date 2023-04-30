@@ -13,3 +13,58 @@
   border-radius: 5px;
   font-size: 15px;
 }
+
+.carousel-inf img {
+  display: block;
+  width: 100%;
+}
+
+.carousel-inf section {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-inf article {
+  display: flex;
+  width: 400%;
+  animation: bannermove 40s linear infinite;
+}
+
+.carousel-inf article.paused {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+.carousel-inf div {
+  width: 100%;
+}
+
+.carousel-inf ul {
+  display: flex;
+  background: red;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.carousel-inf li {
+  width: 100%;
+  background: blue;
+}
+
+.carousel-inf li:nth-child(2) {
+  background: green;
+}
+
+.carousel-inf li:nth-child(3) {
+  background: yellow;
+}
+
+@keyframes bannermove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
