@@ -192,7 +192,7 @@ export default function JobItem({
             <div className="job-salary">
               <p className="job-salary-icon">₹</p>
               <p className="job-salary-text">
-                {job.ctc.toLocaleString("en-IN")} LPA
+                {job.ctc.toLocaleString("en-IN")}
               </p>
             </div>
             <div className="job-apply-container">

@@ -43,42 +43,45 @@ const JobDashboard = ({
     filterArray.forEach((item) => {
       let negArr = [];
       switch (item) {
-        case "Remote":
+        case "remote":
           iniArr.forEach((item2) => {
-            if (item2.location === item) newArr.push(item2);
-            else negArr.push(item2);
+            if (item2.location.toLowerCase() === item) newArr.push(item2);
+            // else negArr.push(item2);
           });
+          
           break;
         case "On-Site":
           iniArr.forEach((item2) => {
-            if (item2.location !== "Remote") newArr.push(item2);
-            else negArr.push(item2);
+            if (item2.location.toLowerCase() !== "remote") newArr.push(item2);
+            // else negArr.push(item2);
           });
           break;
         case "full-time":
           iniArr.forEach((item2) => {
             if (item2.jobType === item) newArr.push(item2);
-            else negArr.push(item2);
+            // else negArr.push(item2);
           });
           break;
-        case "Internship":
+        case "internship":
           iniArr.forEach((item2) => {
             if (item2.jobType === item) newArr.push(item2);
-            else negArr.push(item2);
+            // else negArr.push(item2);
           });
           break;
         default:
           iniArr.forEach((item2) => {
-            if (item2.ctc <= item[1] && item2.ctc >= item[0]) {
+            if (item2.ctc <= item[1] && item2.ctc >= item[0]) 
               newArr.push(item2);
-            } else negArr.push(item2);
+            //  else negArr.push(item2);
           });
           break;
       }
-      iniArr = negArr;
+      // iniArr = negArr;
+      iniArr=newArr
+      newArr=[]
     });
     if (filterArray.length) {
-      setFilterDrives(newArr);
+      setFilterDrives(iniArr);
     } else setFilterDrives(searchDrives);
   };
 
