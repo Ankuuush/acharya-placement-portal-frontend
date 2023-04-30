@@ -9,14 +9,7 @@ const TpoExploreJobs = ({ change, toggleDriveBookmark }) => {
   const [filterDrives, setFilterDrives] = useState([]);
 
   useEffect(() => {
-    getAllDrives();
-    const interval=setInterval(() => {
-      getAllDrives();
-    }, 10000);
-
-    return ()=>{
-      return clearInterval(interval)
-    }
+    getAllDrives()
   }, []);
 
   const getAllDrives = () => {

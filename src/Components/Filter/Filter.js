@@ -17,12 +17,11 @@ const Filter = ({ filterArray, setFilterArray }) => {
     setFilterArray(arr);
   };
 
-  // useEffect(() => {
-  //   let newArr = filterArray.filter((item)=>typeof(item)!==Object)
-  //     newArr.push(amount);
-  //      console.log(newArr)
-  //     setFilterArray(newArr);
-  // }, [amount])
+  useEffect(() => {
+    let newArr = filterArray.filter((item)=>!Array.isArray(item))
+      newArr.push(amount);
+      setFilterArray(newArr);
+  }, [amount])
 
   return (
     <div className="right-component-context">
@@ -39,46 +38,46 @@ const Filter = ({ filterArray, setFilterArray }) => {
         <p className="filter-subheader">Job Location</p>
         <input
           type="checkbox"
-          id="location1"
+          id="remote"
           name="location1"
-          value="Remote"
+          value="remote"
           onChange={handleChange}
         />
-        <label for="location1" className="check-labels">
+        <label for="remote" className="check-labels">
           Remote
         </label>
         <br />
         <input
           type="checkbox"
-          id="location2"
+          id="onsite"
           name="location1"
           value="On-Site"
           onChange={handleChange}
         />
-        <label for="location2" className="check-labels">
+        <label for="onsite" className="check-labels">
           On-Site
         </label>
         <br />
         <p className="filter-subheader">Job Type</p>
         <input
           type="checkbox"
-          id="location1"
+          id="fulltime"
           name="location1"
           value="full-time"
           onChange={handleChange}
         />
-        <label for="location1" className="check-labels">
+        <label for="fulltime" className="check-labels">
           Fulltime
         </label>
         <br />
         <input
           type="checkbox"
-          id="location2"
+          id="internship"
           name="location1"
-          value="Internship"
+          value="internship"
           onChange={handleChange}
         />
-        <label for="location2" className="check-labels">
+        <label for="internship" className="check-labels">
           Internship
         </label>
         <br />
