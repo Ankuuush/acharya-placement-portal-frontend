@@ -55,7 +55,13 @@ const Login = () => {
         <h3>{random_quote.text}</h3>
           <p>-{random_quote.author}</p>
         </div>
-        <img src={taxi} alt="taxi" height={520} className="display-vector" />
+        <div style={{display: "flex", alignItems: "center", marginLeft: 25}}>
+        <img src={"https://acharyaplacement-dev.s3.ap-south-1.amazonaws.com/public/random/photo_2023-04-30%2022.02.23.jpeg"} alt="taxi" height={400} style={{borderRadius: 10}} />
+        <div>
+        <img src={"https://acharyaplacement-dev.s3.ap-south-1.amazonaws.com/public/random/photo_2023-04-30%2022.02.20.jpeg"} alt="taxi" height={260} style={{borderRadius: 10}} />
+        <img src={"https://acharyaplacement-dev.s3.ap-south-1.amazonaws.com/public/random/photo_2023-04-30%2022.19.41.jpeg"} alt="taxi" height={260} style={{borderRadius: 10, marginTop: 20}} />
+        </div>
+        </div>
       </div>
       <div id="left-component">
         <Container style={{ width: "90%", margin: 0, padding: "20px 20px" }}>
