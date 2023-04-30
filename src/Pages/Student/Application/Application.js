@@ -39,6 +39,7 @@ const Application = () => {
   const buttonStyle = {
     padding: 0,
     border: "none",
+    background: "rgb(243, 244, 248)"
   };
 
   const handleBack = () => {
@@ -64,6 +65,7 @@ const Application = () => {
               alignItems: "center",
               marginBottom: 20,
               cursor: "pointer",
+              background: "rgb(243, 244, 248)"
             }}
             onClick={handleBack}
           >

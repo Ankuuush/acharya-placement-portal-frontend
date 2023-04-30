@@ -56,8 +56,8 @@ const DriveDetails = ({toggleDriveBookmark}) => {
       <p>{error}</p>
     </div> 
     :<div>
-     <div style={{display: "flex", alignItems: "center", marginBottom: 20, cursor: "pointer"}} onClick={handleBack}>
-     <button style={buttonStyle}><FeatherIcon icon={"arrow-left"} color="#213780" size={18} style={{marginRight: 5}}/></button>
+     <div style={{display: "flex", alignItems: "center", marginBottom: 20, cursor: "pointer", background: "rgb(243, 244, 248)"}} onClick={handleBack}>
+     <button style={buttonStyle}><FeatherIcon icon={"arrow-left"} color="#213780" size={18} style={{marginRight: 5, background: "rgb(243, 244, 248)"}}/></button>
      <p>Back</p>
      </div>
     <div style={driveStyle} >
