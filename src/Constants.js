@@ -72,6 +72,11 @@ const constants = {
         icon: "speaker"
     },
     {
+        text: "Verifications",
+        code: "verifications",
+        icon: "check-circle"
+    },
+    {
         text: "Add A Student",
         code: "registration",
         icon: "user-plus"
