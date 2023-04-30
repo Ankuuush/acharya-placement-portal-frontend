@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import Filter from '../../Components/Filter/Filter';
-import Search from '../../Components/Search/Search'
+import  Spinner from '../../Components/Spinner/Spinner'
 import StudentListBody from '../../Components/StudentListBody/StudentListBody'
 import api from '../../api';
 import { toast } from 'react-toastify';
+import SearchStudent from '../../Components/Search/SearchStudent';
 
 const StudentList = () => {
-  const [filterOpen, setFilterOpen] = useState(true);
   const [students,setStudents]=useState([])
+  const [filteredStudents, setFilteredStudents] = useState([])
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     api.get('/tpo/students').then((response)=>{
-        setStudents(response.data.data.students)
+      const res=response.data.data.students
+        setStudents(res)
+        setFilteredStudents(res)
     }).catch((error)=>{
         toast.error('Server Error')
     })
@@ -22,16 +25,9 @@ const StudentList = () => {
       display: "flex",
       backgroundColor:"#f3f4f8"}}>
       <div style={{flex:"4", height:"fitContent"}}>
-      <Search
-    // data={drives}
-    // setDriveData={setDriveData}
-    // assignLoading={assignLoading}
-    // toggleFilter={toggleFilter}
-    // filter={filterOpen}
-    // loading={loading}
-    // assignFilter={assignFilter}
-    />
-  <StudentListBody students={students} />
+      <SearchStudent data={students} setStudentData={setFilteredStudents} assignLoading={setLoading} />
+      {loading? <Spinner />
+  :<StudentListBody students={filteredStudents} />}
   </div>
   </div>
   )
