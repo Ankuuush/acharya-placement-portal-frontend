@@ -57,14 +57,15 @@ export default function JobItem({
   getAllDrives,
   from,
   removeCompanyHeader,
+  view
 }) {
 
   const navigate=useNavigate()
   const applyNow = () => {
     // change("drives/" + job._id, "drive-details");
-    api.get(`/tpo/drives/${job._id}`).then((res)=>{
+    api.get(view === "tpo" ? `/tpo/drives/${job._id}`: `/student/drives/${job._id}`).then((res)=>{
       const response=res.data.data.drive.drive
-      navigate(`/tpo/drives/${job._id}`,{state:{job:response}})
+      navigate(view === "tpo" ? `/tpo/drives/${job._id}`: `/student/drives/${job._id}`,{state:{job:response}})
     }).catch(()=>{
       toast.error('Server error!!')
     })

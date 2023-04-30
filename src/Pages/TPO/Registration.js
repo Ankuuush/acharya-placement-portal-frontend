@@ -48,19 +48,31 @@ const Registration = () => {
   return (
     <div>
       
-    <div style={{background: "white"}}>
+
+    <div style={{background: "white", padding: 15, borderRadius: 10}}>
+      <h4>Add A List Of Students</h4>
+      <p>Upload an excel file of a list of students from your department and click on add students, this will then create and add students onto the platform</p>
+
     <input
       type='file'
       accept='.xlsx'
       onChange={handleUpload}
+
+      style={{border: "none", padding: 15, background: "orange", color: "white", borderRadius: 5, fontWeight: "bolder",marginTop: 15}}
     />
+    <br/>
+    <br/>
+
     <ReactExcel
       initialData={initialData}
       onSheetUpdate={(currentSheet) => setCurrentSheet(currentSheet)}
       activeSheetClassName='active-sheet'
+
+      style={{border: "none", padding: 15, background: "orange", color: "white", borderRadius: 5, fontWeight: "bolder",marginTop: 15}}
       reactExcelClassName='react-excel'
     />
-    <button onClick={save}>
+    <button onClick={save} style={{border: "none", padding: 15, background: "orange", color: "white", borderRadius: 5, fontWeight: "bolder",marginTop: 15}}>
+
         Save to API
     </button>
     </div>
@@ -71,7 +83,9 @@ const Registration = () => {
       <p>Student accounts created successfully: {task.data.createdStudents}</p>
       <p>Failed student accounts creations: {task.data.failedStudents}</p>
       </div>}
-      <div style={{ width: "50%",
+
+      {/* <div style={{ width: "50%",
+
     boxShadow: "rgba(17, 17, 26, 0.1) 0px 0px 16px",
     padding: 20,
     background: "white",
@@ -79,6 +93,7 @@ const Registration = () => {
     margin:"2rem auto" }}>
       <h3>Register Student</h3>
       <SignupForm toastText={"Student Registeration Successful!!"}/>
+    </div> */}
     </div>
     </div>
   );
