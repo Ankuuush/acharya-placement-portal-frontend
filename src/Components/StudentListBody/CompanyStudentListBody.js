@@ -101,13 +101,13 @@ const CompanyStudentListBody = () => {
                 : { ...unCheckedStyle, marginRight: "2rem" }
             }
           >
-            SHORTLISTED STUDENTS
+            Eligible Students
           </h4>
           <h4
             onClick={() => setStudentType(false)}
             style={studentType ? unCheckedStyle : checkedStyle}
           >
-            APPLIED STUDENTS
+            Applied Students
           </h4>
         </div>
         <div className="student-list-main-body">
