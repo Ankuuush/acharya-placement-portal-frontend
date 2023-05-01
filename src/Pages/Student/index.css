@@ -1,8 +1,15 @@
 .applied-jobs-grid {
     display: grid;
   grid-template-columns: auto auto;
-  gap: 20px;
+  gap: 10px;
   margin-top: 25px;
+}
+
+.applied-jobs-grid-new {
+  display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 10px;
+margin-top: 25px;
 }
 
 .down_resume_btn {

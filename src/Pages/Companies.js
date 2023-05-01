@@ -3,11 +3,27 @@ import api from "../api";
 import Spinner from "../Components/Spinner/Spinner";
 import { useNavigate } from "react-router-dom";
 import Rating from '@mui/material/Rating';
+import FeatherIcon from "feather-icons-react";
 
 const Companies = () => {
   const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
+  const [companiesCopy, setCompaniesCopy] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const handleChange=(e)=>{
+    if(!e.target.value)
+    {
+      setCompanies(companiesCopy)
+      return;
+    } 
+
+    const newArr=companiesCopy.filter((item)=>
+    {
+      return item.name.toLowerCase().includes(e.target.value.toLowerCase())
+    })
+    setCompanies(newArr)
+  }
 
   useEffect(() => {
     getCompanies();
@@ -16,6 +32,7 @@ const Companies = () => {
   const getCompanies = () => {
     api.get("/student/drives/companies/all").then((response) => {
       setCompanies(response.data.data.companies);
+      setCompaniesCopy(response.data.data.companies);
       setLoading(false);
     });
   };
@@ -42,6 +59,10 @@ const Companies = () => {
             onto the platform and/or have atleast one drive attached to them,
             this list is not a cumulative list of all companies
           </p>
+          <div className='search-box' style={{marginTop: 20}}>
+            <FeatherIcon icon='search' size='20' className='search-icon'/>
+            <input type='text' placeholder='Enter a company name' className='search-input' onChange={handleChange}/>
+        </div>
         </div>
         {loading ? (
           <div style={{ textAlign: "center" }}>
@@ -49,7 +70,7 @@ const Companies = () => {
           </div>
         ) : companies.length > 0 ? (
           <div
-            className="applied-jobs-grid"
+            className="applied-jobs-grid-new"
             style={{ padding: 15, background: "white", borderRadius: 10 }}
           >
             {companies.map((company) => (
@@ -75,7 +96,7 @@ const Companies = () => {
           </div>
         ) : (
           <h3 style={{ textAlign: "center", marginTop: "2rem" }}>
-            No applications found!!
+            No companies found!!
           </h3>
         )}
       </div>
