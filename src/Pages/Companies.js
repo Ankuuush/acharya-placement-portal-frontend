@@ -31,8 +31,8 @@ const Companies = () => {
 
   const getCompanies = () => {
     api.get("/student/drives/companies/all").then((response) => {
-      setCompanies(response.data.data.companies);
-      setCompaniesCopy(response.data.data.companies);
+      setCompanies(response.data.data.companies.reverse());
+      setCompaniesCopy(response.data.data.companies.reverse());
       setLoading(false);
     });
   };
