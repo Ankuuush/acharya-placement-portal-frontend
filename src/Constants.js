@@ -81,6 +81,10 @@ const constants = {
         code: "registration",
         icon: "user-plus"
     },{
+        text: "My Profile",
+        code: "tpo-profile",
+        icon: "user"
+    },{
         text: "Feedback",
         code: "feedback",
         icon: "headphones"
