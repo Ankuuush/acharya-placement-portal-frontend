@@ -20,6 +20,7 @@ import StudentDetails from "./StudentDetails";
 import DriveDetailsPage from "./DriveDetailsPage";
 import Verifications from "../Verifications";
 import Myprofile from "./Myprofile";
+import DashboardReport from "./DashboardReport";
 
 const Dashboard = ({ page = "" }) => {
   const navigate = useNavigate();
@@ -72,6 +73,7 @@ const Dashboard = ({ page = "" }) => {
           {component === "noticeboard" && <Announcement />}
           {component === "verifications" && <Verifications />}
           {component === "tpo-profile" && <Myprofile />}
+          {component === "dashboard" && <DashboardReport change={changeSelectedComponent} />}
         </Box>
       </div>
     </div>

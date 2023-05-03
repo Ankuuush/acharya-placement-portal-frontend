@@ -4,7 +4,7 @@ import ResumeEducationDetailsItem from "./EducationDetailsItem";
 import FeatherIcon from "feather-icons-react";
 import "../index.css";
 
-const EducationDetailsComponent = ({ data, setData, showModal, setOpen, refreshProfile }) => {
+const EducationDetailsComponent = ({ data, setData, showModal, setOpen, refreshProfile, educationAllowed }) => {
   const handleOpen = () => {
     setOpen(true);
   };
@@ -17,9 +17,9 @@ const EducationDetailsComponent = ({ data, setData, showModal, setOpen, refreshP
             color="#f69131"
             style={{ marginRight: 10 }}
           />
-          <h4 className="section_title_resume">Education Details</h4>
+          <h4 className="section_title_resume">Education Details {!educationAllowed && " (Locked)"}</h4>
         </div>
-        {!showModal && (
+        {!showModal && educationAllowed  && (
           <FeatherIcon
             icon="edit-2"
             onClick={handleOpen}
@@ -81,7 +81,7 @@ const EducationDetailsComponent = ({ data, setData, showModal, setOpen, refreshP
   );
 };
 
-const EducationDetails = ({ data, setData }) => {
+const EducationDetails = ({ data, setData, educationAllowed }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -101,6 +101,7 @@ const EducationDetails = ({ data, setData }) => {
         data={data}
         showModal={false}
         setOpen={setOpen}
+        educationAllowed={educationAllowed}
       />
     </>
   );
