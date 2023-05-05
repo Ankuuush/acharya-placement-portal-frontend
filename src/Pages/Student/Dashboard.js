@@ -21,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 import SavedJobs from "./Saved Jobs/SavedJobs";
 import Application from "./Application/Application";
 import Company from "./Company/Company";
+import ExpressionOfInterest from "./ExpressionOfInterest";
 
 const Dashboard = ({ page = "" }) => {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const Dashboard = ({ page = "" }) => {
       api
         .get("/student/profile/progress")
         .then((response) => {
-          if (response.data.data.progress.completed) {
+          if (response.data.data.progress.completed && response.data.data.progress?.eoiVerified) {
             localStorage.setItem("avatar", response.data.data.profile.basicDetails.photoUrl);
             localStorage.setItem("usn", response.data.data.profile.basicDetails.usn);
             if (page) setComponent(page);
@@ -95,6 +96,9 @@ const Dashboard = ({ page = "" }) => {
             default:
               setActiveStep(0);
           }
+          if(response.data.data.progress.completed){
+            setComponent("expression-of-interest")
+          }
         })
         .catch(() => {
           toast.error("Server Error!");
@@ -129,6 +133,11 @@ const Dashboard = ({ page = "" }) => {
         setActiveStep={ChangeActiveStep}
       />
     );
+  
+  if (component === "expression-of-interest")
+    return (
+      <ExpressionOfInterest progress={profileData.progress} getProfile={studentProfile}/>
+    );  
 
   return (
     <div style={{ display: "flex" }}>

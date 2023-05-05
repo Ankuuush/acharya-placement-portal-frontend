@@ -30,7 +30,7 @@ const ShortlistedStudents = () => {
     >
       <div style={{ flex: "4", height: "fitContent" }}>
         <p className="search-header">Students List</p>
-        <p>This is the list of students who are eligible for this drive</p>
+        <p>This is the list of students who are eligible and have applied for this drive</p>
         <CompanyStudentList />
       </div>
     </div>

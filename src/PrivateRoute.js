@@ -25,7 +25,7 @@ const PrivateRoute = ({role}) => {
           replace
         />
       ) : token?.account === "tpo" ? (
-        <Navigate to="/tpo/explore-jobs" state={{ from: location }} replace />
+        <Navigate to="/tpo/dashboard" state={{ from: location }} replace />
       ) : token?.account === "admin" ? (
         <Navigate to="/admin/explore-jobs" state={{ from: location }} replace />
       ) : null}

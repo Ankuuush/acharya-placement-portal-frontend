@@ -18,9 +18,9 @@ const style = {
   outline: "none"
 };
 
-export default function ModalComponent({ open, setOpen, component }) {
+export default function ModalComponent({ open, setOpen, component, height }) {
   const handleClose = () => setOpen(false);
-
+  if(height) style.height = height;
   return (
     <div>
       <Modal

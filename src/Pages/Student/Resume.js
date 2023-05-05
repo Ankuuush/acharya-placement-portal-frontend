@@ -11,6 +11,7 @@ import PersonalInformation from "../../Components/Resume/PersonalInformation";
 import Projects from "../../Components/Resume/Projects/Projects";
 import Skills from "../../Components/Resume/Skills/Skills";
 import Spinner from "../../Components/Spinner/Spinner"
+import { Alert } from "@mui/material";
 import "./index.css"
 
 const Resume = () => {
@@ -28,6 +29,7 @@ const Resume = () => {
   const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
   const [softSkills, setSoftSkills] = useState([]);
+  const [settings, setSettings] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -49,6 +51,7 @@ const Resume = () => {
         setProjects(profileData.projects);
         setSkills(profileData.skills);
         setSoftSkills(profileData.softSkills);
+        setSettings(response.data.data.settings);
         updateBasicDetails();
         setLoading(false);
       })
@@ -94,6 +97,11 @@ const Resume = () => {
   return (
     <div>
       {loading ? <Spinner /> : <div>
+      {settings && !settings.educationEditAllowed && <div style={{padding: "3px 30px", marginTop: 5}}>
+        <Alert style={{ marginBottom: "1rem", border: "2px solid #FFA22C" }} severity="warning">
+            <strong>Your department TPO has disabled education edits, you cannot edit your academic related details until this is enabled again. You may still edit other parts of your profile as needed.</strong>
+      </Alert>
+        </div>}
       <div style={{padding: "3px 30px", display: "flex", alignItems: "flex-end",justifyContent: "space-between"}}>
         <h3>Your Resume</h3>
       <button onClick={downloadResumePdf} className="down_resume_btn">Download Resume</button>
@@ -113,6 +121,7 @@ const Resume = () => {
           data={educationDetails}
           setData={setEducationDetails}
           refreshProfile={getProfile}
+          educationAllowed={settings.educationEditAllowed}
         />
         <Skills
           skills={skills}

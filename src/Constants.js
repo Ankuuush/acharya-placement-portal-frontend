@@ -32,7 +32,7 @@ const constants = {
         code: "saved-jobs",
         icon: "bookmark"
     },{
-        text: "Build Resume",
+        text: "Edit Resume",
         code: "resume",
         icon: "file-text"
     },{
@@ -55,6 +55,11 @@ const constants = {
     ],
 
     TPO_MENU: [{
+        text: "Dashboard",
+        code: "dashboard",
+        icon: "compass"
+    },
+    {
         text: "Drives List",
         code: "explore-jobs",
         icon: "briefcase"
@@ -72,17 +77,22 @@ const constants = {
         icon: "speaker"
     },
     {
+        text: "Verifications",
+        code: "verifications",
+        icon: "check-circle"
+    },
+    {
         text: "Add A Student",
         code: "registration",
         icon: "user-plus"
     },{
+        text: "My Profile",
+        code: "tpo-profile",
+        icon: "user"
+    },{
         text: "Feedback",
         code: "feedback",
         icon: "headphones"
-    },{
-        text: "Contact Us",
-        code: "contact-us",
-        icon: "phone-call"
     }
     ],
     ADMIN_MENU: [{

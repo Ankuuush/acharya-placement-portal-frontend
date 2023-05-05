@@ -48,6 +48,8 @@ const AuthProvider = (props) => {
   };
 
   const logout = () => {
+    localStorage.removeItem("avatar");
+      localStorage.removeItem("usn");
     return signOut(auth);
   };
 
