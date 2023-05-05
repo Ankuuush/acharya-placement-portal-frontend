@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { Button } from "@mui/material";
 import "./StudentListBody.css";
@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import api from "../../api";
 import Checkbox from "@mui/material/Checkbox";
 import Modal from "../ModalComponent";
+import AuthContext from "../../Context/AuthContext/AuthContext";
 
 const CompanyStudentListBody = () => {
   const [shortlistedData, setShortlistedData] = useState([]);
@@ -28,10 +29,13 @@ const CompanyStudentListBody = () => {
     }
   };
 
+  const context=useContext(AuthContext)
+  const {token}=context
+
   useEffect(() => {
     getAppliedStudents();
     api
-      .post(`tpo/drives/${driveid}/eligibleStudents`)
+      .post(`${token.account}/drives/${driveid}/eligibleStudents`)
       .then((res) => {
         console.log(res.data);
         setShortlistedData(res.data.data.students);
@@ -43,7 +47,7 @@ const CompanyStudentListBody = () => {
 
   const getAppliedStudents = () => {
     api
-    .get(`/tpo/drives/${driveid}/applications`)
+    .get(`${token.account}/drives/${driveid}/applications`)
     .then((res) => {
       console.log(res.data);
       setAppliedData(res.data.data.applications);

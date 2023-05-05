@@ -9,6 +9,13 @@ import constants from "../../Constants";
 import Users from "./Users";
 import AddTpo from "./AddTpo";
 import AddAdmin from "./AddAdmin";
+import DashboardReport from "../TPO/DashboardReport";
+import TpoExploreJobs from "../TPO/TpoExploreJobs";
+import DriveDetailsPage from "../TPO/DriveDetailsPage";
+import StudentList from "../TPO/StudentList";
+import StudentDetails from "../TPO/StudentDetails";
+import ShortlistedStudents from "../TPO/JobPreview/ShortlistedStudents";
+import Myprofile from "../TPO/Myprofile";
 
 const AdminDashboard = ({ page = "" }) => {
   const [component, setComponent] = useState("");
@@ -52,6 +59,13 @@ const AdminDashboard = ({ page = "" }) => {
           {component === "add-admin" && <AddAdmin />}
           {component === "feedback" && <FeedBack />}
           {component === "contact-us" && <ContactUs />}
+          {component === "admin-profile" && <Myprofile />}
+          {component === "dashboard" && <DashboardReport change={changeSelectedComponent} />}
+          {component === "explore-jobs" && <TpoExploreJobs user={'admin'} change={changeSelectedComponent} />}
+          {component === "drive-details" && <DriveDetailsPage />}
+          {component === "student-list" && <StudentList />}
+          {component === "student-details" && <StudentDetails />}
+          {component === "preview-students" && <ShortlistedStudents />}
         </Box>
       </div>
     </div>

@@ -1,13 +1,16 @@
 import { Button, TextField, Box, CircularProgress } from "@mui/material";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
 import Spinner from "../../Components/Spinner/Spinner";
 import { CameraAlt } from "@mui/icons-material";
+import AuthContext from "../../Context/AuthContext/AuthContext";
 
 const Myprofile = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const context=useContext(AuthContext)
+  const {token}=context
 
   const ref = useRef(null);
   const onClick = (e) => {
@@ -25,7 +28,7 @@ const Myprofile = () => {
     formData.append("scope", "profile_picture");
     formData.append("file", e.target.files[0]);
     api
-      .post("/tpo/upload", formData)
+      .post(`/${token.account}/upload`, formData)
       .then((res) => {
         setProfile({ ...profile, photoUrl: res.data.data.location });
         toast.success("Profile Picture Uploaded!", {
@@ -42,7 +45,7 @@ const Myprofile = () => {
   };
 
   const getTpoProfile = () => {
-    api.get("/tpo/profile").then((response) => {
+    api.get(`/${token.account}/profile`).then((response) => {
       setProfile(response.data.data.profile);
       setLoading(false);
     });
@@ -53,7 +56,7 @@ const Myprofile = () => {
   };
 
   const saveTpoProfile = () => {
-    api.post("/tpo/profile", {
+    api.post(`/${token.account}/profile`, {
         firstName: profile.firstName,
         lastName: profile.lastName,
         contactNumber: profile.contactNumber || undefined,

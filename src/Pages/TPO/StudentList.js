@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import  Spinner from '../../Components/Spinner/Spinner'
 import StudentListBody from '../../Components/StudentListBody/StudentListBody'
 import api from '../../api';
 import { toast } from 'react-toastify';
 import SearchStudent from '../../Components/Search/SearchStudent';
+import AuthContext from '../../Context/AuthContext/AuthContext';
 
 const StudentList = () => {
   const [students,setStudents]=useState([])
   const [filteredStudents, setFilteredStudents] = useState([])
   const [loading, setLoading] = useState(false)
+  const context=useContext(AuthContext)
+  const {token}=context
   useEffect(() => {
-    api.get('/tpo/students').then((response)=>{
+    api.get(`${token.account}/students`).then((response)=>{
       const res=response.data.data.students
         setStudents(res)
         setFilteredStudents(res)
