@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../../api";
 import JobDashboard from "../../Components/JobDashboard/JobDashboard";
 
-const TpoExploreJobs = ({ change, toggleDriveBookmark }) => {
+const TpoExploreJobs = ({user, change, toggleDriveBookmark }) => {
   const [drives, setDrives] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchDrives, setSearchDrives] = useState([]);
@@ -13,7 +13,7 @@ const TpoExploreJobs = ({ change, toggleDriveBookmark }) => {
   }, []);
 
   const getAllDrives = () => {
-    api.get("/tpo/drives").then((response) => {
+    api.get(`/${user}/drives`).then((response) => {
       setDrives(response.data.data.drives);
       setSearchDrives(response.data.data.drives);
       setFilterDrives(response.data.data.drives);
@@ -33,7 +33,7 @@ const TpoExploreJobs = ({ change, toggleDriveBookmark }) => {
       toggleDriveBookmark={toggleDriveBookmark}
       getAllDrives={getAllDrives}
       text="View Details"
-      view="tpo"
+      view={user}
     />
   );
 };

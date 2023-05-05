@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import api from "../../api";
 // import DReport from "../../Components/DashboardReport/DashboardReport";
 import Spinner from "../../Components/Spinner/Spinner";
 import DashboardReportTpo from "../../Components/DashboardReportTpo/DashboardReportTpo";
+import AuthContext from "../../Context/AuthContext/AuthContext";
 
 const DashboardReport = ({ change }) => {
   const [stats, setStats] = useState([]);
   const [loading, setLoading] = useState(true);
+  const context=useContext(AuthContext)
+  const {token}=context
 
   useEffect(() => {
     getStatistics("");
@@ -14,14 +17,14 @@ const DashboardReport = ({ change }) => {
 
 
   const getStatistics = (query) => {
-    api.get("/tpo/stats"+query).then((response) => {
+    api.get(`${token.account}/stats`+query).then((response) => {
       setStats(response.data.data.stats);
       setLoading(false);
     });
   };
 
   const toggleSettings = (setting, batch) => {
-    api.post("tpo/settings/" + setting + "/" + batch).then((response) => {
+    api.post(`${token.acount}/settings/` + setting + "/" + batch).then((response) => {
         getStatistics(`?batch=${stats.batch}`);
     });
   };

@@ -107,6 +107,23 @@ const constants = {
         text: "addAdmin",
         code: "add-admin",
         icon: "user-plus"
+    },{
+        text: "Dashboard",
+        code: "dashboard",
+        icon: "compass"
+    },
+    {
+        text: "Drives List",
+        code: "explore-jobs",
+        icon: "briefcase"
+    },{
+        text: "Student List",
+        code: "student-list",
+        icon: "file-text"
+    },{
+        text: "My Profile",
+        code: "admin-profile",
+        icon: "user"
     }
     ]
 }

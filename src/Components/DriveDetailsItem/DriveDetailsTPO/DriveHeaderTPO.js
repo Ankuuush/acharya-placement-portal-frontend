@@ -4,6 +4,8 @@ import "../DriveHeader.css";
 import api from "../../../api";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../../../Context/AuthContext/AuthContext";
 
 function parseRoleType(role) {
   switch (role) {
@@ -21,6 +23,8 @@ function parseRoleType(role) {
 }
 
 const DriveHeaderTPO = ({ job,company,details }) => {
+  const context=useContext(AuthContext)
+  const {token}=context
 
   const navigate=useNavigate()
 
@@ -29,7 +33,7 @@ const DriveHeaderTPO = ({ job,company,details }) => {
   console.log(job.eligibility)
 
   const handleStudents=()=>{
-    navigate(`/tpo/drives/${driveid}/students`)
+    navigate(`/${token.account}/drives/${driveid}/students`)
     window.location.reload()
   }
 

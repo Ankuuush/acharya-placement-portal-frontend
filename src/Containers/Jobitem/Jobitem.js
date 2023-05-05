@@ -63,9 +63,10 @@ export default function JobItem({
   const navigate=useNavigate()
   const applyNow = () => {
     // change("drives/" + job._id, "drive-details");
-    api.get(view === "tpo" ? `/tpo/drives/${job._id}`: `/student/drives/${job._id}`).then((res)=>{
+    api.get(`/${view}/drives/${job._id}`).then((res)=>{
       const response=res.data.data.drive.drive
-      navigate(view === "tpo" ? `/tpo/drives/${job._id}`: `/student/drives/${job._id}`,{state:{job:response}})
+      console.log(`/${view}/drives/${job._id}`)
+      navigate(`/${view}/drives/${job._id}`,{state:{job:response}})
     }).catch(()=>{
       toast.error('Server error!!')
     })
@@ -82,7 +83,7 @@ export default function JobItem({
         <div className="job-header-root">
           <div className="job-header">
             {!removeCompanyHeader && (
-              <img src={job.company.logoUrl} height={60} className="job-logo" />
+              <img src={job.company.logoUrl} height={60} className="job-logo" alt="" />
             )}
             <div
               className="job-header-group"

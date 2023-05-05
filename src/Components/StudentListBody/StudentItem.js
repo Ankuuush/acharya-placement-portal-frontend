@@ -2,12 +2,17 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Checkbox from '@mui/material/Checkbox';
 import Chip from "@mui/material/Chip";
+import { useContext } from "react";
+import AuthContext from "../../Context/AuthContext/AuthContext";
 
 const StudentItem = ({ student, from, selectedStudents, toggleSelectStudent }) => {
   const navigate=useNavigate();
   const name=student.student.firstName+" "+ student.student.lastName
+  const context=useContext(AuthContext)
+  const {token}=context
   const handleProfile=()=>{
-    navigate("/tpo/student-details",{state:{data:student}})
+    console.log(token.account)
+    navigate(`/${token.account}/student-details`,{state:{data:student}})
   }
     return (
       <div className="student-list-item">
