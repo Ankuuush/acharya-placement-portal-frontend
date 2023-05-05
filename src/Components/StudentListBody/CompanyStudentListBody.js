@@ -207,7 +207,7 @@ const CompanyStudentListBody = () => {
                   }} onClick={addStudentsToDrive}>Add Students</button>
               </div>} />
 
-              {selectedStudents.length > 0 && (
+              {selectedStudents.length > 0 && studentType && (
                 <button
                   style={{
                     border: "none",
@@ -227,7 +227,7 @@ const CompanyStudentListBody = () => {
                 </button>
               )}
             </div>
-            <button
+            {studentType &&<button
               style={{
                 border: "none",
                 color: "white",
@@ -243,7 +243,7 @@ const CompanyStudentListBody = () => {
               onClick={downloadFilterExcel}
             >
               Download As Excel
-            </button>
+            </button>}
           </div>
           {studentType
             ? shortlistedData.map((item, index) => {
