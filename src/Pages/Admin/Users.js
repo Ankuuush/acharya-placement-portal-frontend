@@ -4,7 +4,7 @@ import api from '../../api'
 
 const UserItem=({user})=>{
   return (
-    <div style={{display:"grid",gridTemplateColumns:"20% 20% 40% 10%",gridColumnGap:"50px", padding:"20px 0",fontWeight:700,color:"#1E4786"}}>
+    <div style={{display:"grid",gridTemplateColumns:"20% 20% 40% 10%", padding:"20px 0",fontWeight:700,color:"#1E4786"}}>
       <p>{user.firstName}</p>
       <p>{user.lastName}</p>
       <p>{user.email}</p>
@@ -51,7 +51,7 @@ const Users = () => {
         width:"70%",
         margin:"2rem auto"
       }}>
-        <div style={{display:"grid",gridTemplateColumns:"20% 20% 40% 10%",gridColumnGap:"50px",color:"#1E4786"}}>
+        <div style={{display:"grid",gridTemplateColumns:"20% 20% 40% 10%",color:"#1E4786"}}>
       <h2>FirstName</h2>
       <h2>LastName</h2>
       <h2>Email</h2>

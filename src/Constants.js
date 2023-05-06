@@ -96,15 +96,15 @@ const constants = {
     }
     ],
     ADMIN_MENU: [{
-        text: "users",
+        text: "Users",
         code: "users",
         icon: "users"
     },{
-        text: "addTPO",
+        text: "Add TPO",
         code: "add-tpo",
         icon: "user-plus"
     },{
-        text: "addAdmin",
+        text: "Add Admin",
         code: "add-admin",
         icon: "user-plus"
     },{
